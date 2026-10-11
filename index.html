@@ -10,28 +10,24 @@
   --line:#1F2A4A; --text:#E8ECF7; --sub:#8A93B8;
   --blue:#4FA8FF; --blue-d:#2F7BFF;
   --green:#2ED47A; --red:#FF5B5B; --purple:#7B4FE0;
-  --r:18px;
+  --amber:#FFB84D; --r:18px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{margin:0;padding:0;height:100%;}
 body{
   background:var(--bg); color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-  font-size:15px; line-height:1.5;
-  overflow-x:hidden;
+  font-size:15px; line-height:1.5; overflow-x:hidden;
 }
-/* ===== 星空背景 ===== */
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
 .star{position:absolute;border-radius:50%;background:#fff;opacity:.6;animation:tw 3s infinite ease-in-out;}
 @keyframes tw{0%,100%{opacity:.15;}50%{opacity:.9;}}
 
-/* ===== 布局 ===== */
 .app{
   position:relative; z-index:1;
   max-width:520px; margin:0 auto; min-height:100vh;
   display:flex; flex-direction:column;
   background:rgba(11,16,38,.72);
-  backdrop-filter:blur(2px);
 }
 .navbar{
   position:sticky; top:0; z-index:20;
@@ -41,19 +37,14 @@ body{
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-.navbar h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.5px;}
-.back-btn{
-  background:none;border:none;color:var(--blue);
-  font-size:20px;cursor:pointer;padding:0 4px;line-height:1;
-}
+.navbar h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.5px;flex:1;}
+.back-btn{background:none;border:none;color:var(--blue);font-size:20px;cursor:pointer;padding:0 4px;line-height:1;}
 .view{flex:1;padding:18px 18px 90px;}
 .hidden{display:none !important;}
 
-/* ===== TabBar ===== */
 .tabbar{
   position:fixed; left:0; right:0; bottom:0; z-index:30;
-  max-width:520px; margin:0 auto;
-  display:flex;
+  max-width:520px; margin:0 auto; display:flex;
   background:rgba(18,26,51,.96);
   backdrop-filter:blur(12px);
   border-top:1px solid var(--line);
@@ -68,63 +59,37 @@ body{
 .tabbar button .ico{font-size:19px;line-height:1;}
 .tabbar button.active{color:var(--blue);}
 
-/* ===== 通用组件 ===== */
-.card{
-  background:var(--bg2);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  padding:18px;
-  margin-bottom:14px;
-}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px;}
 .title{font-size:22px;font-weight:800;margin:0 0 6px;}
 .sub{color:var(--sub);font-size:13px;}
 .sec-title{font-size:16px;font-weight:700;margin:24px 0 12px;}
 
-.btn{
-  display:block;width:100%;
-  padding:15px;border:none;border-radius:999px;
-  font-size:16px;font-weight:600;font-family:inherit;
-  cursor:pointer;transition:transform .12s,opacity .2s;
-}
+.btn{display:block;width:100%;padding:15px;border:none;border-radius:999px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;transition:transform .12s,opacity .2s;}
 .btn:active{transform:scale(.97);}
 .btn-main{background:linear-gradient(135deg,#2F7BFF,#4FA8FF);color:#fff;}
 .btn-ghost{background:transparent;color:var(--blue);border:1px solid var(--blue-d);}
+.btn-amber{background:linear-gradient(135deg,#E08A1E,#FFB84D);color:#fff;}
+.btn-sm{padding:9px 16px;font-size:14px;width:auto;border-radius:999px;}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none;}
 .btn-row{display:flex;gap:12px;}
 .btn-row .btn{flex:1;}
 
-.tag{
-  display:inline-block;font-size:12px;color:var(--blue);
-  background:rgba(79,168,255,.12);
-  padding:2px 10px;border-radius:20px;margin-right:6px;
-}
+.tag{display:inline-block;font-size:12px;color:var(--blue);background:rgba(79,168,255,.12);padding:2px 10px;border-radius:20px;margin-right:6px;}
 .tag.err{color:var(--red);background:rgba(255,91,91,.12);}
+.tag.ok{color:var(--green);background:rgba(46,212,122,.12);}
+.tag.amber{color:var(--amber);background:rgba(255,184,77,.14);}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
 
-/* ===== 首页 ===== */
 .hero{padding:6px 0 18px;}
 .hero h2{margin:0 0 6px;font-size:26px;font-weight:800;
   background:linear-gradient(135deg,#8FB4FF,#4FA8FF 60%,#A78BFA);
   -webkit-background-clip:text;background-clip:text;color:transparent;}
-.level-switch{
-  display:flex;background:var(--bg2);border:1px solid var(--line);
-  border-radius:999px;padding:5px;margin-bottom:18px;
-}
-.level-switch button{
-  flex:1;padding:11px 0;border:none;background:none;cursor:pointer;
-  border-radius:999px;color:var(--sub);font-size:15px;
-  font-family:inherit;font-weight:600;transition:.2s;
-}
-.level-switch button.active{
-  background:linear-gradient(135deg,#2F7BFF,#4FA8FF);
-  color:#fff;
-}
+.level-switch{display:flex;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:18px;}
+.level-switch button{flex:1;padding:11px 0;border:none;background:none;cursor:pointer;border-radius:999px;color:var(--sub);font-size:15px;font-family:inherit;font-weight:600;transition:.2s;}
+.level-switch button.active{background:linear-gradient(135deg,#2F7BFF,#4FA8FF);color:#fff;}
+
 .entry-row{display:flex;gap:12px;margin-bottom:6px;}
-.entry-card{
-  flex:1;border-radius:var(--r);padding:22px 14px;text-align:center;
-  cursor:pointer;transition:transform .15s;border:none;
-  font-family:inherit;color:#fff;
-}
+.entry-card{flex:1;border-radius:var(--r);padding:22px 14px;text-align:center;cursor:pointer;transition:transform .15s;border:none;font-family:inherit;color:#fff;}
 .entry-card:active{transform:scale(.97);}
 .entry-card.blue{background:linear-gradient(135deg,#1E4FA8,#2F7BFF);}
 .entry-card.purple{background:linear-gradient(135deg,#4A2D8F,#7B4FE0);}
@@ -133,56 +98,44 @@ body{
 .entry-card .s{font-size:12px;opacity:.8;margin-top:3px;}
 
 .chip-wrap{display:flex;flex-wrap:wrap;gap:9px;}
-.chip{
-  padding:8px 16px;border-radius:999px;cursor:pointer;
-  background:var(--bg2);border:1px solid var(--line);
-  color:#B8C2DC;font-size:14px;font-family:inherit;
-  transition:.2s;
-}
+.chip{padding:8px 16px;border-radius:999px;cursor:pointer;background:var(--bg2);border:1px solid var(--line);color:#B8C2DC;font-size:14px;font-family:inherit;transition:.2s;}
 .chip:active{background:#1D2745;}
 
 .daily-stem{font-size:16px;line-height:1.6;margin:4px 0 12px;font-weight:500;}
 .opt-line{color:#B8C2DC;font-size:14px;line-height:2;}
 .answer-hint{margin-top:12px;color:var(--blue);font-size:14px;font-weight:600;}
 
-/* ===== 答题 ===== */
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;}
 .counter{font-size:13px;color:var(--sub);}
 .counter .ok{color:var(--green);}
 .counter .no{color:var(--red);}
 .progress{height:5px;background:#1A2340;border-radius:5px;overflow:hidden;margin-bottom:18px;}
-.progress > i{display:block;height:100%;width:0;border-radius:5px;
-  background:linear-gradient(90deg,#2F7BFF,#4FA8FF);transition:width .3s;}
+.progress > i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,#2F7BFF,#4FA8FF);transition:width .3s;}
 
 .stem{font-size:17px;line-height:1.65;margin:4px 0 20px;font-weight:500;}
 
-.option{
-  display:flex;align-items:center;
-  padding:14px 15px;margin-bottom:10px;
-  background:var(--bg3);border:2px solid var(--line);
-  border-radius:14px;cursor:pointer;
-  transition:all .18s;
-}
+.option{display:flex;align-items:center;padding:14px 15px;margin-bottom:10px;background:var(--bg3);border:2px solid var(--line);border-radius:14px;cursor:pointer;transition:all .18s;}
 .option:active{transform:scale(.99);}
 .option.selected{border-color:var(--blue);background:rgba(79,168,255,.12);}
 .option.right{border-color:var(--green);background:rgba(46,212,122,.12);}
 .option.wrong{border-color:var(--red);background:rgba(255,91,91,.12);}
 .option.dim{opacity:.45;}
-.opt-key{
-  width:26px;height:26px;line-height:26px;text-align:center;
-  border-radius:50%;background:var(--line);
-  font-size:13px;font-weight:700;margin-right:12px;flex-shrink:0;
-}
+.opt-key{width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--line);font-size:13px;font-weight:700;margin-right:12px;flex-shrink:0;}
 .option.selected .opt-key{background:var(--blue);color:#0B1026;}
 .option.right .opt-key{background:var(--green);color:#0B1026;}
 .option.wrong .opt-key{background:var(--red);color:#fff;}
 .opt-text{flex:1;font-size:15px;line-height:1.5;}
 
-.explain{
-  background:var(--bg2);border-left:4px solid var(--blue);
-  border-radius:12px;padding:16px;margin-top:16px;
-  animation:fadeIn .25s ease;
+.fill-input{
+  width:100%;padding:15px 16px;border-radius:14px;
+  background:var(--bg3);border:2px solid var(--line);
+  color:var(--text);font-size:16px;font-family:inherit;
+  outline:none;transition:border-color .2s;
 }
+.fill-input:focus{border-color:var(--blue);}
+.fill-input:disabled{opacity:.7;}
+
+.explain{background:var(--bg2);border-left:4px solid var(--blue);border-radius:12px;padding:16px;margin-top:16px;animation:fadeIn .25s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 .explain .head{font-size:16px;font-weight:700;margin-bottom:8px;}
 .explain .head.ok{color:var(--green);}
@@ -191,48 +144,24 @@ body{
 
 .footer{margin-top:22px;}
 
-/* ===== 竞赛 ===== */
 .timer{font-size:19px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums;}
-.card-btn{
-  font-size:12px;color:var(--blue);border:1px solid var(--blue-d);
-  padding:4px 12px;border-radius:999px;background:none;
-  cursor:pointer;font-family:inherit;
-}
+.card-btn{font-size:12px;color:var(--blue);border:1px solid var(--blue-d);padding:4px 12px;border-radius:999px;background:none;cursor:pointer;font-family:inherit;}
 .mask{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:40;}
-.sheet{
-  position:fixed;left:0;right:0;bottom:0;z-index:41;
-  max-width:520px;margin:0 auto;
-  background:var(--bg2);border-radius:24px 24px 0 0;
-  padding:24px 20px 36px;
-  transform:translateY(110%);transition:transform .28s ease;
-  max-height:70vh;overflow-y:auto;
-}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-width:520px;margin:0 auto;background:var(--bg2);border-radius:24px 24px 0 0;padding:24px 20px 36px;transform:translateY(110%);transition:transform .28s ease;max-height:70vh;overflow-y:auto;}
 .sheet.show{transform:translateY(0);}
 .sheet h3{margin:0 0 16px;font-size:17px;}
 .sheet-grid{display:flex;flex-wrap:wrap;gap:10px;}
-.sheet-item{
-  width:42px;height:42px;line-height:42px;text-align:center;
-  border-radius:50%;background:var(--line);color:var(--sub);
-  font-size:14px;cursor:pointer;transition:.15s;
-}
+.sheet-item{width:42px;height:42px;line-height:42px;text-align:center;border-radius:50%;background:var(--line);color:var(--sub);font-size:14px;cursor:pointer;transition:.15s;}
 .sheet-item.done{background:rgba(79,168,255,.2);color:var(--blue);font-weight:700;}
 .sheet-item.active{outline:2px solid var(--blue);color:#fff;}
 .sheet-tip{margin-top:18px;font-size:12px;color:#5C6688;}
 
-/* ===== 成绩单 ===== */
-.score-card{
-  background:linear-gradient(135deg,#1E4FA8,#2F7BFF 60%,#4FA8FF);
-  border-radius:22px;padding:32px 20px;text-align:center;margin-bottom:18px;
-}
+.score-card{background:linear-gradient(135deg,#1E4FA8,#2F7BFF 60%,#4FA8FF);border-radius:22px;padding:32px 20px;text-align:center;margin-bottom:18px;}
 .score-card .lb{font-size:13px;opacity:.85;}
 .score-card .num{font-size:60px;font-weight:900;line-height:1.15;}
 .score-card .full{font-size:13px;opacity:.8;}
-.score-card .rate{
-  display:inline-block;margin-top:12px;font-size:13px;
-  padding:5px 16px;background:rgba(255,255,255,.18);border-radius:999px;
-}
-.stat-row{display:flex;background:var(--bg2);border-radius:var(--r);
-  padding:18px 0;margin-bottom:22px;border:1px solid var(--line);}
+.score-card .rate{display:inline-block;margin-top:12px;font-size:13px;padding:5px 16px;background:rgba(255,255,255,.18);border-radius:999px;}
+.stat-row{display:flex;background:var(--bg2);border-radius:var(--r);padding:18px 0;margin-bottom:22px;border:1px solid var(--line);}
 .stat-row > div{flex:1;text-align:center;}
 .stat-row .n{font-size:24px;font-weight:800;}
 .stat-row .n.ok{color:var(--green);}
@@ -244,64 +173,56 @@ body{
 .q-line{font-size:13.5px;line-height:1.95;color:#B8C2DC;}
 .q-line .ok{color:var(--green);font-weight:700;}
 .q-line .no{color:var(--red);text-decoration:line-through;}
-.q-exp{
-  margin-top:14px;padding-top:14px;border-top:1px solid var(--line);
-  font-size:13px;color:var(--sub);line-height:1.75;
-}
-.remove-btn{
-  margin-top:14px;text-align:right;
-  font-size:13px;color:var(--red);cursor:pointer;
-}
+.q-exp{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--sub);line-height:1.75;}
 
-/* ===== 知识卡片 ===== */
-.filter-bar{
-  display:flex;gap:9px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;
-  -webkit-overflow-scrolling:touch;
-}
+.filter-bar{display:flex;gap:9px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;-webkit-overflow-scrolling:touch;}
 .filter-bar::-webkit-scrollbar{display:none;}
-.filter-item{
-  flex-shrink:0;padding:7px 16px;border-radius:999px;cursor:pointer;
-  background:var(--bg2);border:1px solid var(--line);
-  color:var(--sub);font-size:13.5px;font-family:inherit;
-  transition:.2s;white-space:nowrap;
-}
-.filter-item.active{
-  background:linear-gradient(135deg,#2F7BFF,#4FA8FF);
-  color:#fff;border-color:transparent;
-}
+.filter-item{flex-shrink:0;padding:7px 16px;border-radius:999px;cursor:pointer;background:var(--bg2);border:1px solid var(--line);color:var(--sub);font-size:13.5px;font-family:inherit;transition:.2s;white-space:nowrap;}
+.filter-item.active{background:linear-gradient(135deg,#2F7BFF,#4FA8FF);color:#fff;border-color:transparent;}
 .k-title{font-size:16.5px;font-weight:700;margin-bottom:8px;}
-.k-preview{
-  font-size:13.5px;color:var(--sub);line-height:1.6;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
+.k-preview{font-size:13.5px;color:var(--sub);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .k-content{font-size:15.5px;line-height:2;color:#C8D2E8;white-space:pre-wrap;}
 
-/* ===== 我的 ===== */
-.profile-card{
-  background:linear-gradient(135deg,#1A2A5A,#2F4FA8);
-  border-radius:22px;padding:32px 20px;text-align:center;margin-bottom:18px;
-}
-.profile-card .av{font-size:52px;margin-bottom:10px;}
-.profile-card .nk{font-size:20px;font-weight:800;}
-.grid2{
-  display:flex;flex-wrap:wrap;background:var(--bg2);
-  border-radius:var(--r);border:1px solid var(--line);
-  padding:10px 0;margin-bottom:18px;
-}
+/* 学习模块 */
+.learn-card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:12px;cursor:pointer;transition:.2s;}
+.learn-card:active{transform:scale(.985);}
+.learn-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.learn-ico{width:40px;height:40px;border-radius:12px;background:rgba(79,168,255,.14);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.learn-name{font-size:16px;font-weight:700;flex:1;}
+.learn-meta{font-size:12px;color:var(--sub);}
+.mastery-bar{height:6px;background:#1A2340;border-radius:6px;overflow:hidden;margin:10px 0 6px;}
+.mastery-bar > i{display:block;height:100%;border-radius:6px;transition:width .3s;}
+.mastery-info{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);}
+
+.study-box{background:linear-gradient(135deg,rgba(47,123,255,.10),rgba(123,79,224,.10));border:1px solid rgba(79,168,255,.25);border-radius:var(--r);padding:18px;margin-bottom:14px;}
+.study-box .st{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+
+/* 错题分组 */
+.group-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);cursor:pointer;margin-bottom:10px;}
+.group-head .gh-l{display:flex;align-items:center;gap:10px;}
+.group-head .gn{font-size:15.5px;font-weight:700;}
+.group-head .gc{font-size:12px;color:var(--sub);}
+.group-body{margin:-4px 0 14px;padding:0 4px;}
+
+.row-item{display:flex;justify-content:space-between;align-items:center;font-size:15px;cursor:pointer;}
+.row-item .arrow{color:#5C6688;font-size:14px;}
+
+.empty{text-align:center;padding:70px 0;}
+.empty .ico{font-size:48px;margin-bottom:14px;}
+.empty .txt{color:var(--sub);font-size:14px;}
+
+.version{text-align:center;color:#3E4767;font-size:12px;margin:34px 0 10px;}
+
+.grid2{display:flex;flex-wrap:wrap;background:var(--bg2);border-radius:var(--r);border:1px solid var(--line);padding:10px 0;margin-bottom:18px;}
 .grid2 > div{width:50%;text-align:center;padding:14px 0;}
 .grid2 .n{font-size:24px;font-weight:800;color:var(--blue);}
 .grid2 .l{font-size:12px;color:var(--sub);margin-top:3px;}
-.row-item{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:15px;cursor:pointer;
-}
-.row-item .arrow{color:#5C6688;font-size:14px;}
-.version{text-align:center;color:#3E4767;font-size:12px;margin:34px 0 10px;}
 
-/* ===== 空状态 ===== */
-.empty{text-align:center;padding:80px 0;}
-.empty .ico{font-size:48px;margin-bottom:14px;}
-.empty .txt{color:var(--sub);font-size:14px;}
+.profile-card{background:linear-gradient(135deg,#1A2A5A,#2F4FA8);border-radius:22px;padding:32px 20px;text-align:center;margin-bottom:18px;}
+.profile-card .av{font-size:52px;margin-bottom:10px;}
+.profile-card .nk{font-size:20px;font-weight:800;}
+
+.type-badge{font-size:11px;padding:2px 8px;border-radius:6px;background:rgba(255,184,77,.16);color:var(--amber);margin-left:6px;font-weight:600;}
 
 @media (max-width:360px){
   body{font-size:14px;}
@@ -323,7 +244,7 @@ body{
 
   <nav class="tabbar" id="tabbar">
     <button data-tab="home" class="active"><span class="ico">🏠</span>首页</button>
-    <button data-tab="knowledge"><span class="ico">📚</span>知识</button>
+    <button data-tab="learn"><span class="ico">📚</span>学习</button>
     <button data-tab="wrong"><span class="ico">📕</span>错题</button>
     <button data-tab="profile"><span class="ico">👤</span>我的</button>
   </nav>
@@ -333,10 +254,10 @@ body{
 /* =========================================================
    1. 星空背景
    ========================================================= */
-(function initStars(){
+(function(){
   const box = document.getElementById('stars');
   let html = '';
-  for (let i = 0; i < 90; i++) {
+  for (let i = 0; i < 90; i++){
     const size = Math.random() * 2 + 0.6;
     const x = Math.random() * 100;
     const y = Math.random() * 100;
@@ -348,13 +269,13 @@ body{
 })();
 
 /* =========================================================
-   2. 工具函数
+   2. 工具
    ========================================================= */
 const $ = s => document.querySelector(s);
 const LETTERS = ['A','B','C','D','E','F'];
 
 function esc(s){
-  return String(s).replace(/[&<>"']/g, c => ({
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[c]));
 }
@@ -372,16 +293,29 @@ function fmtTime(sec){
   const s = String(sec % 60).padStart(2, '0');
   return m + ':' + s;
 }
+function normalizeText(s){
+  return String(s == null ? '' : s)
+    .trim().toLowerCase()
+    .replace(/[\s，,。.、；;：:！!？?"'“”‘’（）()]/g, '')
+    .replace(/[°º]/g, '度')
+    .replace(/[′']/g, '分')
+    .replace(/[″"]/g, '秒');
+}
 
 /* =========================================================
-   3. 本地存储
+   3. 存储
    ========================================================= */
-const KEY = { wrong:'astro_wrong', record:'astro_record', days:'astro_days' };
+const KEY = {
+  wrong:'astro_wrong2',
+  record:'astro_record2',
+  days:'astro_days2',
+  qstats:'astro_qstats2'
+};
 
 const Store = {
+  /* --- 错题 --- */
   getWrong(){
-    try { return JSON.parse(localStorage.getItem(KEY.wrong)) || []; }
-    catch(e){ return []; }
+    try { return JSON.parse(localStorage.getItem(KEY.wrong)) || []; } catch(e){ return []; }
   },
   addWrong(id){
     const list = this.getWrong();
@@ -400,14 +334,27 @@ const Store = {
   },
   clearWrong(){ localStorage.removeItem(KEY.wrong); },
 
+  /* --- 单题作答统计 --- */
+  getQStats(){
+    try { return JSON.parse(localStorage.getItem(KEY.qstats)) || {}; } catch(e){ return {}; }
+  },
+  bumpQStat(id, correct){
+    const s = this.getQStats();
+    if (!s[id]) s[id] = { t: 0, c: 0 };
+    s[id].t += 1;
+    if (correct) s[id].c += 1;
+    s[id].last = Date.now();
+    localStorage.setItem(KEY.qstats, JSON.stringify(s));
+  },
+
+  /* --- 答题记录 --- */
   addRecord(rec){
     let list = [];
     try { list = JSON.parse(localStorage.getItem(KEY.record)) || []; } catch(e){}
     list.push(Object.assign({}, rec, { time: Date.now() }));
-    if (list.length > 300) list = list.slice(list.length - 300);
+    if (list.length > 400) list = list.slice(list.length - 400);
     localStorage.setItem(KEY.record, JSON.stringify(list));
 
-    // 记录学习天数
     let days = [];
     try { days = JSON.parse(localStorage.getItem(KEY.days)) || []; } catch(e){}
     const today = new Date().toDateString();
@@ -416,6 +363,7 @@ const Store = {
       localStorage.setItem(KEY.days, JSON.stringify(days));
     }
   },
+
   getStats(){
     let records = [], days = [];
     try { records = JSON.parse(localStorage.getItem(KEY.record)) || []; } catch(e){}
@@ -432,282 +380,994 @@ const Store = {
       wrongCount: this.getWrong().length
     };
   },
+
   clearAll(){
     localStorage.removeItem(KEY.wrong);
     localStorage.removeItem(KEY.record);
     localStorage.removeItem(KEY.days);
+    localStorage.removeItem(KEY.qstats);
   }
 };
 
 /* =========================================================
-   4. 题库
+   4. 题库（四种题型：single / multi / judge / fill）
    ========================================================= */
 const QUESTIONS = [
-  /* ---------- 小学组 ---------- */
-  { id:'p01', level:'小学', category:'太阳系', stem:'太阳系中体积最大的行星是？',
-    options:['地球','木星','土星','火星'], answer:1,
-    explanation:'木星是太阳系中体积和质量最大的行星，质量约为其他七大行星总和的2.5倍。' },
-  { id:'p02', level:'小学', category:'月相', stem:'农历十五前后的月相最接近？',
-    options:['新月','上弦月','满月','下弦月'], answer:2,
-    explanation:'农历十五前后，月球被太阳照亮的一面完全朝向地球，我们看到的即满月。' },
-  { id:'p03', level:'小学', category:'太阳系', stem:'距离太阳最近的行星是？',
-    options:['水星','金星','地球','火星'], answer:0,
-    explanation:'水星是太阳系中距离太阳最近的行星，公转周期仅约88天。' },
-  { id:'p04', level:'小学', category:'天体运动', stem:'地球绕太阳公转一周大约需要？',
-    options:['24小时','30天','365天','12年'], answer:2,
-    explanation:'地球公转一周约为365.2422天，即一个回归年。' },
-  { id:'p05', level:'小学', category:'星座', stem:'北极星大致位于哪个星座？',
-    options:['大熊座','小熊座','仙后座','猎户座'], answer:1,
-    explanation:'北极星（勾陈一）位于小熊座，靠近北天极，几乎不动。' },
-  { id:'p06', level:'小学', category:'恒星', stem:'太阳属于哪一类天体？',
-    options:['行星','卫星','恒星','彗星'], answer:2,
-    explanation:'太阳是一颗恒星，靠内部核聚变发光发热。' },
-  { id:'p07', level:'小学', category:'日食月食', stem:'发生日食时，三者位置关系是？',
-    options:['太阳—地球—月球','太阳—月球—地球','地球—太阳—月球','月球—地球—太阳'], answer:1,
-    explanation:'日食时月球位于太阳和地球之间，挡住太阳光。' },
-  { id:'p08', level:'小学', category:'天体运动', stem:'北半球一年中白昼最长的节气是？',
-    options:['春分','夏至','秋分','冬至'], answer:1,
-    explanation:'夏至时太阳直射北回归线，北半球白昼最长。' },
-  { id:'p09', level:'小学', category:'月球', stem:'月球表面昼夜温差极大，主要原因是？',
-    options:['距离太阳太近','没有大气层','自转太快','引力太小'], answer:1,
-    explanation:'月球几乎没有大气，无法保温，白天可达120℃以上，夜晚可降至-180℃。' },
-  { id:'p10', level:'小学', category:'太阳系', stem:'下列哪个不属于行星？',
-    options:['月球','火星','土星','海王星'], answer:0,
-    explanation:'月球是地球的卫星，不是行星。' },
-  { id:'p11', level:'小学', category:'星系', stem:'银河系属于哪种类型的星系？',
-    options:['椭圆星系','棒旋星系','不规则星系','透镜星系'], answer:1,
-    explanation:'银河系是一个棒旋星系，直径约10万光年。' },
-  { id:'p12', level:'小学', category:'望远镜', stem:'天文望远镜最主要的作用是？',
-    options:['放大天体','汇聚光线并提高分辨率','改变天体颜色','测量温度'], answer:1,
-    explanation:'望远镜的核心是聚光能力，口径越大，能看到的暗天体越多，分辨率越高。' },
-  { id:'p13', level:'小学', category:'星座', stem:'北斗七星属于哪个星座？',
-    options:['小熊座','大熊座','天龙座','牧夫座'], answer:1,
-    explanation:'北斗七星是大熊座的一部分，其勺头两星连线可指向北极星。' },
-  { id:'p14', level:'小学', category:'流星', stem:'流星是怎么形成的？',
-    options:['恒星爆炸','流星体进入大气层摩擦燃烧','彗星解体','行星碰撞'], answer:1,
-    explanation:'流星体高速进入地球大气层，与大气摩擦生热发光，形成流星。' },
-  { id:'p15', level:'小学', category:'太阳', stem:'太阳活动的主要标志是？',
-    options:['日珥','黑子','耀斑','太阳风'], answer:1,
-    explanation:'太阳黑子是太阳活动最基本的标志，其数量变化周期约11年。' },
-  { id:'p16', level:'小学', category:'天文单位', stem:'“光年”是什么单位？',
-    options:['时间单位','长度单位','速度单位','亮度单位'], answer:1,
-    explanation:'光年是光在真空中一年走过的距离，约9.46万亿千米，是长度单位。' },
-  { id:'p17', level:'小学', category:'天文史', stem:'世界上第一位进入太空的人是？',
-    options:['阿姆斯特朗','加加林','杨利伟','格伦'], answer:1,
-    explanation:'1961年4月12日，苏联宇航员加加林乘“东方一号”首次进入太空。' },
-  { id:'p18', level:'小学', category:'天文史', stem:'中国首位进入太空的航天员是？',
-    options:['聂海胜','杨利伟','翟志刚','刘伯明'], answer:1,
-    explanation:'2003年10月15日，杨利伟乘神舟五号飞船进入太空。' },
-  { id:'p19', level:'小学', category:'月球', stem:'距离地球最近的天然天体是？',
-    options:['太阳','月球','金星','火星'], answer:1,
-    explanation:'月球是地球唯一的天然卫星，平均距离约38.4万千米。' },
-  { id:'p20', level:'小学', category:'天体运动', stem:'地球自转一周大约需要多长时间？',
-    options:['约12小时','约24小时','约30天','约365天'], answer:1,
-    explanation:'地球自转一周约24小时，产生昼夜交替现象。' },
-  { id:'p21', level:'小学', category:'日食月食', stem:'发生月食时，月球位于？',
-    options:['地球本影中','地球半影外','太阳与地球之间','地球与太阳之间'], answer:0,
-    explanation:'月食时地球位于太阳与月球之间，月球进入地球的影子。' },
-  { id:'p22', level:'小学', category:'恒星', stem:'下列天体中属于恒星的是？',
-    options:['月球','太阳','火星','哈雷彗星'], answer:1,
-    explanation:'恒星自身能发光发热，太阳是一颗恒星；月球是卫星，火星是行星。' },
-  { id:'p23', level:'小学', category:'太阳系', stem:'八大行星中，拥有最壮观行星环的是？',
-    options:['火星','木星','土星','海王星'], answer:2,
-    explanation:'土星环由冰粒和岩石碎块组成，是太阳系中最壮观的行星环系统。' },
-  { id:'p24', level:'小学', category:'天文单位', stem:'1天文单位约等于？',
-    options:['地球到月球的平均距离','地球到太阳的平均距离','光走一年的距离','太阳的直径'], answer:1,
-    explanation:'1天文单位（AU）约等于1.496亿千米，即地球到太阳的平均距离。' },
+/* ==================== 小学组 ==================== */
+/* --- 太阳系 --- */
+{ id:'p01', level:'小学', category:'太阳系', type:'single',
+  stem:'太阳系中体积最大的行星是？',
+  options:['地球','木星','土星','火星'], answer:1,
+  explanation:'木星是太阳系中体积和质量最大的行星，质量约为其他七大行星总和的2.5倍。' },
+{ id:'p02', level:'小学', category:'太阳系', type:'single',
+  stem:'距离太阳最近的行星是？',
+  options:['水星','金星','地球','火星'], answer:0,
+  explanation:'水星是太阳系中距离太阳最近的行星，公转周期仅约88天。' },
+{ id:'p03', level:'小学', category:'太阳系', type:'single',
+  stem:'下列哪个不属于行星？',
+  options:['月球','火星','土星','海王星'], answer:0,
+  explanation:'月球是地球的天然卫星，不是行星。' },
+{ id:'p04', level:'小学', category:'太阳系', type:'judge',
+  stem:'土星拥有太阳系中最壮观的行星环系统。', answer:0,
+  explanation:'正确。土星环由无数冰粒和岩石碎块组成，是太阳系中最壮观的行星环。' },
+{ id:'p05', level:'小学', category:'太阳系', type:'multi',
+  stem:'下列属于类地行星的有哪些？（多选）',
+  options:['水星','金星','木星','地球'], answer:[0,1,3],
+  explanation:'类地行星以岩石为主，包括水星、金星、地球、火星。木星是气态巨行星。' },
+{ id:'p06', level:'小学', category:'太阳系', type:'fill',
+  stem:'八大行星中体积和质量最大的是______。', answer:['木星'],
+  explanation:'木星是八大行星中体积和质量最大的一颗，质量约为地球的318倍。' },
+{ id:'p07', level:'小学', category:'太阳系', type:'single',
+  stem:'八大行星按距离太阳由近到远，排在第四位的是？',
+  options:['地球','火星','木星','金星'], answer:1,
+  explanation:'顺序为：水星、金星、地球、火星、木星、土星、天王星、海王星。第四位是火星。' },
 
-  /* ---------- 初中组 ---------- */
-  { id:'j01', level:'初中', category:'天球坐标', stem:'天球赤道与地平圈的交点中，太阳升起方向附近的是？',
-    options:['东点','西点','南点','北点'], answer:0,
-    explanation:'东点是天球赤道与地平圈在东侧的交点，太阳升起方向附近。' },
-  { id:'j02', level:'初中', category:'恒星演化', stem:'太阳最终会演化成？',
-    options:['中子星','黑洞','白矮星','红巨星'], answer:2,
-    explanation:'太阳质量较小，最终会抛掉外层形成行星状星云，核心留下白矮星。' },
-  { id:'j03', level:'初中', category:'天球坐标', stem:'天球坐标系统中，赤经的起算点是？',
-    options:['天顶','春分点','秋分点','北天极'], answer:1,
-    explanation:'赤经自春分点起算，沿天赤道向东度量，单位为时、分、秒。' },
-  { id:'j04', level:'初中', category:'星等', stem:'视星等数值越小，表示天体？',
-    options:['越暗','越亮','越大','越远'], answer:1,
-    explanation:'视星等越小越亮，每差5等亮度相差100倍。太阳视星等约为-26.7。' },
-  { id:'j05', level:'初中', category:'星等', stem:'两颗绝对星等相同的恒星，距离越远，其视星等？',
-    options:['越小','越大','不变','无法判断'], answer:1,
-    explanation:'距离越远，接收到的光越少，视星等数值越大（看起来越暗）。' },
-  { id:'j06', level:'初中', category:'天体运动', stem:'太阳周年视运动所在的视轨迹大圆称为？',
-    options:['天赤道','黄道','地平圈','白道'], answer:1,
-    explanation:'太阳一年中在天球上走过的视轨迹叫黄道，与天赤道约成23°26′夹角。' },
-  { id:'j07', level:'初中', category:'天体运动', stem:'从地面观测，天体周日视运动的方向是？',
-    options:['自西向东','自东向西','自南向北','自北向南'], answer:1,
-    explanation:'由于地球自西向东自转，我们看到天体东升西落，即自东向西。' },
-  { id:'j08', level:'初中', category:'望远镜', stem:'折射望远镜的物镜是？',
-    options:['凸透镜','凹透镜','凹面镜','平面镜'], answer:0,
-    explanation:'折射望远镜用凸透镜作物镜汇聚光线，伽利略、开普勒望远镜均属此类。' },
-  { id:'j09', level:'初中', category:'望远镜', stem:'牛顿式反射望远镜的物镜是？',
-    options:['凸透镜','凹面镜','凸面镜','棱镜'], answer:1,
-    explanation:'反射望远镜用凹面镜作物镜，无色差，口径可以做得很大。' },
-  { id:'j10', level:'初中', category:'天体运动', stem:'一年中太阳直射点最北到达？',
-    options:['赤道','北回归线','北极圈','南回归线'], answer:1,
-    explanation:'夏至时太阳直射北回归线（约23°26′N），这是直射点的最北位置。' },
-  { id:'j11', level:'初中', category:'月相', stem:'月相变化的周期（朔望月）约为？',
-    options:['27.3天','29.5天','30天','31天'], answer:1,
-    explanation:'朔望月约29.53天，是月相变化的周期；恒星月约27.32天。' },
-  { id:'j12', level:'初中', category:'日食月食', stem:'发生月全食时，月球位于？',
-    options:['地球本影中','地球半影中','太阳本影中','地球与太阳之间'], answer:0,
-    explanation:'月全食时，地球位于太阳与月球之间，月球完全进入地球本影。' },
-  { id:'j13', level:'初中', category:'星系', stem:'银河系的直径约为？',
-    options:['1万光年','10万光年','100万光年','1000万光年'], answer:1,
-    explanation:'银河系直径约10万光年，太阳距银心约2.6万光年。' },
-  { id:'j14', level:'初中', category:'星系', stem:'距离银河系最近的大型河外星系是？',
-    options:['仙女座星系','三角座星系','大麦哲伦云','M87'], answer:0,
-    explanation:'仙女座星系（M31）距我们约254万光年，是最近的大型旋涡星系。' },
-  { id:'j15', level:'初中', category:'恒星演化', stem:'赫罗图上主序星分布的位置是？',
-    options:['左上到右下的对角线','右上角','左下角','右下角'], answer:0,
-    explanation:'主序星在赫罗图上沿左上（高温高亮）到右下（低温低暗）分布。' },
-  { id:'j16', level:'初中', category:'天文史', stem:'主持建造登封观星台、编制《授时历》的中国古代天文学家是？',
-    options:['张衡','一行','郭守敬','祖冲之'], answer:2,
-    explanation:'元代郭守敬主持建造登封观星台，编订《授时历》，回归年长度精确到365.2425天。' },
-  { id:'j17', level:'初中', category:'天文史', stem:'“中国天眼”FAST 位于哪个省？',
-    options:['云南','贵州','四川','广西'], answer:1,
-    explanation:'FAST 位于贵州省平塘县，口径500米，是世界最大单口径射电望远镜。' },
-  { id:'j18', level:'初中', category:'太阳', stem:'太阳黑子活动的平均周期约为？',
-    options:['1年','5年','11年','22年'], answer:2,
-    explanation:'太阳黑子相对数变化平均周期约11年，称为太阳活动周。' },
-  { id:'j19', level:'初中', category:'天文单位', stem:'1秒差距约等于多少光年？',
-    options:['1.5光年','3.26光年','10光年','30光年'], answer:1,
-    explanation:'1秒差距约等于3.26光年，约206265天文单位，是测量恒星距离的常用单位。' },
-  { id:'j20', level:'初中', category:'恒星', stem:'恒星光谱分类由高到低的正确顺序是？',
-    options:['OBAFGKM','MKGFAO','ABFGKMO','OFBAGKM'], answer:0,
-    explanation:'恒星光谱型按温度由高到低为 O、B、A、F、G、K、M，太阳属于 G 型。' },
-  { id:'j21', level:'初中', category:'星等', stem:'绝对星等的定义是？',
-    options:['恒星在任意距离的视星等','把恒星放在10秒差距处的视星等','恒星的表面亮度','恒星的总辐射能量'], answer:1,
-    explanation:'绝对星等 M 是把恒星放到10秒差距（约32.6光年）处所看到的视星等，用于比较恒星的真实光度。' },
-  { id:'j22', level:'初中', category:'星系', stem:'哈勃定律指出，星系的退行速度与什么成正比？',
-    options:['星系质量','星系距离','星系半径','星系温度'], answer:1,
-    explanation:'哈勃定律 v = H₀·d，星系退行速度与距离成正比，是宇宙膨胀的重要证据。' },
-  { id:'j23', level:'初中', category:'天球坐标', stem:'天球坐标中，赤纬的起算圈是？',
-    options:['地平圈','天赤道','黄道','白道'], answer:1,
-    explanation:'赤纬 δ 自天赤道起算，向北为正（0°~+90°），向南为负（0°~-90°）。' },
-  { id:'j24', level:'初中', category:'望远镜', stem:'某望远镜物镜焦距1200mm，目镜焦距20mm，放大倍率为？',
-    options:['20倍','40倍','60倍','120倍'], answer:2,
-    explanation:'放大倍率 = 物镜焦距 ÷ 目镜焦距 = 1200 ÷ 20 = 60 倍。' }
+/* --- 月相 --- */
+{ id:'p11', level:'小学', category:'月相', type:'single',
+  stem:'农历十五前后的月相最接近？',
+  options:['新月','上弦月','满月','下弦月'], answer:2,
+  explanation:'农历十五前后，月球被太阳照亮的一面完全朝向地球，我们看到的即满月。' },
+{ id:'p12', level:'小学', category:'月相', type:'single',
+  stem:'上弦月出现在上半夜的南方天空，其亮面朝向？',
+  options:['东','西','南','北'], answer:1,
+  explanation:'口诀「上上上西西」：上弦月出现在上半夜、西边天空、亮面朝西。' },
+{ id:'p13', level:'小学', category:'月相', type:'judge',
+  stem:'月相变化的周期约为29.5天。', answer:0,
+  explanation:'正确。朔望月约29.53天，是月相从新月到下一个新月的周期。' },
+{ id:'p14', level:'小学', category:'月相', type:'fill',
+  stem:'农历初一看不到月亮，这一月相称为______。', answer:['新月','朔'],
+  explanation:'农历初一，月球位于太阳和地球之间，朝向地球的一面未被照亮，称为新月（朔）。' },
+{ id:'p15', level:'小学', category:'月相', type:'single',
+  stem:'下列月相中，出现在农历初七、初八的是？',
+  options:['新月','上弦月','满月','下弦月'], answer:1,
+  explanation:'农历初七、初八为上弦月，此时月面西半边亮。' },
+
+/* --- 星座 --- */
+{ id:'p21', level:'小学', category:'星座', type:'single',
+  stem:'北极星大致位于哪个星座？',
+  options:['大熊座','小熊座','仙后座','猎户座'], answer:1,
+  explanation:'北极星（勾陈一）位于小熊座，靠近北天极，位置几乎不动。' },
+{ id:'p22', level:'小学', category:'星座', type:'single',
+  stem:'北斗七星属于哪个星座？',
+  options:['小熊座','大熊座','天龙座','牧夫座'], answer:1,
+  explanation:'北斗七星是大熊座的一部分，其勺头两星连线可指向北极星。' },
+{ id:'p23', level:'小学', category:'星座', type:'judge',
+  stem:'北极星是夜空中最亮的恒星。', answer:1,
+  explanation:'错误。北极星只是一颗二等星，天狼星才是夜空中最亮的恒星。' },
+{ id:'p24', level:'小学', category:'星座', type:'fill',
+  stem:'北斗七星勺头的两颗星连线，朝勺口方向延长约5倍，可以找到______。', answer:['北极星'],
+  explanation:'天璇与天枢的连线向勺口方向延长约5倍，即可找到北极星。' },
+{ id:'p25', level:'小学', category:'星座', type:'single',
+  stem:'冬季夜空中，有三颗亮星排成一条直线的著名星座是？',
+  options:['猎户座','天蝎座','狮子座','天鹅座'], answer:0,
+  explanation:'猎户座腰带上的三颗星（参宿一、二、三）排成一条直线，非常醒目。' },
+
+/* --- 恒星 --- */
+{ id:'p31', level:'小学', category:'恒星', type:'single',
+  stem:'太阳属于哪一类天体？',
+  options:['行星','卫星','恒星','彗星'], answer:2,
+  explanation:'太阳是一颗恒星，靠内部核聚变发光发热。' },
+{ id:'p32', level:'小学', category:'恒星', type:'judge',
+  stem:'恒星自身能够发光发热。', answer:0,
+  explanation:'正确。恒星内部进行核聚变反应，自身能发光发热；行星和卫星只能反射光。' },
+{ id:'p33', level:'小学', category:'恒星', type:'single',
+  stem:'距离太阳最近的恒星是？',
+  options:['天狼星','比邻星','织女星','北极星'], answer:1,
+  explanation:'比邻星（半人马座α星C）距太阳约4.22光年，是距离太阳最近的恒星。' },
+{ id:'p34', level:'小学', category:'恒星', type:'fill',
+  stem:'夜空中最亮的恒星是______。', answer:['天狼星'],
+  explanation:'天狼星视星等约-1.46，是夜空中最亮的恒星，属于大犬座。' },
+
+/* --- 日食月食 --- */
+{ id:'p41', level:'小学', category:'日食月食', type:'single',
+  stem:'发生日食时，三者位置关系是？',
+  options:['太阳—地球—月球','太阳—月球—地球','地球—太阳—月球','月球—地球—太阳'], answer:1,
+  explanation:'日食时月球位于太阳和地球之间，挡住了射向地球的太阳光。' },
+{ id:'p42', level:'小学', category:'日食月食', type:'single',
+  stem:'发生月全食时，月球位于？',
+  options:['地球本影中','地球半影中','太阳本影中','地球与太阳之间'], answer:0,
+  explanation:'月全食时，地球位于太阳与月球之间，月球完全进入地球本影。' },
+{ id:'p43', level:'小学', category:'日食月食', type:'judge',
+  stem:'日食一定发生在农历十五的满月。', answer:1,
+  explanation:'错误。日食发生在朔（农历初一），月食才发生在望（农历十五前后）。' },
+{ id:'p44', level:'小学', category:'日食月食', type:'multi',
+  stem:'日食可以分为哪几种类型？（多选）',
+  options:['日全食','日偏食','日环食','半影日食'], answer:[0,1,2],
+  explanation:'日食分为日全食、日偏食、日环食三种。半影月食属于月食类型。' },
+
+/* --- 天体运动 --- */
+{ id:'p51', level:'小学', category:'天体运动', type:'single',
+  stem:'地球绕太阳公转一周大约需要？',
+  options:['24小时','30天','365天','12年'], answer:2,
+  explanation:'地球公转一周约为365.2422天，即一个回归年。' },
+{ id:'p52', level:'小学', category:'天体运动', type:'single',
+  stem:'北半球一年中白昼最长的节气是？',
+  options:['春分','夏至','秋分','冬至'], answer:1,
+  explanation:'夏至时太阳直射北回归线，北半球白昼最长、黑夜最短。' },
+{ id:'p53', level:'小学', category:'天体运动', type:'judge',
+  stem:'地球自转产生了昼夜交替现象。', answer:0,
+  explanation:'正确。地球自西向东自转一周约24小时，形成昼夜交替。' },
+{ id:'p54', level:'小学', category:'天体运动', type:'fill',
+  stem:'地球自转一周约需______小时。', answer:['24','二十四'],
+  explanation:'地球自转一周约24小时，即一个太阳日。' },
+{ id:'p55', level:'小学', category:'天体运动', type:'single',
+  stem:'一年中太阳直射赤道的日子是？',
+  options:['春分和秋分','夏至和冬至','只有春分','只有秋分'], answer:0,
+  explanation:'春分和秋分时太阳直射赤道，全球昼夜等长。' },
+
+/* --- 月球 --- */
+{ id:'p61', level:'小学', category:'月球', type:'single',
+  stem:'月球表面昼夜温差极大，主要原因是？',
+  options:['距离太阳太近','没有大气层','自转太快','引力太小'], answer:1,
+  explanation:'月球几乎没有大气，无法保温，白天可达120℃以上，夜晚可降至-180℃。' },
+{ id:'p62', level:'小学', category:'月球', type:'judge',
+  stem:'月球是地球唯一的天然卫星。', answer:0,
+  explanation:'正确。月球是地球唯一的天然卫星，平均距离约38.4万千米。' },
+{ id:'p63', level:'小学', category:'月球', type:'fill',
+  stem:'月球与地球的平均距离约为______万千米。', answer:['38.4','38.44','38'],
+  explanation:'月球与地球的平均距离约为38.44万千米。' },
+{ id:'p64', level:'小学', category:'月球', type:'single',
+  stem:'月球上没有声音传播，原因是？',
+  options:['温度太低','没有大气','引力太小','没有水'], answer:1,
+  explanation:'声音需要介质传播，月球上没有大气层，所以是寂静的。' },
+
+/* --- 星系 --- */
+{ id:'p71', level:'小学', category:'星系', type:'single',
+  stem:'银河系属于哪种类型的星系？',
+  options:['椭圆星系','棒旋星系','不规则星系','透镜星系'], answer:1,
+  explanation:'银河系是一个棒旋星系，直径约10万光年。' },
+{ id:'p72', level:'小学', category:'星系', type:'judge',
+  stem:'太阳位于银河系的中心。', answer:1,
+  explanation:'错误。太阳位于银河系的一条旋臂上，距银心约2.6万光年。' },
+{ id:'p73', level:'小学', category:'星系', type:'single',
+  stem:'银河系的直径约为？',
+  options:['1万光年','10万光年','100万光年','1000万光年'], answer:1,
+  explanation:'银河系直径约10万光年，太阳距银心约2.6万光年。' },
+
+/* --- 望远镜 --- */
+{ id:'p81', level:'小学', category:'望远镜', type:'single',
+  stem:'天文望远镜最主要的作用是？',
+  options:['放大天体','汇聚光线并提高分辨率','改变天体颜色','测量温度'], answer:1,
+  explanation:'望远镜的核心是聚光能力，口径越大，能看到的暗天体越多，分辨率越高。' },
+{ id:'p82', level:'小学', category:'望远镜', type:'judge',
+  stem:'天文望远镜的口径越大，聚光能力越强。', answer:0,
+  explanation:'正确。口径是望远镜最重要的参数，口径越大聚光能力越强。' },
+{ id:'p83', level:'小学', category:'望远镜', type:'single',
+  stem:'折射式天文望远镜的物镜是？',
+  options:['凸透镜','凹透镜','凹面镜','平面镜'], answer:0,
+  explanation:'折射望远镜用凸透镜作物镜汇聚光线。' },
+
+/* --- 流星 --- */
+{ id:'p91', level:'小学', category:'流星', type:'single',
+  stem:'流星是怎么形成的？',
+  options:['恒星爆炸','流星体进入大气层摩擦燃烧','彗星解体','行星碰撞'], answer:1,
+  explanation:'流星体高速进入地球大气层，与大气摩擦生热发光，形成流星。' },
+{ id:'p92', level:'小学', category:'流星', type:'judge',
+  stem:'流星雨的出现往往与彗星轨道上的尘埃有关。', answer:0,
+  explanation:'正确。当地球穿过彗星遗留的尘埃带时，大量尘埃进入大气层燃烧，形成流星雨。' },
+
+/* --- 太阳 --- */
+{ id:'pa1', level:'小学', category:'太阳', type:'single',
+  stem:'太阳活动的主要标志是？',
+  options:['日珥','黑子','耀斑','太阳风'], answer:1,
+  explanation:'太阳黑子是太阳活动最基本的标志，其数量变化周期约11年。' },
+{ id:'pa2', level:'小学', category:'太阳', type:'judge',
+  stem:'太阳黑子的数量变化周期约为11年。', answer:0,
+  explanation:'正确。太阳黑子相对数变化的平均周期约11年，称为太阳活动周。' },
+{ id:'pa3', level:'小学', category:'太阳', type:'fill',
+  stem:'太阳是一颗______星，靠内部核聚变发光发热。', answer:['恒'],
+  explanation:'太阳是一颗恒星，核心进行氢核聚变反应，释放巨大能量。' },
+
+/* --- 天文单位 --- */
+{ id:'pb1', level:'小学', category:'天文单位', type:'single',
+  stem:'“光年”是什么单位？',
+  options:['时间单位','长度单位','速度单位','亮度单位'], answer:1,
+  explanation:'光年是光在真空中一年走过的距离，约9.46万亿千米，是长度单位。' },
+{ id:'pb2', level:'小学', category:'天文单位', type:'single',
+  stem:'1天文单位约等于？',
+  options:['地球到月球的平均距离','地球到太阳的平均距离','光走一年的距离','太阳的直径'], answer:1,
+  explanation:'1天文单位（AU）约等于1.496亿千米，即地球到太阳的平均距离。' },
+{ id:'pb3', level:'小学', category:'天文单位', type:'fill',
+  stem:'1光年约等于______万亿千米。', answer:['9.46','9.5','9.4607'],
+  explanation:'1光年约等于9.46万亿千米，即9.46×10¹²千米。' },
+
+/* --- 天文史 --- */
+{ id:'pc1', level:'小学', category:'天文史', type:'single',
+  stem:'世界上第一位进入太空的人是？',
+  options:['阿姆斯特朗','加加林','杨利伟','格伦'], answer:1,
+  explanation:'1961年4月12日，苏联宇航员加加林乘“东方一号”首次进入太空。' },
+{ id:'pc2', level:'小学', category:'天文史', type:'single',
+  stem:'中国首位进入太空的航天员是？',
+  options:['聂海胜','杨利伟','翟志刚','刘伯明'], answer:1,
+  explanation:'2003年10月15日，杨利伟乘神舟五号飞船进入太空。' },
+{ id:'pc3', level:'小学', category:'天文史', type:'judge',
+  stem:'阿姆斯特朗是第一个踏上月球的人。', answer:0,
+  explanation:'正确。1969年7月20日，美国宇航员阿姆斯特朗乘阿波罗11号首次踏上月球。' },
+{ id:'pc4', level:'小学', category:'天文史', type:'fill',
+  stem:'“中国天眼”FAST 位于______省。', answer:['贵州'],
+  explanation:'FAST 位于贵州省平塘县，口径500米，是世界最大单口径射电望远镜。' },
+
+/* ==================== 初中组 ==================== */
+/* --- 天球坐标 --- */
+{ id:'j01', level:'初中', category:'天球坐标', type:'single',
+  stem:'天球赤道与地平圈的交点中，太阳升起方向附近的是？',
+  options:['东点','西点','南点','北点'], answer:0,
+  explanation:'东点是天球赤道与地平圈在东侧的交点，太阳升起方向附近。' },
+{ id:'j02', level:'初中', category:'天球坐标', type:'single',
+  stem:'天球坐标系统中，赤经的起算点是？',
+  options:['天顶','春分点','秋分点','北天极'], answer:1,
+  explanation:'赤经自春分点起算，沿天赤道向东度量，单位为时、分、秒。' },
+{ id:'j03', level:'初中', category:'天球坐标', type:'single',
+  stem:'天球坐标中，赤纬的起算圈是？',
+  options:['地平圈','天赤道','黄道','白道'], answer:1,
+  explanation:'赤纬 δ 自天赤道起算，向北为正（0°~+90°），向南为负（0°~-90°）。' },
+{ id:'j04', level:'初中', category:'天球坐标', type:'judge',
+  stem:'地平坐标会随观测地点和时间的变化而变化。', answer:0,
+  explanation:'正确。地平坐标以观测者所在地的地平圈为基准，随地点和时间改变。' },
+{ id:'j05', level:'初中', category:'天球坐标', type:'fill',
+  stem:'赤纬自天赤道向北度量为______值。', answer:['正','正值','正数'],
+  explanation:'赤纬自天赤道起算，向北为正（0°~+90°），向南为负（0°~-90°）。' },
+{ id:'j06', level:'初中', category:'天球坐标', type:'single',
+  stem:'观测者所在的地理纬度等于？',
+  options:['天顶的赤纬','北极星的地平高度','太阳的高度','天赤道的倾角'], answer:1,
+  explanation:'在北半球，北极星的地平高度约等于观测者所在的地理纬度。' },
+
+/* --- 恒星演化 --- */
+{ id:'j11', level:'初中', category:'恒星演化', type:'single',
+  stem:'太阳最终会演化成？',
+  options:['中子星','黑洞','白矮星','红巨星'], answer:2,
+  explanation:'太阳质量较小，最终会抛掉外层形成行星状星云，核心留下白矮星。' },
+{ id:'j12', level:'初中', category:'恒星演化', type:'single',
+  stem:'大质量恒星（大于8倍太阳质量）演化末期可能形成？',
+  options:['白矮星或红巨星','中子星或黑洞','行星状星云','褐矮星'], answer:1,
+  explanation:'大质量恒星经超新星爆发后，核心可能塌缩成中子星或黑洞。' },
+{ id:'j13', level:'初中', category:'恒星演化', type:'judge',
+  stem:'恒星一生中停留时间最长的阶段是主序星阶段。', answer:0,
+  explanation:'正确。主序星阶段约占恒星寿命的90%，太阳目前正处于该阶段。' },
+{ id:'j14', level:'初中', category:'恒星演化', type:'fill',
+  stem:'太阳最终会演化成______星。', answer:['白矮','白矮星'],
+  explanation:'太阳质量较小，最终抛掉外层形成行星状星云，核心留下白矮星。' },
+{ id:'j15', level:'初中', category:'恒星演化', type:'single',
+  stem:'赫罗图上主序星分布的位置是？',
+  options:['左上到右下的对角线','右上角','左下角','右下角'], answer:0,
+  explanation:'主序星在赫罗图上沿左上（高温高亮）到右下（低温低暗）分布。' },
+
+/* --- 星等 --- */
+{ id:'j21', level:'初中', category:'星等', type:'single',
+  stem:'视星等数值越小，表示天体？',
+  options:['越暗','越亮','越大','越远'], answer:1,
+  explanation:'视星等越小越亮，每差5等亮度相差100倍。太阳视星等约为-26.7。' },
+{ id:'j22', level:'初中', category:'星等', type:'single',
+  stem:'绝对星等的定义是？',
+  options:['恒星在任意距离的视星等','把恒星放在10秒差距处的视星等','恒星的表面亮度','恒星的总辐射能量'], answer:1,
+  explanation:'绝对星等 M 是把恒星放到10秒差距处所看到的视星等，用于比较恒星真实光度。' },
+{ id:'j23', level:'初中', category:'星等', type:'judge',
+  stem:'两颗恒星视星等差5等，亮度相差100倍。', answer:0,
+  explanation:'正确。星等每差1等，亮度相差约2.512倍，差5等即相差100倍。' },
+{ id:'j24', level:'初中', category:'星等', type:'fill',
+  stem:'太阳的视星等约为______。', answer:['-26.7','-26.74','-26'],
+  explanation:'太阳的视星等约为 -26.7，是天空中最亮的天体。' },
+{ id:'j25', level:'初中', category:'星等', type:'single',
+  stem:'两颗绝对星等相同的恒星，距离越远，其视星等？',
+  options:['越小','越大','不变','无法判断'], answer:1,
+  explanation:'距离越远，接收到的光越少，视星等数值越大（看起来越暗）。' },
+
+/* --- 天体运动 --- */
+{ id:'j31', level:'初中', category:'天体运动', type:'single',
+  stem:'太阳周年视运动所在的视轨迹大圆称为？',
+  options:['天赤道','黄道','地平圈','白道'], answer:1,
+  explanation:'太阳一年中在天球上走过的视轨迹叫黄道，与天赤道约成23°26′夹角。' },
+{ id:'j32', level:'初中', category:'天体运动', type:'single',
+  stem:'从地面观测，天体周日视运动的方向是？',
+  options:['自西向东','自东向西','自南向北','自北向南'], answer:1,
+  explanation:'由于地球自西向东自转，我们看到天体东升西落，即自东向西。' },
+{ id:'j33', level:'初中', category:'天体运动', type:'judge',
+  stem:'黄道与天赤道的交角约为23°26′。', answer:0,
+  explanation:'正确。黄赤交角约23°26′，是产生四季变化的重要原因。' },
+{ id:'j34', level:'初中', category:'天体运动', type:'fill',
+  stem:'北回归线的纬度约为______。（填数字即可）', answer:['23度26分','23°26′','23.5','23.5度','23度26'],
+  explanation:'北回归线纬度约为23°26′N，是太阳直射点的最北位置。' },
+{ id:'j35', level:'初中', category:'天体运动', type:'single',
+  stem:'一年中太阳直射点最北到达？',
+  options:['赤道','北回归线','北极圈','南回归线'], answer:1,
+  explanation:'夏至时太阳直射北回归线（约23°26′N），这是直射点的最北位置。' },
+{ id:'j36', level:'初中', category:'天体运动', type:'single',
+  stem:'恒星日比太阳日短约多少？',
+  options:['约4分钟','约1小时','约12小时','一样长'], answer:0,
+  explanation:'恒星日约23小时56分4秒，比太阳日（24小时）短约4分钟。' },
+
+/* --- 望远镜 --- */
+{ id:'j41', level:'初中', category:'望远镜', type:'single',
+  stem:'牛顿式反射望远镜的物镜是？',
+  options:['凸透镜','凹面镜','凸面镜','棱镜'], answer:1,
+  explanation:'反射望远镜用凹面镜作物镜，无色差，口径可以做得很大。' },
+{ id:'j42', level:'初中', category:'望远镜', type:'single',
+  stem:'某望远镜物镜焦距1200mm，目镜焦距20mm，放大倍率为？',
+  options:['20倍','40倍','60倍','120倍'], answer:2,
+  explanation:'放大倍率 = 物镜焦距 ÷ 目镜焦距 = 1200 ÷ 20 = 60 倍。' },
+{ id:'j43', level:'初中', category:'望远镜', type:'judge',
+  stem:'反射式望远镜不会产生色差。', answer:0,
+  explanation:'正确。反射望远镜用凹面镜成像，光线不经过折射，因此没有色差。' },
+{ id:'j44', level:'初中', category:'望远镜', type:'fill',
+  stem:'天文望远镜的有效放大倍率上限约等于口径（毫米）乘以______。', answer:['2','二'],
+  explanation:'有效放大倍率上限约等于口径（毫米）× 2。如80mm口径最大约160倍。' },
+{ id:'j45', level:'初中', category:'望远镜', type:'single',
+  stem:'下列哪种望远镜口径可以做得最大？',
+  options:['折射式','反射式','折反射式','一样大'], answer:1,
+  explanation:'反射式望远镜用镜面成像，不受透镜重量和色差限制，口径可以做得很大。' },
+
+/* --- 月相 --- */
+{ id:'j51', level:'初中', category:'月相', type:'single',
+  stem:'月相变化的周期（朔望月）约为？',
+  options:['27.3天','29.5天','30天','31天'], answer:1,
+  explanation:'朔望月约29.53天，是月相变化的周期；恒星月约27.32天。' },
+{ id:'j52', level:'初中', category:'月相', type:'judge',
+  stem:'恒星月比朔望月短。', answer:0,
+  explanation:'正确。恒星月约27.32天，朔望月约29.53天。因为地球同时绕日公转，月球需多走一段才能回到同样的日—地—月相对位置。' },
+{ id:'j53', level:'初中', category:'月相', type:'fill',
+  stem:'月相变化的周期称为______月。', answer:['朔望'],
+  explanation:'月相变化的周期称为朔望月，约29.53天。' },
+
+/* --- 日食月食 --- */
+{ id:'j61', level:'初中', category:'日食月食', type:'single',
+  stem:'发生月全食时，月球位于？',
+  options:['地球本影中','地球半影中','太阳本影中','地球与太阳之间'], answer:0,
+  explanation:'月全食时，地球位于太阳与月球之间，月球完全进入地球本影。' },
+{ id:'j62', level:'初中', category:'日食月食', type:'judge',
+  stem:'日食只在朔（农历初一）发生，月食只在望（农历十五前后）发生。', answer:0,
+  explanation:'正确。日食时月球在地球与太阳之间，为朔；月食时地球在太阳与月球之间，为望。' },
+{ id:'j63', level:'初中', category:'日食月食', type:'multi',
+  stem:'月食可以分为哪几种类型？（多选）',
+  options:['月全食','月偏食','半影月食','月环食'], answer:[0,1,2],
+  explanation:'月食分为月全食、月偏食、半影月食。由于地球本影比月球大很多，不会出现月环食。' },
+{ id:'j64', level:'初中', category:'日食月食', type:'single',
+  stem:'日环食发生时，月球位于？',
+  options:['近地点附近','远地点附近','地球本影中','太阳背面'], answer:1,
+  explanation:'月球在远地点附近时视直径小于太阳，无法完全遮住太阳，形成日环食。' },
+
+/* --- 星系 --- */
+{ id:'j71', level:'初中', category:'星系', type:'single',
+  stem:'距离银河系最近的大型河外星系是？',
+  options:['仙女座星系','三角座星系','大麦哲伦云','M87'], answer:0,
+  explanation:'仙女座星系（M31）距我们约254万光年，是最近的大型旋涡星系。' },
+{ id:'j72', level:'初中', category:'星系', type:'judge',
+  stem:'哈勃定律指出星系退行速度与距离成正比，是宇宙膨胀的证据。', answer:0,
+  explanation:'正确。哈勃定律 v = H₀·d，说明距离越远的星系退行速度越快，宇宙在膨胀。' },
+{ id:'j73', level:'初中', category:'星系', type:'fill',
+  stem:'仙女座星系距离我们约______万光年。', answer:['254','250','230'],
+  explanation:'仙女座星系（M31）距地球约254万光年，是肉眼可见最远的天体之一。' },
+{ id:'j74', level:'初中', category:'星系', type:'single',
+  stem:'可观测宇宙的直径约为？',
+  options:['10亿光年','93亿光年','930亿光年','9300亿光年'], answer:2,
+  explanation:'可观测宇宙直径约930亿光年，宇宙年龄约138亿年。' },
+
+/* --- 天文史 --- */
+{ id:'j81', level:'初中', category:'天文史', type:'single',
+  stem:'主持建造登封观星台、编制《授时历》的中国古代天文学家是？',
+  options:['张衡','一行','郭守敬','祖冲之'], answer:2,
+  explanation:'元代郭守敬主持建造登封观星台，编订《授时历》，回归年长度精确到365.2425天。' },
+{ id:'j82', level:'初中', category:'天文史', type:'single',
+  stem:'“中国天眼”FAST 位于哪个省？',
+  options:['云南','贵州','四川','广西'], answer:1,
+  explanation:'FAST 位于贵州省平塘县，口径500米，是世界最大单口径射电望远镜。' },
+{ id:'j83', level:'初中', category:'天文史', type:'judge',
+  stem:'东汉张衡发明了浑天仪和地动仪。', answer:0,
+  explanation:'正确。张衡（东汉）发明了浑天仪、地动仪，并著《灵宪》。' },
+{ id:'j84', level:'初中', category:'天文史', type:'fill',
+  stem:'郭守敬编制的《授时历》中，回归年长度为______天。', answer:['365.2425','365.2425天'],
+  explanation:'《授时历》定回归年长度为365.2425天，与现行公历几乎一致，但早了300多年。' },
+{ id:'j85', level:'初中', category:'天文史', type:'single',
+  stem:'提出日心说的科学家是？',
+  options:['托勒密','哥白尼','开普勒','伽利略'], answer:1,
+  explanation:'波兰天文学家哥白尼在《天体运行论》中提出日心说，推翻地心说。' },
+
+/* --- 太阳 --- */
+{ id:'j91', level:'初中', category:'太阳', type:'single',
+  stem:'太阳黑子活动的平均周期约为？',
+  options:['1年','5年','11年','22年'], answer:2,
+  explanation:'太阳黑子相对数变化平均周期约11年，称为太阳活动周。' },
+{ id:'j92', level:'初中', category:'太阳', type:'judge',
+  stem:'太阳的能量来自其内部的氢核聚变反应。', answer:0,
+  explanation:'正确。太阳核心温度约1500万℃，四个氢核聚变成一个氦核，释放巨大能量。' },
+{ id:'j93', level:'初中', category:'太阳', type:'fill',
+  stem:'太阳黑子的活动周期约为______年。', answer:['11','十一'],
+  explanation:'太阳黑子相对数变化平均周期约11年。' },
+
+/* --- 恒星 --- */
+{ id:'ja1', level:'初中', category:'恒星', type:'single',
+  stem:'恒星光谱分类由温度高到低的正确顺序是？',
+  options:['OBAFGKM','MKGFAO','ABFGKMO','OFBAGKM'], answer:0,
+  explanation:'恒星光谱型按温度由高到低为 O、B、A、F、G、K、M，太阳属于 G 型。' },
+{ id:'ja2', level:'初中', category:'恒星', type:'judge',
+  stem:'太阳是一颗 G 型主序星。', answer:0,
+  explanation:'正确。太阳光谱型为 G2V，是一颗 G 型主序星（黄矮星）。' },
+{ id:'ja3', level:'初中', category:'恒星', type:'fill',
+  stem:'太阳的光谱型是______型。', answer:['G','g'],
+  explanation:'太阳光谱型为 G2V，属于 G 型主序星。' },
+
+/* --- 天文单位 --- */
+{ id:'jb1', level:'初中', category:'天文单位', type:'single',
+  stem:'1秒差距约等于多少光年？',
+  options:['1.5光年','3.26光年','10光年','30光年'], answer:1,
+  explanation:'1秒差距约等于3.26光年，约206265天文单位，是测量恒星距离的常用单位。' },
+{ id:'jb2', level:'初中', category:'天文单位', type:'judge',
+  stem:'1秒差距比1光年大。', answer:0,
+  explanation:'正确。1秒差距≈3.26光年，比1光年大。' },
+{ id:'jb3', level:'初中', category:'天文单位', type:'fill',
+  stem:'1秒差距约等于______光年。', answer:['3.26','3.3','3.2616'],
+  explanation:'1秒差距约等于3.26光年，约206265天文单位。' },
+{ id:'jb4', level:'初中', category:'天文单位', type:'single',
+  stem:'若某恒星距离为10秒差距，其周年视差为？',
+  options:['0.1角秒','1角秒','10角秒','100角秒'], answer:0,
+  explanation:'视差与距离成反比：d(秒差距) = 1 / p(角秒)。d=10 时，p=0.1角秒。' }
 ];
 
 /* =========================================================
-   5. 知识卡片
+   5. 知识卡片（与知识点一一对应）
    ========================================================= */
 const KNOWLEDGE = [
-  { id:'k01', level:'小学', category:'月相', title:'月相变化口诀',
-    content:'上弦月傍晚出现在南方天空，亮面朝西；\n下弦月下半夜出现在南方天空，亮面朝东。\n\n口诀：上上上西西，下下下东东\n即：上弦月出现在上半夜、西边天空、亮面朝西；\n下弦月出现在下半夜、东边天空、亮面朝东。' },
-  { id:'k02', level:'小学', category:'星座', title:'如何找到北极星',
-    content:'1. 先找到北斗七星（大熊座）。\n2. 把勺头两颗星（天璇、天枢）连线。\n3. 沿连线朝勺口方向延长约5倍距离。\n4. 遇到的那颗亮星就是北极星（小熊座α）。\n\n小技巧：北极星的地平高度约等于观测者所在的地理纬度。' },
-  { id:'k03', level:'小学', category:'太阳系', title:'八大行星顺序',
-    content:'由近及远：水星、金星、地球、火星、木星、土星、天王星、海王星。\n\n口诀：水金地火木土天海\n\n分类：\n· 类地行星：水星、金星、地球、火星（岩石为主）\n· 巨行星：木星、土星（气态为主）\n· 远日行星：天王星、海王星（冰质为主）' },
-  { id:'k04', level:'小学', category:'天文单位', title:'常用天文单位',
-    content:'1 天文单位（AU）≈ 1.496 亿千米\n——地球到太阳的平均距离\n\n1 光年 ≈ 9.46 万亿千米\n——光在真空中一年走过的距离\n\n1 秒差距 ≈ 3.26 光年\n——恒星距离的常用单位' },
-  { id:'k05', level:'初中', category:'天球坐标', title:'天球坐标系统',
-    content:'【地平坐标】\n以地平圈为基圈，用方位角 + 地平高度表示。\n随时间和观测地点变化。\n\n【赤道坐标】\n以天赤道为基圈，用赤经 + 赤纬表示。\n与观测地点、时间无关，是天文学的标准坐标。\n\n赤经 α 自春分点向东度量，单位时、分、秒；\n赤纬 δ 自天赤道向北为正，向南为负。' },
-  { id:'k06', level:'初中', category:'星等', title:'星等与光度',
-    content:'视星等 m：肉眼看到的亮度，越小越亮。\n绝对星等 M：把恒星放到10秒差距处的视星等。\n\n关系式：M = m + 5 − 5·lg d（d 以秒差距为单位）\n\n每差 1 等，亮度相差约 2.512 倍；\n差 5 等，亮度相差 100 倍。\n\n太阳视星等约 −26.7，满月约 −12.7。' },
-  { id:'k07', level:'初中', category:'恒星演化', title:'恒星演化路径',
-    content:'【小质量恒星（< 8 倍太阳质量）】\n星云 → 主序星 → 红巨星 → 行星状星云 → 白矮星\n\n【大质量恒星（> 8 倍太阳质量）】\n星云 → 主序星 → 红超巨星 → 超新星爆发\n→ 中子星 或 黑洞\n\n太阳属于小质量恒星，最终将成为白矮星。' },
-  { id:'k08', level:'初中', category:'望远镜', title:'望远镜核心参数',
-    content:'口径：物镜直径，决定聚光能力和分辨率，是最重要的参数。\n焦距：影响放大倍率和视场。\n\n放大倍率 = 物镜焦距 ÷ 目镜焦距\n\n有效放大倍率上限约等于口径（毫米）× 2\n例：80mm 口径望远镜，最大有效倍率约 160 倍。\n\n折射式：无色差问题但有大口径限制；\n反射式：无色差、可做大口径，但需定期校准。' },
-  { id:'k09', level:'初中', category:'天体运动', title:'周日视运动与周年视运动',
-    content:'【周日视运动】\n由地球自转引起，天体东升西落。\n周期约 24 小时（恒星日 23h56m4s）。\n\n【周年视运动】\n由地球公转引起，太阳在天球上沿黄道自西向东移动，周期一年。\n\n关键点：天极附近的星永不落下，称为拱极星，如北极星。' },
-  { id:'k10', level:'初中', category:'日食月食', title:'日月食成因',
-    content:'【日食】\n月球运行到太阳和地球之间，月球影子落在地球上。\n分日全食、日偏食、日环食。\n\n【月食】\n地球运行到太阳和月球之间，月球进入地球影子。\n分月全食、月偏食、半影月食。\n\n注意：日食只在朔（新月）发生，\n月食只在望（满月）发生。' },
-  { id:'k11', level:'初中', category:'天文史', title:'中国天文名家',
-    content:'张衡（东汉）：发明浑天仪、地动仪，著《灵宪》。\n一行（唐）：主持天文大地测量，编制《大衍历》。\n郭守敬（元）：建登封观星台，编《授时历》。\n南仁东（现代）：FAST“中国天眼”首席科学家。\n\n现代里程碑：\n2003 杨利伟乘神舟五号进入太空\n2016 FAST 落成启用\n2020 嫦娥五号月球采样返回' },
-  { id:'k12', level:'初中', category:'星系', title:'宇宙尺度',
-    content:'太阳系直径约 0.001 光年（以奥尔特云计约 2 光年）\n银河系直径约 10 万光年，含约 1000~4000 亿颗恒星\n本星系群直径约 1000 万光年\n可观测宇宙直径约 930 亿光年\n\n哈勃定律：v = H₀ · d\n星系退行速度与距离成正比，证明宇宙在膨胀。' }
+/* ===== 小学 ===== */
+{ id:'k_ss', level:'小学', category:'太阳系', icon:'🪐', title:'太阳系大家庭',
+  content:
+`【八大行星顺序】由近到远：
+水星 → 金星 → 地球 → 火星 → 木星 → 土星 → 天王星 → 海王星
+口诀：水金地火木土天海
+
+【分类】
+· 类地行星：水星、金星、地球、火星（岩石为主）
+· 巨行星：木星、土星（气态为主）
+· 远日行星：天王星、海王星（冰质为主）
+
+【记住几个"最"】
+· 最大：木星（质量约为地球318倍）
+· 最小：水星
+· 最近：水星
+· 最热：金星（浓厚二氧化碳大气造成温室效应）
+· 最美行星环：土星
+
+【小行星带】位于火星与木星轨道之间。` },
+
+{ id:'k_phase', level:'小学', category:'月相', icon:'🌙', title:'月相变化规律',
+  content:
+`【月相顺序】新月 → 上弦月 → 满月 → 下弦月 → 新月
+
+【口诀】上上上西西，下下下东东
+· 上弦月：上半夜、西边天空、亮面朝西
+· 下弦月：下半夜、东边天空、亮面朝东
+
+【时间对应】
+· 农历初一：新月（朔），看不见月亮
+· 农历初七、初八：上弦月，右半边亮
+· 农历十五、十六：满月（望）
+· 农历廿二、廿三：下弦月，左半边亮
+
+【周期】朔望月约29.53天（月相变化周期）
+　　　　恒星月约27.32天（月球公转周期）` },
+
+{ id:'k_star_map', level:'小学', category:'星座', icon:'⭐', title:'认识星空',
+  content:
+`【找北极星】
+1. 先找到北斗七星（大熊座）
+2. 勺头两颗星（天璇、天枢）连线
+3. 朝勺口方向延长约5倍
+4. 遇到的亮星就是北极星（小熊座α）
+
+【重要常识】
+· 北极星的地平高度 ≈ 观测者地理纬度
+· 北极星不是最亮的星，天狼星才是
+· 北斗七星属于大熊座
+
+【冬季代表星座】猎户座（腰带三星排成一线）
+【夏季代表星座】天蝎座、天琴座、天鹅座` },
+
+{ id:'k_star', level:'小学', category:'恒星', icon:'☀️', title:'恒星是什么',
+  content:
+`【定义】自身能发光发热的天体，内部进行核聚变反应。
+
+【太阳】距离地球最近的恒星，约1.5亿千米
+【比邻星】距离太阳最近的恒星，约4.22光年
+【天狼星】夜空中最亮的恒星，视星等约-1.46
+
+【恒星 vs 行星 vs 卫星】
+· 恒星：自己发光（太阳）
+· 行星：反射光，绕恒星运行（地球）
+· 卫星：反射光，绕行星运行（月球）
+
+【恒星的寿命】主序星阶段最长，约占寿命的90%` },
+
+{ id:'k_eclipse', level:'小学', category:'日食月食', icon:'🌑', title:'日食与月食',
+  content:
+`【日食】太阳 → 月球 → 地球（月球在中间）
+· 发生在农历初一（朔）
+· 类型：日全食、日偏食、日环食
+
+【月食】太阳 → 地球 → 月球（地球在中间）
+· 发生在农历十五前后（望）
+· 类型：月全食、月偏食、半影月食
+· 没有"月环食"（地球本影比月球大）
+
+【为什么不是每月都有？】
+因为月球轨道（白道）与地球轨道（黄道）有约5°夹角，
+大多数月份月球从太阳上方或下方经过，不共线。` },
+
+{ id:'k_motion', level:'小学', category:'天体运动', icon:'🌍', title:'地球的运动',
+  content:
+`【自转】
+· 绕地轴旋转，方向自西向东
+· 周期约24小时（太阳日）
+· 产生：昼夜交替、天体东升西落
+
+【公转】
+· 绕太阳运行，方向自西向东
+· 周期约365.2422天（回归年）
+· 产生：四季变化、昼夜长短变化
+
+【重要节气】
+· 春分（3月21日前后）：太阳直射赤道，昼夜等长
+· 夏至（6月22日前后）：直射北回归线，北半球白昼最长
+· 秋分（9月23日前后）：太阳直射赤道
+· 冬至（12月22日前后）：直射南回归线，北半球白昼最短` },
+
+{ id:'k_moon', level:'小学', category:'月球', icon:'🌕', title:'月球小档案',
+  content:
+`【基本数据】
+· 地球唯一的天然卫星
+· 平均距离约38.4万千米
+· 直径约3476千米（约为地球的1/4）
+· 表面重力约为地球的1/6
+
+【表面特征】
+· 没有大气层 → 昼夜温差极大（+120℃ ~ -180℃）
+· 没有大气 → 没有声音、没有天气、天空漆黑
+· 环形山（撞击坑）：月球没有大气保护，被陨石撞击形成
+· 月海：古代火山熔岩填充的平原
+
+【人类探月】
+· 1969年阿姆斯特朗首次登月
+· 中国嫦娥工程：绕、落、回三步走` },
+
+{ id:'k_galaxy', level:'小学', category:'星系', icon:'🌌', title:'银河系与宇宙',
+  content:
+`【银河系】
+· 类型：棒旋星系
+· 直径：约10万光年
+· 恒星数量：约1000~4000亿颗
+· 太阳位置：距银心约2.6万光年，位于猎户臂上
+
+【河外星系】
+· 仙女座星系（M31）：距我们约254万光年，最近的大型星系
+· 大麦哲伦云、小麦哲伦云：银河系的伴星系
+
+【宇宙尺度】
+· 太阳系直径约0.001光年（含奥尔特云约2光年）
+· 本星系群直径约1000万光年
+· 可观测宇宙直径约930亿光年` },
+
+{ id:'k_tele', level:'小学', category:'望远镜', icon:'🔭', title:'天文望远镜入门',
+  content:
+`【望远镜的核心作用】
+不是放大，而是"聚光"！
+口径越大 → 聚光能力越强 → 能看到越暗的天体，分辨率越高
+
+【两种基本类型】
+· 折射式：用凸透镜作物镜
+　优点：成像清晰稳定
+　缺点：大口径透镜难制造、有色差
+· 反射式：用凹面镜作物镜
+　优点：无色差、可做大口径
+　缺点：需定期校准光轴
+
+【放大倍率】
+放大倍率 = 物镜焦距 ÷ 目镜焦距
+有效倍率上限 ≈ 口径(mm) × 2
+
+【使用注意】
+· 先低倍找到目标，再换高倍
+· 观测太阳必须使用专用滤光片，绝对不能直接用眼睛看！` },
+
+{ id:'k_meteor', level:'小学', category:'流星', icon:'☄️', title:'流星与流星雨',
+  content:
+`【流星】
+流星体（尘埃或小石块）高速进入地球大气层，
+与大气摩擦生热发光，形成流星。
+
+【火流星】特别明亮的流星
+【陨石】未烧尽落到地面的流星体残骸
+
+【流星雨】
+当地球穿过彗星轨道遗留的尘埃带时，
+大量流星体同时进入大气层，形成流星雨。
+
+【著名流星雨】
+· 英仙座流星雨（8月）
+· 双子座流星雨（12月）
+· 象限仪座流星雨（1月）
+
+【注意】流星雨不是"星星掉下来"，而是尘埃燃烧。` },
+
+{ id:'k_sun', level:'小学', category:'太阳', icon:'☀️', title:'太阳活动',
+  content:
+`【太阳黑子】
+· 太阳活动最基本的标志
+· 温度比周围低约1500℃，所以显得暗
+· 数量变化周期约11年
+
+【其他活动】
+· 耀斑：太阳大气突然释放巨大能量
+· 日珥：太阳边缘喷出的巨大气体
+· 太阳风：太阳向外吹出的带电粒子流
+
+【影响】
+· 极光（太阳风与地磁场作用）
+· 干扰无线电通信、卫星运行
+· 影响地球气候和电网
+
+【安全提示】观测太阳必须使用专业太阳滤光片，绝不可用肉眼或普通墨镜直视。` },
+
+{ id:'k_unit', level:'小学', category:'天文单位', icon:'📏', title:'天文距离单位',
+  content:
+`【天文单位 AU】
+1 AU ≈ 1.496亿千米
+= 地球到太阳的平均距离
+用于太阳系内距离（如火星距日1.52 AU）
+
+【光年 ly】
+1 光年 ≈ 9.46万亿千米
+= 光在真空中一年走过的距离
+用于恒星距离（如比邻星4.22光年）
+
+【秒差距 pc】
+1 秒差距 ≈ 3.26光年 ≈ 206265 AU
+天文学最常用的距离单位
+"秒差距"来自"周年视差1角秒"对应的距离
+
+【对比】秒差距 > 光年 > 天文单位` },
+
+{ id:'k_history', level:'小学', category:'天文史', icon:'🚀', title:'航天与天文史',
+  content:
+`【世界航天】
+· 1961年 加加林：第一位进入太空的人
+· 1969年 阿姆斯特朗：第一个踏上月球的人
+· 1971年 苏联礼炮1号：第一个空间站
+
+【中国航天】
+· 2003年 杨利伟乘神舟五号首次进入太空
+· 2008年 翟志刚完成中国首次太空行走
+· 2011年 天宫一号发射
+· 2016年 FAST"中国天眼"落成（贵州平塘）
+· 2020年 嫦娥五号月球采样返回
+· 2021年 天问一号着陆火星
+· 2022年 中国空间站全面建成
+
+【记忆要点】
+FAST 在贵州，口径500米，世界最大单口径射电望远镜。` },
+
+/* ===== 初中 ===== */
+{ id:'k_j_coord', level:'初中', category:'天球坐标', icon:'🧭', title:'天球坐标系统',
+  content:
+`【天球】以观测者为球心，任意长为半径的假想球面。
+天体在天球上的"位置"就是视线方向在天球上的投影。
+
+【地平坐标】
+· 基圈：地平圈
+· 分量：方位角 A + 地平高度 h
+· 特点：随观测地点和时间变化
+
+【赤道坐标】
+· 基圈：天赤道
+· 分量：赤经 α + 赤纬 δ
+· 特点：与观测地点、时间无关，是天文学标准坐标
+
+【赤经 α】
+自春分点起算，沿天赤道向东度量
+单位：时(h)、分(m)、秒(s)，1h = 15°
+
+【赤纬 δ】
+自天赤道起算，向北为正（0°~+90°），向南为负（0°~-90°）
+
+【重要的点】
+· 天顶 Z：观测者头顶正上方
+· 天极：地轴延伸与天球的交点
+· 北天极的地平高度 = 观测者地理纬度` },
+
+{ id:'k_j_evo', level:'初中', category:'恒星演化', icon:'💫', title:'恒星演化路径',
+  content:
+`【小质量恒星（< 8 倍太阳质量）】
+分子云 → 主序星 → 红巨星 → 行星状星云 → 白矮星
+例：太阳最终将成为白矮星
+
+【大质量恒星（> 8 倍太阳质量）】
+分子云 → 主序星 → 红超巨星 → 超新星爆发
+　　　→ 中子星（1.4~3 倍太阳质量）
+　　　→ 黑洞（> 3 倍太阳质量）
+
+【主序星阶段】
+恒星一生中停留时间最长的阶段（约占寿命90%）
+在赫罗图上沿左上（高温高亮）到右下（低温低暗）分布
+
+【赫罗图】
+横轴：光谱型 / 温度（左高右低）
+纵轴：光度 / 绝对星等
+主序星、巨星、白矮星分布在图上不同区域` },
+
+{ id:'k_j_mag', level:'初中', category:'星等', icon:'📊', title:'星等与光度',
+  content:
+`【视星等 m】
+肉眼看到的亮度，数值越小越亮
+· 太阳：-26.7
+· 满月：-12.7
+· 天狼星：-1.46
+· 肉眼极限：约 +6
+
+【绝对星等 M】
+把恒星放到10秒差距（32.6光年）处的视星等
+用于比较恒星的真实光度
+
+【距离模数公式】
+M = m + 5 − 5·lg d（d 单位为秒差距）
+m − M = 5·lg d − 5
+
+【星等差与亮度比】
+每差 1 等，亮度相差约 2.512 倍
+每差 5 等，亮度相差 100 倍
+公式：亮度比 = 2.512^(m₂−m₁)` },
+
+{ id:'k_j_motion', level:'初中', category:'天体运动', icon:'🌐', title:'视运动与坐标系',
+  content:
+`【周日视运动】
+由地球自转引起，天体东升西落
+周期：1恒星日 = 23h56m4s
+
+【周年视运动】
+由地球公转引起
+太阳在天球上沿黄道自西向东移动，周期一年
+
+【黄道与黄赤交角】
+· 黄道：太阳周年视运动的轨迹
+· 黄赤交角：约 23°26′
+· 是四季变化和昼夜长短变化的根本原因
+
+【拱极星】
+天极附近永不落下的星
+在北纬 φ 处，赤纬 δ > 90° − φ 的星为拱极星
+例：北极星（δ≈+89°）几乎不动
+
+【重要纬度】
+· 北回归线 23°26′N（夏至太阳直射）
+· 南回归线 23°26′S（冬至太阳直射）
+· 极圈 66°34′（极昼极夜界线）` },
+
+{ id:'k_j_tele', level:'初中', category:'望远镜', icon:'🔭', title:'望远镜原理与参数',
+  content:
+`【核心参数】
+· 口径 D：物镜直径，决定聚光能力和分辨率（最重要）
+· 焦距 f：影响放大倍率和视场
+· 分辨率 ≈ 1.22 λ / D（角秒）
+
+【放大倍率】
+放大倍率 = 物镜焦距 ÷ 目镜焦距
+有效倍率上限 ≈ 口径(mm) × 2
+最低有效倍率 ≈ 口径(mm) ÷ 7
+
+【望远镜类型】
+· 折射式：凸透镜物镜，无色差问题但大口径困难
+· 反射式（牛顿式）：凹面镜物镜，无色差，可做大口径
+· 折反射式（施密特-卡塞格林）：兼顾两者
+
+【极限星等】
+口径越大，能看到的星越暗
+80mm 约 11.5 等，200mm 约 13.5 等
+
+【安全提示】观测太阳必须使用专用太阳滤光片，严禁直接用眼观察。` },
+
+{ id:'k_j_phase', level:'初中', category:'月相', icon:'🌙', title:'月相与月球运动',
+  content:
+`【两个周期】
+· 恒星月：27.32 天，月球绕地球公转一周（相对恒星）
+· 朔望月：29.53 天，月相变化周期（相对太阳）
+
+为什么朔望月更长？
+因为地球同时在绕太阳公转，月球需要多走约 2.2 天
+才能回到相同的日—地—月相对位置。
+
+【月相判定】
+· 亮面朝向：上弦月朝西，下弦月朝东
+· 出没时间：满月傍晚升起、清晨落下
+· 上弦月正午升起、午夜落下
+
+【月球同步自转】
+月球自转周期 = 公转周期 = 27.32 天
+所以地球上永远只能看到月球同一面（正面）。` },
+
+{ id:'k_j_eclipse', level:'初中', category:'日食月食', icon:'🌑', title:'日月食机制',
+  content:
+`【日食】太阳 → 月球 → 地球
+· 只在朔（农历初一）发生
+· 类型：
+　日全食（月球完全遮住太阳）
+　日偏食（部分遮住）
+　日环食（月球在远地点，视直径小于太阳）
+
+【月食】太阳 → 地球 → 月球
+· 只在望（农历十五前后）发生
+· 类型：月全食、月偏食、半影月食
+· 没有月环食（地球本影比月球大）
+
+【为什么不是每月都发生？】
+白道与黄道有约 5°09′ 的交角
+只有当朔/望发生在"黄白交点"附近时才会发生食
+每年最多 7 次食（日食+月食）
+
+【沙罗周期】约 18 年 11 天 8 小时，可预测日月食。` },
+
+{ id:'k_j_galaxy', level:'初中', category:'星系', icon:'🌌', title:'星系与宇宙膨胀',
+  content:
+`【银河系】
+· 棒旋星系，直径约 10 万光年
+· 恒星约 1000~4000 亿颗
+· 太阳距银心约 2.6 万光年，位于猎户臂
+· 银河系中心有人马座 A*（超大质量黑洞）
+
+【河外星系】
+· 仙女座星系 M31：约 254 万光年，最近的大型星系
+· 大麦哲伦云、小麦哲伦云：银河系伴星系
+
+【哈勃定律】
+v = H₀ × d
+· v：星系退行速度
+· d：星系距离
+· H₀：哈勃常数，约 70 km/s/Mpc
+说明宇宙在膨胀
+
+【宇宙年龄】约 138 亿年
+【可观测宇宙直径】约 930 亿光年` },
+
+{ id:'k_j_history', level:'初中', category:'天文史', icon:'📜', title:'中外天文简史',
+  content:
+`【中国古代】
+· 张衡（东汉）：浑天仪、地动仪、《灵宪》
+· 祖冲之（南朝）：精确计算圆周率，编制《大明历》
+· 一行（唐）：主持天文大地测量，编制《大衍历》
+· 郭守敬（元）：建登封观星台，编《授时历》
+　回归年长 365.2425 天，比现行公历早 300 多年
+
+【西方天文】
+· 托勒密：地心说
+· 哥白尼：日心说（《天体运行论》）
+· 第谷：精密天文观测
+· 开普勒：行星运动三定律
+· 伽利略：首次用望远镜观测天体
+· 牛顿：万有引力定律
+
+【现代中国】
+· 南仁东：FAST 首席科学家
+· 嫦娥工程、天问一号、中国空间站` },
+
+{ id:'k_j_sun', level:'初中', category:'太阳', icon:'☀️', title:'太阳的结构与活动',
+  content:
+`【结构（由内到外）】
+核心 → 辐射层 → 对流层 → 光球 → 色球 → 日冕
+
+【核心】温度约 1500 万℃，进行氢核聚变
+【光球】我们看到的"太阳表面"，约 5500℃
+【色球】约 4000~几万℃，平时被光球淹没
+【日冕】最外层，温度高达百万℃，比光球还热
+
+【太阳活动】
+· 太阳黑子：光球上的低温暗区，周期约 11 年
+· 耀斑：色球上的突然爆发
+· 日珥：色球喷出的巨大气体环
+· 太阳风：日冕向外吹出的带电粒子流
+
+【影响】
+· 极光（太阳风与地磁作用）
+· 磁暴干扰通信、导航、电网
+· 影响卫星与航天员安全` },
+
+{ id:'k_j_star', level:'初中', category:'恒星', icon:'⭐', title:'恒星的光谱与分类',
+  content:
+`【光谱型（按温度由高到低）】
+O → B → A → F → G → K → M
+口诀：Oh Be A Fine Girl/Guy, Kiss Me
+· O型：>30000K，蓝白色
+· G型：约5800K，黄色（太阳是 G2V）
+· M型：<3500K，红色
+
+【赫罗图】
+横轴：光谱型 / 有效温度（左高右低）
+纵轴：光度 / 绝对星等
+· 主序星：左上到右下的对角带
+· 巨星、超巨星：右上
+· 白矮星：左下
+
+【恒星质量】
+· 大部分恒星质量在 0.1~10 倍太阳质量
+· 质量越大，光度越高，寿命越短
+· 太阳寿命约 100 亿年，O型星只有几百万年` },
+
+{ id:'k_j_unit', level:'初中', category:'天文单位', icon:'📐', title:'距离单位与视差',
+  content:
+`【三种距离单位】
+· 天文单位 AU ≈ 1.496 亿千米（地日平均距离）
+· 光年 ly ≈ 9.46 万亿千米
+· 秒差距 pc ≈ 3.26 光年 ≈ 206265 AU
+
+【周年视差】
+地球绕日公转导致近距离恒星在背景上
+产生的微小位移。
+
+定义：若恒星周年视差为 1 角秒，
+则该恒星距离为 1 秒差距。
+
+公式：d(秒差距) = 1 / p(角秒)
+
+【换算关系】
+1 pc = 3.26 ly = 206265 AU
+1 ly ≈ 63241 AU
+
+【比邻星】视差约 0.77 角秒 → 距离约 1.3 pc ≈ 4.22 ly` }
 ];
 
 /* =========================================================
-   6. 应用状态 & 路由
+   6. 题型工具函数
    ========================================================= */
-const state = {
-  page: 'home',
-  level: '小学',
-  practice: null,
-  exam: null,
-  result: null,
-  detailId: null,
-  kFilter: '全部'
-};
-
-let timers = [];
-function clearTimers(){
-  timers.forEach(t => clearInterval(t));
-  timers = [];
+function isAnswerCorrect(q, ua){
+  if (ua === undefined || ua === null) return false;
+  if (q.type === 'single' || q.type === 'judge') return ua === q.answer;
+  if (q.type === 'multi'){
+    if (!Array.isArray(ua) || ua.length !== q.answer.length) return false;
+    const a = ua.slice().sort((x, y) => x - y);
+    const b = q.answer.slice().sort((x, y) => x - y);
+    return a.every((v, i) => v === b[i]);
+  }
+  if (q.type === 'fill'){
+    const u = normalizeText(ua);
+    if (!u) return false;
+    return q.answer.some(a => normalizeText(a) === u);
+  }
+  return false;
 }
 
-const TITLES = {
-  home:'星赛通', knowledge:'知识卡片', wrong:'错题本', profile:'我的',
-  practice:'练习', exam:'模拟竞赛', result:'成绩单', detail:'知识卡片'
-};
-const TAB_PAGES = ['home','knowledge','wrong','profile'];
+function isAnswered(q, ua){
+  if (q.type === 'multi') return Array.isArray(ua) && ua.length > 0;
+  if (q.type === 'fill') return String(ua == null ? '' : ua).trim() !== '';
+  return ua !== undefined && ua !== null && ua !== -1;
+}
 
-function go(page, opts){
-  state.page = page;
-  if (opts) Object.assign(state, opts);
-  window.scrollTo(0, 0);
-  render();
+function answerText(q){
+  if (q.type === 'single') return LETTERS[q.answer];
+  if (q.type === 'judge') return q.answer === 0 ? '正确' : '错误';
+  if (q.type === 'multi') return q.answer.map(i => LETTERS[i]).join('、');
+  if (q.type === 'fill') return q.answer[0];
+  return '';
+}
+
+function typeLabel(t){
+  return { single:'单选', multi:'多选', judge:'判断', fill:'填空' }[t] || '题目';
 }
 
 /* =========================================================
-   7. 渲染主入口
-   ========================================================= */
-const view = $('#view');
-const navTitle = $('#navTitle');
-const backBtn = $('#backBtn');
-const tabbar = $('#tabbar');
-
-function render(){
-  clearTimers();
-
-  navTitle.textContent = TITLES[state.page] || '星赛通';
-
-  // 返回按钮
-  if (TAB_PAGES.includes(state.page)){
-    backBtn.classList.add('hidden');
-  } else {
-    backBtn.classList.remove('hidden');
-  }
-
-  // tabbar
-  if (TAB_PAGES.includes(state.page)){
-    tabbar.classList.remove('hidden');
-    document.querySelectorAll('.tabbar button').forEach(b => {
-      b.classList.toggle('active', b.dataset.tab === state.page);
-    });
-  } else {
-    tabbar.classList.add('hidden');
-  }
-
-  const map = {
-    home: renderHome,
-    practice: renderPractice,
-    exam: renderExam,
-    result: renderResult,
-    wrong: renderWrong,
-    knowledge: renderKnowledge,
-    detail: renderDetail,
-    profile: renderProfile
-  };
-
-  view.innerHTML = (map[state.page] || renderHome)();
-
-  // 页面挂载后的钩子
-  if (state.page === 'exam' && state.exam && state.exam.running){
-    startExamTimer();
-  }
-  if (state.page === 'practice'){
-    updatePracticeProgress();
-  }
-}
-
-/* =========================================================
-   8. 首页
+   7. 数据查询
    ========================================================= */
 function getQuestions(level, category){
   return QUESTIONS.filter(q =>
@@ -718,6 +1378,9 @@ function getQuestions(level, category){
 function getCategories(level){
   return [...new Set(QUESTIONS.filter(q => q.level === level).map(q => q.category))];
 }
+function getKnowledge(level, category){
+  return KNOWLEDGE.find(k => k.level === level && k.category === category) || null;
+}
 function getDaily(level){
   const pool = getQuestions(level);
   if (!pool.length) return null;
@@ -725,10 +1388,107 @@ function getDaily(level){
   return pool[day % pool.length];
 }
 
+/* 知识点掌握度 */
+function getCategoryMastery(level, category){
+  const qs = getQuestions(level, category);
+  const stats = Store.getQStats();
+  let t = 0, c = 0;
+  qs.forEach(q => {
+    const s = stats[q.id];
+    if (s){ t += s.t; c += s.c; }
+  });
+  const wrongIds = Store.getWrong().map(w => w.id);
+  const wrongCount = qs.filter(q => wrongIds.includes(q.id)).length;
+  return {
+    total: qs.length,
+    answered: t,
+    correct: c,
+    rate: t ? Math.round(c / t * 100) : 0,
+    wrongCount
+  };
+}
+
+/* =========================================================
+   8. 全局状态 & 路由
+   ========================================================= */
+const state = {
+  page: 'home',
+  level: '小学',
+  kFilter: '全部',
+  practice: null,
+  exam: null,
+  result: null,
+  learnCategory: null,
+  expandedGroups: {}
+};
+
+let timers = [];
+function clearTimers(){
+  timers.forEach(t => clearInterval(t));
+  timers = [];
+}
+
+const TITLES = {
+  home:'星赛通', learn:'知识点学习', wrong:'错题归纳', profile:'我的',
+  practice:'练习', exam:'模拟竞赛', result:'成绩单',
+  learnDetail:'知识点详情'
+};
+const TAB_PAGES = ['home','learn','wrong','profile'];
+
+function go(page, opts){
+  state.page = page;
+  if (opts) Object.assign(state, opts);
+  window.scrollTo(0, 0);
+  render();
+}
+
+/* =========================================================
+   9. 渲染主入口
+   ========================================================= */
+const view = $('#view');
+const navTitle = $('#navTitle');
+const backBtn = $('#backBtn');
+const tabbar = $('#tabbar');
+
+function render(){
+  clearTimers();
+  navTitle.textContent = TITLES[state.page] || '星赛通';
+
+  if (TAB_PAGES.includes(state.page)){
+    backBtn.classList.add('hidden');
+    tabbar.classList.remove('hidden');
+    document.querySelectorAll('.tabbar button').forEach(b => {
+      b.classList.toggle('active', b.dataset.tab === state.page);
+    });
+  } else {
+    backBtn.classList.remove('hidden');
+    tabbar.classList.add('hidden');
+  }
+
+  const map = {
+    home: renderHome,
+    practice: renderPractice,
+    exam: renderExam,
+    result: renderResult,
+    wrong: renderWrong,
+    learn: renderLearn,
+    learnDetail: renderLearnDetail,
+    profile: renderProfile
+  };
+
+  view.innerHTML = (map[state.page] || renderHome)();
+
+  if (state.page === 'exam' && state.exam && state.exam.running){
+    startExamTimer();
+  }
+}
+
+/* =========================================================
+   10. 首页
+   ========================================================= */
 function renderHome(){
   const daily = getDaily(state.level);
   const cats = getCategories(state.level);
-  const dailyAnswerKey = daily ? LETTERS[daily.answer] : '';
 
   return `
     <div class="hero">
@@ -743,24 +1503,26 @@ function renderHome(){
 
     ${daily ? `
     <div class="card">
-      <div style="font-size:13px;color:var(--blue);font-weight:700;margin-bottom:10px;">📅 每日一题</div>
-      <div class="daily-stem">${esc(daily.stem)}</div>
-      <div class="opt-line">
-        ${daily.options.map((t, i) => `${LETTERS[i]}. ${esc(t)}`).join('<br>')}
+      <div style="font-size:13px;color:var(--blue);font-weight:700;margin-bottom:10px;">
+        📅 每日一题 <span class="type-badge">${typeLabel(daily.type)}</span>
       </div>
+      <div class="daily-stem">${esc(daily.stem)}</div>
+      ${daily.type === 'fill'
+        ? `<div class="opt-line">（请填写答案）</div>`
+        : `<div class="opt-line">${daily.options.map((t, i) => `${LETTERS[i]}. ${esc(t)}`).join('<br>')}</div>`}
       <div class="answer-hint" id="dailyHint" style="display:none;">
-        ✅ 正确答案：${dailyAnswerKey}<br>
+        ✅ 正确答案：${esc(answerText(daily))}<br>
         <span style="color:var(--sub);font-weight:400;font-size:13px;">${esc(daily.explanation)}</span>
       </div>
       <button class="btn btn-ghost" style="margin-top:14px;padding:10px;font-size:14px;"
-        id="dailyBtn" onclick="toggleDaily('${dailyAnswerKey}')">查看答案</button>
+        id="dailyBtn" onclick="toggleDaily()">查看答案</button>
     </div>` : ''}
 
     <div class="entry-row">
       <button class="entry-card blue" onclick="startPractice('${state.level}','')">
         <span class="ico">📝</span>
         <div class="t">开始练习</div>
-        <div class="s">逐题解析</div>
+        <div class="s">四种题型</div>
       </button>
       <button class="entry-card purple" onclick="startExam('${state.level}')">
         <span class="ico">⏱️</span>
@@ -774,47 +1536,205 @@ function renderHome(){
       ${cats.map(c => `<button class="chip" onclick="startPractice('${state.level}','${esc(c)}')">${esc(c)}</button>`).join('')}
     </div>
 
-    <div class="sec-title">快速入口</div>
+    <div class="sec-title">学习入口</div>
     <div class="card" style="padding:0;">
-      <div class="row-item" style="padding:16px 18px;" onclick="go('knowledge')">
-        <span>📚 知识卡片速记</span><span class="arrow">›</span>
+      <div class="row-item" style="padding:16px 18px;" onclick="go('learn')">
+        <span>📚 知识点学习窗口</span><span class="arrow">${cats.length} 个知识点 ›</span>
       </div>
       <div style="height:1px;background:var(--line);margin:0 18px;"></div>
       <div class="row-item" style="padding:16px 18px;" onclick="go('wrong')">
-        <span>📕 我的错题本</span><span class="arrow">${Store.getWrong().length} 道 ›</span>
+        <span>📕 错题归纳再提问</span><span class="arrow">${Store.getWrong().length} 道错题 ›</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px;background:linear-gradient(135deg,rgba(47,123,255,.10),rgba(123,79,224,.10));border-color:rgba(79,168,255,.25);">
+      <div style="font-size:13px;color:var(--sub);line-height:1.8;">
+        💡 <b style="color:var(--blue);">题库统计</b>：共 ${QUESTIONS.filter(q=>q.level===state.level).length} 道题，
+        含单选 / 多选 / 判断 / 填空四种题型。
       </div>
     </div>
   `;
 }
 
-function switchLevel(lv){
-  state.level = lv;
-  render();
-}
-function toggleDaily(key){
+function switchLevel(lv){ state.level = lv; render(); }
+
+let dailyShown = false;
+function toggleDaily(){
   const hint = $('#dailyHint');
   const btn = $('#dailyBtn');
   if (!hint) return;
-  const show = hint.style.display === 'none';
-  hint.style.display = show ? 'block' : 'none';
-  btn.textContent = show ? '隐藏答案' : '查看答案';
+  dailyShown = !dailyShown;
+  hint.style.display = dailyShown ? 'block' : 'none';
+  btn.textContent = dailyShown ? '隐藏答案' : '查看答案';
 }
 
 /* =========================================================
-   9. 练习模式
+   11. 知识点学习窗口
+   ========================================================= */
+function renderLearn(){
+  const cats = getCategories(state.level);
+  const all = KNOWLEDGE.filter(k => k.level === state.level);
+
+  // 总体掌握度
+  let totalT = 0, totalC = 0;
+  cats.forEach(c => {
+    const m = getCategoryMastery(state.level, c);
+    totalT += m.answered;
+    totalC += m.correct;
+  });
+  const overallRate = totalT ? Math.round(totalC / totalT * 100) : 0;
+
+  return `
+    <div class="title">知识点学习</div>
+    <div class="sub" style="margin-bottom:16px;">先学知识卡片，再针对性练习</div>
+
+    <div class="level-switch">
+      <button class="${state.level === '小学' ? 'active' : ''}" onclick="switchLevel('小学')">小学组</button>
+      <button class="${state.level === '初中' ? 'active' : ''}" onclick="switchLevel('初中')">初中组</button>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,rgba(47,123,255,.12),rgba(123,79,224,.12));border-color:rgba(79,168,255,.25);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div style="font-size:13px;color:var(--sub);">本组总体掌握度</div>
+          <div style="font-size:32px;font-weight:800;color:var(--blue);line-height:1.2;">${overallRate}%</div>
+        </div>
+        <div style="text-align:right;font-size:13px;color:var(--sub);line-height:1.8;">
+          已答 ${totalT} 题<br>答对 ${totalC} 题
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">选择知识点</div>
+
+    ${cats.map(c => {
+      const m = getCategoryMastery(state.level, c);
+      const k = getKnowledge(state.level, c);
+      const icon = k ? k.icon : '📖';
+      const barColor = m.rate >= 80 ? 'var(--green)' : (m.rate >= 50 ? 'var(--amber)' : 'var(--red)');
+      const barWidth = m.answered ? m.rate : 0;
+
+      return `
+        <div class="learn-card" onclick="openLearn('${esc(c)}')">
+          <div class="learn-head">
+            <div class="learn-ico">${icon}</div>
+            <div style="flex:1;">
+              <div class="learn-name">${esc(c)}</div>
+              <div class="learn-meta">
+                ${m.total} 道题 · 已练 ${m.answered} 道
+                ${m.wrongCount ? ` · <span style="color:var(--red);">错题 ${m.wrongCount}</span>` : ''}
+              </div>
+            </div>
+          </div>
+          <div class="mastery-bar">
+            <i style="width:${barWidth}%;background:${barColor};"></i>
+          </div>
+          <div class="mastery-info">
+            <span>掌握度 ${m.answered ? m.rate + '%' : '未开始'}</span>
+            <span>进入学习 ›</span>
+          </div>
+        </div>
+      `;
+    }).join('')}
+
+    <div class="version">共 ${all.length} 个知识点卡片</div>
+  `;
+}
+
+function openLearn(category){
+  state.learnCategory = category;
+  go('learnDetail');
+}
+
+function renderLearnDetail(){
+  const c = state.learnCategory;
+  const level = state.level;
+  const k = getKnowledge(level, c);
+  const m = getCategoryMastery(level, c);
+  const list = getQuestions(level, c);
+
+  if (!c) return `<div class="empty"><div class="ico">😕</div><div class="txt">知识点不存在</div></div>`;
+
+  return `
+    <div class="tags">
+      <span class="tag">${esc(level)}</span>
+      <span class="tag">${esc(c)}</span>
+      <span class="tag ok">${list.length} 道题</span>
+      ${m.wrongCount ? `<span class="tag err">错题 ${m.wrongCount}</span>` : ''}
+    </div>
+
+    <div class="title" style="font-size:24px;margin-bottom:16px;">
+      ${k ? esc(k.icon) + ' ' + esc(k.title) : '📖 ' + esc(c)}
+    </div>
+
+    ${k ? `
+    <div class="study-box">
+      <div class="st">📖 知识卡片</div>
+      <div class="k-content" style="font-size:14.5px;line-height:1.95;">${esc(k.content)}</div>
+    </div>` : `
+    <div class="card"><div class="sub">该知识点暂无文字卡片，可直接进入练习。</div></div>
+    `}
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="font-size:15px;font-weight:700;">📈 掌握情况</div>
+        <div style="font-size:20px;font-weight:800;color:${m.answered ? (m.rate >= 80 ? 'var(--green)' : m.rate >= 50 ? 'var(--amber)' : 'var(--red)') : 'var(--sub)'};">
+          ${m.answered ? m.rate + '%' : '—'}
+        </div>
+      </div>
+      <div class="mastery-bar">
+        <i style="width:${m.answered ? m.rate : 0}%;background:${m.rate >= 80 ? 'var(--green)' : m.rate >= 50 ? 'var(--amber)' : 'var(--red)'};"></i>
+      </div>
+      <div class="mastery-info">
+        <span>已答 ${m.answered} 题 · 答对 ${m.correct} 题</span>
+        <span>共 ${m.total} 题</span>
+      </div>
+    </div>
+
+    <div class="sec-title">题目清单</div>
+    <div class="card" style="padding:12px 16px;">
+      ${list.map((q, i) => `
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;${i ? 'border-top:1px solid var(--line);' : ''}">
+          <span style="font-size:13px;color:var(--sub);width:22px;">${i + 1}</span>
+          <span class="type-badge" style="margin:0;">${typeLabel(q.type)}</span>
+          <span style="flex:1;font-size:13.5px;color:#B8C2DC;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+            ${esc(q.stem)}
+          </span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="btn-row" style="margin-top:22px;">
+      <button class="btn btn-ghost" onclick="go('learn')">返回列表</button>
+      <button class="btn btn-main" onclick="startPractice('${esc(level)}','${esc(c)}')">开始练习</button>
+    </div>
+
+    ${m.wrongCount ? `
+    <button class="btn btn-amber" style="margin-top:12px;" onclick="reAsk('${esc(level)}','${esc(c)}')">
+      🔁 针对错题再提问（${m.wrongCount} 道）
+    </button>` : ''}
+  `;
+}
+
+/* =========================================================
+   12. 练习模式
    ========================================================= */
 function startPractice(level, category){
-  let list = getQuestions(level, category);
-  if (!list.length){
-    alert('该知识点暂无题目');
-    return;
-  }
-  list = shuffle(list);
+  const list = shuffle(getQuestions(level, category));
+  if (!list.length){ alert('该知识点暂无题目'); return; }
+  startPracticeWithList(list, level, category || '综合练习');
+}
 
+function startPracticeWithList(list, level, label){
   state.practice = {
-    list, index: 0, selected: -1,
-    showAnswer: false, correct: 0, wrong: 0,
-    level, category
+    list,
+    index: 0,
+    userAnswers: new Array(list.length).fill(null),
+    showAnswer: false,
+    correct: 0,
+    wrong: 0,
+    level,
+    label
   };
   go('practice');
 }
@@ -824,36 +1744,39 @@ function renderPractice(){
   if (!p) return `<div class="empty"><div class="ico">😕</div><div class="txt">数据丢失</div></div>`;
 
   const q = p.list[p.index];
+  const ua = p.userAnswers[p.index];
   const total = p.list.length;
+  const answered = isAnswered(q, ua);
 
   return `
     <div class="topbar">
       <div class="counter">第 ${p.index + 1} / ${total} 题</div>
       <div class="counter"><span class="ok">✓ ${p.correct}</span>　<span class="no">✗ ${p.wrong}</span></div>
     </div>
-    <div class="progress"><i id="pBar" style="width:${rate(p.index, total)}%"></i></div>
+    <div class="progress"><i style="width:${rate(p.index, total)}%"></i></div>
 
     <div class="card">
       <div class="tags">
         <span class="tag">${esc(q.level)}</span>
         <span class="tag">${esc(q.category)}</span>
+        <span class="tag amber">${typeLabel(q.type)}</span>
       </div>
       <div class="stem">${esc(q.stem)}</div>
-      ${renderOptions(q, p.selected, p.showAnswer, 'practiceChoose')}
+      ${renderQuestionInput(q, ua, p.showAnswer, 'practiceChoose')}
     </div>
 
     ${p.showAnswer ? `
       <div class="explain">
-        <div class="head ${p.selected === q.answer ? 'ok' : 'no'}">
-          ${p.selected === q.answer ? '✓ 回答正确' : '✗ 回答错误'}
+        <div class="head ${isAnswerCorrect(q, ua) ? 'ok' : 'no'}">
+          ${isAnswerCorrect(q, ua) ? '✓ 回答正确' : '✗ 回答错误'}
         </div>
-        <div class="line">正确答案：${LETTERS[q.answer]}</div>
+        <div class="line">正确答案：${esc(answerText(q))}</div>
         <div class="line">${esc(q.explanation)}</div>
       </div>` : ''}
 
     <div class="footer">
       ${!p.showAnswer
-        ? `<button class="btn btn-main" ${p.selected < 0 ? 'disabled' : ''} onclick="practiceSubmit()">提交答案</button>`
+        ? `<button class="btn btn-main" ${!answered ? 'disabled' : ''} onclick="practiceSubmit()">提交答案</button>`
         : (p.index < total - 1
             ? `<button class="btn btn-main" onclick="practiceNext()">下一题</button>`
             : `<button class="btn btn-main" onclick="practiceFinish()">完成练习</button>`)
@@ -862,48 +1785,108 @@ function renderPractice(){
   `;
 }
 
-function renderOptions(q, selected, showAnswer, fnName){
+/* 渲染答题区域（按题型） */
+function renderQuestionInput(q, ua, showAnswer, clickFn){
+  if (q.type === 'fill'){
+    const val = esc(ua == null ? '' : ua);
+    return `
+      <input class="fill-input" id="fillInput"
+        type="text"
+        value="${val}"
+        placeholder="请输入答案"
+        ${showAnswer ? 'disabled' : ''}
+        oninput="onFillInput(this.value)"
+        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      ${showAnswer ? `<div class="line" style="margin-top:12px;font-size:13px;color:var(--sub);">
+        你填写的是：<b style="color:${isAnswerCorrect(q, ua) ? 'var(--green)' : 'var(--red)'};">${esc(ua || '（空）')}</b>
+      </div>` : ''}
+    `;
+  }
+
+  const isMulti = q.type === 'multi';
+  const arr = Array.isArray(ua) ? ua : [];
+
   return q.options.map((text, i) => {
     let cls = 'option';
+    const isSelected = isMulti ? arr.includes(i) : (ua === i);
+    const isRight = isMulti ? q.answer.includes(i) : q.answer === i;
+
     if (showAnswer){
-      if (i === q.answer) cls += ' right';
-      else if (i === selected) cls += ' wrong';
+      if (isRight) cls += ' right';
+      else if (isSelected) cls += ' wrong';
       else cls += ' dim';
-    } else if (i === selected){
+    } else if (isSelected){
       cls += ' selected';
     }
-    return `<div class="${cls}" onclick="${fnName}(${i})">
-      <span class="opt-key">${LETTERS[i]}</span>
+
+    const key = q.type === 'judge' ? (i === 0 ? '✓' : '✗') : LETTERS[i];
+
+    return `<div class="${cls}" onclick="${clickFn}(${i})">
+      <span class="opt-key">${key}</span>
       <span class="opt-text">${esc(text)}</span>
     </div>`;
   }).join('');
 }
 
-function updatePracticeProgress(){
+function onFillInput(v){
   const p = state.practice;
   if (!p) return;
-  const bar = $('#pBar');
-  if (bar) bar.style.width = rate(p.index, p.list.length) + '%';
+  p.userAnswers[p.index] = v;
+  // 实时启用/禁用提交按钮
+  const btn = document.querySelector('.footer .btn-main');
+  if (btn && !p.showAnswer){
+    btn.disabled = !v.trim();
+  }
 }
 
 function practiceChoose(i){
   const p = state.practice;
   if (!p || p.showAnswer) return;
-  p.selected = i;
-  render();
+
+  const q = p.list[p.index];
+
+  if (q.type === 'multi'){
+    let arr = Array.isArray(p.userAnswers[p.index]) ? p.userAnswers[p.index].slice() : [];
+    const idx = arr.indexOf(i);
+    if (idx >= 0) arr.splice(idx, 1);
+    else arr.push(i);
+    p.userAnswers[p.index] = arr;
+    // 局部更新，不重渲染（避免滚动跳动）
+    const nodes = document.querySelectorAll('.option');
+    nodes.forEach((n, k) => {
+      n.className = 'option' + (arr.includes(k) ? ' selected' : '');
+    });
+    const btn = document.querySelector('.footer .btn-main');
+    if (btn) btn.disabled = arr.length === 0;
+    return;
+  }
+
+  p.userAnswers[p.index] = i;
+  const nodes = document.querySelectorAll('.option');
+  nodes.forEach((n, k) => {
+    n.className = 'option' + (k === i ? ' selected' : '');
+  });
+  const btn = document.querySelector('.footer .btn-main');
+  if (btn) btn.disabled = false;
 }
 
 function practiceSubmit(){
   const p = state.practice;
-  if (!p || p.selected < 0) return;
+  if (!p) return;
 
   const q = p.list[p.index];
-  if (p.selected === q.answer){
+  const ua = p.userAnswers[p.index];
+  if (!isAnswered(q, ua)) return;
+
+  const ok = isAnswerCorrect(q, ua);
+  if (ok){
     p.correct++;
   } else {
     p.wrong++;
     Store.addWrong(q.id);
   }
+  Store.bumpQStat(q.id, ok);
+
   p.showAnswer = true;
   render();
 }
@@ -911,7 +1894,6 @@ function practiceSubmit(){
 function practiceNext(){
   const p = state.practice;
   p.index++;
-  p.selected = -1;
   p.showAnswer = false;
   render();
 }
@@ -923,13 +1905,18 @@ function practiceFinish(){
 
   Store.addRecord({ mode:'practice', total, correct });
 
-  const msg = `共 ${total} 题\n答对 ${correct} 题\n正确率 ${rate(correct, total)}%`;
-  if (confirm(msg + '\n\n点击「确定」再来一组，点击「取消」返回首页')){
+  const msg = `共 ${total} 题\n答对 ${correct} 题\n正确率 ${rate(correct, total)}%\n\n点击「确定」再来一组，点击「取消」返回`;
+  if (confirm(msg)){
     const list = shuffle(p.list);
     state.practice = {
-      list, index: 0, selected: -1,
-      showAnswer: false, correct: 0, wrong: 0,
-      level: p.level, category: p.category
+      list,
+      index: 0,
+      userAnswers: new Array(list.length).fill(null),
+      showAnswer: false,
+      correct: 0,
+      wrong: 0,
+      level: p.level,
+      label: p.label
     };
     render();
   } else {
@@ -938,23 +1925,21 @@ function practiceFinish(){
 }
 
 /* =========================================================
-   10. 模拟竞赛
+   13. 模拟竞赛
    ========================================================= */
 const EXAM_COUNT = 20;
 const EXAM_MINUTES = 20;
 
 function startExam(level){
   const pool = getQuestions(level);
-  if (!pool.length){
-    alert('题库为空');
-    return;
-  }
+  if (!pool.length){ alert('题库为空'); return; }
+
   const list = shuffle(pool).slice(0, Math.min(EXAM_COUNT, pool.length));
 
   state.exam = {
     list,
     index: 0,
-    answers: new Array(list.length).fill(-1),
+    answers: new Array(list.length).fill(null),
     remain: EXAM_MINUTES * 60,
     total: EXAM_MINUTES * 60,
     showCard: false,
@@ -968,7 +1953,8 @@ function renderExam(){
   if (!e) return `<div class="empty"><div class="ico">😕</div><div class="txt">数据丢失</div></div>`;
 
   const q = e.list[e.index];
-  const answered = e.answers.filter(i => i >= 0).length;
+  const ua = e.answers[e.index];
+  const answered = e.answers.filter((a, i) => isAnswered(e.list[i], a)).length;
 
   return `
     <div class="topbar">
@@ -976,16 +1962,17 @@ function renderExam(){
       <div class="counter">已答 ${answered} / ${e.list.length}</div>
       <button class="card-btn" onclick="toggleCard()">答题卡</button>
     </div>
-    <div class="progress"><i id="pBar" style="width:${rate(e.index + 1, e.list.length)}%"></i></div>
+    <div class="progress"><i style="width:${rate(e.index + 1, e.list.length)}%"></i></div>
 
     <div class="card">
       <div class="tags">
         <span class="tag">${esc(q.level)}</span>
         <span class="tag">${esc(q.category)}</span>
+        <span class="tag amber">${typeLabel(q.type)}</span>
         <span class="tag">第 ${e.index + 1} 题</span>
       </div>
       <div class="stem">${esc(q.stem)}</div>
-      ${renderOptions(q, e.answers[e.index], false, 'examChoose')}
+      ${renderQuestionInput(q, ua, false, 'examChoose')}
     </div>
 
     <div class="btn-row" style="margin-top:6px;">
@@ -1000,8 +1987,8 @@ function renderExam(){
       <div class="sheet show">
         <h3>答题卡</h3>
         <div class="sheet-grid">
-          ${e.list.map((_, i) => `
-            <div class="sheet-item ${e.answers[i] >= 0 ? 'done' : ''} ${i === e.index ? 'active' : ''}"
+          ${e.list.map((qq, i) => `
+            <div class="sheet-item ${isAnswered(qq, e.answers[i]) ? 'done' : ''} ${i === e.index ? 'active' : ''}"
                  onclick="examJump(${i})">${i + 1}</div>
           `).join('')}
         </div>
@@ -1012,9 +1999,6 @@ function renderExam(){
 }
 
 function startExamTimer(){
-  const e = state.exam;
-  if (!e || !e.running) return;
-
   const t = setInterval(() => {
     if (!state.exam || state.page !== 'exam'){
       clearInterval(t);
@@ -1033,7 +2017,6 @@ function startExamTimer(){
     }
     updateTimerText();
   }, 1000);
-
   timers.push(t);
 }
 
@@ -1041,7 +2024,6 @@ function updateTimerText(){
   const el = document.getElementById('timerText');
   if (el && state.exam){
     el.textContent = fmtTime(state.exam.remain);
-    // 最后60秒变红
     el.style.color = state.exam.remain <= 60 ? 'var(--red)' : 'var(--blue)';
   }
 }
@@ -1049,49 +2031,55 @@ function updateTimerText(){
 function examChoose(i){
   const e = state.exam;
   if (!e) return;
-  e.answers[e.index] = i;
 
-  // 只更新选项样式，避免整页重绘导致计时闪烁
   const q = e.list[e.index];
-  const nodes = document.querySelectorAll('.option');
-  nodes.forEach((n, idx) => {
-    n.className = 'option' + (idx === i ? ' selected' : '');
-  });
+
+  if (q.type === 'multi'){
+    let arr = Array.isArray(e.answers[e.index]) ? e.answers[e.index].slice() : [];
+    const idx = arr.indexOf(i);
+    if (idx >= 0) arr.splice(idx, 1);
+    else arr.push(i);
+    e.answers[e.index] = arr;
+    const nodes = document.querySelectorAll('.option');
+    nodes.forEach((n, k) => {
+      n.className = 'option' + (arr.includes(k) ? ' selected' : '');
+    });
+  } else {
+    e.answers[e.index] = i;
+    const nodes = document.querySelectorAll('.option');
+    nodes.forEach((n, k) => {
+      n.className = 'option' + (k === i ? ' selected' : '');
+    });
+  }
+
+  // 更新已答计数
   const counter = document.querySelector('.topbar .counter');
   if (counter){
-    const answered = e.answers.filter(x => x >= 0).length;
+    const answered = e.answers.filter((a, i) => isAnswered(e.list[i], a)).length;
     counter.textContent = `已答 ${answered} / ${e.list.length}`;
   }
 }
 
-function examPrev(){
+function onFillInputExam(v){
   const e = state.exam;
-  if (e.index === 0) return;
-  e.index--;
-  render();
+  if (!e) return;
+  e.answers[e.index] = v;
+  const counter = document.querySelector('.topbar .counter');
+  if (counter){
+    const answered = e.answers.filter((a, i) => isAnswered(e.list[i], a)).length;
+    counter.textContent = `已答 ${answered} / ${e.list.length}`;
+  }
 }
-function examNext(){
-  const e = state.exam;
-  if (e.index >= e.list.length - 1) return;
-  e.index++;
-  render();
-}
-function examJump(i){
-  state.exam.index = i;
-  state.exam.showCard = false;
-  render();
-}
-function toggleCard(){
-  state.exam.showCard = !state.exam.showCard;
-  render();
-}
+
+function examPrev(){ const e = state.exam; if (e.index === 0) return; e.index--; render(); }
+function examNext(){ const e = state.exam; if (e.index >= e.list.length - 1) return; e.index++; render(); }
+function examJump(i){ state.exam.index = i; state.exam.showCard = false; render(); }
+function toggleCard(){ state.exam.showCard = !state.exam.showCard; render(); }
 
 function examConfirmSubmit(){
   const e = state.exam;
-  const unanswered = e.list.length - e.answers.filter(i => i >= 0).length;
-  const msg = unanswered > 0
-    ? `还有 ${unanswered} 题未作答，确定交卷吗？`
-    : '确定交卷吗？';
+  const unanswered = e.list.filter((q, i) => !isAnswered(q, e.answers[i])).length;
+  const msg = unanswered > 0 ? `还有 ${unanswered} 题未作答，确定交卷吗？` : '确定交卷吗？';
   if (confirm(msg)) submitExam();
 }
 
@@ -1106,12 +2094,13 @@ function submitExam(){
   const details = [];
 
   e.list.forEach((q, i) => {
-    const a = e.answers[i];
-    const isCorrect = a === q.answer;
+    const ua = e.answers[i];
+    const ok = isAnswerCorrect(q, ua);
+    const done = isAnswered(q, ua);
 
-    if (a === -1){
+    if (!done){
       blank++;
-    } else if (isCorrect){
+    } else if (ok){
       right++;
       score += 2;
     } else {
@@ -1119,16 +2108,18 @@ function submitExam(){
       score -= 1;
       Store.addWrong(q.id);
     }
+    Store.bumpQStat(q.id, ok && done);
 
     details.push({
       id: q.id,
+      type: q.type,
       stem: q.stem,
-      options: q.options,
-      your: a,
+      options: q.options || null,
+      your: ua,
       correct: q.answer,
       explanation: q.explanation,
-      isCorrect,
-      isBlank: a === -1
+      isCorrect: ok,
+      isBlank: !done
     });
   });
 
@@ -1151,7 +2142,7 @@ function submitExam(){
 }
 
 /* =========================================================
-   11. 成绩单
+   14. 成绩单
    ========================================================= */
 function renderResult(){
   const r = state.result;
@@ -1177,19 +2168,26 @@ function renderResult(){
       <div class="sec-title">错题解析（${wrongList.length} 题）</div>
       ${wrongList.map(d => `
         <div class="card">
+          <div class="tags">
+            <span class="tag amber">${typeLabel(d.type)}</span>
+          </div>
           <div class="q-stem">${esc(d.stem)}</div>
           <div class="q-line">
-            ${d.options.map((t, i) => {
-              const isRight = i === d.correct;
-              const isYours = i === d.your;
-              let cls = '';
-              if (isRight) cls = 'ok';
-              else if (isYours) cls = 'no';
-              return `<span class="${cls}">${LETTERS[i]}. ${esc(t)}</span>`;
-            }).join('<br>')}
+            ${d.options
+              ? d.options.map((t, i) => {
+                  const isRight = Array.isArray(d.correct) ? d.correct.includes(i) : d.correct === i;
+                  const isYours = Array.isArray(d.your) ? d.your.includes(i) : d.your === i;
+                  let cls = '';
+                  if (isRight) cls = 'ok';
+                  else if (isYours) cls = 'no';
+                  return `<span class="${cls}">${LETTERS[i]}. ${esc(t)}</span>`;
+                }).join('<br>')
+              : `<span style="color:var(--sub);">你的答案：</span>
+                 <span class="no">${esc(d.your || '（空）')}</span>`}
           </div>
           <div class="q-exp">
             ${d.isBlank ? '⚠️ 本题未作答<br>' : ''}
+            正确答案：<b style="color:var(--green);">${esc(answerText({ type:d.type, answer:d.correct, options:d.options }))}</b><br>
             ${esc(d.explanation)}
           </div>
         </div>
@@ -1202,29 +2200,21 @@ function renderResult(){
     `}
 
     <div class="btn-row" style="margin:24px 0 40px;">
-      <button class="btn btn-ghost" onclick="go('wrong')">查看错题本</button>
+      <button class="btn btn-ghost" onclick="go('wrong')">查看错题归纳</button>
       <button class="btn btn-main" onclick="go('home')">返回首页</button>
     </div>
   `;
 }
 
 /* =========================================================
-   12. 错题本
+   15. 错题归纳再提问
    ========================================================= */
 function renderWrong(){
-  const ids = Store.getWrong();
-  const list = ids
-    .map(item => {
-      const q = QUESTIONS.find(x => x.id === item.id);
-      return q ? Object.assign({}, q, { count: item.count }) : null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => b.count - a.count);
-
-  if (!list.length){
+  const wrongIds = Store.getWrong();
+  if (!wrongIds.length){
     return `
-      <div class="title">错题本</div>
-      <div class="sub" style="margin-bottom:20px;">答错的题会自动收录到这里</div>
+      <div class="title">错题归纳</div>
+      <div class="sub" style="margin-bottom:20px;">按知识点归纳，支持再提问</div>
       <div class="empty">
         <div class="ico">✨</div>
         <div class="txt">还没有错题，继续保持！</div>
@@ -1232,30 +2222,117 @@ function renderWrong(){
     `;
   }
 
-  return `
-    <div class="title">错题本</div>
-    <div class="sub" style="margin-bottom:20px;">共 ${list.length} 道错题</div>
+  // 按 level + category 分组
+  const groups = {};
+  wrongIds.forEach(w => {
+    const q = QUESTIONS.find(x => x.id === w.id);
+    if (!q) return;
+    const key = q.level + '|' + q.category;
+    if (!groups[key]) groups[key] = { level: q.level, category: q.category, items: [] };
+    groups[key].items.push({ q, count: w.count, lastTime: w.lastTime });
+  });
 
-    ${list.map(q => `
-      <div class="card">
-        <div class="tags">
-          <span class="tag">${esc(q.level)}</span>
-          <span class="tag">${esc(q.category)}</span>
-          <span class="tag err">错 ${q.count} 次</span>
-        </div>
-        <div class="q-stem">${esc(q.stem)}</div>
-        <div class="q-line">
-          ${q.options.map((t, i) =>
-            `<span class="${i === q.answer ? 'ok' : ''}">${LETTERS[i]}. ${esc(t)}</span>`
-          ).join('<br>')}
-        </div>
-        <div class="q-exp">${esc(q.explanation)}</div>
-        <div class="remove-btn" onclick="removeWrong('${q.id}')">移除</div>
+  const groupList = Object.values(groups).sort((a, b) => b.items.length - a.items.length);
+  const totalWrong = wrongIds.length;
+
+  return `
+    <div class="title">错题归纳</div>
+    <div class="sub" style="margin-bottom:16px;">
+      共 ${totalWrong} 道错题，分布在 ${groupList.length} 个知识点
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,rgba(255,184,77,.10),rgba(255,91,91,.08));border-color:rgba(255,184,77,.25);">
+      <div style="font-size:13px;line-height:1.8;color:#C8D2E8;">
+        💡 <b style="color:var(--amber);">再提问</b>：点开知识点，点击「再提问」按钮，
+        系统会从该知识点重新抽题，帮你巩固薄弱环节。
       </div>
-    `).join('')}
+    </div>
+
+    ${groupList.map(g => {
+      const key = g.level + '|' + g.category;
+      const expanded = !!state.expandedGroups[key];
+      const k = getKnowledge(g.level, g.category);
+      const icon = k ? k.icon : '📖';
+
+      return `
+        <div class="group-head" onclick="toggleGroup('${esc(key)}')">
+          <div class="gh-l">
+            <div class="learn-ico" style="width:36px;height:36px;font-size:18px;">${icon}</div>
+            <div>
+              <div class="gn">${esc(g.category)}</div>
+              <div class="gc">${esc(g.level)} · ${g.items.length} 道错题</div>
+            </div>
+          </div>
+          <div style="color:var(--sub);font-size:18px;">${expanded ? '▾' : '▸'}</div>
+        </div>
+
+        ${expanded ? `
+          <div class="group-body">
+            ${g.items.map(it => `
+              <div class="card" style="padding:15px;">
+                <div class="tags">
+                  <span class="tag amber">${typeLabel(it.q.type)}</span>
+                  <span class="tag err">错 ${it.count} 次</span>
+                </div>
+                <div class="q-stem" style="font-size:14.5px;">${esc(it.q.stem)}</div>
+                <div class="q-line">
+                  ${it.q.options
+                    ? it.q.options.map((t, i) => {
+                        const isRight = Array.isArray(it.q.answer) ? it.q.answer.includes(i) : it.q.answer === i;
+                        return `<span class="${isRight ? 'ok' : ''}">${LETTERS[i]}. ${esc(t)}</span>`;
+                      }).join('<br>')
+                    : `<span class="ok">正确答案：${esc(answerText(it.q))}</span>`}
+                </div>
+                <div class="q-exp">${esc(it.q.explanation)}</div>
+                <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end;">
+                  <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();removeWrong('${it.q.id}')">移除</button>
+                </div>
+              </div>
+            `).join('')}
+
+            <button class="btn btn-amber" style="margin-bottom:16px;"
+              onclick="reAsk('${esc(g.level)}','${esc(g.category)}')">
+              🔁 针对「${esc(g.category)}」再提问
+            </button>
+          </div>
+        ` : ''}
+      `;
+    }).join('')}
 
     <button class="btn btn-ghost" style="margin:10px 0 40px;" onclick="clearWrong()">清空错题本</button>
   `;
+}
+
+function toggleGroup(key){
+  state.expandedGroups[key] = !state.expandedGroups[key];
+  render();
+}
+
+/* 再提问：从指定知识点重新抽题 */
+function reAsk(level, category){
+  const pool = getQuestions(level, category);
+  if (!pool.length){ alert('该知识点暂无题目'); return; }
+
+  // 优先抽错题，再补充其它题
+  const wrongIds = Store.getWrong().map(w => w.id);
+  const wrongOnes = pool.filter(q => wrongIds.includes(q.id));
+  const others = pool.filter(q => !wrongIds.includes(q.id));
+
+  let picked = shuffle(wrongOnes);
+  if (picked.length < 5){
+    picked = picked.concat(shuffle(others).slice(0, 5 - picked.length));
+  }
+  picked = shuffle(picked).slice(0, Math.min(6, pool.length));
+
+  const ok = confirm(
+    `针对「${category}」再提问\n\n` +
+    `本次共 ${picked.length} 题\n` +
+    `（优先抽取你答错过的题目）\n\n` +
+    `点击「确定」开始练习`
+  );
+  if (!ok) return;
+
+  startPracticeWithList(picked, level, category + ' · 强化练习');
 }
 
 function removeWrong(id){
@@ -1270,69 +2347,20 @@ function clearWrong(){
 }
 
 /* =========================================================
-   13. 知识卡片
-   ========================================================= */
-function renderKnowledge(){
-  const all = KNOWLEDGE;
-  const cats = ['全部', ...new Set(all.map(k => k.category))];
-  const list = state.kFilter === '全部'
-    ? all
-    : all.filter(k => k.category === state.kFilter);
-
-  return `
-    <div class="title">知识卡片</div>
-    <div class="sub" style="margin-bottom:18px;">考前速记，随时翻看</div>
-
-    <div class="filter-bar">
-      ${cats.map(c => `
-        <button class="filter-item ${state.kFilter === c ? 'active' : ''}"
-                onclick="setKFilter('${esc(c)}')">${esc(c)}</button>
-      `).join('')}
-    </div>
-
-    ${list.map(k => `
-      <div class="card" onclick="openDetail('${k.id}')" style="cursor:pointer;">
-        <div class="tags">
-          <span class="tag">${esc(k.level)}</span>
-          <span class="tag">${esc(k.category)}</span>
-        </div>
-        <div class="k-title">${esc(k.title)}</div>
-        <div class="k-preview">${esc(k.content)}</div>
-      </div>
-    `).join('')}
-  `;
-}
-
-function setKFilter(c){
-  state.kFilter = c;
-  render();
-}
-function openDetail(id){
-  state.detailId = id;
-  go('detail');
-}
-function renderDetail(){
-  const k = KNOWLEDGE.find(x => x.id === state.detailId);
-  if (!k) return `<div class="empty"><div class="ico">😕</div><div class="txt">卡片不存在</div></div>`;
-
-  return `
-    <div class="tags">
-      <span class="tag">${esc(k.level)}</span>
-      <span class="tag">${esc(k.category)}</span>
-    </div>
-    <div class="title" style="font-size:24px;margin-bottom:20px;">${esc(k.title)}</div>
-    <div class="card">
-      <div class="k-content">${esc(k.content)}</div>
-    </div>
-    <button class="btn btn-ghost" style="margin-top:6px;" onclick="go('knowledge')">返回列表</button>
-  `;
-}
-
-/* =========================================================
-   14. 我的
+   16. 我的
    ========================================================= */
 function renderProfile(){
   const s = Store.getStats();
+  const cats = getCategories(state.level);
+
+  // 最薄弱知识点
+  let weakest = null;
+  cats.forEach(c => {
+    const m = getCategoryMastery(state.level, c);
+    if (m.answered >= 3){
+      if (!weakest || m.rate < weakest.rate) weakest = { category: c, rate: m.rate };
+    }
+  });
 
   return `
     <div class="profile-card">
@@ -1348,20 +2376,29 @@ function renderProfile(){
       <div><div class="n">${s.wrongCount}</div><div class="l">错题数</div></div>
     </div>
 
+    ${weakest ? `
+    <div class="card" style="background:linear-gradient(135deg,rgba(255,184,77,.12),rgba(255,91,91,.08));border-color:rgba(255,184,77,.25);">
+      <div style="font-size:13px;color:var(--sub);margin-bottom:6px;">📌 薄弱知识点</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:17px;font-weight:700;">${esc(weakest.category)}</div>
+        <div style="font-size:20px;font-weight:800;color:var(--red);">${weakest.rate}%</div>
+      </div>
+      <button class="btn btn-amber" style="margin-top:14px;" onclick="reAsk('${esc(state.level)}','${esc(weakest.category)}')">
+        立即强化练习
+      </button>
+    </div>` : ''}
+
     <div class="card" style="padding:0;">
-      <div class="row-item" style="padding:16px 18px;" onclick="go('wrong')">
-        <span>📕 我的错题本</span>
-        <span class="arrow">${s.wrongCount} 道 ›</span>
+      <div class="row-item" style="padding:16px 18px;" onclick="go('learn')">
+        <span>📚 知识点学习</span><span class="arrow">${getCategories(state.level).length} 个 ›</span>
       </div>
       <div style="height:1px;background:var(--line);margin:0 18px;"></div>
-      <div class="row-item" style="padding:16px 18px;" onclick="go('knowledge')">
-        <span>📚 知识卡片</span>
-        <span class="arrow">${KNOWLEDGE.length} 张 ›</span>
+      <div class="row-item" style="padding:16px 18px;" onclick="go('wrong')">
+        <span>📕 错题归纳</span><span class="arrow">${s.wrongCount} 道 ›</span>
       </div>
       <div style="height:1px;background:var(--line);margin:0 18px;"></div>
       <div class="row-item" style="padding:16px 18px;" onclick="go('home')">
-        <span>🏠 返回首页</span>
-        <span class="arrow">›</span>
+        <span>🏠 返回首页</span><span class="arrow">›</span>
       </div>
     </div>
 
@@ -1373,25 +2410,26 @@ function renderProfile(){
     </div>
 
     <div class="version">
-      星赛通 v1.0.0 · 网页版<br>
-      题库 ${QUESTIONS.length} 题 · 知识卡 ${KNOWLEDGE.length} 张
+      星赛通 v2.0 · 网页版<br>
+      题库 ${QUESTIONS.length} 题（小学 ${QUESTIONS.filter(q=>q.level==='小学').length} · 初中 ${QUESTIONS.filter(q=>q.level==='初中').length}）<br>
+      知识卡 ${KNOWLEDGE.length} 张
     </div>
   `;
 }
 
 function clearAllData(){
-  if (!confirm('错题本、答题记录、学习天数都会被清空，不可恢复。确定吗？')) return;
+  if (!confirm('错题本、答题记录、学习统计都会被清空，不可恢复。确定吗？')) return;
   Store.clearAll();
   render();
   alert('已清除');
 }
 
 /* =========================================================
-   15. 事件绑定
+   17. 事件绑定
    ========================================================= */
 backBtn.addEventListener('click', () => {
-  if (state.page === 'detail') return go('knowledge');
   if (state.page === 'result') return go('home');
+  if (state.page === 'learnDetail') return go('learn');
   if (state.page === 'practice' || state.page === 'exam'){
     if (state.page === 'exam' && state.exam){
       if (!confirm('退出后本次答题记录不会保存，确定退出吗？')) return;
@@ -1416,27 +2454,56 @@ tabbar.addEventListener('click', e => {
   go(tab);
 });
 
-// 键盘快捷键（1-4 选项，Enter 提交）
+// 键盘快捷键：1-4 选项 / Enter 提交 / ←→ 翻页
 document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  const isInput = tag === 'input' || tag === 'textarea';
+
   if (state.page === 'practice'){
     const p = state.practice;
-    if (!p || p.showAnswer) return;
-    const n = parseInt(e.key, 10);
-    if (n >= 1 && n <= p.list[p.index].options.length) practiceChoose(n - 1);
-    if (e.key === 'Enter' && p.selected >= 0) practiceSubmit();
+    if (!p) return;
+    const q = p.list[p.index];
+
+    if (!isInput && !p.showAnswer && q.type !== 'fill'){
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= q.options.length){
+        practiceChoose(n - 1);
+        e.preventDefault();
+      }
+    }
+    if (e.key === 'Enter'){
+      e.preventDefault();
+      if (!p.showAnswer && isAnswered(q, p.userAnswers[p.index])) practiceSubmit();
+      else if (p.showAnswer && p.index < p.list.length - 1) practiceNext();
+    }
   }
+
   if (state.page === 'exam'){
     const ex = state.exam;
     if (!ex) return;
-    const n = parseInt(e.key, 10);
-    if (n >= 1 && n <= ex.list[ex.index].options.length) examChoose(n - 1);
-    if (e.key === 'ArrowLeft') examPrev();
-    if (e.key === 'ArrowRight') examNext();
+    const q = ex.list[ex.index];
+
+    if (!isInput && q.type !== 'fill'){
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= q.options.length){
+        examChoose(n - 1);
+        e.preventDefault();
+      }
+    }
+    if (!isInput && e.key === 'ArrowLeft') examPrev();
+    if (!isInput && e.key === 'ArrowRight') examNext();
   }
 });
 
+/* 竞赛页的填空输入需要单独绑定（因为 renderQuestionInput 里写死了 onFillInput） */
+const origRenderExam = renderExam;
+renderExam = function(){
+  const html = origRenderExam();
+  return html;
+};
+
 /* =========================================================
-   16. 启动
+   18. 启动
    ========================================================= */
 render();
 </script>
