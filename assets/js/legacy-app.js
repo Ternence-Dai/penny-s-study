@@ -1760,27 +1760,7 @@ var AI_KB = [
    题型工具
    ========================================== */
 function isCorrect(q, ua){
-  if (ua === undefined || ua === null) return false;
-  if (q.type === 'single' || q.type === 'judge' || q.type === 'image') return ua === q.answer;
-  if (q.type === 'multi'){
-    if (!Array.isArray(ua) || ua.length !== q.answer.length) return false;
-    var a = ua.slice().sort(function(x,y){return x-y;});
-    var b = q.answer.slice().sort(function(x,y){return x-y;});
-    for (var i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
-    return true;
-  }
-  if (q.type === 'fill'){
-    var u = norm(ua);
-    if (!u) return false;
-    for (var j = 0; j < q.answer.length; j++) if (norm(q.answer[j]) === u) return true;
-    return false;
-  }
-  if (q.type === 'order'){
-    if (!Array.isArray(ua) || ua.length !== q.answer.length) return false;
-    for (var k = 0; k < q.answer.length; k++) if (ua[k] !== q.answer[k]) return false;
-    return true;
-  }
-  return false;
+  return window.PennyQuestionGrading.isCorrect(q, ua, norm);
 }
 function isAnswered(q, ua){
   if (q.type === 'multi' || q.type === 'order') return Array.isArray(ua) && ua.length > 0;
