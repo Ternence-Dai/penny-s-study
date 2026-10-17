@@ -416,21 +416,25 @@ function norm(s){return String(s==null?'':s).trim().toLowerCase().replace(/[\s�
    存储
    ========================================== */
 var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6'};
+function safeStorageGet(key){try{return localStorage.getItem(key);}catch(e){console.warn('本地存储读取失败',e);return null;}}
+function safeStorageSet(key,value){try{localStorage.setItem(key,value);return true;}catch(e){console.warn('本地存储写入失败',e);return false;}}
+function safeStorageRemove(key){try{localStorage.removeItem(key);return true;}catch(e){console.warn('本地存储删除失败',e);return false;}}
+
 var Store = {
-  getWrong:function(){try{return JSON.parse(localStorage.getItem(KEY.wrong))||[];}catch(e){return[];}},
-  addWrong:function(id){var l=this.getWrong(),i=-1;for(var k=0;k<l.length;k++)if(l[k].id===id){i=k;break;}if(i>=0){l[i].count++;l[i].lastTime=Date.now();}else l.push({id:id,count:1,lastTime:Date.now()});localStorage.setItem(KEY.wrong,JSON.stringify(l));},
-  removeWrong:function(id){localStorage.setItem(KEY.wrong,JSON.stringify(this.getWrong().filter(function(i){return i.id!==id;})));},
-  clearWrong:function(){localStorage.removeItem(KEY.wrong);},
-  getQStats:function(){try{return JSON.parse(localStorage.getItem(KEY.qstats))||{};}catch(e){return{};}},
-  bumpQStat:function(id,ok){var s=this.getQStats();if(!s[id])s[id]={t:0,c:0};s[id].t++;if(ok)s[id].c++;s[id].last=Date.now();localStorage.setItem(KEY.qstats,JSON.stringify(s));},
-  addRecord:function(r){var l=[];try{l=JSON.parse(localStorage.getItem(KEY.record))||[];}catch(e){}l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);localStorage.setItem(KEY.record,JSON.stringify(l));var d=[];try{d=JSON.parse(localStorage.getItem(KEY.days))||[];}catch(e){}var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);localStorage.setItem(KEY.days,JSON.stringify(d));}},
-  getStats:function(){var r=[],d=[];try{r=JSON.parse(localStorage.getItem(KEY.record))||[];}catch(e){}try{d=JSON.parse(localStorage.getItem(KEY.days))||[];}catch(e){}var t=0,c=0;r.forEach(function(x){t+=(x.total||0);c+=(x.correct||0);});return{total:t,correct:c,rate:rate(c,t),sessions:r.length,days:d.length,wrongCount:this.getWrong().length};},
-  clearAll:function(){['wrong','record','days','qstats'].forEach(function(k){localStorage.removeItem(KEY[k]);});},
-  getAI:function(){try{return JSON.parse(localStorage.getItem(KEY.ai))||[];}catch(e){return[];}},
-  saveAI:function(l){if(l.length>50)l=l.slice(l.length-50);localStorage.setItem(KEY.ai,JSON.stringify(l));},
-  clearAI:function(){localStorage.removeItem(KEY.ai);},
-  getPrefs:function(){try{return JSON.parse(localStorage.getItem(KEY.prefs))||{speed:1,volume:1,pitch:1.05,aiModel:'general'};}catch(e){return{speed:1,volume:1,pitch:1.05,aiModel:'general'};}},
-  savePrefs:function(p){localStorage.setItem(KEY.prefs,JSON.stringify(p));}
+  getWrong:function(){try{return JSON.parse(safeStorageGet(KEY.wrong))||[];}catch(e){return[];}},
+  addWrong:function(id){var l=this.getWrong(),i=-1;for(var k=0;k<l.length;k++)if(l[k].id===id){i=k;break;}if(i>=0){l[i].count++;l[i].lastTime=Date.now();}else l.push({id:id,count:1,lastTime:Date.now()});safeStorageSet(KEY.wrong,JSON.stringify(l));},
+  removeWrong:function(id){safeStorageSet(KEY.wrong,JSON.stringify(this.getWrong().filter(function(i){return i.id!==id;})));},
+  clearWrong:function(){safeStorageRemove(KEY.wrong);},
+  getQStats:function(){try{return JSON.parse(safeStorageGet(KEY.qstats))||{};}catch(e){return{};}},
+  bumpQStat:function(id,ok){var s=this.getQStats();if(!s[id])s[id]={t:0,c:0};s[id].t++;if(ok)s[id].c++;s[id].last=Date.now();safeStorageSet(KEY.qstats,JSON.stringify(s));},
+  addRecord:function(r){var l=[];try{l=JSON.parse(safeStorageGet(KEY.record))||[];}catch(e){}l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);safeStorageSet(KEY.record,JSON.stringify(l));var d=[];try{d=JSON.parse(safeStorageGet(KEY.days))||[];}catch(e){}var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);safeStorageSet(KEY.days,JSON.stringify(d));}},
+  getStats:function(){var r=[],d=[];try{r=JSON.parse(safeStorageGet(KEY.record))||[];}catch(e){}try{d=JSON.parse(safeStorageGet(KEY.days))||[];}catch(e){}var t=0,c=0;r.forEach(function(x){t+=(x.total||0);c+=(x.correct||0);});return{total:t,correct:c,rate:rate(c,t),sessions:r.length,days:d.length,wrongCount:this.getWrong().length};},
+  clearAll:function(){['wrong','record','days','qstats'].forEach(function(k){safeStorageRemove(KEY[k]);});},
+  getAI:function(){try{return JSON.parse(safeStorageGet(KEY.ai))||[];}catch(e){return[];}},
+  saveAI:function(l){if(l.length>50)l=l.slice(l.length-50);safeStorageSet(KEY.ai,JSON.stringify(l));},
+  clearAI:function(){safeStorageRemove(KEY.ai);},
+  getPrefs:function(){try{return JSON.parse(safeStorageGet(KEY.prefs))||{speed:1,volume:1,pitch:1.05,aiModel:'general'};}catch(e){return{speed:1,volume:1,pitch:1.05,aiModel:'general'};}},
+  savePrefs:function(p){safeStorageSet(KEY.prefs,JSON.stringify(p));}
 };
 
 /* ==========================================
