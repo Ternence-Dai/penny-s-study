@@ -420,9 +420,11 @@ function norm(s){return String(s==null?'':s).trim().toLowerCase().replace(/[\s�
    存储
    ========================================== */
 var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6'};
-function safeStorageGet(key){try{return localStorage.getItem(key);}catch(e){console.warn('本地存储读取失败',e);return null;}}
-function safeStorageSet(key,value){try{localStorage.setItem(key,value);return true;}catch(e){console.warn('本地存储写入失败',e);return false;}}
-function safeStorageRemove(key){try{localStorage.removeItem(key);return true;}catch(e){console.warn('本地存储删除失败',e);return false;}}
+// Fail closed: if browser storage becomes unavailable, never replace existing learning data with fallback defaults.
+var storageRecoveryRequired = false;
+function safeStorageGet(key){try{return localStorage.getItem(key);}catch(e){storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);return null;}}
+function safeStorageSet(key,value){if(storageRecoveryRequired){console.warn('学习记录写入已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.setItem(key,value);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);return false;}}
+function safeStorageRemove(key){if(storageRecoveryRequired){console.warn('学习记录删除已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.removeItem(key);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);return false;}}
 
 var Store = {
   getWrong:function(){try{return JSON.parse(safeStorageGet(KEY.wrong))||[];}catch(e){return[];}},
