@@ -2505,7 +2505,7 @@ var timers = [];
 function clearTimers(){timers.forEach(function(t){clearInterval(t);});timers=[];}
 
 var TITLES = {
-  home:'星赛通 · 戴煜', learn:'知识点学习', news:'天文读报', ai:'AI 天文模型',
+  home:'星赛通 · 戴煜', learn:'知识点学习', news:'天文知识读报', ai:'本地知识库助手',
   wrong:'错题归纳', profile:'我的', practice:'练习', exam:'模拟竞赛',
   result:'成绩单', learnDetail:'知识点详情'
 };
@@ -3183,16 +3183,17 @@ function clearW(){if(confirm('所有错题记录将被删除，不可恢复。�
    ========================================== */
 function renderAI(){
   if (state.aiMsgs.length === 0){
-    state.aiMsgs = [{role:'bot', text:'你好，我是星赛通 AI 天文助手 \n\n选择上方的模型切换不同功能，或直接在输入框提问。'}];
+    state.aiMsgs = [{role:'bot', text:'你好，我是星赛通本地知识库助手 \n\n选择上方的模型切换不同功能，或直接在输入框提问。'}];
   }
   var h = '';
   // 头部
   h += '<div class="ai-hero">' +
-    '<h3> AI 天文模型</h3>' +
-    '<p>基于本地知识库，为你提供天文竞赛相关的智能问答、随机出题、概念讲解与备赛建议。</p>' +
+    '<h3> 本地知识库助手</h3>' +
+    '<p>基于本地知识库，提供天文问答、随机出题、概念讲解与备赛建议。</p>' +
     '</div>';
+  h += '<div class="card" style="margin:10px 0;padding:12px;border:1px solid var(--line);font-size:12px;line-height:1.65;color:var(--sub)"><b>能力说明：</b>当前是浏览器内置知识库与规则匹配，不连接云端大模型，也不进行实时联网检索。回答可能不完整或过时，竞赛事实请以教材和权威天文资料为准。</div>';
   // 模型选择
-  h += '<div class="sec-title" style="margin-top:6px;">️ 选择模型</div>';
+  h += '<div class="sec-title" style="margin-top:6px;">️ 选择模式</div>';
   h += '<div class="model-grid">';
   AI_MODELS.forEach(function(m){
     h += '<div class="model-card ' + (state.aiModel === m.id ? 'active' : '') + '" onclick="setAIModel(\'' + m.id + '\')">' +
@@ -3371,7 +3372,7 @@ function renderNews(){
   var cats = ['全部'].concat(Array.from(new Set(NEWS.map(function(n){return n.cat;}))));
   var list = state.newsFilter === '全部' ? NEWS : NEWS.filter(function(n){return n.cat === state.newsFilter;});
   var h = '<div class="title">天文读报</div>' +
-    '<div class="sub" style="margin-bottom:14px;">最新天文资讯 · 支持语音朗读</div>';
+    '<div class="sub" style="margin-bottom:14px;">内置精选内容 · 非实时新闻订阅 · 支持语音朗读</div>';
   h += '<div class="filter-bar">';
   cats.forEach(function(c){
     h += '<button class="filter-item ' + (state.newsFilter===c?'active':'') + '" onclick="setNewsFilter(\'' + c + '\')">' + esc(c) + '</button>';
