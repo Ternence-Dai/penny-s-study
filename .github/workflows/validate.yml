@@ -38,3 +38,5 @@ jobs:
           });
           console.log(`Syntax OK: ${executable.length} inline script(s)`);
           NODE
+      - name: Validate astronomy question bank
+        run: node .github/scripts/validate-question-bank.cjs
