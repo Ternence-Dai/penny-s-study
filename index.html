@@ -357,7 +357,7 @@ window.addEventListener('error', function(e){
   console.error('[星赛通]', e.message);
   var v = document.getElementById('view');
   if (v && (!v.innerHTML || v.innerHTML.trim() === '')){
-    v.innerHTML = '<div class="card"><div class="title">加载出错了</div><div class="sub">' + e.message + '</div></div>';
+    v.innerHTML = '<div class="card"><div class="title">加载出错了</div><div class="sub">' + esc(e.message) + '</div></div>';
   }
 });
 
