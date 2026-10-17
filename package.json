@@ -1,0 +1,9 @@
+{
+  "name": "pennys-study-learning-core",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check src/domain/index.js"
+  }
+}
