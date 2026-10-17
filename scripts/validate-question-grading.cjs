@@ -4,6 +4,7 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const source = fs.readFileSync('assets/js/question-grading.js', 'utf8');
 const app = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
+const questionSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
