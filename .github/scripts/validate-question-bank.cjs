@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 
-const html = fs.readFileSync('index.html', 'utf8') + '\n' + fs.readFileSync('assets/js/legacy-app.js', 'utf8');
+const html = fs.readFileSync('index.html', 'utf8') + '\n' + fs.readFileSync('assets/js/question-bank.js', 'utf8') + '\n' + fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 if (!html.includes("' + esc(e.message) + '</div></div>'"))
   throw new Error('runtime error messages must be HTML-escaped before rendering');
 const start = html.indexOf('var RAW = [');
