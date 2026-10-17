@@ -29,4 +29,8 @@ assert.match(examSubmit, /if\s*\(done\)\s*Store\.bumpQStat\(q\.id,\s*ok\)/,
 assert.doesNotMatch(examSubmit, /Store\.bumpQStat\(q\.id,\s*ok\s*&&\s*done\)/,
   'exam mastery statistics must not count unanswered questions as wrong attempts');
 
+assert.ok(questionSource.includes("最早将望远镜系统用于天文观测并公开重要发现的科学家是？"),
+  'Galileo question must distinguish systematic published astronomy from the first-ever telescope observation');
+assert.ok(!questionSource.includes("首次用望远镜观测天体的科学家是？"),
+  'question bank must not make the historically inaccurate absolute-first claim');
 console.log('Question grading and blank-exam-statistics checks passed.');
