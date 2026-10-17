@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const html = fs.readFileSync('index.html', 'utf8');
+const html = fs.readFileSync('index.html', 'utf8') + '\n' + fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 const start = html.indexOf('var storageRecoveryRequired = false;');
 const end = html.indexOf('\nvar Store =', start);
 assert.ok(start >= 0 && end > start, 'storage guard section must exist');
