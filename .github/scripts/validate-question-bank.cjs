@@ -52,7 +52,7 @@ for (const line of rows) {
   const optionsField = fields[5];
   const answerField = fields[6];
   const explanationField = fields[7];
-  if (!/^[a-z]\\d{3}$/.test(id)) errors.push('Invalid question ID: ' + id);
+  if (!/^[a-z]\d{3}$/.test(id)) errors.push('Invalid question ID: ' + id);
   if (!promptField || promptField.length < 3 || promptField === "''")
     errors.push(id + ': missing question prompt');
   if (!explanationField || explanationField.length < 3 || explanationField === "''")
@@ -85,7 +85,7 @@ for (const line of rows) {
         new Set(answerNumbers).size !== options.length))
       errors.push(id + ': order answer must be a complete permutation');
   } else if (type === 'fill') {
-    const fillAnswers = [...answerField.matchAll(/'((?:[^'\\\\]|\\\\.)*)'/g)].map(match => match[1]);
+    const fillAnswers = [...answerField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
     if (options !== null || !answerField.startsWith('[') || !answerField.endsWith(']') ||
         !fillAnswers.length || fillAnswers.some(value => !value.trim()))
       errors.push(id + ': invalid fill-in answer');
