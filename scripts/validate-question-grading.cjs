@@ -6,7 +6,7 @@ const source = fs.readFileSync('assets/js/question-grading.js', 'utf8');
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
-const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/[\\s，,。.、；;：:！!？?\"'（）()]/g, '').replace(/[°º]/g, '度').replace(/[′']/g, '分').replace(/[″\"]/g, '秒');
+const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/[\s，,。.、；;：:！!？?"'（）()]/g, '').replace(/[°º]/g, '度').replace(/[′']/g, '分').replace(/[″"]/g, '秒');
 const q = (type, answer) => ({ type, answer });
 assert.equal(grade(q('single', 2), 2, norm), true);
 assert.equal(grade(q('judge', 0), 1, norm), false);
