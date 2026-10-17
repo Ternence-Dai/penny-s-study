@@ -62,6 +62,8 @@ for (const line of rows) {
   if (ids.has(id)) errors.push('Duplicate question ID: ' + id);
   ids.add(id);
   levels.set(level, (levels.get(level) || 0) + 1);
+  const category = fields[2].slice(1, -1);
+  if (!category.trim()) errors.push(id + ': missing category');
   if (!allowed.has(type)) {
     errors.push(id + ': unsupported type ' + type);
     continue;
@@ -70,6 +72,9 @@ for (const line of rows) {
     ? null
     : [...optionsField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
   const answerNumbers = [...answerField.matchAll(/\d+/g)].map(match => Number(match[0]));
+  if (options && options.some(option => !option.trim())) errors.push(id + ': options must not be blank');
+  if (options && new Set(options.map(option => option.trim().toLowerCase())).size !== options.length)
+    errors.push(id + ': options contain duplicate labels');
   if (type === 'single') {
     const answer = Number(answerField);
     if (!options || options.length < 2 || !Number.isInteger(answer) || answer < 0 || answer >= options.length)
