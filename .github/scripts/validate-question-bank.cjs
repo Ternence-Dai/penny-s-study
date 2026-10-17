@@ -48,8 +48,15 @@ for (const line of rows) {
   const id = fields[0].slice(1, -1);
   const level = fields[1].slice(1, -1);
   const type = fields[3].slice(1, -1);
+  const promptField = fields[4];
   const optionsField = fields[5];
   const answerField = fields[6];
+  const explanationField = fields[7];
+  if (!/^[a-z]\\d{3}$/.test(id)) errors.push('Invalid question ID: ' + id);
+  if (!promptField || promptField.length < 3 || promptField === "''")
+    errors.push(id + ': missing question prompt');
+  if (!explanationField || explanationField.length < 3 || explanationField === "''")
+    errors.push(id + ': missing answer explanation');
   if (ids.has(id)) errors.push('Duplicate question ID: ' + id);
   ids.add(id);
   levels.set(level, (levels.get(level) || 0) + 1);
@@ -72,11 +79,15 @@ for (const line of rows) {
     if (!options || options.length < 2 || !answerNumbers.length ||
         answerNumbers.some(value => value < 0 || value >= options.length))
       errors.push(id + ': invalid ' + type + ' options/answer');
+    if (type === 'multi' && new Set(answerNumbers).size !== answerNumbers.length)
+      errors.push(id + ': multi-choice answer contains duplicate options');
     if (type === 'order' && (answerNumbers.length !== options.length ||
         new Set(answerNumbers).size !== options.length))
       errors.push(id + ': order answer must be a complete permutation');
   } else if (type === 'fill') {
-    if (options !== null || !answerField.startsWith('[') || !answerField.endsWith(']'))
+    const fillAnswers = [...answerField.matchAll(/'((?:[^'\\\\]|\\\\.)*)'/g)].map(match => match[1]);
+    if (options !== null || !answerField.startsWith('[') || !answerField.endsWith(']') ||
+        !fillAnswers.length || fillAnswers.some(value => !value.trim()))
       errors.push(id + ': invalid fill-in answer');
   }
 }
