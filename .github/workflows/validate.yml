@@ -40,3 +40,5 @@ jobs:
           NODE
       - name: Validate astronomy question bank
         run: node .github/scripts/validate-question-bank.cjs
+      - name: Validate study storage recovery
+        run: node scripts/validate-storage-recovery.cjs
