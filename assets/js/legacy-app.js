@@ -2356,7 +2356,7 @@ function submitExam(){
     if (!done) blank++;
     else if (ok){ right++; score += 2; }
     else { wrong++; score -= 1; Store.addWrong(q.id); }
-    Store.bumpQStat(q.id, ok && done);
+    if (done) Store.bumpQStat(q.id, ok);
     det.push({id:q.id, type:q.type, stem:q.stem, options:q.options||null, image:q.image||null,
       your:ua, correct:q.answer, explanation:q.explanation, isCorrect:ok, isBlank:!done});
   });
