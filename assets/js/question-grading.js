@@ -35,9 +35,16 @@
         return counts.size === 0;
       }
       case 'fill': {
-        if (typeof normalize !== 'function' || !Array.isArray(expected) || expected.length === 0) return false;
+        if (typeof submittedAnswer !== 'string' || typeof normalize !== 'function' ||
+            !Array.isArray(expected) || expected.length === 0 ||
+            !expected.every(value => typeof value === 'string')) return false;
         const actual = normalize(submittedAnswer);
-        return !!actual && expected.some(value => normalize(value) === actual);
+        if (typeof actual !== 'string' || !actual) return false;
+        return expected.some(value => {
+          const normalizedExpected = normalize(value);
+          return typeof normalizedExpected === 'string' && normalizedExpected !== '' &&
+            normalizedExpected === actual;
+        });
       }
       case 'order':
         return Array.isArray(submittedAnswer) && Array.isArray(expected) &&
