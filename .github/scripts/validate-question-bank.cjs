@@ -110,9 +110,11 @@ const runtime = vm.createContext({});
 vm.runInContext(fs.readFileSync('assets/js/question-grading.js', 'utf8'), runtime);
 vm.runInContext(fs.readFileSync('assets/js/question-bank.js', 'utf8'), runtime);
 const appSource = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
-const normalizerMatch = appSource.match(/function norm\\(s\\)\\{[^\\n]*\\}/);
-if (!normalizerMatch) throw new Error('App answer normalization function not found');
-vm.runInContext(normalizerMatch[0], runtime);
+const normalizerStart = appSource.indexOf('function norm(s){');
+if (normalizerStart < 0) throw new Error('App answer normalization function not found');
+const normalizerEnd = appSource.indexOf('\n', normalizerStart);
+if (normalizerEnd < 0) throw new Error('App answer normalization function is not newline-terminated');
+vm.runInContext(appSource.slice(normalizerStart, normalizerEnd), runtime);
 const grading = runtime.PennyQuestionGrading;
 const runtimeFailures = [];
 for (const question of runtime.Q) {
