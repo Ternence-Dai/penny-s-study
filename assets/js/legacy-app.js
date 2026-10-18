@@ -74,21 +74,74 @@ var storageRecoveryRequired = false;
 function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);return null;}}
 function safeStorageSet(key,value){if(storageRecoveryRequired){console.warn('学习记录写入已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.setItem(key,value);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);return false;}}
 function safeStorageRemove(key){if(storageRecoveryRequired){console.warn('学习记录删除已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.removeItem(key);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);return false;}}
+function safeStorageJSON(key,fallback,validator){
+  var raw=safeStorageGet(key);
+  if(raw===null)return fallback;
+  try{
+    var value=JSON.parse(raw);
+    if(typeof validator==='function'&&!validator(value)){
+      storageRecoveryRequired=true;
+      console.warn('本地学习数据结构异常，已暂停写入以保护原始记录：'+key);
+      return fallback;
+    }
+    return value;
+  }catch(e){return fallback;}
+}
+function isStorageRecord(value){return !!value&&typeof value==='object'&&!Array.isArray(value);}
+function isWrongStorageList(value){
+  return Array.isArray(value)&&value.every(function(item){
+    return isStorageRecord(item)&&
+      ((typeof item.id==='string'&&item.id.length>0)||(typeof item.id==='number'&&Number.isSafeInteger(item.id)))&&
+      Number.isSafeInteger(item.count)&&item.count>=1&&Number.isFinite(item.lastTime)&&item.lastTime>=0;
+  });
+}
+function isQuestionStatsStorage(value){
+  return isStorageRecord(value)&&Object.keys(value).every(function(key){
+    var item=value[key];
+    return isStorageRecord(item)&&Number.isSafeInteger(item.t)&&item.t>=0&&
+      Number.isSafeInteger(item.c)&&item.c>=0&&item.c<=item.t&&
+      Number.isFinite(item.last)&&item.last>=0;
+  });
+}
+function isPracticeRecordStorage(value){
+  return Array.isArray(value)&&value.every(function(item){
+    return isStorageRecord(item)&&typeof item.mode==='string'&&
+      Number.isFinite(item.total)&&item.total>=0&&
+      Number.isFinite(item.correct)&&item.correct>=0&&item.correct<=item.total&&
+      Number.isFinite(item.time)&&item.time>=0;
+  });
+}
+function isStudyDayStorage(value){
+  return Array.isArray(value)&&value.every(function(item){return typeof item==='string'&&item.trim().length>0;});
+}
+function isAIConversationStorage(value){
+  return Array.isArray(value)&&value.every(function(item){
+    return isStorageRecord(item)&&['user','bot'].includes(item.role)&&typeof item.text==='string';
+  });
+}
+function isPreferenceStorage(value){
+  if(!isStorageRecord(value))return false;
+  if(value.speed!==undefined&&(!Number.isFinite(value.speed)||value.speed<=0||value.speed>10))return false;
+  if(value.volume!==undefined&&(!Number.isFinite(value.volume)||value.volume<0||value.volume>1))return false;
+  if(value.pitch!==undefined&&(!Number.isFinite(value.pitch)||value.pitch<0||value.pitch>2))return false;
+  if(value.aiModel!==undefined&&typeof value.aiModel!=='string')return false;
+  return true;
+}
 
 var Store = {
-  getWrong:function(){try{return JSON.parse(safeStorageGet(KEY.wrong))||[];}catch(e){return[];}},
+  getWrong:function(){return safeStorageJSON(KEY.wrong,[],isWrongStorageList);},
   addWrong:function(id){var l=this.getWrong(),i=-1;for(var k=0;k<l.length;k++)if(l[k].id===id){i=k;break;}if(i>=0){l[i].count++;l[i].lastTime=Date.now();}else l.push({id:id,count:1,lastTime:Date.now()});safeStorageSet(KEY.wrong,JSON.stringify(l));},
   removeWrong:function(id){safeStorageSet(KEY.wrong,JSON.stringify(this.getWrong().filter(function(i){return i.id!==id;})));},
   clearWrong:function(){safeStorageRemove(KEY.wrong);},
-  getQStats:function(){try{return JSON.parse(safeStorageGet(KEY.qstats))||{};}catch(e){return{};}},
+  getQStats:function(){return safeStorageJSON(KEY.qstats,{},isQuestionStatsStorage);},
   bumpQStat:function(id,ok){var s=this.getQStats();if(!s[id])s[id]={t:0,c:0};s[id].t++;if(ok)s[id].c++;s[id].last=Date.now();safeStorageSet(KEY.qstats,JSON.stringify(s));},
-  addRecord:function(r){var l=[];try{l=JSON.parse(safeStorageGet(KEY.record))||[];}catch(e){}l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);safeStorageSet(KEY.record,JSON.stringify(l));var d=[];try{d=JSON.parse(safeStorageGet(KEY.days))||[];}catch(e){}var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);safeStorageSet(KEY.days,JSON.stringify(d));}},
-  getStats:function(){var r=[],d=[];try{r=JSON.parse(safeStorageGet(KEY.record))||[];}catch(e){}try{d=JSON.parse(safeStorageGet(KEY.days))||[];}catch(e){}var t=0,c=0;r.forEach(function(x){t+=(x.total||0);c+=(x.correct||0);});return{total:t,correct:c,rate:rate(c,t),sessions:r.length,days:d.length,wrongCount:this.getWrong().length};},
+  addRecord:function(r){var l=safeStorageJSON(KEY.record,[],isPracticeRecordStorage);l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);safeStorageSet(KEY.record,JSON.stringify(l));var d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);safeStorageSet(KEY.days,JSON.stringify(d));}},
+  getStats:function(){var r=safeStorageJSON(KEY.record,[],isPracticeRecordStorage),d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var t=0,c=0;r.forEach(function(x){t+=(x.total||0);c+=(x.correct||0);});return{total:t,correct:c,rate:rate(c,t),sessions:r.length,days:d.length,wrongCount:this.getWrong().length};},
   clearAll:function(){['wrong','record','days','qstats'].forEach(function(k){safeStorageRemove(KEY[k]);});},
-  getAI:function(){try{return JSON.parse(safeStorageGet(KEY.ai))||[];}catch(e){return[];}},
+  getAI:function(){return safeStorageJSON(KEY.ai,[],isAIConversationStorage);},
   saveAI:function(l){if(l.length>50)l=l.slice(l.length-50);safeStorageSet(KEY.ai,JSON.stringify(l));},
   clearAI:function(){safeStorageRemove(KEY.ai);},
-  getPrefs:function(){try{return JSON.parse(safeStorageGet(KEY.prefs))||{speed:1,volume:1,pitch:1.05,aiModel:'general'};}catch(e){return{speed:1,volume:1,pitch:1.05,aiModel:'general'};}},
+  getPrefs:function(){return safeStorageJSON(KEY.prefs,{speed:1,volume:1,pitch:1.05,aiModel:'general'},isPreferenceStorage);},
   savePrefs:function(p){safeStorageSet(KEY.prefs,JSON.stringify(p));}
 };
 
