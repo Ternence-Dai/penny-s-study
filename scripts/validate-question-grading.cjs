@@ -5,6 +5,58 @@ const assert = require('node:assert/strict');
 const source = fs.readFileSync('assets/js/question-grading.js', 'utf8');
 const app = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 const questionSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
+const questionContext = vm.createContext({});
+vm.runInContext(questionSource, questionContext);
+const questionBank = questionContext.Q;
+assert.ok(Array.isArray(questionBank) && questionBank.length === 300,
+  'question bank must contain the documented 300 question records');
+const questionIds = new Set();
+for (const question of questionBank) {
+  assert.ok(question && typeof question === 'object', 'each question must be an object');
+  assert.ok(typeof question.id === 'string' && question.id.trim(),
+    'each question must have a non-empty stable ID');
+  assert.ok(!questionIds.has(question.id), 'question IDs must be unique: ' + question.id);
+  questionIds.add(question.id);
+  assert.ok(['小学','初中','高中'].includes(question.level),
+    'question must declare a supported learner level: ' + question.id);
+  assert.ok(typeof question.category === 'string' && question.category.trim(),
+    'question must declare a topic category: ' + question.id);
+  assert.ok(typeof question.stem === 'string' && question.stem.trim(),
+    'question must have a non-empty stem: ' + question.id);
+  assert.ok(typeof question.explanation === 'string' && question.explanation.trim(),
+    'question must have a worked explanation: ' + question.id);
+  assert.ok(['single','judge','image','multi','fill','order'].includes(question.type),
+    'question type must be one of the six supported formats: ' + question.id);
+  if (['single','judge','image'].includes(question.type)) {
+    assert.ok(Array.isArray(question.options) && question.options.length >= 2,
+      'choice question must have at least two options: ' + question.id);
+    assert.ok(Number.isSafeInteger(question.answer) &&
+      question.answer >= 0 && question.answer < question.options.length,
+      'choice answer index must point to an existing option: ' + question.id);
+  } else if (question.type === 'multi') {
+    assert.ok(Array.isArray(question.options) && question.options.length >= 2 &&
+      Array.isArray(question.answer) && question.answer.length > 0,
+      'multi-select question must have options and at least one correct answer: ' + question.id);
+    assert.ok(question.answer.every(index => Number.isSafeInteger(index) &&
+      index >= 0 && index < question.options.length),
+      'multi-select answer indexes must point to existing options: ' + question.id);
+    assert.equal(new Set(question.answer).size, question.answer.length,
+      'multi-select answer indexes must not contain duplicates: ' + question.id);
+  } else if (question.type === 'fill') {
+    assert.ok(question.options === null &&
+      Array.isArray(question.answer) && question.answer.length > 0 &&
+      question.answer.every(value => typeof value === 'string' && value.trim()),
+      'fill-in question must have one or more textual accepted answers: ' + question.id);
+  } else if (question.type === 'order') {
+    assert.ok(Array.isArray(question.options) && question.options.length >= 2 &&
+      Array.isArray(question.answer) && question.answer.length === question.options.length,
+      'ordering question must provide one answer index per option: ' + question.id);
+    assert.deepEqual(Array.from(question.answer).sort((a,b)=>a-b),
+      Array.from({length:question.options.length},(_,index)=>index),
+      'ordering answer must be a permutation of all option indexes: ' + question.id);
+  }
+}
+
 const html = fs.readFileSync('index.html', 'utf8');
 const productCss = fs.readFileSync('assets/css/product-system.css', 'utf8');
 assert.ok(html.includes('product-system.css?v=20261018-v3'),
