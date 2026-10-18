@@ -2573,6 +2573,8 @@ function renderWrong(){
     return '<div class="title">错题归纳</div><div class="sub" style="margin-bottom:20px;">按知识点归纳，支持再提问</div>' +
       '<div class="empty"><div class="ico">✨</div><div class="txt">还没有错题，继续保持！</div></div>';
   }
+  var now = Date.now();
+  var dueCount = wid.filter(function(w){return !Number.isFinite(w.nextReviewAt)||w.nextReviewAt<=now;}).length;
   var g = {};
   wid.forEach(function(w){
     var q = null;
@@ -2580,14 +2582,14 @@ function renderWrong(){
     if (!q) return;
     var key = q.level + '|' + q.category;
     if (!g[key]) g[key] = {level:q.level, category:q.category, items:[]};
-    g[key].items.push({q:q, count:w.count});
+    g[key].items.push({q:q, count:w.count, review:w});
   });
   var gl = Object.keys(g).map(function(k){return g[k];});
   gl.sort(function(a,b){return b.items.length - a.items.length;});
   var h = '<div class="title">错题归纳</div>' +
-    '<div class="sub" style="margin-bottom:14px;">共 ' + wid.length + ' 道错题，分布在 ' + gl.length + ' 个知识点</div>' +
+    '<div class="sub" style="margin-bottom:14px;">共 ' + wid.length + ' 道待掌握题 · ' + dueCount + ' 道到期可复习 · 分布在 ' + gl.length + ' 个知识点</div>' +
     '<div class="card" style="background:linear-gradient(135deg,rgba(255,184,77,.10),rgba(255,91,91,.08));border-color:rgba(255,184,77,.25);">' +
-    '<div style="font-size:12.5px;line-height:1.8;color:#C8D2E8;"> <b style="color:var(--amber);">再提问</b>：点开知识点，点击「再提问」按钮，系统会从该知识点重新抽题。</div></div>';
+    '<div style="font-size:12.5px;line-height:1.8;color:#C8D2E8;"> <b style="color:var(--amber);">间隔复习</b>：答错后安排约 1 天后复习；连续答对会逐步拉长间隔，连续答对 3 次后从活动错题本移除。已到期题目会优先抽取。</div></div>';
   gl.forEach(function(gr){
     var key = gr.level + '|' + gr.category;
     var ex = !!state.expanded[key];
@@ -2603,7 +2605,10 @@ function renderWrong(){
       gr.items.forEach(function(it){
         h += '<div class="card" style="padding:14px;">' +
           '<div class="tags"><span class="tag amber">' + typeLabel(it.q.type) + '</span>' +
-          '<span class="tag err">错 ' + it.count + ' 次</span></div>';
+          '<span class="tag err">错 ' + it.count + ' 次</span>' +
+          '<span class="tag amber">' + esc(!Number.isFinite(it.review.nextReviewAt)?'旧错题 · 待排期':
+            it.review.nextReviewAt<=now?'已到期':'下次复习 '+new Date(it.review.nextReviewAt).toLocaleDateString()) + '</span>' +
+          '<span class="tag">连续答对 ' + (it.review.correctStreak||0) + ' / 3</span></div>';
         h += '<div class="q-stem" style="font-size:14px;">' + esc(it.q.stem) + '</div><div class="q-line">';
         if (it.q.type === 'fill'){
           h += '<span class="ok">正确答案：' + esc(answerText(it.q)) + '</span>';
@@ -2629,13 +2634,20 @@ function toggleG(k){state.expanded[k] = !state.expanded[k]; render();}
 function reAsk(level, category){
   var pool = getQuestions(level, category);
   if (!pool.length){alert('该知识点暂无题目');return;}
-  var wid = Store.getWrong().map(function(w){return w.id;});
-  var wrongOnes = pool.filter(function(q){return wid.indexOf(q.id)>=0;});
-  var others = pool.filter(function(q){return wid.indexOf(q.id)<0;});
-  var picked = shuffle(wrongOnes);
+  var wrongRows = Store.getWrong();
+  var wrongMap = {};
+  wrongRows.forEach(function(row){wrongMap[row.id]=row;});
+  var wrongOnes = pool.filter(function(q){return Object.prototype.hasOwnProperty.call(wrongMap,q.id);});
+  wrongOnes.sort(function(a,b){
+    var aDue=Number.isFinite(wrongMap[a.id].nextReviewAt)?wrongMap[a.id].nextReviewAt:0;
+    var bDue=Number.isFinite(wrongMap[b.id].nextReviewAt)?wrongMap[b.id].nextReviewAt:0;
+    return aDue-bDue;
+  });
+  var others = pool.filter(function(q){return !Object.prototype.hasOwnProperty.call(wrongMap,q.id);});
+  var picked = wrongOnes.slice();
   if (picked.length < 5) picked = picked.concat(shuffle(others).slice(0, 5-picked.length));
   picked = shuffle(picked).slice(0, Math.min(6, pool.length));
-  if (!confirm('针对「' + category + '」再提问\n\n本次共 ' + picked.length + ' 题\n（优先抽取你答错过的题目）\n\n点击「确定」开始练习')) return;
+  if (!confirm('针对「' + category + '」再提问\n\n本次共 ' + picked.length + ' 题\n（优先安排已到期的错题，其次安排未到期错题）\n\n点击「确定」开始练习')) return;
   startWith(picked, level, category + ' · 强化练习');
 }
 function removeW(id){if(confirm('确定从错题本移除这道题吗？')){Store.removeWrong(id);render();}}
