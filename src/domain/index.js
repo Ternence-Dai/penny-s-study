@@ -9,7 +9,7 @@ function parseReviewTimestamp(value) {
   if (typeof value !== "string") {
     throw new TypeError("reviewedAt must be an ISO timestamp with an explicit timezone");
   }
-  const match = /^(\\d{4})-(\\d{2})-(\\d{2})T([01]\\d|2[0-3]):([0-5]\\d)(?::([0-5]\\d)(?:\\.\\d{1,3})?)?(Z|([+-])(\\d{2}):(\\d{2}))$/.exec(value);
+  const match = /^(\d{4})-(\d{2})-(\d{2})T([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d)(?:\.\d{1,3})?)?(Z|([+-])(\d{2}):(\d{2}))$/.exec(value);
   if (!match) throw new TypeError("reviewedAt must be an ISO timestamp with an explicit timezone");
   const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
   const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
