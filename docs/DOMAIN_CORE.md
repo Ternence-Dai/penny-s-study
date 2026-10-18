@@ -22,9 +22,11 @@ Unknown types, missing answers, malformed expected values, empty multi/fill/orde
 - Fill-in normalization is owned by the caller so punctuation, whitespace, and astronomy-specific notation rules stay explicit and testable.
 - Ordering questions require the submitted array to match the expected sequence exactly.
 
-## Attempt statistics
+## Attempt statistics and spaced review
 
 The application must determine whether a question was answered separately from whether it was correct. Blank questions are not attempted questions and must not increase mastery attempt/wrong counts. They may still appear in the exam result as blank.
+
+The wrong-question ledger stores optional, validated review metadata: interval days, next-review timestamp, last review outcome and consecutive-correct streak. Legacy rows without these fields remain valid and are treated as due for review. Wrong answers reset the interval to one day; a correct review increases the interval using `nextReviewDate`; three consecutive correct reviews remove the item from the active wrong book while question mastery statistics remain available. Practice sessions and timed exams use the same review scheduler.
 
 ## Verification boundary
 
