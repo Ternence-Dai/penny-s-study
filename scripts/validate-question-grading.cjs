@@ -45,3 +45,8 @@ assert.ok(questionSource.includes("当月球本影到达地球表面时，处于
   'total solar eclipse question must explicitly identify the umbra, not an ambiguous central shadow region');
 assert.ok(questionSource.includes("若到达地表的是伪本影，则会看到日环食。"),
   'eclipse explanation must distinguish umbra from antumbra');
+
+assert.ok(questionSource.includes("滤光镜必须牢固安装在物镜前端"),
+  'solar viewing safety explanation must specify front-mounted telescope filters');
+assert.ok(questionSource.includes("偏食阶段仍须使用合格太阳滤光镜"),
+  'partial solar eclipse viewing must retain certified eye protection');
