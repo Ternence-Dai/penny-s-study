@@ -38,13 +38,17 @@
         if (typeof submittedAnswer !== 'string' || typeof normalize !== 'function' ||
             !Array.isArray(expected) || expected.length === 0 ||
             !expected.every(value => typeof value === 'string')) return false;
-        const actual = normalize(submittedAnswer);
-        if (typeof actual !== 'string' || !actual) return false;
-        return expected.some(value => {
-          const normalizedExpected = normalize(value);
-          return typeof normalizedExpected === 'string' && normalizedExpected !== '' &&
-            normalizedExpected === actual;
-        });
+        try {
+          const actual = normalize(submittedAnswer);
+          if (typeof actual !== 'string' || !actual) return false;
+          return expected.some(value => {
+            const normalizedExpected = normalize(value);
+            return typeof normalizedExpected === 'string' && normalizedExpected !== '' &&
+              normalizedExpected === actual;
+          });
+        } catch {
+          return false;
+        }
       }
       case 'order':
         return Array.isArray(submittedAnswer) && Array.isArray(expected) &&
