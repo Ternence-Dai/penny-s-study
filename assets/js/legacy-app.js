@@ -121,11 +121,13 @@ function isAIConversationStorage(value){
 }
 function isPreferenceStorage(value){
   if(!isStorageRecord(value))return false;
-  if(value.speed!==undefined&&(!Number.isFinite(value.speed)||value.speed<=0||value.speed>10))return false;
-  if(value.volume!==undefined&&(!Number.isFinite(value.volume)||value.volume<0||value.volume>1))return false;
-  if(value.pitch!==undefined&&(!Number.isFinite(value.pitch)||value.pitch<0||value.pitch>2))return false;
-  if(value.aiModel!==undefined&&typeof value.aiModel!=='string')return false;
-  return true;
+  if(value.speed!==undefined&&(!Number.isFinite(value.speed)||value.speed<0.6||value.speed>1.8))return false;
+  if(value.volume!==undefined&&(!Number.isFinite(value.volume)||value.volume<0.3||value.volume>1))return false;
+  if(value.pitch!==undefined&&(!Number.isFinite(value.pitch)||value.pitch<0.7||value.pitch>1.4))return false;
+  if(value.aiModel!==undefined&&!['general','quiz','explain','exam'].includes(value.aiModel))return false;
+  return Object.keys(value).every(function(key){
+    return ['speed','volume','pitch','aiModel'].includes(key);
+  });
 }
 
 var Store = {
@@ -142,7 +144,13 @@ var Store = {
   saveAI:function(l){if(l.length>50)l=l.slice(l.length-50);safeStorageSet(KEY.ai,JSON.stringify(l));},
   clearAI:function(){safeStorageRemove(KEY.ai);},
   getPrefs:function(){return safeStorageJSON(KEY.prefs,{speed:1,volume:1,pitch:1.05,aiModel:'general'},isPreferenceStorage);},
-  savePrefs:function(p){safeStorageSet(KEY.prefs,JSON.stringify(p));}
+  savePrefs:function(p){
+    if(!isPreferenceStorage(p)){
+      console.warn('拒绝保存越界或未知的学习偏好设置；现有偏好保持不变');
+      return false;
+    }
+    return safeStorageSet(KEY.prefs,JSON.stringify(p));
+  }
 };
 
 /* ==========================================
