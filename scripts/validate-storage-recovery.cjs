@@ -9,7 +9,7 @@ assert.ok(start >= 0 && end > start, 'storage guard section must exist');
 const source = html.slice(start, end);
 function makeContext(storage) {
   const sandbox = { localStorage: storage, console: { warn() {} } };
-  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,get locked(){return storageRecoveryRequired;}};', sandbox);
+  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,get locked(){return storageRecoveryRequired;}};', sandbox);
   return sandbox.api;
 }
 {
@@ -49,3 +49,39 @@ function makeContext(storage) {
   assert.equal(data.get('a_r_v6'), '[{"total":4}]');
 }
 console.log('Study storage recovery checks passed (malformed JSON, inaccessible storage, valid storage).');
+
+{
+  const raw = '{"wrong":"shape"}';
+  const data = new Map([['a_w_v6', raw]]);
+  const api = makeContext({
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  });
+  const fallback = api.safeStorageJSON('a_w_v6', [], api.isWrongStorageList);
+  assert.equal(Array.isArray(fallback), true);
+  assert.equal(api.locked, true, 'valid JSON with the wrong top-level shape must activate recovery lock');
+  assert.equal(data.get('a_w_v6'), raw, 'wrong-shaped original data must remain untouched');
+  assert.equal(api.safeStorageSet('a_w_v6', '[]'), false);
+}
+{
+  const raw = '[null]';
+  const data = new Map([['a_w_v6', raw]]);
+  const api = makeContext({
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  });
+  api.safeStorageJSON('a_w_v6', [], api.isWrongStorageList);
+  assert.equal(api.locked, true, 'malformed entries inside a valid array must activate recovery lock');
+}
+{
+  const api = makeContext({
+    getItem: key => key === 'a_w_v6' ? '[{"id":"p001","count":2,"lastTime":1760000000000}]' : null,
+    setItem() {},
+    removeItem() {}
+  });
+  const valid = api.safeStorageJSON('a_w_v6', [], api.isWrongStorageList);
+  assert.equal(valid.length, 1);
+  assert.equal(api.locked, false, 'a well-formed learning record must remain readable');
+}
