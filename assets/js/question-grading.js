@@ -11,9 +11,27 @@
         return submittedAnswer === expected;
       case 'multi': {
         if (!Array.isArray(submittedAnswer) || !Array.isArray(expected) || submittedAnswer.length !== expected.length) return false;
-        const actual = submittedAnswer.slice().sort((a, b) => a - b);
-        const target = expected.slice().sort((a, b) => a - b);
-        return actual.every((value, index) => value === target[index]);
+        const keyOf = value => {
+          if (typeof value === 'string') return `string:${value}`;
+          if (typeof value === 'boolean') return `boolean:${value}`;
+          if (typeof value === 'number' && Number.isFinite(value)) return `number:${value}`;
+          return null;
+        };
+        const counts = new Map();
+        for (const value of expected) {
+          const key = keyOf(value);
+          if (key === null) return false;
+          counts.set(key, (counts.get(key) || 0) + 1);
+        }
+        for (const value of submittedAnswer) {
+          const key = keyOf(value);
+          if (key === null || !counts.has(key)) return false;
+          const remaining = counts.get(key) - 1;
+          if (remaining < 0) return false;
+          if (remaining === 0) counts.delete(key);
+          else counts.set(key, remaining);
+        }
+        return counts.size === 0;
       }
       case 'fill': {
         if (typeof normalize !== 'function') return false;
