@@ -92,10 +92,11 @@ assert.ok(app.includes('if(item.nextReviewAt!==undefined') &&
           app.includes('correctStreak') && app.includes('lastOutcome'),
   'wrong-book storage validation must accept legacy rows and validate optional review metadata');
 
-assert.match(examSubmit, /if\s*\(done\)\s*Store\.bumpQStat\(q\.id,\s*ok\)/,
+assert.ok(examSubmit.includes('if(!done)blank++') &&
+          examSubmit.includes('Store.bumpQStat(q.id,ok)'),
   'blank exam questions must not inflate attempted-question mastery statistics');
-assert.doesNotMatch(examSubmit, /Store\.bumpQStat\(q\.id,\s*ok\s*&&\s*done\)/,
-  'exam mastery statistics must not count unanswered questions as wrong attempts');
+assert.match(examSubmit, /else\\s*\\{[\\s\\S]*?Store\\.bumpQStat\\(q\\.id,ok\\)/,
+  'only answered exam questions may update mastery and spaced-review records');
 
 assert.ok(questionSource.includes("最早将望远镜系统用于天文观测并公开重要发现的科学家是？"),
   'Galileo question must distinguish systematic published astronomy from the first-ever telescope observation');
