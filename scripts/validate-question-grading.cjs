@@ -8,12 +8,16 @@ const questionSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
-const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/([0-9])[′']/g, '$1分').replace(/([0-9])[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g, '');
+const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g, '');
 const q = (type, answer) => ({ type, answer });
 assert.equal(norm("20°30'"), norm("20°30′"), 'ASCII apostrophe must normalize as angle minutes');
 assert.equal(norm('20°30"'), norm('20°30″'), 'ASCII quote must normalize as angle seconds');
 assert.equal(grade(q('fill', ['20°30′']), "20°30'", norm), true);
 assert.equal(grade(q('fill', ['20°30″']), '20°30"', norm), true);
+assert.equal(grade(q('fill', ['20°30′']), "20°30 '", norm), true,
+  'whitespace before ASCII minute marker must be ignored');
+assert.equal(grade(q('fill', ['20°30″']), '20°30 "', norm), true,
+  'whitespace before ASCII second marker must be ignored');
 assert.equal(grade(q('single', 2), 2, norm), true);
 assert.equal(grade(q('judge', 0), 1, norm), false);
 assert.equal(grade(q('image', 1), 1, norm), true);
