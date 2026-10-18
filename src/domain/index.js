@@ -5,8 +5,33 @@ export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus })
   const correct = submittedAnswer.trim().toLocaleLowerCase() === expectedAnswer.trim().toLocaleLowerCase();
   return Object.freeze({ correct, score:correct ? 1 : 0, evidenceStatus, feedback: evidenceStatus === "verified" ? (correct ? "回答正确" : "再检查关键概念") : "本题答案尚未完成来源审核，评分仅供练习参考" });
 }
+function parseReviewTimestamp(value) {
+  if (typeof value !== "string") {
+    throw new TypeError("reviewedAt must be an ISO timestamp with an explicit timezone");
+  }
+  const match = /^(\\d{4})-(\\d{2})-(\\d{2})T([01]\\d|2[0-3]):([0-5]\\d)(?::([0-5]\\d)(?:\\.\\d{1,3})?)?(Z|([+-])(\\d{2}):(\\d{2}))$/.exec(value);
+  if (!match) throw new TypeError("reviewedAt must be an ISO timestamp with an explicit timezone");
+  const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (month < 1 || month > 12 || day < 1 || day > days[month - 1]) {
+    throw new TypeError("reviewedAt contains an invalid calendar date");
+  }
+  if (match[7] !== "Z") {
+    const hour = Number(match[9]), minute = Number(match[10]);
+    if (minute > 59 || hour > 14 || (hour === 14 && minute !== 0)) {
+      throw new TypeError("reviewedAt contains an invalid timezone offset");
+    }
+  }
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) throw new TypeError("reviewedAt must be a valid timestamp");
+  const yearUTC = new Date(timestamp).getUTCFullYear();
+  if (yearUTC < 0 || yearUTC > 9999) throw new RangeError("reviewedAt normalizes outside the supported UTC year range");
+  return timestamp;
+}
+
 export function nextReviewDate({ reviewedAt, quality, previousIntervalDays = 0 }) {
-  const normalizedReviewedAt = parseObservedAt(reviewedAt);
+  const reviewedTimestamp = parseReviewTimestamp(reviewedAt);
   if (!Number.isSafeInteger(quality) || quality < 0 || quality > 5) {
     throw new RangeError("quality must be an integer from 0 to 5");
   }
@@ -15,7 +40,7 @@ export function nextReviewDate({ reviewedAt, quality, previousIntervalDays = 0 }
   }
   const interval = quality < 3 ? 1 : previousIntervalDays === 0 ? 1
     : Math.min(3650, Math.max(1, Math.round(previousIntervalDays * (quality >= 4 ? 2.5 : 1.5))));
-  const due = new Date(Date.parse(normalizedReviewedAt) + interval * 86400000);
+  const due = new Date(reviewedTimestamp + interval * 86400000);
   if (!Number.isFinite(due.getTime()) || due.getUTCFullYear() < 0 || due.getUTCFullYear() > 9999) {
     throw new RangeError("review due date is outside the supported UTC year range");
   }
