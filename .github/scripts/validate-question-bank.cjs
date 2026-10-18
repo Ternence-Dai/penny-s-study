@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const vm = require('node:vm');
 
 const html = fs.readFileSync('index.html', 'utf8') + '\n' + fs.readFileSync('assets/js/question-bank.js', 'utf8') + '\n' + fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 if (!html.includes("' + esc(e.message) + '</div></div>'"))
@@ -104,4 +105,30 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
+
+const runtime = vm.createContext({});
+vm.runInContext(fs.readFileSync('assets/js/question-grading.js', 'utf8'), runtime);
+vm.runInContext(fs.readFileSync('assets/js/question-bank.js', 'utf8'), runtime);
+const appSource = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
+const normalizerMatch = appSource.match(/function norm\\(s\\)\\{[^\\n]*\\}/);
+if (!normalizerMatch) throw new Error('App answer normalization function not found');
+vm.runInContext(normalizerMatch[0], runtime);
+const grading = runtime.PennyQuestionGrading;
+const runtimeFailures = [];
+for (const question of runtime.Q) {
+  const acceptedAnswers = question.type === 'fill' ? question.answer : [question.answer];
+  for (const accepted of acceptedAnswers) {
+    if (!grading.isCorrect(question, accepted, runtime.norm)) {
+      runtimeFailures.push(question.id + ': configured answer is rejected by the production grader (' +
+        question.type + ')');
+    }
+  }
+}
+if (runtimeFailures.length) {
+  console.error(runtimeFailures.join('\\n'));
+  process.exit(1);
+}
+console.log('Runtime answer-key check OK: all ' + runtime.Q.length +
+  ' questions and all accepted fill-in variants pass the production grading engine.');
+
 console.log('Question bank OK: ' + ids.size + ' unique questions; ' + JSON.stringify(Object.fromEntries(levels)));
