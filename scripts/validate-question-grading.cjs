@@ -27,6 +27,13 @@ for (const question of questionBank) {
     'question must have a worked explanation: ' + question.id);
   assert.ok(['single','judge','image','multi','fill','order'].includes(question.type),
     'question type must be one of the six supported formats: ' + question.id);
+  if (Array.isArray(question.options)) {
+    assert.ok(question.options.every(option => typeof option === 'string' && option.trim()),
+      'every choice option must be non-empty text: ' + question.id);
+    const normalizedOptions = question.options.map(option => option.trim());
+    assert.equal(new Set(normalizedOptions).size, normalizedOptions.length,
+      'choice options must be unique after trimming: ' + question.id);
+  }
   if (question.type === 'judge') {
     assert.equal(question.options, null,
       'true/false questions use the dedicated binary grading contract: ' + question.id);
@@ -52,6 +59,9 @@ for (const question of questionBank) {
       Array.isArray(question.answer) && question.answer.length > 0 &&
       question.answer.every(value => typeof value === 'string' && value.trim()),
       'fill-in question must have one or more textual accepted answers: ' + question.id);
+    const acceptedAnswers = question.answer.map(value => value.trim());
+    assert.equal(new Set(acceptedAnswers).size, acceptedAnswers.length,
+      'fill-in accepted answers must not contain duplicate entries: ' + question.id);
   } else if (question.type === 'order') {
     assert.ok(Array.isArray(question.options) && question.options.length >= 2 &&
       Array.isArray(question.answer) && question.answer.length === question.options.length,
