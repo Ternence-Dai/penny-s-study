@@ -70,7 +70,7 @@ const examSubmitEnd = app.indexOf('\n}', examSubmitStart);
 assert.ok(examSubmitStart >= 0 && examSubmitEnd > examSubmitStart, 'exam submission function must be available');
 const examSubmit = app.slice(examSubmitStart, examSubmitEnd);
 
-const reviewStart = app.indexOf('async function recordQuestionOutcome(id, correct)');
+const reviewStart = app.indexOf('var reviewSchedulerPromise = null;');
 const reviewEnd = app.indexOf('/* ==========================================' + String.fromCharCode(10) + '   竞赛', reviewStart);
 assert.ok(reviewStart >= 0 && reviewEnd > reviewStart,
   'shared spaced-review scheduler must be wired into the learning application');
