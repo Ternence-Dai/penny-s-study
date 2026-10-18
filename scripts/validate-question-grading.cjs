@@ -95,7 +95,9 @@ assert.ok(app.includes('if(item.nextReviewAt!==undefined') &&
 assert.ok(examSubmit.includes('if(!done)blank++') &&
           examSubmit.includes('Store.bumpQStat(q.id,ok)'),
   'blank exam questions must not inflate attempted-question mastery statistics');
-assert.match(examSubmit, /else\\s*\\{[\\s\\S]*?Store\\.bumpQStat\\(q\\.id,ok\\)/,
+assert.ok(examSubmit.includes('if(!done)blank++;') &&
+          examSubmit.indexOf('if(!done)blank++;') < examSubmit.indexOf('Store.bumpQStat(q.id,ok)') &&
+          examSubmit.includes('await recordQuestionOutcome(q.id,ok)'),
   'only answered exam questions may update mastery and spaced-review records');
 
 assert.ok(questionSource.includes("最早将望远镜系统用于天文观测并公开重要发现的科学家是？"),
