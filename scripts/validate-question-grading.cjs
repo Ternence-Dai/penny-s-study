@@ -50,3 +50,6 @@ assert.ok(questionSource.includes("滤光镜必须牢固安装在物镜前端"),
   'solar viewing safety explanation must specify front-mounted telescope filters');
 assert.ok(questionSource.includes("偏食阶段仍须使用合格太阳滤光镜"),
   'partial solar eclipse viewing must retain certified eye protection');
+
+assert.ok(questionSource.includes("在北半球，北极星的地平高度约等于观测者所在的地理纬度。"),
+  'Polaris altitude rule must be explicitly scoped to northern-hemisphere observers');
