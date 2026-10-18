@@ -26,6 +26,11 @@ assert.equal(grade(q('fill', []), 'anything', norm), false);
 assert.equal(grade(q('fill', [{}]), '[object Object]', norm), false);
 assert.equal(grade(q('fill', ['42']), 42, norm), false);
 assert.equal(grade(q('fill', ['42']), '42', () => 42), false);
+assert.equal(grade(q('fill', ['42']), '42', () => { throw new Error('normalizer failed'); }), false);
+assert.equal(grade(q('fill', ['42']), '42', value => {
+  if (value === '42') throw new Error('expected-answer normalization failed');
+  return value;
+}), false);
 assert.equal(grade(q('order', [2, 0, 1]), [2, 0, 1], norm), true);
 assert.equal(grade(q('order', [2, 0, 1]), [0, 2, 1], norm), false);
 assert.equal(grade(q('order', []), [], norm), false);
