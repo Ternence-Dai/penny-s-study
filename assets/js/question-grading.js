@@ -10,7 +10,8 @@
       case 'image':
         return submittedAnswer === expected;
       case 'multi': {
-        if (!Array.isArray(submittedAnswer) || !Array.isArray(expected) || submittedAnswer.length !== expected.length) return false;
+        if (!Array.isArray(submittedAnswer) || !Array.isArray(expected) ||
+            expected.length === 0 || submittedAnswer.length !== expected.length) return false;
         const keyOf = value => {
           if (typeof value === 'string') return `string:${value}`;
           if (typeof value === 'boolean') return `boolean:${value}`;
@@ -34,13 +35,13 @@
         return counts.size === 0;
       }
       case 'fill': {
-        if (typeof normalize !== 'function') return false;
+        if (typeof normalize !== 'function' || !Array.isArray(expected) || expected.length === 0) return false;
         const actual = normalize(submittedAnswer);
-        return !!actual && Array.isArray(expected) && expected.some(value => normalize(value) === actual);
+        return !!actual && expected.some(value => normalize(value) === actual);
       }
       case 'order':
         return Array.isArray(submittedAnswer) && Array.isArray(expected) &&
-          submittedAnswer.length === expected.length &&
+          expected.length > 0 && submittedAnswer.length === expected.length &&
           expected.every((value, index) => submittedAnswer[index] === value);
       default:
         return false;
