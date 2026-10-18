@@ -40,3 +40,8 @@ assert.ok(questionSource.includes("从全球每年发生的天象次数看，日
   'eclipse frequency question must distinguish global event counts from visibility area');
 assert.match(questionSource, /\['p089'.*?,0,'全球每年通常发生2至5次日食，而月食通常为0至3次/s,
   'p089 must mark the globally more frequent solar eclipses as true and explain visibility-area distinction');
+
+assert.ok(questionSource.includes("当月球本影到达地球表面时，处于本影内的观测者看到的是？"),
+  'total solar eclipse question must explicitly identify the umbra, not an ambiguous central shadow region');
+assert.ok(questionSource.includes("若到达地表的是伪本影，则会看到日环食。"),
+  'eclipse explanation must distinguish umbra from antumbra');
