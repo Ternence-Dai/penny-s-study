@@ -27,7 +27,12 @@ for (const question of questionBank) {
     'question must have a worked explanation: ' + question.id);
   assert.ok(['single','judge','image','multi','fill','order'].includes(question.type),
     'question type must be one of the six supported formats: ' + question.id);
-  if (['single','judge','image'].includes(question.type)) {
+  if (question.type === 'judge') {
+    assert.equal(question.options, null,
+      'true/false questions use the dedicated binary grading contract: ' + question.id);
+    assert.ok(question.answer === 0 || question.answer === 1,
+      'true/false answer must use the documented binary key: ' + question.id);
+  } else if (['single','image'].includes(question.type)) {
     assert.ok(Array.isArray(question.options) && question.options.length >= 2,
       'choice question must have at least two options: ' + question.id);
     assert.ok(Number.isSafeInteger(question.answer) &&
