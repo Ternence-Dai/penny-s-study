@@ -2206,6 +2206,15 @@ function renderPractice(){
   h += '</div>';
   return h;
 }
+function questionOptions(q){
+  // The compact question bank intentionally stores judge options as null;
+  // render the binary contract here so every answer surface uses one shape.
+  if (q && q.type === 'judge') return ['正确','错误'];
+  return q && Array.isArray(q.options) ? q.options : [];
+}
+function questionOptionCount(q){
+  return questionOptions(q).length;
+}
 function renderInput(q, ua, show, fn){
   if (q.type === 'fill'){
     var v = esc(ua == null ? '' : ua);
@@ -2242,7 +2251,7 @@ function renderInput(q, ua, show, fn){
   }
   var isMulti = q.type === 'multi';
   var am = Array.isArray(ua) ? ua : [];
-  return q.options.map(function(t, i){
+  return questionOptions(q).map(function(t, i){
     var cls = 'option';
     var sel = isMulti ? am.indexOf(i) >= 0 : (ua === i);
     var right = isMulti ? q.answer.indexOf(i) >= 0 : (q.answer === i);
@@ -2926,7 +2935,7 @@ document.addEventListener('keydown', function(e){
     var q = p.list[p.index];
     if (!isI && !p.showAnswer && q.type !== 'fill'){
       var n = parseInt(e.key, 10);
-      if (n >= 1 && n <= q.options.length){ pChoose(n-1); e.preventDefault(); }
+      if (n >= 1 && n <= questionOptionCount(q)){ pChoose(n-1); e.preventDefault(); }
     }
     if (e.key === 'Enter'){
       if (!p.showAnswer && isAnswered(q, p.userAnswers[p.index])){ pSubmit(); e.preventDefault(); }
@@ -2939,7 +2948,7 @@ document.addEventListener('keydown', function(e){
     var q2 = ex.list[ex.index];
     if (!isI && q2.type !== 'fill'){
       var n2 = parseInt(e.key, 10);
-      if (n2 >= 1 && n2 <= q2.options.length){ eChoose(n2-1); e.preventDefault(); }
+      if (n2 >= 1 && n2 <= questionOptionCount(q2)){ eChoose(n2-1); e.preventDefault(); }
     }
     if (!isI && e.key === 'ArrowLeft') ePrev();
     if (!isI && e.key === 'ArrowRight') eNext();
