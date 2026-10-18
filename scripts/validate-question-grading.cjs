@@ -5,6 +5,27 @@ const assert = require('node:assert/strict');
 const source = fs.readFileSync('assets/js/question-grading.js', 'utf8');
 const app = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 const questionSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
+const html = fs.readFileSync('index.html', 'utf8');
+const productCss = fs.readFileSync('assets/css/product-system.css', 'utf8');
+assert.ok(html.includes('product-system.css?v=20261018-v3'),
+  'astronomy app must load the current V3 learning workspace styles');
+assert.ok(productCss.includes('Astronomy learning workspace'),
+  'astronomy V3 design layer must be present');
+for (const selector of [
+  '.study-intro{', '.quick-grid{', '.quick-card{', '.map-grid{',
+  '.map-card{', '.progress-overview{', '.option{', '.explain{',
+  '.tabbar{', '.reader-panel{'
+]) assert.ok(productCss.includes(selector),
+  'astronomy workspace must style the learning/answering surface: ' + selector);
+assert.ok(productCss.includes('max-width:1160px') &&
+          productCss.includes('@media(max-width:760px)') &&
+          productCss.includes('@media(max-width:420px)'),
+  'astronomy workspace must support wide desktop and narrow mobile screens');
+assert.ok(productCss.includes('prefers-reduced-motion:reduce'),
+  'astronomy workspace must respect reduced motion preferences');
+assert.ok(html.includes('viewport-fit=cover') && !html.includes('user-scalable=no'),
+  'mobile page must respect safe areas and not disable pinch zoom');
+
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
