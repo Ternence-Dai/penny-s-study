@@ -89,6 +89,57 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 
 
 {
+  const legacyWrong=[{id:'p001',count:2,lastTime:1760000000000}];
+  const scheduledWrong=[{
+    id:'p002',count:1,lastTime:1760000000000,
+    intervalDays:3,nextReviewAt:1760259200000,correctStreak:2,
+    lastReviewAt:1760000000000,lastOutcome:'correct'
+  }];
+  const api=makeContext({getItem:()=>null,setItem(){},removeItem(){}});
+  assert.equal(api.isWrongStorageList(legacyWrong),true,
+    'legacy wrong-book rows without review metadata must remain readable');
+  assert.equal(api.isWrongStorageList(scheduledWrong),true,
+    'scheduled wrong-book rows must preserve their interval, due time and streak');
+  for(const invalid of [
+    {...scheduledWrong[0],intervalDays:0},
+    {...scheduledWrong[0],intervalDays:3651},
+    {...scheduledWrong[0],nextReviewAt:-1},
+    {...scheduledWrong[0],correctStreak:3},
+    {...scheduledWrong[0],lastOutcome:'unknown'}
+  ]){
+    assert.equal(api.isWrongStorageList([invalid]),false,
+      'malformed spaced-review metadata must be rejected without invalidating valid legacy rows');
+  }
+}
+{
+  const data=new Map();
+  const api=makeContext({
+    getItem:key=>data.has(key)?data.get(key):null,
+    setItem:(key,value)=>data.set(key,value),
+    removeItem:key=>data.delete(key)
+  });
+  assert.equal(api.Store.addWrong('p001'),true,'a new wrong answer must create a review row');
+  let item=api.Store.getWrong()[0];
+  assert.equal(item.intervalDays,1);
+  assert.equal(item.correctStreak,0);
+  assert.equal(item.lastOutcome,'incorrect');
+  assert.ok(item.nextReviewAt>item.lastTime,'a new wrong answer must have a due date');
+  const plan={
+    intervalDays:5,nextReviewAt:item.lastTime+5*86400000,
+    correctStreak:2,lastReviewAt:item.lastTime+1,lastOutcome:'correct'
+  };
+  assert.equal(api.Store.scheduleWrongReview('p001',plan),true);
+  item=api.Store.getWrong()[0];
+  assert.equal(item.intervalDays,5);
+  assert.equal(item.correctStreak,2);
+  assert.equal(item.lastOutcome,'correct');
+  assert.equal(item.nextReviewAt,plan.nextReviewAt);
+  const before=data.get('a_w_v6');
+  assert.equal(api.Store.scheduleWrongReview('p001',{...plan,correctStreak:3}),false,
+    'review plans must reject invalid consecutive-correct streaks');
+  assert.equal(data.get('a_w_v6'),before,'invalid review metadata must not replace the valid schedule');
+}
+{
   const data = new Map();
   let writes = 0;
   const api = makeContext({
