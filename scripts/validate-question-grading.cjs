@@ -8,7 +8,7 @@ const questionSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
-const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/[\s，,。.、；;：:！!？?"'（）()]/g, '').replace(/[°º]/g, '度').replace(/[′']/g, '分').replace(/[″"]/g, '秒');
+const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/[\\s，,。.、；;：:！!？?\"'（）()]/g, '').replace(/[°º]/g, '度').replace(/[′']/g, '分').replace(/[″\"]/g, '秒');
 const q = (type, answer) => ({ type, answer });
 assert.equal(grade(q('single', 2), 2, norm), true);
 assert.equal(grade(q('judge', 0), 1, norm), false);
@@ -19,10 +19,13 @@ assert.equal(grade(q('multi', ['choice-10', 'choice-2']), ['choice-2', 'choice-1
 assert.equal(grade(q('multi', ['choice-1', 'choice-2']), ['choice-1', 'choice-1'], norm), false);
 assert.equal(grade(q('multi', [1, 2]), ['1', 2], norm), false);
 assert.equal(grade(q('multi', [{ id: 1 }]), [{ id: 1 }], norm), false);
+assert.equal(grade(q('multi', []), [], norm), false);
 assert.equal(grade(q('fill', ['银河系', '银河']), ' 银河系 ', norm), true);
 assert.equal(grade(q('fill', ['银河系']), '', norm), false);
+assert.equal(grade(q('fill', []), 'anything', norm), false);
 assert.equal(grade(q('order', [2, 0, 1]), [2, 0, 1], norm), true);
 assert.equal(grade(q('order', [2, 0, 1]), [0, 2, 1], norm), false);
+assert.equal(grade(q('order', []), [], norm), false);
 assert.equal(grade(q('unknown', 'x'), 'x', norm), false);
 
 const examSubmitStart = app.indexOf('function submitExam(){');
