@@ -35,3 +35,8 @@ assert.ok(questionSource.includes("最早将望远镜系统用于天文观测并
 assert.ok(!questionSource.includes("首次用望远镜观测天体的科学家是？"),
   'question bank must not make the historically inaccurate absolute-first claim');
 console.log('Question grading and blank-exam-statistics checks passed.');
+
+assert.ok(questionSource.includes("从全球每年发生的天象次数看，日食通常比月食更常见。"),
+  'eclipse frequency question must distinguish global event counts from visibility area');
+assert.match(questionSource, /\['p089'.*?,0,'全球每年通常发生2至5次日食，而月食通常为0至3次/s,
+  'p089 must mark the globally more frequent solar eclipses as true and explain visibility-area distinction');
