@@ -132,6 +132,17 @@ assert.equal(grade(q('order', [2, 0, 1]), [0, 2, 1], norm), false);
 assert.equal(grade(q('order', []), [], norm), false);
 assert.equal(grade(q('unknown', 'x'), 'x', norm), false);
 
+const inputStart = app.indexOf('function renderInput(q, ua, show, fn){');
+const inputEnd = app.indexOf('\nfunction onFill(', inputStart);
+assert.ok(inputStart >= 0 && inputEnd > inputStart, 'shared answer renderer must be available');
+const inputSource = app.slice(inputStart, inputEnd);
+assert.ok(app.includes("if (q && q.type === 'judge') return ['正确','错误'];"),
+  'judge questions must receive explicit binary display labels without changing the compact bank contract');
+assert.ok(inputSource.includes('questionOptions(q).map('),
+  'all option-based answer types must render through the normalized option list');
+assert.ok(app.includes('n <= questionOptionCount(q)') && app.includes('n2 <= questionOptionCount(q2)'),
+  'practice and timed exams must use the same safe keyboard option count for binary questions');
+
 const examSubmitStart = app.indexOf('async function submitExam(){');
 const examSubmitEnd = app.indexOf('\n}', examSubmitStart);
 assert.ok(examSubmitStart >= 0 && examSubmitEnd > examSubmitStart, 'exam submission function must be available');
