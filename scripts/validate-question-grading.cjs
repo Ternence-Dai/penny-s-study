@@ -65,10 +65,33 @@ assert.equal(grade(q('order', [2, 0, 1]), [0, 2, 1], norm), false);
 assert.equal(grade(q('order', []), [], norm), false);
 assert.equal(grade(q('unknown', 'x'), 'x', norm), false);
 
-const examSubmitStart = app.indexOf('function submitExam(){');
+const examSubmitStart = app.indexOf('async function submitExam(){');
 const examSubmitEnd = app.indexOf('\n}', examSubmitStart);
 assert.ok(examSubmitStart >= 0 && examSubmitEnd > examSubmitStart, 'exam submission function must be available');
 const examSubmit = app.slice(examSubmitStart, examSubmitEnd);
+
+const reviewStart = app.indexOf('async function recordQuestionOutcome(id, correct)');
+const reviewEnd = app.indexOf('/* ==========================================\\n   竞赛', reviewStart);
+assert.ok(reviewStart >= 0 && reviewEnd > reviewStart,
+  'shared spaced-review scheduler must be wired into the learning application');
+const reviewSource = app.slice(reviewStart, reviewEnd);
+assert.ok(reviewSource.includes("import('../../src/domain/index.js')") &&
+          reviewSource.includes('domain.nextReviewDate(') &&
+          reviewSource.includes('Store.scheduleWrongReview('),
+  'practice/exam outcomes must call the shared domain scheduler and persist the due date');
+assert.ok(reviewSource.includes('streak>=3') && reviewSource.includes('Store.removeWrong(id)'),
+  'three consecutive correct reviews must retire an item from the active wrong book');
+assert.ok(app.includes('async function pSubmit()') &&
+          app.includes('await recordQuestionOutcome(q.id,ok)') &&
+          examSubmit.includes('await recordQuestionOutcome(q.id,ok)'),
+  'both practice and timed exams must update the same review schedule');
+assert.ok(app.includes('已到期') && app.includes('nextReviewAt<=now') &&
+          app.includes('优先安排已到期的错题'),
+  'wrong-book UI must expose due dates and prioritize overdue reviews');
+assert.ok(app.includes('if(item.nextReviewAt!==undefined') &&
+          app.includes('correctStreak') && app.includes('lastOutcome'),
+  'wrong-book storage validation must accept legacy rows and validate optional review metadata');
+
 assert.match(examSubmit, /if\s*\(done\)\s*Store\.bumpQStat\(q\.id,\s*ok\)/,
   'blank exam questions must not inflate attempted-question mastery statistics');
 assert.doesNotMatch(examSubmit, /Store\.bumpQStat\(q\.id,\s*ok\s*&&\s*done\)/,
