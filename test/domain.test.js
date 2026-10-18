@@ -12,3 +12,22 @@ test("warns when answer key is not verified",()=>{
 test("schedules deterministic spaced repetition",()=>{
  assert.equal(nextReviewDate({reviewedAt:"2026-01-01T00:00:00Z",quality:5,previousIntervalDays:4}).intervalDays,10);
 });
+
+test("requires timezone-qualified review timestamps and safe review intervals",()=>{
+ assert.throws(()=>nextReviewDate({reviewedAt:"2026-01-01T00:00:00",quality:4}),TypeError);
+ assert.throws(()=>nextReviewDate({reviewedAt:"2026-02-30T00:00:00Z",quality:4}),TypeError);
+ assert.throws(()=>nextReviewDate({reviewedAt:"2026-01-01T00:00:00+14:30",quality:4}),TypeError);
+ assert.throws(()=>nextReviewDate({reviewedAt:"2026-01-01T00:00:00Z",quality:4,previousIntervalDays:-1}),RangeError);
+ assert.throws(()=>nextReviewDate({reviewedAt:"2026-01-01T00:00:00Z",quality:4,previousIntervalDays:3651}),RangeError);
+ assert.throws(()=>nextReviewDate({reviewedAt:"2026-01-01T00:00:00Z",quality:6}),RangeError);
+});
+test("caps long-term spaced-review intervals and prevents invalid due dates",()=>{
+ const result=nextReviewDate({
+  reviewedAt:"2026-01-01T00:00:00Z",quality:5,previousIntervalDays:3650
+ });
+ assert.equal(result.intervalDays,3650);
+ assert.equal(result.dueAt,"2035-12-30T00:00:00.000Z");
+ assert.throws(()=>nextReviewDate({
+  reviewedAt:"9999-12-31T23:59:59Z",quality:5,previousIntervalDays:1
+ }),RangeError);
+});
