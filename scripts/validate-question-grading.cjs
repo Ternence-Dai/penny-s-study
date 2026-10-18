@@ -71,7 +71,7 @@ assert.ok(examSubmitStart >= 0 && examSubmitEnd > examSubmitStart, 'exam submiss
 const examSubmit = app.slice(examSubmitStart, examSubmitEnd);
 
 const reviewStart = app.indexOf('async function recordQuestionOutcome(id, correct)');
-const reviewEnd = app.indexOf('/* ==========================================\\n   竞赛', reviewStart);
+const reviewEnd = app.indexOf('/* ==========================================' + String.fromCharCode(10) + '   竞赛', reviewStart);
 assert.ok(reviewStart >= 0 && reviewEnd > reviewStart,
   'shared spaced-review scheduler must be wired into the learning application');
 const reviewSource = app.slice(reviewStart, reviewEnd);
