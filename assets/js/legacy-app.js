@@ -90,9 +90,15 @@ function safeStorageJSON(key,fallback,validator){
 function isStorageRecord(value){return !!value&&typeof value==='object'&&!Array.isArray(value);}
 function isWrongStorageList(value){
   return Array.isArray(value)&&value.every(function(item){
-    return isStorageRecord(item)&&
-      ((typeof item.id==='string'&&item.id.length>0)||(typeof item.id==='number'&&Number.isSafeInteger(item.id)))&&
-      Number.isSafeInteger(item.count)&&item.count>=1&&Number.isFinite(item.lastTime)&&item.lastTime>=0;
+    if(!isStorageRecord(item)||
+      !((typeof item.id==='string'&&item.id.length>0)||(typeof item.id==='number'&&Number.isSafeInteger(item.id)))||
+      !Number.isSafeInteger(item.count)||item.count<1||!Number.isFinite(item.lastTime)||item.lastTime<0) return false;
+    if(item.intervalDays!==undefined&&(!Number.isSafeInteger(item.intervalDays)||item.intervalDays<1||item.intervalDays>3650)) return false;
+    if(item.nextReviewAt!==undefined&&(!Number.isFinite(item.nextReviewAt)||item.nextReviewAt<0)) return false;
+    if(item.correctStreak!==undefined&&(!Number.isSafeInteger(item.correctStreak)||item.correctStreak<0||item.correctStreak>2)) return false;
+    if(item.lastReviewAt!==undefined&&(!Number.isFinite(item.lastReviewAt)||item.lastReviewAt<0)) return false;
+    if(item.lastOutcome!==undefined&&!['correct','incorrect'].includes(item.lastOutcome)) return false;
+    return true;
   });
 }
 function isQuestionStatsStorage(value){
@@ -132,9 +138,37 @@ function isPreferenceStorage(value){
 
 var Store = {
   getWrong:function(){return safeStorageJSON(KEY.wrong,[],isWrongStorageList);},
-  addWrong:function(id){var l=this.getWrong(),i=-1;for(var k=0;k<l.length;k++)if(l[k].id===id){i=k;break;}if(i>=0){l[i].count++;l[i].lastTime=Date.now();}else l.push({id:id,count:1,lastTime:Date.now()});safeStorageSet(KEY.wrong,JSON.stringify(l));},
-  removeWrong:function(id){safeStorageSet(KEY.wrong,JSON.stringify(this.getWrong().filter(function(i){return i.id!==id;})));},
-  clearWrong:function(){safeStorageRemove(KEY.wrong);},
+  addWrong:function(id){
+    var l=this.getWrong(),i=-1,now=Date.now();
+    for(var k=0;k<l.length;k++)if(l[k].id===id){i=k;break;}
+    if(i>=0){
+      l[i].count++;l[i].lastTime=now;l[i].intervalDays=1;
+      l[i].nextReviewAt=now+86400000;l[i].correctStreak=0;
+      l[i].lastReviewAt=now;l[i].lastOutcome='incorrect';
+    }else l.push({
+      id:id,count:1,lastTime:now,intervalDays:1,nextReviewAt:now+86400000,
+      correctStreak:0,lastReviewAt:now,lastOutcome:'incorrect'
+    });
+    return safeStorageSet(KEY.wrong,JSON.stringify(l));
+  },
+  scheduleWrongReview:function(id,plan){
+    if(!plan||!Number.isSafeInteger(plan.intervalDays)||plan.intervalDays<1||plan.intervalDays>3650||
+       !Number.isFinite(plan.nextReviewAt)||plan.nextReviewAt<0||
+       !Number.isSafeInteger(plan.correctStreak)||plan.correctStreak<0||plan.correctStreak>2||
+       !Number.isFinite(plan.lastReviewAt)||plan.lastReviewAt<0||
+       !['correct','incorrect'].includes(plan.lastOutcome)) return false;
+    var l=this.getWrong(),item=null;
+    for(var i=0;i<l.length;i++)if(l[i].id===id){item=l[i];break;}
+    if(!item)return false;
+    item.intervalDays=plan.intervalDays;
+    item.nextReviewAt=plan.nextReviewAt;
+    item.correctStreak=plan.correctStreak;
+    item.lastReviewAt=plan.lastReviewAt;
+    item.lastOutcome=plan.lastOutcome;
+    return safeStorageSet(KEY.wrong,JSON.stringify(l));
+  },
+  removeWrong:function(id){return safeStorageSet(KEY.wrong,JSON.stringify(this.getWrong().filter(function(i){return i.id!==id;})));},
+  clearWrong:function(){return safeStorageRemove(KEY.wrong);},
   getQStats:function(){return safeStorageJSON(KEY.qstats,{},isQuestionStatsStorage);},
   bumpQStat:function(id,ok){var s=this.getQStats();if(!s[id])s[id]={t:0,c:0};s[id].t++;if(ok)s[id].c++;s[id].last=Date.now();safeStorageSet(KEY.qstats,JSON.stringify(s));},
   addRecord:function(r){var l=safeStorageJSON(KEY.record,[],isPracticeRecordStorage);l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);safeStorageSet(KEY.record,JSON.stringify(l));var d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);safeStorageSet(KEY.days,JSON.stringify(d));}},
@@ -2163,7 +2197,7 @@ function renderPractice(){
   }
   h += '<div class="footer">';
   if (!p.showAnswer){
-    h += '<button class="btn btn-main" ' + (!answered?'disabled':'') + ' onclick="pSubmit()">提交答案</button>';
+    h += '<button class="btn btn-main" ' + (!answered||p.submitting?'disabled':'') + ' onclick="pSubmit()">' + (p.submitting?'正在保存复习计划…':'提交答案') + '</button>';
   } else if (p.index < total - 1){
     h += '<button class="btn btn-main" onclick="pNext()">下一题</button>';
   } else {
@@ -2263,17 +2297,23 @@ function pChoose(i){
   var b2 = document.querySelector('.footer .btn-main');
   if (b2) b2.disabled = false;
 }
-function pSubmit(){
+async function pSubmit(){
   var p = state.practice;
-  if (!p) return;
+  if (!p||p.submitting||p.showAnswer) return;
   var q = p.list[p.index];
   var ua = p.userAnswers[p.index];
   if (!isAnswered(q, ua)) return;
-  var ok = isCorrect(q, ua);
-  if (ok) p.correct++; else { p.wrong++; Store.addWrong(q.id); }
-  Store.bumpQStat(q.id, ok);
-  p.showAnswer = true;
-  render();
+  p.submitting=true;
+  try{
+    var ok = isCorrect(q, ua);
+    if (ok) p.correct++; else p.wrong++;
+    Store.bumpQStat(q.id, ok);
+    await recordQuestionOutcome(q.id,ok);
+    p.showAnswer = true;
+  }finally{
+    p.submitting=false;
+    render();
+  }
 }
 function pNext(){state.practice.index++;state.practice.showAnswer=false;render();}
 function pFinish(){
@@ -2290,6 +2330,47 @@ function pFinish(){
     };
     render();
   } else go('home');
+}
+
+var reviewSchedulerPromise = null;
+function loadReviewScheduler(){
+  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js');
+  return reviewSchedulerPromise;
+}
+async function recordQuestionOutcome(id, correct){
+  var wrongRows=Store.getWrong();
+  var existing=wrongRows.find(function(item){return item.id===id;})||null;
+  if(!correct){
+    Store.addWrong(id);
+    existing=Store.getWrong().find(function(item){return item.id===id;})||null;
+  }else if(!existing){
+    return;
+  }
+  if(!existing)return;
+  var now=Date.now();
+  var streak=correct?(Number(existing.correctStreak)||0)+1:0;
+  try{
+    var domain=await loadReviewScheduler();
+    var reviewedAt=new Date(now).toISOString();
+    var plan=domain.nextReviewDate({
+      reviewedAt:reviewedAt,
+      quality:correct?(streak>=2?5:4):1,
+      previousIntervalDays:correct?(Number(existing.intervalDays)||0):0
+    });
+    if(correct&&streak>=3){
+      Store.removeWrong(id);
+      return;
+    }
+    Store.scheduleWrongReview(id,{
+      intervalDays:plan.intervalDays,
+      nextReviewAt:Date.parse(plan.dueAt),
+      correctStreak:streak,
+      lastReviewAt:now,
+      lastOutcome:correct?'correct':'incorrect'
+    });
+  }catch(error){
+    console.warn('错题复习计划未能更新；原错题与基础学习统计仍予保留。',error);
+  }
 }
 
 /* ==========================================
@@ -2330,7 +2411,7 @@ function renderExam(){
   h += '<div class="btn-row" style="margin-top:6px;">' +
     '<button class="btn btn-ghost" ' + (e.index===0?'disabled':'') + ' onclick="ePrev()">上一题</button>' +
     '<button class="btn btn-ghost" ' + (e.index===e.list.length-1?'disabled':'') + ' onclick="eNext()">下一题</button></div>';
-  h += '<button class="btn btn-main" style="margin-top:14px;" onclick="eConfirm()">交卷</button>';
+  h += '<button class="btn btn-main" style="margin-top:14px;" ' + (e.submitting?'disabled':'') + ' onclick="eConfirm()">' + (e.submitting?'正在保存考试结果…':'交卷') + '</button>';
   if (e.showCard){
     h += '<div class="mask" onclick="toggleCard()"></div><div class="sheet show"><h3>答题卡</h3><div class="sheet-grid">';
     e.list.forEach(function(qq,i){
@@ -2404,23 +2485,26 @@ function eConfirm(){
   var un = e.list.filter(function(q,i){return !isAnswered(q, e.answers[i]);}).length;
   if (confirm(un>0?'还有 ' + un + ' 题未作答，确定交卷吗？':'确定交卷吗？')) submitExam();
 }
-function submitExam(){
+async function submitExam(){
   var e = state.exam;
-  if (!e) return;
-  clearTimers(); e.running = false;
+  if (!e||e.submitting) return;
+  clearTimers(); e.running = false; e.submitting=true;
+  render();
   var score=0, right=0, wrong=0, blank=0;
   var det = [];
-  e.list.forEach(function(q, i){
-    var ua = e.answers[i];
-    var ok = isCorrect(q, ua);
-    var done = isAnswered(q, ua);
-    if (!done) blank++;
-    else if (ok){ right++; score += 2; }
-    else { wrong++; score -= 1; Store.addWrong(q.id); }
-    if (done) Store.bumpQStat(q.id, ok);
-    det.push({id:q.id, type:q.type, stem:q.stem, options:q.options||null, image:q.image||null,
-      your:ua, correct:q.answer, explanation:q.explanation, isCorrect:ok, isBlank:!done});
-  });
+  for(var i=0;i<e.list.length;i++){
+    var q=e.list[i],ua=e.answers[i];
+    var ok=isCorrect(q,ua),done=isAnswered(q,ua);
+    if(!done)blank++;
+    else{
+      if(ok){right++;score+=2;}
+      else{wrong++;score-=1;}
+      Store.bumpQStat(q.id,ok);
+      await recordQuestionOutcome(q.id,ok);
+    }
+    det.push({id:q.id,type:q.type,stem:q.stem,options:q.options||null,image:q.image||null,
+      your:ua,correct:q.answer,explanation:q.explanation,isCorrect:ok,isBlank:!done});
+  }
   var r = {
     level:e.list[0].level, total:e.list.length,
     score:score, fullScore:e.list.length*2,
