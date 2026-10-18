@@ -116,6 +116,10 @@ const normalizerEnd = appSource.indexOf('\n', normalizerStart);
 if (normalizerEnd < 0) throw new Error('App answer normalization function is not newline-terminated');
 vm.runInContext(appSource.slice(normalizerStart, normalizerEnd), runtime);
 const grading = runtime.PennyQuestionGrading;
+if (runtime.norm("20°30'") !== runtime.norm("20°30′"))
+  throw new Error('ASCII apostrophe must normalize as an angle-minute marker');
+if (runtime.norm('20°30"') !== runtime.norm("20°30″"))
+  throw new Error('ASCII quote must normalize as an angle-second marker');
 const runtimeFailures = [];
 for (const question of runtime.Q) {
   const acceptedAnswers = question.type === 'fill' ? question.answer : [question.answer];
