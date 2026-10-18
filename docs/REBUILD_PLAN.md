@@ -35,8 +35,10 @@ For each dependency or reference project, record its repository URL, license, ma
 
 - [ ] Existing repository and data audit complete
 - [ ] Domain model and architecture approved
-- [ ] Core vertical slice implemented
-- [ ] Critical workflows tested
-- [ ] CI and security checks passing
+- [x] Six-type question grading and shared practice/exam mastery statistics
+- [x] Recovery-safe wrong-question ledger with due-dated spaced review
+- [x] Three-consecutive-correct retirement from the active wrong book
+- [ ] Source-backed review of every answer and explanation
+- [ ] Timed-exam, teacher and browser accessibility workflows
 - [ ] Deployment and backup procedure verified
 - [ ] Release candidate reviewed
