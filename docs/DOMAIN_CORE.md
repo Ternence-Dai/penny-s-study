@@ -31,3 +31,9 @@ The wrong-question ledger stores optional, validated review metadata: interval d
 ## Verification boundary
 
 `scripts/validate-question-grading.cjs` exercises the six grading rules, malformed inputs, normalizer failures, duplicate multi-select values, and blank-exam statistics. The question-bank validator checks content structure and selected known astronomy corrections. A passing grading test does not by itself verify every astronomy fact in the bank.
+
+## Open-source astronomy and learning references
+
+- [Stellarium](https://github.com/Stellarium/stellarium) is a reference for astronomical object presentation, sky orientation, time/location-aware simulation, and keeping visualizations tied to astronomical coordinates and ephemerides. The current in-browser simulator is not a replacement for a precision planetarium engine.
+- [Astropy](https://github.com/astropy/astropy) is a reference for unit-aware astronomical calculations, coordinate systems, time handling, and scientific-data conventions. Any future port of calculations must preserve units and documented precision.
+- Question-bank structure is validated independently from scientific correctness. Each answer key and explanation still requires an attributable source, review date, and reviewer before it can be labelled verified; passing structural tests does not certify factual accuracy.
