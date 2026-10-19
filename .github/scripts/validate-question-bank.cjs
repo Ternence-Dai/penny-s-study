@@ -73,7 +73,7 @@ for (const line of rows) {
     ? null
     : [...optionsField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
   const parseIndexArray = () => {
-    if (!/^\\[\\s*(?:0|[1-9]\\d*)(?:\\s*,\\s*(?:0|[1-9]\\d*))*\\s*\\]$/.test(answerField))
+    if (!/^\[\s*(?:0|[1-9]\d*)(?:\s*,\s*(?:0|[1-9]\d*))*\s*\]$/.test(answerField))
       return null;
     try {
       const values = JSON.parse(answerField);
@@ -87,7 +87,7 @@ for (const line of rows) {
   if (options && new Set(options.map(option => option.trim().toLowerCase())).size !== options.length)
     errors.push(id + ': options contain duplicate labels');
   if (type === 'single') {
-    const answer = /^(?:0|[1-9]\\d*)$/.test(answerField) ? Number(answerField) : NaN;
+    const answer = /^(?:0|[1-9]\d*)$/.test(answerField) ? Number(answerField) : NaN;
     if (!options || options.length < 2 || !Number.isSafeInteger(answer) || answer < 0 || answer >= options.length)
       errors.push(id + ': invalid single-choice options/answer');
   } else if (type === 'judge') {
@@ -104,7 +104,7 @@ for (const line of rows) {
       errors.push(id + ': order answer must be a complete permutation');
   } else if (type === 'fill') {
     const fillAnswers = [...answerField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
-    const validFillLiteral = /^\\[\\s*'(?:[^'\\\\]|\\\\.)*'(?:\\s*,\\s*'(?:[^'\\\\]|\\\\.)*')*\\s*\\]$/.test(answerField);
+    const validFillLiteral = /^\[\s*'(?:[^'\\]|\\.)*'(?:\s*,\s*'(?:[^'\\]|\\.)*')*\s*\]$/.test(answerField);
     if (options !== null || !validFillLiteral ||
         !fillAnswers.length || fillAnswers.some(value => !value.trim()))
       errors.push(id + ': invalid fill-in answer');
