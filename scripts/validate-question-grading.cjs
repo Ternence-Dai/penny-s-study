@@ -76,6 +76,9 @@ const html = fs.readFileSync('index.html', 'utf8');
 const productCss = fs.readFileSync('assets/css/product-system.css', 'utf8');
 assert.ok(html.includes('product-system.css?v=20261019-v8'),
   'astronomy app must load the current V8 learning workspace styles');
+assert.ok(html.includes('practice-session-v9.css?v=20261019-v9') &&
+          html.includes('legacy-app.js?v=20261019-session-v1'),
+  'astronomy app must load the recoverable practice UI and fresh session runtime');
 assert.ok(productCss.includes('Astronomy learning workspace'),
   'astronomy V3 design layer must be present');
 for (const selector of [
@@ -176,6 +179,23 @@ assert.ok(app.includes('async function pSubmit()') &&
           app.includes('await recordQuestionOutcome(q.id,ok)') &&
           examSubmit.includes('await recordQuestionOutcome(q.id,ok)'),
   'both practice and timed exams must update the same review schedule');
+assert.ok(app.includes("practice:'a_active_practice_v1'") &&
+          app.includes('function isActivePracticeStorage(value)') &&
+          app.includes('getActivePractice:function()') &&
+          app.includes('saveActivePractice:function(p)') &&
+          app.includes('clearActivePractice:function()'),
+  'active practice progress must use a separate versioned, validated storage key');
+assert.ok(app.includes('function resumePractice()') &&
+          app.includes('function discardActivePractice()') &&
+          app.includes('继续上次练习') &&
+          app.includes('SESSION RECOVERY') &&
+          app.includes('questionIds'),
+  'home workspace must restore saved sessions by stable question ID without changing the question bank');
+assert.ok(app.includes('Store.saveActivePractice(p);') &&
+          app.includes("if(state.page==='practice'&&state.practice) Store.saveActivePractice(state.practice);") &&
+          app.includes('Store.clearActivePractice();'),
+  'practice answers, navigation and completion must safely maintain the active-session draft');
+
 assert.ok(app.includes('已到期') && app.includes('nextReviewAt<=now') &&
           app.includes('优先安排已到期的错题'),
   'wrong-book UI must expose due dates and prioritize overdue reviews');
@@ -239,10 +259,12 @@ function extractFunction(source, name) {
   }
   throw new Error('unterminated function: ' + name);
 }
+const practiceAutosaves=[];
 const browserHandlerContext = vm.createContext({
   state: null,
   document: { querySelectorAll: () => [], querySelector: () => null },
   render: () => {},
+  Store: { saveActivePractice: value => { practiceAutosaves.push(value); return true; } },
   LETTERS: ['A','B','C','D','E','F']
 });
 vm.runInContext(extractFunction(app, 'pChoose'), browserHandlerContext);
@@ -288,6 +310,9 @@ assert.deepEqual(Array.from(browserHandlerContext.state.exam.answers[0]), [2, 0,
   'exam ordering handler must preserve numeric indexes and the selected sequence');
 assert.equal(grade(orderQuestion, browserHandlerContext.state.exam.answers[0], norm), true,
   'exam ordering result must satisfy strict sequence grading');
+assert.ok(practiceAutosaves.length>=6,
+  'single, multi-select and ordering interactions must each write a recoverable session snapshot');
+
 
 const renderContext = vm.createContext({
   esc: value => String(value == null ? '' : value),
