@@ -214,3 +214,90 @@ assert.ok(questionSource.includes("偏食阶段仍须使用合格太阳滤光镜
 
 assert.ok(questionSource.includes("在北半球，北极星的地平高度约等于观测者所在的地理纬度。"),
   'Polaris altitude rule must be explicitly scoped to northern-hemisphere observers');
+
+
+// Exercise the actual browser handlers, not only the pure grading function.
+// The UI emits numeric option indexes in inline callbacks; these tests execute
+// those callbacks against isolated practice/exam state and grade the result.
+function extractFunction(source, name) {
+  const marker = 'function ' + name + '(';
+  const start = source.indexOf(marker);
+  assert.ok(start >= 0, 'application handler must exist: ' + name);
+  const open = source.indexOf('{', start);
+  let depth = 0, quote = null, escaped = false;
+  for (let i = open; i < source.length; i++) {
+    const ch = source[i];
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (ch === '\\\\') escaped = true;
+      else if (ch === quote) quote = null;
+      continue;
+    }
+    if (ch === "'" || ch === '"' || ch === '`') { quote = ch; continue; }
+    if (ch === '{') depth++;
+    if (ch === '}' && --depth === 0) return source.slice(start, i + 1);
+  }
+  throw new Error('unterminated function: ' + name);
+}
+const browserHandlerContext = vm.createContext({
+  state: null,
+  document: { querySelectorAll: () => [], querySelector: () => null },
+  render: () => {},
+  LETTERS: ['A','B','C','D','E','F']
+});
+vm.runInContext(extractFunction(app, 'pChoose'), browserHandlerContext);
+vm.runInContext(extractFunction(app, 'eChoose'), browserHandlerContext);
+const optionQuestion = { type: 'single', answer: 1, options: ['甲','乙','丙'] };
+browserHandlerContext.state = { practice: {
+  list: [optionQuestion], index: 0, userAnswers: [null], showAnswer: false
+}, exam: null };
+browserHandlerContext.pChoose(1);
+assert.equal(browserHandlerContext.state.practice.userAnswers[0], 1,
+  'practice click handler must store a numeric option index');
+assert.equal(grade(optionQuestion, browserHandlerContext.state.practice.userAnswers[0], norm), true,
+  'practice click result must satisfy strict single-choice grading');
+
+browserHandlerContext.state.exam = {
+  list: [optionQuestion], index: 0, answers: [null]
+};
+browserHandlerContext.eChoose(1);
+assert.equal(browserHandlerContext.state.exam.answers[0], 1,
+  'exam click handler must store a numeric option index');
+assert.equal(grade(optionQuestion, browserHandlerContext.state.exam.answers[0], norm), true,
+  'exam click result must satisfy strict single-choice grading');
+
+const multiQuestion = { type: 'multi', answer: [0, 2], options: ['甲','乙','丙'] };
+browserHandlerContext.state.practice = {
+  list: [multiQuestion], index: 0, userAnswers: [null], showAnswer: false
+};
+browserHandlerContext.pChoose(0);
+browserHandlerContext.pChoose(2);
+assert.deepEqual(Array.from(browserHandlerContext.state.practice.userAnswers[0]), [0, 2],
+  'practice multi-select handler must preserve numeric indexes');
+assert.equal(grade(multiQuestion, browserHandlerContext.state.practice.userAnswers[0], norm), true,
+  'practice multi-select result must satisfy order-independent grading');
+
+const orderQuestion = { type: 'order', answer: [2, 0, 1], options: ['甲','乙','丙'] };
+browserHandlerContext.state.exam = {
+  list: [orderQuestion], index: 0, answers: [null]
+};
+browserHandlerContext.eChoose(2);
+browserHandlerContext.eChoose(0);
+browserHandlerContext.eChoose(1);
+assert.deepEqual(Array.from(browserHandlerContext.state.exam.answers[0]), [2, 0, 1],
+  'exam ordering handler must preserve numeric indexes and the selected sequence');
+assert.equal(grade(orderQuestion, browserHandlerContext.state.exam.answers[0], norm), true,
+  'exam ordering result must satisfy strict sequence grading');
+
+const renderContext = vm.createContext({
+  esc: value => String(value == null ? '' : value),
+  LETTERS: ['A','B','C','D','E','F'],
+  questionOptions: question => question.type === 'judge' ? ['正确','错误'] : question.options
+});
+vm.runInContext(inputSource, renderContext);
+for (const callback of ['pChoose', 'eChoose']) {
+  const markup = renderContext.renderInput(optionQuestion, null, false, callback);
+  assert.match(markup, new RegExp('onclick="' + callback + '\\(1\\)"'),
+    callback + ' answer UI must emit a numeric index in its click callback');
+}
+console.log('Browser answer-handler integration checks passed.');
