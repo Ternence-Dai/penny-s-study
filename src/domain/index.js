@@ -2,7 +2,10 @@ export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus })
   if (typeof expectedAnswer !== "string" || !expectedAnswer.trim()) throw new TypeError("expectedAnswer is required");
   if (typeof submittedAnswer !== "string") throw new TypeError("submittedAnswer must be a string");
   if (!["verified","review-needed","draft"].includes(evidenceStatus)) throw new RangeError("invalid evidence status");
-  const correct = submittedAnswer.trim().toLocaleLowerCase() === expectedAnswer.trim().toLocaleLowerCase();
+  // Normalize canonically equivalent Unicode and use locale-independent casing so
+  // answer keys behave identically across browsers and user locale settings.
+  const normalizeAnswer = value => value.normalize("NFC").trim().toLowerCase();
+  const correct = normalizeAnswer(submittedAnswer) === normalizeAnswer(expectedAnswer);
   return Object.freeze({ correct, score:correct ? 1 : 0, evidenceStatus, feedback: evidenceStatus === "verified" ? (correct ? "回答正确" : "再检查关键概念") : "本题答案尚未完成来源审核，评分仅供练习参考" });
 }
 function parseReviewTimestamp(value) {
