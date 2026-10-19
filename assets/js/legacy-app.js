@@ -2526,7 +2526,7 @@ function pFinish(){
 
 var reviewSchedulerPromise = null;
 function loadReviewScheduler(){
-  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js');
+  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261019-study-session-v2');
   return reviewSchedulerPromise;
 }
 async function recordQuestionOutcome(id, correct){
