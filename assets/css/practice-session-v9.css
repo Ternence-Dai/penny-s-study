@@ -1,0 +1,102 @@
+/* V9 practice recovery and navigation surface — additive only */
+body[data-workspace="study"] .w9-practice-resume{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:14px 0 18px;padding:18px 20px;
+  border:1px solid rgba(135,184,255,.25);border-radius:18px;
+  background:
+    radial-gradient(360px 180px at 100% 0%,rgba(101,174,255,.22),transparent 72%),
+    linear-gradient(128deg,#1e315e 0%,#1d2852 56%,#30285e 100%);
+  box-shadow:0 15px 34px rgba(4,12,34,.2),inset 0 1px rgba(255,255,255,.05);
+  color:#edf5ff;
+}
+body[data-workspace="study"] .w9-practice-resume:after{
+  content:"↗";position:absolute;z-index:-1;right:24px;bottom:-28px;
+  color:rgba(178,211,255,.09);font-size:128px;font-weight:900;line-height:1;
+}
+body[data-workspace="study"] .w9-practice-resume__top{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  color:#9bc9ff;font-size:9px;font-weight:850;letter-spacing:1.25px
+}
+body[data-workspace="study"] .w9-practice-resume__top b{
+  padding:5px 9px;border:1px solid rgba(144,199,255,.2);border-radius:999px;
+  background:rgba(126,180,255,.1);color:#d7ebff;font-size:11px;letter-spacing:0
+}
+body[data-workspace="study"] .w9-practice-resume h3{
+  margin:10px 0 5px;color:#f5f8ff;font-size:18px;letter-spacing:-.025em
+}
+body[data-workspace="study"] .w9-practice-resume p{
+  margin:0;color:#b5c6e5;font-size:11px;line-height:1.75
+}
+body[data-workspace="study"] .w9-practice-resume__bar{
+  height:6px;margin:12px 0 14px;overflow:hidden;border-radius:999px;
+  background:rgba(183,208,255,.14)
+}
+body[data-workspace="study"] .w9-practice-resume__bar i{
+  display:block;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,#5bc2e9,#9e9aff,#c4b4ff)
+}
+body[data-workspace="study"] .w9-practice-resume__actions{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap
+}
+body[data-workspace="study"] .w9-practice-resume__actions .btn{
+  min-height:36px;padding:8px 14px;font-size:11px
+}
+body[data-workspace="study"] .w9-practice-resume__actions .btn-main{
+  border:0;background:linear-gradient(120deg,#57aaf0,#8777ef);
+  color:#fff;box-shadow:0 7px 20px rgba(69,119,220,.22)
+}
+body[data-workspace="study"] .w9-practice-resume__actions .btn-ghost{
+  border:1px solid rgba(177,202,242,.2);background:rgba(255,255,255,.055);color:#ccdaf2
+}
+body[data-workspace="study"] .w5-practice-head{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  margin:14px 0;padding:17px 19px;border:1px solid rgba(144,174,226,.2);
+  border-radius:16px;background:linear-gradient(140deg,rgba(30,48,87,.98),rgba(22,34,67,.98));
+  box-shadow:0 10px 26px rgba(0,0,0,.14)
+}
+body[data-workspace="study"] .w5-practice-kicker{
+  color:#95caff;font-size:9px;font-weight:850;letter-spacing:1.35px
+}
+body[data-workspace="study"] .w5-practice-title{
+  margin:5px 0;color:#f1f6ff;font-size:22px;font-weight:850;letter-spacing:-.035em
+}
+body[data-workspace="study"] .w5-practice-meta{
+  color:#aebfdd;font-size:11px;line-height:1.6
+}
+body[data-workspace="study"] .w5-practice-score{
+  display:flex;gap:13px;flex-shrink:0;color:#afc1df;font-size:10px
+}
+body[data-workspace="study"] .w5-practice-score b{font-size:17px}
+body[data-workspace="study"] .w5-practice-progress{
+  margin:0 0 15px;padding:12px 14px;border:1px solid rgba(142,174,226,.16);
+  border-radius:13px;background:rgba(18,31,62,.78)
+}
+body[data-workspace="study"] .w5-practice-progress__meta{
+  display:flex;justify-content:space-between;gap:10px;color:#afc1df;font-size:10px
+}
+body[data-workspace="study"] .w5-practice-progress__meta b{color:#d3e6ff}
+body[data-workspace="study"] .w5-practice-progress__track{
+  height:6px;margin-top:9px;border-radius:999px;background:rgba(164,190,232,.14);overflow:hidden
+}
+body[data-workspace="study"] .w5-practice-progress__track i{
+  display:block;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,#55c2e8,#8e8bf3)
+}
+body[data-workspace="study"] .w5-practice-question{
+  border-radius:18px;background:linear-gradient(145deg,#1c2d56,#152344);
+  border:1px solid rgba(147,177,225,.2);box-shadow:0 13px 30px rgba(0,0,0,.17)
+}
+body[data-workspace="study"] .w5-practice-actions{
+  display:flex;align-items:center;justify-content:space-between;gap:10px
+}
+@media(max-width:600px){
+  body[data-workspace="study"] .w9-practice-resume{padding:15px}
+  body[data-workspace="study"] .w9-practice-resume__actions{display:grid;grid-template-columns:1fr}
+  body[data-workspace="study"] .w9-practice-resume__actions .btn{width:100%}
+  body[data-workspace="study"] .w5-practice-head{align-items:flex-start;flex-direction:column}
+  body[data-workspace="study"] .w5-practice-score{width:100%;justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  body[data-workspace="study"] .w9-practice-resume,
+  body[data-workspace="study"] .w5-practice-question{scroll-behavior:auto}
+}
