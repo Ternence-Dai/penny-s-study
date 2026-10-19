@@ -74,7 +74,7 @@ for (const question of questionBank) {
 
 const html = fs.readFileSync('index.html', 'utf8');
 const productCss = fs.readFileSync('assets/css/product-system.css', 'utf8');
-assert.ok(html.includes('product-system.css?v=20261019-v6'),
+assert.ok(html.includes('product-system.css?v=20261019-v7'),
   'astronomy app must load the current V6 learning workspace styles');
 assert.ok(productCss.includes('Astronomy learning workspace'),
   'astronomy V3 design layer must be present');
