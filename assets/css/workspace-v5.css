@@ -1,0 +1,37 @@
+/* XingSaiTong Workspace V5 — celestial learning observatory */
+:root{--s-bg:#080d20;--s-panel:#121a33;--s-line:#29365b;--s-ink:#eef2ff;--s-muted:#9ca9cf;--s-cyan:#64d9ee;--s-gold:#f4c66d}
+body[data-workspace="study"]{background:radial-gradient(ellipse at 50% -12%,#27356c 0,transparent 42%),var(--s-bg)!important;color:var(--s-ink)!important;font-family:Inter,"Segoe UI","Microsoft YaHei",sans-serif}
+body[data-workspace="study"] .app{min-height:100vh;background:transparent!important}
+body[data-workspace="study"] .navbar{position:sticky;top:0;z-index:30;min-height:68px;padding:0 clamp(16px,3vw,40px);background:#090f22eF;border-bottom:1px solid #29355a;backdrop-filter:blur(18px);box-shadow:0 8px 26px #0002}
+body[data-workspace="study"] .navbar .brand,body[data-workspace="study"] .navbar h1,body[data-workspace="study"] .navbar .logo{color:#f0f4ff;font-weight:850}
+body[data-workspace="study"] .navbar a,body[data-workspace="study"] .navbar button{color:#aebbe0}
+body[data-workspace="study"] .study-intro{position:relative;isolation:isolate;overflow:hidden;margin:22px clamp(15px,3vw,42px) 18px;padding:31px clamp(22px,3.4vw,46px);border:1px solid #44517e;border-radius:22px;background:radial-gradient(circle at 78% 20%,#5a74ce42,transparent 25%),radial-gradient(circle at 25% 110%,#22bbd324,transparent 30%),linear-gradient(120deg,#1b2850,#111b38 57%,#172e4a);box-shadow:0 18px 44px #03081780}
+body[data-workspace="study"] .study-intro:after{content:"✦  ·  ⋆  ·  ✧";position:absolute;right:8%;top:16%;z-index:-1;color:#e6e9ff37;font-size:clamp(26px,5vw,58px);letter-spacing:18px;transform:rotate(-9deg)}
+body[data-workspace="study"] .study-intro .eyebrow{color:#8de5f0;font-size:10px;letter-spacing:2px;font-weight:850}
+body[data-workspace="study"] .study-intro h2{color:#f5f5ff;font-size:clamp(26px,3vw,39px);letter-spacing:-1px}
+body[data-workspace="study"] .study-intro p{max-width:780px;color:#b6c3e2;font-size:12px;line-height:1.85}
+body[data-workspace="study"] .study-tags span{background:#ffffff0d;border:1px solid #7f91c34a;color:#cad8fa;border-radius:7px;padding:6px 10px;font-size:10px}
+body[data-workspace="study"] .study-intro .orbit{width:90px;height:90px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#334d8b,#18274d);border:1px solid #7c93d2;color:#f7d887;font-size:34px;box-shadow:0 0 0 12px #7193e20b,0 0 45px #4d8dcf44}
+body[data-workspace="study"] .product-workflow{margin:0 clamp(15px,3vw,42px) 18px;padding:19px;border:1px solid #303d65;border-radius:17px;background:linear-gradient(140deg,#141d39,#10172d);box-shadow:0 12px 30px #0003}
+body[data-workspace="study"] .product-workflow__head h3{color:#ecf1ff;font-size:17px}
+body[data-workspace="study"] .product-workflow__head p,body[data-workspace="study"] .product-workflow__foot{color:#9aa9cf}
+body[data-workspace="study"] .product-workflow__mode{background:#26345b;border:1px solid #485b8d;color:#9ee7f1}
+body[data-workspace="study"] .product-workflow__item{min-height:116px;border:1px solid #364675;border-radius:13px;background:linear-gradient(145deg,#1c294b,#141e39);color:#eff3ff}
+body[data-workspace="study"] .product-workflow__item i{background:#2c3d70;color:#a9e9f1}
+body[data-workspace="study"] .product-workflow__item b{color:#f2f4ff}
+body[data-workspace="study"] .product-workflow__item small{color:#a6b4d9}
+body[data-workspace="study"] .product-workflow__item span{color:#8de3ed}
+body[data-workspace="study"] .view{padding:0 clamp(15px,3vw,42px) 90px;background:transparent!important}
+body[data-workspace="study"] .view :is(.card,.panel,.question-card,.quiz-card,.module-card,.quick-card){background:linear-gradient(145deg,#17213e,#111a32)!important;border:1px solid #303e63!important;border-radius:15px!important;box-shadow:0 9px 24px #0003!important;color:#eaf0ff}
+body[data-workspace="study"] .view h2,body[data-workspace="study"] .view h3{color:#f0f4ff}
+body[data-workspace="study"] .view p,body[data-workspace="study"] .view small{color:#a7b5d6}
+body[data-workspace="study"] .view input,body[data-workspace="study"] .view select,body[data-workspace="study"] .view textarea{background:#0d1730!important;border:1px solid #35466e!important;color:#edf4ff!important;border-radius:9px}
+body[data-workspace="study"] .view .btn.primary{background:linear-gradient(110deg,#247eaa,#5264b5);color:#fff;box-shadow:0 7px 18px #456bd444}
+body[data-workspace="study"] .view .btn.ghost{background:#202e50;border:1px solid #42547e;color:#c0d3f5}
+body[data-workspace="study"] .tabbar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:min(860px,calc(100% - 28px));padding:7px 10px calc(7px + env(safe-area-inset-bottom));border:1px solid #46557e;border-radius:16px;background:#101a31ed;box-shadow:0 12px 36px #0006;backdrop-filter:blur(18px)}
+body[data-workspace="study"] .tabbar button,body[data-workspace="study"] .tabbar .tab{color:#9eadd2}
+body[data-workspace="study"] .tabbar .active{color:#8de7f0;background:#27385d;border-radius:10px}
+body[data-workspace="study"] :where(button,input,select,textarea,a,[tabindex]):focus-visible{outline:3px solid #6de3ee!important;outline-offset:3px}
+@media(max-width:900px){body[data-workspace="study"] .study-intro{margin:14px 13px;padding:22px 18px}body[data-workspace="study"] .product-workflow{margin:0 13px 14px;padding:14px 12px}body[data-workspace="study"] .product-workflow__grid{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-workspace="study"] .view{padding:0 13px 100px}}
+@media(max-width:560px){body[data-workspace="study"] .study-intro .orbit{display:none}body[data-workspace="study"] .study-intro h2{font-size:23px}body[data-workspace="study"] .product-workflow__item{min-height:108px;padding:10px}body[data-workspace="study"] .tabbar{bottom:6px}}
+@media(prefers-reduced-motion:reduce){body[data-workspace="study"] *,body[data-workspace="study"] *:before,body[data-workspace="study"] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
