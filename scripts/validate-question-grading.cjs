@@ -350,8 +350,8 @@ assert.ok(app.includes('evaluated: new Array(list.length).fill(false)') &&
 for (const selector of [
   '.w5-practice-head', '.w5-practice-progress',
   '.w5-practice-question', '.w5-practice-actions'
-]) assert.ok(fs.readFileSync('assets/css/product-system-v9.css','utf8').includes(selector),
-  'V9.1 practice workspace must style ' + selector);
+]) assert.ok(fs.readFileSync('assets/css/practice-session-v9.css','utf8').includes(selector),
+  'V9 practice session stylesheet must style ' + selector);
 
 let practiceLastAlert='';
 const practiceContext=vm.createContext({
@@ -366,6 +366,8 @@ const practiceContext=vm.createContext({
     bumpQStat(){this.bumpCount++;},
     bumpCount:0,
     addRecord(){this.recordCount++;},
+    clearActivePractice(){return true;},
+    saveActivePractice(){return true;},
     recordCount:0
   },
   recordQuestionOutcome:async()=>{},
