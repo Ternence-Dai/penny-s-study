@@ -11,17 +11,14 @@
 <meta name="author" content="戴煜">
 <meta name="email" content="18662613315@163.com">
 <link rel="stylesheet" href="./assets/css/legacy-app.css">
-
-
-  <link rel="stylesheet" href="./assets/css/product-system.css?v=20261019-v8">
-  <link rel="stylesheet" href="./assets/css/workspace-v5.css?v=20261019-v5">
-  <link rel="stylesheet" href="./assets/css/product-system-v9.css?v=20261019-v92">
-  <link rel="stylesheet" href="./assets/css/practice-session-v9.css?v=20261019-v9">
+<link rel="stylesheet" href="./assets/css/product-system.css?v=20261019-v8">
+<link rel="stylesheet" href="./assets/css/workspace-v5.css?v=20261019-v5">
+<link rel="stylesheet" href="./assets/css/product-system-v9.css?v=20261019-v92">
+<link rel="stylesheet" href="./assets/css/practice-session-v9.css?v=20261019-v9">
+<link rel="stylesheet" href="./assets/css/study-command-center.css?v=20261019-v1">
 </head>
 <body data-workspace="study">
-
 <canvas id="starsBg"></canvas>
-
 <div class="app">
   <header class="navbar">
     <button class="back-btn hidden" id="backBtn">←</button>
@@ -47,18 +44,12 @@
     <button data-tab="profile"><span class="ico"></span>我的</button>
   </nav>
 </div>
-
 <div class="reader-panel" id="readerPanel">
-  <div class="reader-head">
-    <div class="reader-title" id="readerTitle">未选择</div>
-    <div id="readerStatus">就绪</div>
-  </div>
+  <div class="reader-head"><div class="reader-title" id="readerTitle">未选择</div><div id="readerStatus">就绪</div></div>
   <div class="reader-text" id="readerText"></div>
   <div class="reader-row">
     <button class="main" id="readerPlay" onclick="Reader.toggle()">▶ 播放</button>
-    <button onclick="Reader.stop()">■ 停止</button>
-    <button onclick="Reader.prev()">上一句</button>
-    <button onclick="Reader.next()">下一句</button>
+    <button onclick="Reader.stop()">■ 停止</button><button onclick="Reader.prev()">上一句</button><button onclick="Reader.next()">下一句</button>
   </div>
   <div class="reader-sliders">
     <div class="r-slider"><label>语速</label><input type="range" id="rSpeed" min="0.6" max="1.8" step="0.05" value="1" oninput="Reader.setSpeed(this.value)"><span class="r-val" id="rSpeedVal">1.0x</span></div>
@@ -66,7 +57,6 @@
     <div class="r-slider"><label>音调</label><input type="range" id="rPitch" min="0.7" max="1.4" step="0.05" value="1.05" oninput="Reader.setPitch(this.value)"><span class="r-val" id="rPitchVal">1.05</span></div>
   </div>
 </div>
-
 <script src="./assets/js/question-bank.js"></script>
 <script src="./assets/js/question-grading.js"></script>
 <script src="./assets/js/legacy-app.js?v=20261019-session-v1"></script>
@@ -79,7 +69,7 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
   });
 }
 </script>
-  <script src="./assets/js/workspace-v5.js?v=20261019-v52"></script>
-  <script src="./assets/js/workspace-v5-context.js?v=20261019-v52"></script>
+<script src="./assets/js/workspace-v5.js?v=20261019-v52"></script>
+<script src="./assets/js/workspace-v5-context.js?v=20261019-v52"></script>
 </body>
 </html>
