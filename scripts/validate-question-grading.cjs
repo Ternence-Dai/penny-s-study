@@ -267,6 +267,21 @@ const browserHandlerContext = vm.createContext({
   Store: { saveActivePractice: value => { practiceAutosaves.push(value); return true; } },
   LETTERS: ['A','B','C','D','E','F']
 });
+const answeredContext = vm.createContext({ Set, Number, String, Array });
+vm.runInContext(extractFunction(app, 'isAnswered'), answeredContext);
+const isAnsweredUnderTest = answeredContext.isAnswered;
+const orderedQuestionForValidation = { type: 'order', options: ['甲','乙','丙'] };
+assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2]), false,
+  'a partial ordering sequence must remain unanswered, not receive a wrong score');
+assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2, 0]), false,
+  'an ordering sequence missing an option must remain incomplete');
+assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2, 0, 0]), false,
+  'duplicate option indexes must not count as a completed ordering response');
+assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2, 0, 1]), true,
+  'a complete permutation must count as an answered ordering response');
+assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2, 0, 3]), false,
+  'out-of-range option indexes must not count as a completed ordering response');
+
 vm.runInContext(extractFunction(app, 'pChoose'), browserHandlerContext);
 vm.runInContext(extractFunction(app, 'eChoose'), browserHandlerContext);
 const optionQuestion = { type: 'single', answer: 1, options: ['甲','乙','丙'] };
