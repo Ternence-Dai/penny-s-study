@@ -44,3 +44,5 @@ jobs:
         run: node scripts/validate-question-grading.cjs
       - name: Validate study storage recovery
         run: node scripts/validate-storage-recovery.cjs
+      - name: Validate offline app shell
+        run: node scripts/validate-pwa.cjs
