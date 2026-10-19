@@ -68,7 +68,7 @@ function norm(s){return String(s==null?'':s).normalize('NFC').trim().toLowerCase
 /* ==========================================
    存储
    ========================================== */
-var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6'};
+var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1'};
 // Fail closed: if browser storage becomes unavailable, never replace existing learning data with fallback defaults.
 var storageRecoveryRequired = false;
 function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);return null;}}
@@ -119,6 +119,42 @@ function isPracticeRecordStorage(value){
 }
 function isStudyDayStorage(value){
   return Array.isArray(value)&&value.every(function(item){return typeof item==='string'&&item.trim().length>0;});
+}
+function isPracticeAnswerStorage(value){
+  if(value===null)return true;
+  if(typeof value==='string')return value.length<=4000;
+  if(Number.isSafeInteger(value))return value>=0&&value<=32;
+  if(Array.isArray(value)){
+    if(value.length>32)return false;
+    var seen=new Set();
+    return value.every(function(item){
+      if(!Number.isSafeInteger(item)||item<0||item>32||seen.has(item))return false;
+      seen.add(item);return true;
+    });
+  }
+  return false;
+}
+function isActivePracticeStorage(value){
+  if(!isStorageRecord(value)||value.version!==1||
+     !['小学','初中','高中'].includes(value.level)||
+     typeof value.label!=='string'||!value.label.trim()||value.label.length>160||
+     !Array.isArray(value.questionIds)||value.questionIds.length<1||value.questionIds.length>300||
+     !Array.isArray(value.userAnswers)||value.userAnswers.length!==value.questionIds.length||
+     !Array.isArray(value.evaluated)||value.evaluated.length!==value.questionIds.length||
+     !Number.isSafeInteger(value.index)||value.index<0||value.index>=value.questionIds.length||
+     !Number.isSafeInteger(value.correct)||value.correct<0||
+     !Number.isSafeInteger(value.wrong)||value.wrong<0||
+     !Number.isFinite(value.updatedAt)||value.updatedAt<0)return false;
+  var seenIds=new Set();
+  for(var i=0;i<value.questionIds.length;i++){
+    var id=value.questionIds[i];
+    if(typeof id!=='string'||!id.trim()||id.length>120||seenIds.has(id)||
+       typeof value.evaluated[i]!=='boolean'||
+       !isPracticeAnswerStorage(value.userAnswers[i]))return false;
+    seenIds.add(id);
+  }
+  var completed=value.evaluated.filter(Boolean).length;
+  return value.correct+value.wrong===completed&&value.correct<=completed&&value.wrong<=completed;
 }
 function isAIConversationStorage(value){
   return Array.isArray(value)&&value.every(function(item){
@@ -173,7 +209,7 @@ var Store = {
   bumpQStat:function(id,ok){var s=this.getQStats();if(!s[id])s[id]={t:0,c:0};s[id].t++;if(ok)s[id].c++;s[id].last=Date.now();safeStorageSet(KEY.qstats,JSON.stringify(s));},
   addRecord:function(r){var l=safeStorageJSON(KEY.record,[],isPracticeRecordStorage);l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);safeStorageSet(KEY.record,JSON.stringify(l));var d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);safeStorageSet(KEY.days,JSON.stringify(d));}},
   getStats:function(){var r=safeStorageJSON(KEY.record,[],isPracticeRecordStorage),d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var t=0,c=0;r.forEach(function(x){t+=(x.total||0);c+=(x.correct||0);});return{total:t,correct:c,rate:rate(c,t),sessions:r.length,days:d.length,wrongCount:this.getWrong().length};},
-  clearAll:function(){['wrong','record','days','qstats'].forEach(function(k){safeStorageRemove(KEY[k]);});},
+  clearAll:function(){['wrong','record','days','qstats','practice'].forEach(function(k){safeStorageRemove(KEY[k]);});},
   getAI:function(){return safeStorageJSON(KEY.ai,[],isAIConversationStorage);},
   saveAI:function(l){if(l.length>50)l=l.slice(l.length-50);safeStorageSet(KEY.ai,JSON.stringify(l));},
   clearAI:function(){safeStorageRemove(KEY.ai);},
@@ -184,7 +220,31 @@ var Store = {
       return false;
     }
     return safeStorageSet(KEY.prefs,JSON.stringify(p));
-  }
+  },
+  getActivePractice:function(){return safeStorageJSON(KEY.practice,null,isActivePracticeStorage);},
+  saveActivePractice:function(p){
+    if(!p||!Array.isArray(p.list)||!Array.isArray(p.userAnswers)||
+       !Array.isArray(p.evaluated)||p.userAnswers.length!==p.list.length||
+       p.evaluated.length!==p.list.length)return false;
+    var snapshot={
+      version:1,
+      level:p.level,
+      label:String(p.label||'专项练习'),
+      questionIds:p.list.map(function(question){return question&&String(question.id||'');}),
+      userAnswers:p.userAnswers.map(function(answer){return Array.isArray(answer)?answer.slice():answer;}),
+      evaluated:p.evaluated.slice(),
+      index:p.index,
+      correct:p.correct,
+      wrong:p.wrong,
+      updatedAt:Date.now()
+    };
+    if(!isActivePracticeStorage(snapshot)){
+      console.warn('练习进度不符合存档格式，未覆盖上一次有效存档。');
+      return false;
+    }
+    return safeStorageSet(KEY.practice,JSON.stringify(snapshot));
+  },
+  clearActivePractice:function(){return safeStorageRemove(KEY.practice);}
 };
 
 /* ==========================================
@@ -1925,6 +1985,7 @@ var TITLES = {
 var TABS = ['home','learn','ai','news','wrong','profile'];
 
 function go(p,o){
+  if(state.page==='practice'&&state.practice) Store.saveActivePractice(state.practice);
   SimEngine.stopAll();
   if (state.page === 'news' && p !== 'news') Reader.stop();
   state.page = p;
@@ -1985,6 +2046,20 @@ function renderHome(){
   h += '<div class="brand"><h2>星赛通</h2>' +
     '<div class="sub">小学 · 初中天文知识竞赛智能备赛</div>' +
     '<div class="sign">作者：<b>戴煜</b> · 18662613315@163.com</div></div>';
+
+  var savedPractice=Store.getActivePractice();
+  if(savedPractice){
+    var savedDone=savedPractice.evaluated.filter(Boolean).length;
+    var savedRate=Math.round(savedDone/savedPractice.questionIds.length*100);
+    h += '<section class="w9-practice-resume">' +
+      '<div class="w9-practice-resume__top"><span>SESSION RECOVERY · 本机自动存档</span><b>'+savedRate+'%</b></div>' +
+      '<h3>继续上次练习</h3>' +
+      '<p>'+esc(savedPractice.label)+' · '+esc(savedPractice.level)+' · 已完成 '+savedDone+' / '+savedPractice.questionIds.length+' 题 · 已答对 '+savedPractice.correct+' 题</p>' +
+      '<div class="w9-practice-resume__bar"><i style="width:'+savedRate+'%"></i></div>' +
+      '<div class="w9-practice-resume__actions"><button type="button" class="btn btn-main" onclick="resumePractice()">继续练习</button>' +
+      '<button type="button" class="btn btn-ghost" onclick="discardActivePractice()">放弃本次进度</button></div>' +
+      '</section>';
+  }
 
   // 年级切换
   h += '<div class="level-switch" style="display:flex;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:14px;">' +
@@ -2167,6 +2242,15 @@ function startPractice(level, category){
   startWith(list, level, category || '综合练习');
 }
 function startWith(list, level, label){
+  var saved=Store.getActivePractice();
+  if(saved){
+    var done=saved.evaluated.filter(Boolean).length;
+    if(!confirm('发现一组尚未完成的练习：'+saved.label+'（'+done+'/'+saved.questionIds.length+' 题）。\n\n开始新练习将替换这组未完成进度，已有答题统计和错题记录不会被删除。是否继续？'))return;
+    if(!Store.clearActivePractice()){
+      alert('无法安全替换旧练习存档；原进度已保留，请先检查浏览器存储。');
+      return;
+    }
+  }
   state.practice = {
     list:list, index:0,
     userAnswers: new Array(list.length).fill(null),
@@ -2174,7 +2258,37 @@ function startWith(list, level, label){
     showAnswer:false, correct:0, wrong:0,
     level:level, label:label
   };
+  Store.saveActivePractice(state.practice);
   go('practice');
+}
+function resumePractice(){
+  var saved=Store.getActivePractice();
+  if(!saved){alert('没有可恢复的练习进度。');return;}
+  var byId=new Map(Q.map(function(question){return [question.id,question];}));
+  var list=saved.questionIds.map(function(id){return byId.get(id)||null;});
+  if(list.some(function(question){return !question;})){
+    alert('当前题库与这份练习存档不完全匹配。原存档没有被删除，请先检查题库版本。');
+    return;
+  }
+  state.practice={
+    list:list,index:saved.index,
+    userAnswers:saved.userAnswers.map(function(answer){return Array.isArray(answer)?answer.slice():answer;}),
+    evaluated:saved.evaluated.slice(),
+    showAnswer:saved.evaluated[saved.index]===true,
+    correct:saved.correct,wrong:saved.wrong,
+    level:saved.level,label:saved.label
+  };
+  go('practice');
+}
+function discardActivePractice(){
+  var saved=Store.getActivePractice();
+  if(!saved)return;
+  if(!confirm('只删除这组尚未完成的练习草稿？已完成答题统计与错题记录不会更改。'))return;
+  if(!Store.clearActivePractice()){
+    alert('练习存档无法安全删除；原记录已保留。');
+    return;
+  }
+  render();
 }
 function renderPractice(){
   var p = state.practice;
@@ -2285,6 +2399,7 @@ function onFill(v){
   var p = state.practice;
   if (!p) return;
   p.userAnswers[p.index] = v;
+  Store.saveActivePractice(p);
   var b = document.querySelector('.footer .btn-main');
   if (b && !p.showAnswer) b.disabled = !v.trim();
 }
@@ -2300,6 +2415,7 @@ function pChoose(i){
     document.querySelectorAll('.option').forEach(function(n, j){
       n.className = 'option' + (arr.indexOf(j)>=0?' selected':'');
     });
+    Store.saveActivePractice(p);
     var b = document.querySelector('.footer .btn-main');
     if (b) b.disabled = arr.length === 0;
     return;
@@ -2309,10 +2425,12 @@ function pChoose(i){
     var k2 = a2.indexOf(i);
     if (k2 >= 0) a2.splice(k2, 1); else a2.push(i);
     p.userAnswers[p.index] = a2;
+    Store.saveActivePractice(p);
     render();
     return;
   }
   p.userAnswers[p.index] = i;
+  Store.saveActivePractice(p);
   document.querySelectorAll('.option').forEach(function(n, j){
     n.className = 'option' + (j===i?' selected':'');
   });
@@ -2335,6 +2453,7 @@ async function pSubmit(){
     Store.bumpQStat(q.id, ok);
     await recordQuestionOutcome(q.id,ok);
     p.showAnswer = true;
+    Store.saveActivePractice(p);
   }finally{
     p.submitting=false;
     render();
@@ -2346,6 +2465,7 @@ function pNext(){
      p.index>=p.list.length-1) return;
   p.index++;
   p.showAnswer=p.evaluated[p.index]===true;
+  Store.saveActivePractice(p);
   render();
 }
 function pPrev(){
@@ -2353,6 +2473,7 @@ function pPrev(){
   if(!p||p.index<=0) return;
   p.index--;
   p.showAnswer=Array.isArray(p.evaluated)&&p.evaluated[p.index]===true;
+  Store.saveActivePractice(p);
   render();
 }
 function pFinish(){
@@ -2364,6 +2485,7 @@ function pFinish(){
     return;
   }
   Store.addRecord({mode:'practice', total:total, correct:correct});
+  Store.clearActivePractice();
   if (confirm('共 ' + total + ' 题\n答对 ' + correct + ' 题\n正确率 ' + rate(correct, total) + '%\n\n点击「确定」再来一组，点击「取消」返回')){
     var list = shuffle(p.list);
     state.practice = {
@@ -2373,6 +2495,7 @@ function pFinish(){
       showAnswer:false, correct:0, wrong:0,
       level:p.level, label:p.label
     };
+    Store.saveActivePractice(state.practice);
     render();
   } else go('home');
 }
