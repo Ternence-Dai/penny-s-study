@@ -72,29 +72,40 @@ for (const line of rows) {
   const options = optionsField === 'null'
     ? null
     : [...optionsField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
-  const answerNumbers = [...answerField.matchAll(/\d+/g)].map(match => Number(match[0]));
+  const parseIndexArray = () => {
+    if (!/^\\[\\s*(?:0|[1-9]\\d*)(?:\\s*,\\s*(?:0|[1-9]\\d*))*\\s*\\]$/.test(answerField))
+      return null;
+    try {
+      const values = JSON.parse(answerField);
+      return Array.isArray(values) && values.every(Number.isSafeInteger) ? values : null;
+    } catch {
+      return null;
+    }
+  };
+  const answerNumbers = parseIndexArray();
   if (options && options.some(option => !option.trim())) errors.push(id + ': options must not be blank');
   if (options && new Set(options.map(option => option.trim().toLowerCase())).size !== options.length)
     errors.push(id + ': options contain duplicate labels');
   if (type === 'single') {
-    const answer = Number(answerField);
-    if (!options || options.length < 2 || !Number.isInteger(answer) || answer < 0 || answer >= options.length)
+    const answer = /^(?:0|[1-9]\\d*)$/.test(answerField) ? Number(answerField) : NaN;
+    if (!options || options.length < 2 || !Number.isSafeInteger(answer) || answer < 0 || answer >= options.length)
       errors.push(id + ': invalid single-choice options/answer');
   } else if (type === 'judge') {
     if (options !== null || !['0', '1'].includes(answerField))
       errors.push(id + ': invalid true/false answer');
   } else if (type === 'multi' || type === 'order') {
-    if (!options || options.length < 2 || !answerNumbers.length ||
+    if (!options || options.length < 2 || !answerNumbers || !answerNumbers.length ||
         answerNumbers.some(value => value < 0 || value >= options.length))
       errors.push(id + ': invalid ' + type + ' options/answer');
-    if (type === 'multi' && new Set(answerNumbers).size !== answerNumbers.length)
+    if (type === 'multi' && answerNumbers && new Set(answerNumbers).size !== answerNumbers.length)
       errors.push(id + ': multi-choice answer contains duplicate options');
-    if (type === 'order' && (answerNumbers.length !== options.length ||
+    if (type === 'order' && (!answerNumbers || answerNumbers.length !== options.length ||
         new Set(answerNumbers).size !== options.length))
       errors.push(id + ': order answer must be a complete permutation');
   } else if (type === 'fill') {
     const fillAnswers = [...answerField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
-    if (options !== null || !answerField.startsWith('[') || !answerField.endsWith(']') ||
+    const validFillLiteral = /^\\[\\s*'(?:[^'\\\\]|\\\\.)*'(?:\\s*,\\s*'(?:[^'\\\\]|\\\\.)*')*\\s*\\]$/.test(answerField);
+    if (options !== null || !validFillLiteral ||
         !fillAnswers.length || fillAnswers.some(value => !value.trim()))
       errors.push(id + ': invalid fill-in answer');
   }
