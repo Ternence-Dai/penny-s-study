@@ -7,8 +7,6 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './assets/icons/app-icon.svg',
   './assets/css/legacy-app.css',
-  './assets/css/product-system.css?v=20261018-v3',
-  './assets/css/product-system.css?v=20261019-v5',
   './assets/css/product-system.css?v=20261019-v6',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
