@@ -96,7 +96,7 @@ assert.ok(html.includes('viewport-fit=cover') && !html.includes('user-scalable=n
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
-const norm = value => String(value == null ? '' : value).trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g, '');
+const norm = value => String(value == null ? '' : value).normalize('NFC').trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g, '');
 const q = (type, answer) => ({ type, answer });
 assert.equal(norm("20°30'"), norm("20°30′"), 'ASCII apostrophe must normalize as angle minutes');
 assert.equal(norm('20°30"'), norm('20°30″'), 'ASCII quote must normalize as angle seconds');
@@ -117,6 +117,8 @@ assert.equal(grade(q('multi', [1, 2]), ['1', 2], norm), false);
 assert.equal(grade(q('multi', [{ id: 1 }]), [{ id: 1 }], norm), false);
 assert.equal(grade(q('multi', []), [], norm), false);
 assert.equal(grade(q('fill', ['银河系', '银河']), ' 银河系 ', norm), true);
+assert.equal(grade(q('fill', ['Café']), 'Cafe'+String.fromCharCode(0x301), norm), true,
+  'canonically equivalent Unicode answers must grade identically in the live normalizer');
 assert.equal(grade(q('fill', ['银河系']), '', norm), false);
 assert.equal(grade(q('fill', []), 'anything', norm), false);
 assert.equal(grade(q('fill', [{}]), '[object Object]', norm), false);
