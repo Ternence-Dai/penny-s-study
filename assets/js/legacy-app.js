@@ -2497,7 +2497,10 @@ function pFinish(){
     };
     Store.saveActivePractice(state.practice);
     render();
-  } else go('home');
+  } else {
+    state.practice=null;
+    go('home');
+  }
 }
 
 var reviewSchedulerPromise = null;
