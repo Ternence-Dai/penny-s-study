@@ -1918,14 +1918,20 @@ function isCorrect(q, ua){
   return window.PennyQuestionGrading.isCorrect(q, ua, norm);
 }
 function isAnswered(q, ua){
-  if (q.type === 'multi') return Array.isArray(ua) && ua.length > 0;
+  if (!q || typeof q !== 'object') return false;
+  if (q.type === 'multi') return Array.isArray(ua) && Array.isArray(q.options) &&
+    ua.length > 0 && new Set(ua).size === ua.length &&
+    ua.every(function(index){return Number.isSafeInteger(index) && index >= 0 && index < q.options.length;});
   // An ordering response is complete only after every option appears exactly once.
   // Partial sequences remain drafts instead of being scored as incorrect answers.
   if (q.type === 'order') return Array.isArray(ua) && Array.isArray(q.options) &&
     ua.length === q.options.length && new Set(ua).size === q.options.length &&
     ua.every(function(index){return Number.isSafeInteger(index) && index >= 0 && index < q.options.length;});
-  if (q.type === 'fill') return String(ua == null ? '' : ua).trim() !== '';
-  return ua !== undefined && ua !== null && ua !== -1;
+  if (q.type === 'judge') return Number.isSafeInteger(ua) && (ua === 0 || ua === 1);
+  if (q.type === 'single' || q.type === 'image') return Array.isArray(q.options) &&
+    Number.isSafeInteger(ua) && ua >= 0 && ua < q.options.length;
+  if (q.type === 'fill') return typeof ua === 'string' && ua.trim() !== '';
+  return false;
 }
 function answerText(q){
   if (q.type === 'single' || q.type === 'image') return LETTERS[q.answer];
