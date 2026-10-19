@@ -2170,6 +2170,7 @@ function startWith(list, level, label){
   state.practice = {
     list:list, index:0,
     userAnswers: new Array(list.length).fill(null),
+    evaluated: new Array(list.length).fill(false),
     showAnswer:false, correct:0, wrong:0,
     level:level, label:label
   };
@@ -2182,26 +2183,33 @@ function renderPractice(){
   var ua = p.userAnswers[p.index];
   var total = p.list.length;
   var answered = isAnswered(q, ua);
-  var h = '<div class="topbar">' +
-    '<div class="counter">第 ' + (p.index+1) + ' / ' + total + ' 题</div>' +
-    '<div class="counter"><span class="ok">✓ ' + p.correct + '</span>　<span class="no">✗ ' + p.wrong + '</span></div></div>';
-  h += '<div class="progress"><i style="width:' + rate(p.index,total) + '%;"></i></div>';
-  h += '<div class="card"><div class="tags">' +
+  var evaluated = Array.isArray(p.evaluated) && p.evaluated[p.index] === true;
+  var completed = Array.isArray(p.evaluated) ? p.evaluated.filter(Boolean).length : 0;
+  var h = '<div class="w5-practice-head">' +
+    '<div><span class="w5-practice-kicker">PRACTICE SESSION · ' + esc(p.label || '专项练习') + '</span>' +
+    '<div class="w5-practice-title">第 ' + (p.index+1) + ' / ' + total + ' 题</div>' +
+    '<div class="w5-practice-meta">' + esc(q.level) + ' · ' + esc(q.category) + ' · ' + esc(typeLabel(q.type)) + '</div></div>' +
+    '<div class="w5-practice-score"><span><b class="ok">' + p.correct + '</b> 答对</span><span><b class="no">' + p.wrong + '</b> 答错</span></div></div>';
+  h += '<div class="w5-practice-progress"><div class="w5-practice-progress__meta"><span>练习进度</span><b>' + Math.round(completed / total * 100) + '% 已完成</b></div>' +
+    '<div class="w5-practice-progress__track"><i style="width:' + rate(completed,total) + '%;"></i></div></div>';
+  h += '<div class="card w5-practice-question"><div class="tags">' +
     '<span class="tag">' + esc(q.level) + '</span>' +
     '<span class="tag">' + esc(q.category) + '</span>' +
-    '<span class="tag amber">' + typeLabel(q.type) + '</span></div>';
+    '<span class="tag amber">' + typeLabel(q.type) + '</span>' +
+    (evaluated ? '<span class="tag">已判分 · 不重复计分</span>' : '<span class="tag">请完成作答后提交</span>') + '</div>';
   h += '<div class="stem">' + esc(q.stem) + '</div>';
-  h += renderInput(q, ua, p.showAnswer, 'pChoose');
+  h += renderInput(q, ua, evaluated || p.showAnswer, 'pChoose');
   h += '</div>';
-  if (p.showAnswer){
+  if (evaluated || p.showAnswer){
     var ok = isCorrect(q, ua);
     h += '<div class="explain"><div class="head ' + (ok?'ok':'no') + '">' +
       (ok?'✓ 回答正确':'✗ 回答错误') + '</div>' +
       '<div class="line">正确答案：' + esc(answerText(q)) + '</div>' +
       '<div class="line">' + esc(q.explanation) + '</div></div>';
   }
-  h += '<div class="footer">';
-  if (!p.showAnswer){
+  h += '<div class="footer w5-practice-actions">' +
+    '<button class="btn btn-ghost" ' + (p.index===0?'disabled':'') + ' onclick="pPrev()">上一题</button>';
+  if (!evaluated && !p.showAnswer){
     h += '<button class="btn btn-main" ' + (!answered||p.submitting?'disabled':'') + ' onclick="pSubmit()">' + (p.submitting?'正在保存复习计划…':'提交答案') + '</button>';
   } else if (p.index < total - 1){
     h += '<button class="btn btn-main" onclick="pNext()">下一题</button>';
