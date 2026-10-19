@@ -49,7 +49,7 @@
 ## 6. 2026-10-19 实施补充：可安装与离线学习（Planet Explorer 模式）
 
 - 新增 `manifest.webmanifest`、本地 SVG 图标和 `service-worker.js`，页面在 HTTPS 环境加载后注册 service worker。
-- 首次联网访问时缓存首页、V3/V5 样式、300 题题库、判分引擎和主应用；离线导航使用缓存首页回退。
+- 首次联网访问时缓存首页、当前 V6 产品样式、300 题题库、判分引擎和主应用；离线导航使用缓存首页回退。
 - Service worker 只处理同源 GET 请求，不拦截写入请求或第三方接口，并在激活新缓存时清理旧版本。
 - 新增 `scripts/validate-pwa.cjs` 并加入 standalone CI，验证 manifest、图标、缓存清单、离线导航与请求边界。
 - 离线模式不会自动同步不同设备的本地学习记录；localStorage 进度仍限于当前浏览器/设备。
@@ -64,6 +64,8 @@
 | [Planet Explorer](https://github.com/mariotristan/planets) | [Quiz 交互](https://github.com/mariotristan/planets/blob/main/quiz.js)、[应用流程](https://github.com/mariotristan/planets/blob/main/app.js) | 探索/比较/测验任务、即时反馈、儿童友好阅读节奏、语音与本地进度 | 题量和年龄段较小，不能替代本项目多题型竞赛评分规则 |
 | [Stellarium](https://github.com/Stellarium/stellarium) | [主仓库与功能说明](https://github.com/Stellarium/stellarium) | 天空对象、星图场景、观测时间/位置语境，帮助把抽象对象放进天空环境 | 桌面星象软件，不是线上竞赛练习或知识库 |
 | [Celestia](https://github.com/CelestiaProject/Celestia) | [README 与导航交互说明](https://github.com/CelestiaProject/Celestia/blob/master/README.md) | 3D 空间漫游、轨道/尺度探索、对象信息随视角变化 | 原生桌面 3D 模拟器；当前网站不声称具有等同精度或完整 3D 天体引擎 |
+| [InteractiveSolarSystem](https://github.com/StefVuck/InteractiveSolarSystem) | [README / React Three Fiber 交互](https://github.com/StefVuck/InteractiveSolarSystem) | 浏览器 3D 行星导航、卫星/行星详情页、轨道可视化、移动端响应式交互 | 项目自述的科学精度需独立验证；不能仅凭视觉效果认定轨道数据准确 |
+| [Solar-Wanderer](https://github.com/hyqzz/Solar-Wanderer) | [README / NASA JPL 星历说明](https://github.com/hyqzz/Solar-Wanderer) | 浏览器端尺度探索、实时天体位置数据源说明、桌面与触屏交互；作为观测数据接入候选 | README 所述 JPL 精度是上游项目自述，本项目未独立复算；必须先核对数据 API、历元、坐标系和误差再采用 |
 
 ### 对本项目的实现映射
 - 首页提供“知识学习 → 知识问答 → 天文读报 → 错题复盘”学习路径，并连接原学习/判分/语音/错题模块。
