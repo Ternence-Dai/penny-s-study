@@ -83,3 +83,13 @@ body[data-workspace="study"] .reader-panel{border:1px solid #dfe6f1;border-radiu
  body[data-workspace="study"] .product-workflow__item{min-height:132px;padding:13px}
 }
 @media(prefers-reduced-motion:reduce){body[data-workspace="study"] *{scroll-behavior:auto!important;transition:none!important}}
+
+/* Local learning-data recovery: preserve raw records before any manual repair. */
+.w9-storage-recovery{display:grid;gap:10px;margin:18px 0;padding:18px;border:1px solid #e0a24b;border-left:5px solid #b97716;border-radius:16px;background:linear-gradient(135deg,#fff8e8,#fffdf8);color:#51360d}
+.w9-storage-recovery__title{font-size:1rem;font-weight:800}
+.w9-storage-recovery p,.w9-storage-recovery small{margin:0;line-height:1.65}
+.w9-storage-recovery__actions{display:flex;flex-wrap:wrap;gap:8px}
+.w9-storage-recovery button{border:0;border-radius:10px;padding:11px 16px;background:#89520b;color:#fff;font:inherit;font-weight:750;cursor:pointer}
+.w9-storage-recovery button:focus-visible{outline:3px solid #d18a20;outline-offset:3px}
+.w9-storage-recovery small{color:#71552b}
+@media(max-width:520px){.w9-storage-recovery{padding:14px;border-radius:12px}.w9-storage-recovery button{width:100%}}

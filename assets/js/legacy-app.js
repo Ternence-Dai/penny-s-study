@@ -92,6 +92,42 @@ function safeStorageJSON(key,fallback,validator){
     return fallback;
   }
 }
+function buildRawLearningRecoveryPacket(storage, exportedAt){
+  if(!storage || typeof storage.getItem!=='function'){
+    throw new TypeError('local storage reader is unavailable');
+  }
+  var timestamp = exportedAt === undefined ? new Date() : exportedAt;
+  if(!(timestamp instanceof Date) || !Number.isFinite(timestamp.getTime())){
+    throw new TypeError('recovery export timestamp must be valid');
+  }
+  return {
+    format:'penny-s-study-raw-local-storage-recovery',
+    version:1,
+    exportedAt:timestamp.toISOString(),
+    entries:Object.keys(KEY).map(function(name){
+      return {name:name,key:KEY[name],raw:storage.getItem(KEY[name])};
+    })
+  };
+}
+function exportRawLearningRecovery(){
+  try{
+    var packet=buildRawLearningRecoveryPacket(localStorage,new Date());
+    var blob=new Blob([JSON.stringify(packet,null,2)],{type:'application/json;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var link=document.createElement('a');
+    link.href=url;
+    link.download='penny-study-recovery-'+new Date().toISOString().slice(0,10)+'.json';
+    link.hidden=true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},0);
+    alert('已导出原始学习存档恢复包。文件包含本机原始存储字符串，请妥善保管，不要公开上传。当前写入保护仍然生效；导出不会修改或删除原始数据。');
+  }catch(error){
+    console.error('原始学习存档导出失败',error);
+    alert('恢复包导出失败，原始数据未修改。请检查浏览器下载权限，并保留当前页面。');
+  }
+}
 function isStorageRecord(value){return !!value&&typeof value==='object'&&!Array.isArray(value);}
 function isWrongStorageList(value){
   return Array.isArray(value)&&value.every(function(item){
@@ -2062,6 +2098,15 @@ function renderHome(){
   h += '<div class="brand"><h2>星赛通</h2>' +
     '<div class="sub">小学 · 初中天文知识竞赛智能备赛</div>' +
     '<div class="sign">作者：<b>戴煜</b> · 18662613315@163.com</div></div>';
+
+  if(storageRecoveryRequired){
+    h += '<section class="w9-storage-recovery" role="alert" aria-live="assertive">' +
+      '<div class="w9-storage-recovery__title">本机学习存档已进入保护模式</div>' +
+      '<p>检测到本地记录无法安全解析或通过结构校验。为避免覆盖原始数据，写入和删除已暂停。</p>' +
+      '<div class="w9-storage-recovery__actions"><button type="button" onclick="exportRawLearningRecovery()">导出原始存档恢复包</button></div>' +
+      '<small>先导出并妥善保管恢复包；导出不会清理缓存或自动解除保护。</small>' +
+      '</section>';
+  }
 
   var savedPractice=Store.getActivePractice();
   if(savedPractice){

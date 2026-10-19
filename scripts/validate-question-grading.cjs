@@ -293,6 +293,27 @@ function extractFunction(source, name) {
   }
   throw new Error('unterminated function: ' + name);
 }
+assert.ok(app.includes('function buildRawLearningRecoveryPacket(storage, exportedAt)') &&
+          app.includes('function exportRawLearningRecovery()') &&
+          app.includes('if(storageRecoveryRequired)') &&
+          app.includes('onclick="exportRawLearningRecovery()"'),
+  'local-storage recovery lock must be visible and provide an executable raw-data export');
+
+const packetContext = vm.createContext({
+  KEY: { wrong: 'a_w_v6', practice: 'a_active_practice_v1' },
+  Date, Number, TypeError
+});
+vm.runInContext(extractFunction(app, 'buildRawLearningRecoveryPacket'), packetContext);
+const rawStorage = new Map([['a_w_v6', '[broken record'], ['a_active_practice_v1', '{broken json']]);
+const packet = packetContext.buildRawLearningRecoveryPacket(
+  { getItem: key => rawStorage.has(key) ? rawStorage.get(key) : null },
+  new Date('2026-10-20T00:00:00.000Z')
+);
+assert.equal(packet.format, 'penny-s-study-raw-local-storage-recovery');
+assert.equal(packet.entries[0].raw, '[broken record');
+assert.equal(packet.entries[1].raw, '{broken json',
+  'recovery export must preserve unparseable local records byte-for-byte rather than serializing fallback values');
+
 const storageRecoveryContext = vm.createContext({
   safeStorageGet: key => '{broken json',
   storageRecoveryRequired: false,
