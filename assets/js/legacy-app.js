@@ -1918,7 +1918,12 @@ function isCorrect(q, ua){
   return window.PennyQuestionGrading.isCorrect(q, ua, norm);
 }
 function isAnswered(q, ua){
-  if (q.type === 'multi' || q.type === 'order') return Array.isArray(ua) && ua.length > 0;
+  if (q.type === 'multi') return Array.isArray(ua) && ua.length > 0;
+  // An ordering response is complete only after every option appears exactly once.
+  // Partial sequences remain drafts instead of being scored as incorrect answers.
+  if (q.type === 'order') return Array.isArray(ua) && Array.isArray(q.options) &&
+    ua.length === q.options.length && new Set(ua).size === q.options.length &&
+    ua.every(function(index){return Number.isSafeInteger(index) && index >= 0 && index < q.options.length;});
   if (q.type === 'fill') return String(ua == null ? '' : ua).trim() !== '';
   return ua !== undefined && ua !== null && ua !== -1;
 }
