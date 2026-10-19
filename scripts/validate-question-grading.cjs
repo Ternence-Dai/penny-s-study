@@ -74,8 +74,8 @@ for (const question of questionBank) {
 
 const html = fs.readFileSync('index.html', 'utf8');
 const productCss = fs.readFileSync('assets/css/product-system.css', 'utf8');
-assert.ok(html.includes('product-system.css?v=20261019-v7'),
-  'astronomy app must load the current V6 learning workspace styles');
+assert.ok(html.includes('product-system.css?v=20261019-v8'),
+  'astronomy app must load the current V8 learning workspace styles');
 assert.ok(productCss.includes('Astronomy learning workspace'),
   'astronomy V3 design layer must be present');
 for (const selector of [
@@ -88,6 +88,17 @@ assert.ok(productCss.includes('max-width:1160px') &&
           productCss.includes('@media(max-width:760px)') &&
           productCss.includes('@media(max-width:420px)'),
   'astronomy workspace must support wide desktop and narrow mobile screens');
+
+assert.ok(productCss.includes('V4 · XingSaiTong astronomy learning cockpit') &&
+          productCss.includes('.study-intro:after{') &&
+          productCss.includes('.product-workflow__grid{') &&
+          productCss.includes('.view .option:hover{'),
+  'astronomy V4 must implement the orbit-themed learning hero, learning workflow and answer interaction states');
+assert.ok(productCss.includes('@media(max-width:760px)') &&
+          productCss.includes('@media(max-width:420px)') &&
+          productCss.includes('.product-workflow__item:hover'),
+  'astronomy V4 must include responsive learning workflow layouts and interactive states');
+
 assert.ok(productCss.includes('prefers-reduced-motion:reduce'),
   'astronomy workspace must respect reduced motion preferences');
 assert.ok(html.includes('viewport-fit=cover') && !html.includes('user-scalable=no'),
