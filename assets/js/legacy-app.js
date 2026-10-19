@@ -2099,6 +2099,7 @@ function renderHome(){
     '<div class="sub">小学 · 初中天文知识竞赛智能备赛</div>' +
     '<div class="sign">作者：<b>戴煜</b> · 18662613315@163.com</div></div>';
 
+  var savedPractice=Store.getActivePractice();
   if(storageRecoveryRequired){
     h += '<section class="w9-storage-recovery" role="alert" aria-live="assertive">' +
       '<div class="w9-storage-recovery__title">本机学习存档已进入保护模式</div>' +
@@ -2107,8 +2108,6 @@ function renderHome(){
       '<small>先导出并妥善保管恢复包；导出不会清理缓存或自动解除保护。</small>' +
       '</section>';
   }
-
-  var savedPractice=Store.getActivePractice();
   if(savedPractice){
     var savedDone=savedPractice.evaluated.filter(Boolean).length;
     var savedRate=Math.round(savedDone/savedPractice.questionIds.length*100);
