@@ -428,3 +428,82 @@ body{
 @media(max-width:900px){.product-workflow__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.product-workflow{margin:12px 12px 18px;padding:16px;border-radius:17px}.product-workflow__head{display:block}.product-workflow__mode{display:inline-flex;margin-top:11px}.product-workflow__grid{gap:8px}.product-workflow__item{min-height:122px;padding:12px}.product-workflow__item b{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.product-workflow__item{transition:none}.product-workflow__item:hover{transform:none}}
+
+
+/* V4 · XingSaiTong astronomy learning cockpit */
+.study-intro{
+  position:relative;isolation:isolate;overflow:hidden;min-height:168px;
+  padding:27px clamp(20px,3vw,38px);border-radius:21px;
+  background:
+    radial-gradient(circle at 82% 16%,rgba(93,196,235,.22),transparent 25%),
+    radial-gradient(circle at 90% 105%,rgba(158,125,245,.2),transparent 34%),
+    linear-gradient(116deg,#172a50 0%,#1c2850 53%,#28234d 100%);
+  box-shadow:0 17px 42px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.05);
+}
+.study-intro:after{
+  content:"ORBITAL";position:absolute;z-index:-1;right:5%;top:18%;
+  font-size:clamp(54px,8vw,104px);font-weight:900;letter-spacing:-5px;
+  color:rgba(199,220,255,.055);line-height:1;
+}
+.study-intro h2{font-size:clamp(24px,2.8vw,34px);letter-spacing:-.8px}
+.study-intro p{font-size:12px;max-width:800px;line-height:1.85}
+.study-intro .study-tags span{padding:6px 11px;font-weight:700;background:rgba(185,210,255,.075)}
+.study-intro .orbit{
+  position:relative;width:94px;height:94px;flex-basis:94px;border-radius:50%;
+  font-size:35px;color:#c5f3ff;border:1px solid rgba(143,220,255,.42);
+  background:radial-gradient(circle at 38% 32%,rgba(109,219,255,.3),rgba(151,119,235,.12) 65%,transparent);
+  box-shadow:0 0 0 12px rgba(119,172,255,.035),0 0 48px rgba(82,188,239,.2),inset 0 0 22px rgba(162,202,255,.12);
+}
+.product-workflow{
+  margin:14px clamp(18px,2.5vw,32px) 4px;padding:20px 21px;
+  border:1px solid rgba(144,174,229,.19);border-radius:18px;
+  background:linear-gradient(145deg,rgba(22,36,68,.96),rgba(15,25,51,.98));
+  box-shadow:0 12px 30px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.025);
+}
+.product-workflow__head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:14px}
+.product-workflow__head .eyebrow{font-size:9px;letter-spacing:1.8px;color:#91caff}
+.product-workflow__head h3{font-size:16px;color:#eff5ff;margin:4px 0}
+.product-workflow__head p{font-size:11px;color:#aabbd7;line-height:1.65}
+.product-workflow__mode{white-space:nowrap;padding:6px 10px;border-radius:30px;background:rgba(108,174,239,.1);color:#a9d6ff;font-size:9px;font-weight:800}
+.product-workflow__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.product-workflow__item{
+  min-height:112px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;
+  padding:13px;border:1px solid rgba(140,174,230,.17);border-radius:13px;
+  background:linear-gradient(145deg,rgba(44,66,111,.36),rgba(22,36,69,.5));text-align:left;
+  transition:transform .18s,border-color .18s,background .18s,box-shadow .18s;
+}
+.product-workflow__item:hover{transform:translateY(-3px);border-color:rgba(118,193,255,.48);background:rgba(56,89,143,.3);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.product-workflow__item i{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:rgba(105,185,246,.13);color:#9dd8ff;font-size:10px;font-style:normal;font-weight:850}
+.product-workflow__item b{font-size:12px;color:#edf5ff}
+.product-workflow__item small{font-size:10px;color:#a6b7d3}
+.product-workflow__item span{margin-top:auto;color:#8fcaff;font-size:10px;font-weight:750}
+.product-workflow__foot{margin-top:12px;padding-top:10px;border-top:1px solid rgba(147,177,225,.12);color:#879bbd;font-size:9.5px;line-height:1.6}
+.view .card{
+  border-color:rgba(142,174,226,.18);
+  background:linear-gradient(145deg,rgba(24,39,73,.96),rgba(15,26,52,.98));
+  box-shadow:0 12px 30px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.025);
+}
+.view .sec-title{display:flex;align-items:center;gap:9px;color:#e9f1ff;font-size:14px;font-weight:800}
+.view .sec-title:before{content:"";width:4px;height:15px;border-radius:4px;background:linear-gradient(#73c6ff,#ad9afa)}
+.view .quick-card,.view .map-card{
+  border:1px solid rgba(141,173,226,.19);
+  background:linear-gradient(145deg,rgba(28,46,83,.96),rgba(16,28,55,.98));
+  box-shadow:0 8px 22px rgba(0,0,0,.14);
+}
+.view .quick-card:hover,.view .map-card:hover{border-color:rgba(117,191,255,.45);transform:translateY(-2px)}
+.view .option{border-color:rgba(151,178,225,.24);background:rgba(132,164,220,.07)}
+.view .option:hover{border-color:#77bfff;background:rgba(104,169,239,.12)}
+.view .explain{border-color:rgba(120,192,174,.22);background:rgba(71,160,135,.08)}
+@media(max-width:760px){
+ .study-intro{padding:21px 18px}
+ .product-workflow__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .product-workflow__head{flex-direction:column}
+}
+@media(max-width:420px){
+ .study-intro:after{font-size:46px;right:1%;top:12%}
+ .study-intro .orbit{width:60px;height:60px;flex-basis:60px;font-size:24px}
+ .product-workflow{padding:15px 12px}
+ .product-workflow__grid{gap:7px}
+ .product-workflow__item{min-height:118px;padding:10px}
+ .product-workflow__item small{font-size:9px}
+}
