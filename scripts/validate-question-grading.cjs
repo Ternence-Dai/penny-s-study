@@ -191,6 +191,35 @@ assert.ok(app.includes('function resumePractice()') &&
           app.includes('SESSION RECOVERY') &&
           app.includes('questionIds'),
   'home workspace must restore saved sessions by stable question ID without changing the question bank');
+const resumeContext = vm.createContext({
+  Store: { getActivePractice: () => resumeContext.saved },
+  Q: [orderedQuestionForValidation],
+  state: {},
+  Map, alert: message => { resumeContext.alerts.push(message); },
+  go: page => { resumeContext.routes.push(page); },
+  isAnswered: isAnsweredUnderTest
+});
+resumeContext.alerts = [];
+resumeContext.routes = [];
+resumeContext.saved = {
+  level:'小学', questionIds:['ordered-q'], index:0, userAnswers:[[2]],
+  evaluated:[true], correct:0, wrong:1, label:'旧版排序练习'
+};
+vm.runInContext(extractFunction(app, 'resumePractice'), resumeContext);
+resumeContext.resumePractice();
+assert.equal(resumeContext.routes.length, 0,
+  'legacy partial ordering already marked as graded must not resume with an irreversible wrong result');
+assert.equal(resumeContext.alerts.length, 1);
+assert.match(resumeContext.alerts[0], /原存档已保留/);
+resumeContext.saved = {
+  level:'小学', questionIds:['ordered-q'], index:0, userAnswers:[[2]],
+  evaluated:[false], correct:0, wrong:0, label:'可继续的排序草稿'
+};
+resumeContext.resumePractice();
+assert.equal(resumeContext.routes.at(-1), 'practice',
+  'an incomplete but not-yet-graded draft must remain resumable');
+assert.deepEqual(Array.from(resumeContext.state.practice.userAnswers[0]), [2]);
+assert.equal(resumeContext.state.practice.evaluated[0], false);
 assert.ok(app.includes('Store.saveActivePractice(p);') &&
           app.includes("if(state.page==='practice'&&state.practice) Store.saveActivePractice(state.practice);") &&
           app.includes('Store.clearActivePractice();'),
