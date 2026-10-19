@@ -191,9 +191,13 @@ assert.ok(app.includes('function resumePractice()') &&
           app.includes('SESSION RECOVERY') &&
           app.includes('questionIds'),
   'home workspace must restore saved sessions by stable question ID without changing the question bank');
+const resumableOrderQuestion = {
+  id:'ordered-q', level:'小学', type:'order',
+  options:['甲','乙','丙'], answer:[2,0,1]
+};
 const resumeContext = vm.createContext({
   Store: { getActivePractice: () => resumeContext.saved },
-  Q: [orderedQuestionForValidation],
+  Q: [resumableOrderQuestion],
   state: {},
   Map, alert: message => { resumeContext.alerts.push(message); },
   go: page => { resumeContext.routes.push(page); },
