@@ -318,6 +318,7 @@ for (const selector of [
 ]) assert.ok(fs.readFileSync('assets/css/product-system-v9.css','utf8').includes(selector),
   'V9.1 practice workspace must style ' + selector);
 
+let practiceLastAlert='';
 const practiceContext=vm.createContext({
   state:{practice:{
     list:[{id:'q1'},{id:'q2'}],index:0,
@@ -333,8 +334,8 @@ const practiceContext=vm.createContext({
     recordCount:0
   },
   recordQuestionOutcome:async()=>{},
-  render(){this.renderCount=(this.renderCount||0)+1;},
-  alert(message){this.lastAlert=message;},
+  render(){},
+  alert(message){practiceLastAlert=message;},
   confirm:()=>false,
   go(){},
   shuffle:list=>list,
@@ -362,7 +363,7 @@ for(const name of ['pNext','pPrev','pFinish']){
     'revisiting an evaluated question cannot duplicate mastery statistics');
   practiceContext.state.practice.evaluated[1]=false;
   practiceContext.pFinish();
-  assert.match(practiceContext.lastAlert,/尚未完成判分/,
+  assert.match(practiceLastAlert,/尚未完成判分/,
     'the session cannot finish while any question remains unevaluated');
   assert.equal(practiceContext.Store.recordCount,0,
     'an incomplete practice session must not be recorded as complete');
