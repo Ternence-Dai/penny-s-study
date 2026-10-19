@@ -5,6 +5,11 @@ test("grades normalized answers while preserving evidence status",()=>{
  const result=gradeAnswer({expectedAnswer:"Kepler",submittedAnswer:" kepler ",evidenceStatus:"verified"});
  assert.equal(result.correct,true); assert.equal(result.evidenceStatus,"verified");
 });
+test("grades case and canonical Unicode consistently without locale-dependent casing",()=>{
+ assert.equal(gradeAnswer({expectedAnswer:"  KEPLER  ",submittedAnswer:"kepler",evidenceStatus:"verified"}).correct,true);
+ assert.equal(gradeAnswer({expectedAnswer:"Café",submittedAnswer:"Cafe\\u0301",evidenceStatus:"verified"}).correct,true);
+ assert.equal(gradeAnswer({expectedAnswer:"I",submittedAnswer:"i",evidenceStatus:"verified"}).correct,true);
+});
 test("warns when answer key is not verified",()=>{
  const result=gradeAnswer({expectedAnswer:"Kepler",submittedAnswer:"Kepler",evidenceStatus:"draft"});
  assert.match(result.feedback,/尚未完成来源审核/);
