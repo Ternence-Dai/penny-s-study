@@ -9,8 +9,8 @@ assert.ok(start >= 0 && end > start, 'storage guard section must exist');
 const source = html.slice(start, end);
 function makeContext(storage) {
   const sandbox = { localStorage: storage, console: { warn() {} },
-    KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6'} };
-  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,Store,get locked(){return storageRecoveryRequired;}};', sandbox);
+    KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1'} };
+  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;}};', sandbox);
   return sandbox.api;
 }
 {
@@ -161,4 +161,52 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   }
   assert.equal(writes,1,'rejected preferences must not call localStorage.setItem');
   assert.equal(api.locked,false,'rejected form input is not proof that stored data is corrupted');
+}
+
+
+{
+  const session={
+    version:1,level:'小学',label:'太阳系专项练习',
+    questionIds:['p001','p002','p003'],
+    userAnswers:[1,null,[0,2]],
+    evaluated:[true,false,false],
+    index:1,correct:1,wrong:0,updatedAt:1760000000000
+  };
+  const api=makeContext({getItem:()=>null,setItem(){},removeItem(){}});
+  assert.equal(api.isActivePracticeStorage(session),true,
+    'a valid resumable practice session must pass the strict versioned schema');
+  for(const invalid of [
+    {...session,version:2},
+    {...session,questionIds:['p001','p001']},
+    {...session,userAnswers:[1,null]},
+    {...session,evaluated:[true,'false',false]},
+    {...session,correct:0,wrong:0},
+    {...session,index:3},
+    {...session,userAnswers:[{answer:1},null,[0,2]]}
+  ]){
+    assert.equal(api.isActivePracticeStorage(invalid),false,
+      'malformed session state must be rejected without modifying other learner data');
+  }
+}
+{
+  const data=new Map();
+  const api=makeContext({
+    getItem:key=>data.has(key)?data.get(key):null,
+    setItem:(key,value)=>data.set(key,value),
+    removeItem:key=>data.delete(key)
+  });
+  const session={
+    list:[{id:'p001'},{id:'p002'}],
+    userAnswers:[0,null],evaluated:[true,false],
+    index:1,correct:1,wrong:0,level:'小学',label:'星座强化练习'
+  };
+  assert.equal(api.Store.saveActivePractice(session),true,
+    'practice autosave must persist to its independent storage key');
+  const saved=JSON.parse(data.get('a_active_practice_v1'));
+  assert.equal(saved.version,1);
+  assert.deepEqual(saved.questionIds,['p001','p002']);
+  assert.equal(api.Store.getActivePractice().label,'星座强化练习');
+  assert.equal(api.Store.clearActivePractice(),true);
+  assert.equal(data.has('a_active_practice_v1'),false,
+    'clearing a practice draft must not clear question statistics or wrong-book data');
 }
