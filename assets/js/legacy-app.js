@@ -2007,6 +2007,11 @@ function renderHome(){
     '<p>共 <b>' + totalQ + '</b> 道题 · <b>' + cats.length + '</b> 个知识点<br>' +
     '累计答题 <b>' + stats.total + '</b> 题 · 正确率 <b>' + stats.rate + '%</b><br>' +
     '学习 <b>' + stats.days + '</b> 天 · 错题 <b>' + stats.wrongCount + '</b> 道</p>' +
+    '<div class="home-action-row">' +
+      '<button class="btn btn-main" onclick="startPractice(\'' + state.level + '\',\'\')">开始专项练习</button>' +
+      '<button class="btn btn-ghost" onclick="startExam(\'' + state.level + '\')">参加模拟竞赛</button>' +
+      '<button class="btn btn-ghost" onclick="go(\'wrong\')">复习错题</button>' +
+    '</div>' +
     '</div></div></div>';
 
   // 快捷入口
