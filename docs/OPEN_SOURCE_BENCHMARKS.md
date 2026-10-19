@@ -44,3 +44,12 @@
 - [Planet Explorer Quiz 实现](https://github.com/mariotristan/planets/blob/main/quiz.js)
 - [Planet Explorer 交互与语音辅助](https://github.com/mariotristan/planets/blob/main/app.js)
 - [Stellarium](https://github.com/Stellarium/stellarium)
+
+
+## 6. 2026-10-19 实施补充：可安装与离线学习（Planet Explorer 模式）
+
+- 新增 `manifest.webmanifest`、本地 SVG 图标和 `service-worker.js`，页面在 HTTPS 环境加载后注册 service worker。
+- 首次联网访问时缓存首页、V3/V5 样式、300 题题库、判分引擎和主应用；离线导航使用缓存首页回退。
+- Service worker 只处理同源 GET 请求，不拦截写入请求或第三方接口，并在激活新缓存时清理旧版本。
+- 新增 `scripts/validate-pwa.cjs` 并加入 standalone CI，验证 manifest、图标、缓存清单、离线导航与请求边界。
+- 离线模式不会自动同步不同设备的本地学习记录；localStorage 进度仍限于当前浏览器/设备。
