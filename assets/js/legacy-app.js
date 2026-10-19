@@ -2281,6 +2281,16 @@ function resumePractice(){
     alert('当前题库与这份练习存档不完全匹配。原存档没有被删除，请先检查题库版本。');
     return;
   }
+  if(list.some(function(question){return question.level!==saved.level;})){
+    alert('练习存档中的题目学段与会话学段不一致。原存档已保留，请先核查题库版本。');
+    return;
+  }
+  for(var i=0;i<list.length;i++){
+    if(saved.evaluated[i]===true && !isAnswered(list[i],saved.userAnswers[i])){
+      alert('练习存档包含不符合当前题型规则的已判分答案（第 '+(i+1)+' 题）。原存档已保留，未恢复该会话。');
+      return;
+    }
+  }
   state.practice={
     list:list,index:saved.index,
     userAnswers:saved.userAnswers.map(function(answer){return Array.isArray(answer)?answer.slice():answer;}),
