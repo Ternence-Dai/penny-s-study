@@ -340,7 +340,7 @@ console.log('Browser answer-handler integration checks passed.');
 
 // Practice sessions support going back without losing draft answers or
 // counting a previously evaluated question a second time.
-assert.ok(html.includes('product-system-v9.css?v=20261019-v91'),
+assert.ok(html.includes('product-system-v9.css?v=20261019-v92'),
   'astronomy app must load the refreshed V9.1 workspace and practice styles');
 assert.ok(app.includes('evaluated: new Array(list.length).fill(false)') &&
           app.includes('function pPrev()') &&
