@@ -43,7 +43,7 @@ const levels = new Map();
 const allowed = new Set(['single', 'judge', 'multi', 'fill', 'order']);
 const errors = [];
 const isStringArrayLiteral = value =>
-  /^\\[\\s*'(?:[^'\\\\]|\\\\.)*'(?:\\s*,\\s*'(?:[^'\\\\]|\\\\.)*')*\\s*\\]$/.test(value);
+  /^\[\s*'(?:[^'\\]|\\.)*'(?:\s*,\s*'(?:[^'\\]|\\.)*')*\s*\]$/.test(value);
 if (!isStringArrayLiteral("['A','B']") ||
     isStringArrayLiteral("['A', invalid, 'B']") ||
     isStringArrayLiteral("['A',, 'B']") ||
