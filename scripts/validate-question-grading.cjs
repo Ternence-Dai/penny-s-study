@@ -301,3 +301,69 @@ for (const callback of ['pChoose', 'eChoose']) {
     callback + ' answer UI must emit a numeric index in its click callback');
 }
 console.log('Browser answer-handler integration checks passed.');
+
+
+// Practice sessions support going back without losing draft answers or
+// counting a previously evaluated question a second time.
+assert.ok(html.includes('product-system-v9.css?v=20261019-v91'),
+  'astronomy app must load the refreshed V9.1 workspace and practice styles');
+assert.ok(app.includes('evaluated: new Array(list.length).fill(false)') &&
+          app.includes('function pPrev()') &&
+          app.includes('已判分 · 不重复计分') &&
+          app.includes('仍有 '),
+  'practice mode must retain per-question evaluation state and safe backward navigation');
+for (const selector of [
+  '.w5-practice-head', '.w5-practice-progress',
+  '.w5-practice-question', '.w5-practice-actions'
+]) assert.ok(fs.readFileSync('assets/css/product-system-v9.css','utf8').includes(selector),
+  'V9.1 practice workspace must style ' + selector);
+
+const practiceContext=vm.createContext({
+  state:{practice:{
+    list:[{id:'q1'},{id:'q2'}],index:0,
+    userAnswers:['A','B'],evaluated:[false,false],
+    showAnswer:false,correct:0,wrong:0,submitting:false
+  }},
+  isAnswered:()=>true,
+  isCorrect:(_q,answer)=>answer==='A',
+  Store:{
+    bumpQStat(){this.bumpCount++;},
+    bumpCount:0,
+    addRecord(){this.recordCount++;},
+    recordCount:0
+  },
+  recordQuestionOutcome:async()=>{},
+  render(){this.renderCount=(this.renderCount||0)+1;},
+  alert(message){this.lastAlert=message;},
+  confirm:()=>false,
+  go(){},
+  shuffle:list=>list,
+  rate:(a,b)=>Math.round(a/b*100)
+});
+for(const name of ['pSubmit','pNext','pPrev','pFinish']){
+  vm.runInContext(extractFunction(app,name),practiceContext);
+}
+(async()=>{
+  await practiceContext.pSubmit();
+  assert.equal(practiceContext.state.practice.evaluated[0],true);
+  assert.equal(practiceContext.state.practice.correct,1);
+  assert.equal(practiceContext.Store.bumpCount,1);
+  practiceContext.pNext();
+  assert.equal(practiceContext.state.practice.index,1);
+  practiceContext.pPrev();
+  assert.equal(practiceContext.state.practice.index,0);
+  assert.equal(practiceContext.state.practice.showAnswer,true,
+    'going back to an evaluated question must reopen its explanation');
+  await practiceContext.pSubmit();
+  assert.equal(practiceContext.state.practice.correct,1,
+    'revisiting and submitting an evaluated question cannot add a second score');
+  assert.equal(practiceContext.Store.bumpCount,1,
+    'revisiting an evaluated question cannot duplicate mastery statistics');
+  practiceContext.state.practice.evaluated[1]=false;
+  practiceContext.pFinish();
+  assert.match(practiceContext.lastAlert,/尚未完成判分/,
+    'the session cannot finish while any question remains unevaluated');
+  assert.equal(practiceContext.Store.recordCount,0,
+    'an incomplete practice session must not be recorded as complete');
+  console.log('Practice navigation and no-duplicate-scoring regression checks passed.');
+})().catch(error=>{console.error(error);process.exitCode=1;});
