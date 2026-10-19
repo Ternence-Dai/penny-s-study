@@ -42,6 +42,14 @@ const ids = new Set();
 const levels = new Map();
 const allowed = new Set(['single', 'judge', 'multi', 'fill', 'order']);
 const errors = [];
+const isStringArrayLiteral = value =>
+  /^\\[\\s*'(?:[^'\\\\]|\\\\.)*'(?:\\s*,\\s*'(?:[^'\\\\]|\\\\.)*')*\\s*\\]$/.test(value);
+if (!isStringArrayLiteral("['A','B']") ||
+    isStringArrayLiteral("['A', invalid, 'B']") ||
+    isStringArrayLiteral("['A',, 'B']") ||
+    isStringArrayLiteral("['A','B'")) {
+  throw new Error('Question option literal parser regression');
+}
 for (const line of rows) {
   const fields = splitTopLevel(line);
   if (fields.length !== 8) {
@@ -69,9 +77,11 @@ for (const line of rows) {
     errors.push(id + ': unsupported type ' + type);
     continue;
   }
-  const options = optionsField === 'null'
+  const optionsLiteralValid = optionsField === 'null' || isStringArrayLiteral(optionsField);
+  if (!optionsLiteralValid) errors.push(id + ': malformed options literal');
+  const options = optionsField === 'null' || !optionsLiteralValid
     ? null
-    : [...optionsField.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
+    : [...optionsField.matchAll(/'((?:[^'\\\\]|\\\\.)*)'/g)].map(match => match[1]);
   const parseIndexArray = () => {
     if (!/^\[\s*(?:0|[1-9]\d*)(?:\s*,\s*(?:0|[1-9]\d*))*\s*\]$/.test(answerField))
       return null;
