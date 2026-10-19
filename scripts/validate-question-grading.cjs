@@ -293,6 +293,16 @@ function extractFunction(source, name) {
   }
   throw new Error('unterminated function: ' + name);
 }
+const storageRecoveryContext = vm.createContext({
+  safeStorageGet: key => '{broken json',
+  storageRecoveryRequired: false,
+  console: { warn: () => {} }
+});
+vm.runInContext(extractFunction(app, 'safeStorageJSON'), storageRecoveryContext);
+assert.equal(storageRecoveryContext.safeStorageJSON('a_active_practice_v1', null, () => true), null);
+assert.equal(storageRecoveryContext.storageRecoveryRequired, true,
+  'malformed local storage JSON must activate the recovery lock before future writes can replace the original bytes');
+
 const practiceAutosaves=[];
 const browserHandlerContext = vm.createContext({
   state: null,

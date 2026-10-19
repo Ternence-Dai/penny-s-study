@@ -85,7 +85,12 @@ function safeStorageJSON(key,fallback,validator){
       return fallback;
     }
     return value;
-  }catch(e){return fallback;}
+  }catch(e){
+    // Malformed JSON is still user data: lock writes so a later save cannot overwrite the original bytes.
+    storageRecoveryRequired=true;
+    console.warn('本地学习数据无法解析，已暂停写入以保护原始记录：'+key,e);
+    return fallback;
+  }
 }
 function isStorageRecord(value){return !!value&&typeof value==='object'&&!Array.isArray(value);}
 function isWrongStorageList(value){
