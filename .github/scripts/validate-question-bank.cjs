@@ -99,7 +99,7 @@ for (const line of rows) {
       errors.push(id + ': invalid ' + type + ' options/answer');
     if (type === 'multi' && answerNumbers && new Set(answerNumbers).size !== answerNumbers.length)
       errors.push(id + ': multi-choice answer contains duplicate options');
-    if (type === 'order' && (!answerNumbers || answerNumbers.length !== options.length ||
+    if (type === 'order' && (!options || !answerNumbers || answerNumbers.length !== options.length ||
         new Set(answerNumbers).size !== options.length))
       errors.push(id + ': order answer must be a complete permutation');
   } else if (type === 'fill') {
