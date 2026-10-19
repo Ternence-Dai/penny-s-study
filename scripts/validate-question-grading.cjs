@@ -282,6 +282,28 @@ assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2, 0, 1]), true,
 assert.equal(isAnsweredUnderTest(orderedQuestionForValidation, [2, 0, 3]), false,
   'out-of-range option indexes must not count as a completed ordering response');
 
+const multiQuestionForValidation = { type: 'multi', options: ['甲','乙','丙'] };
+assert.equal(isAnsweredUnderTest(multiQuestionForValidation, [0]), true,
+  'a valid partial multi-select choice is an intentional answer');
+assert.equal(isAnsweredUnderTest(multiQuestionForValidation, [0, 0]), false,
+  'duplicate multi-select indexes must not count as a valid answer');
+assert.equal(isAnsweredUnderTest(multiQuestionForValidation, [3]), false,
+  'multi-select indexes must be bounded by the current question options');
+const singleQuestionForValidation = { type: 'single', options: ['甲','乙'] };
+assert.equal(isAnsweredUnderTest(singleQuestionForValidation, 1), true);
+assert.equal(isAnsweredUnderTest(singleQuestionForValidation, 2), false,
+  'stale single-choice indexes must not count as answered');
+assert.equal(isAnsweredUnderTest(singleQuestionForValidation, '1'), false,
+  'answer option indexes must be numeric');
+const judgeQuestionForValidation = { type: 'judge', options: null };
+assert.equal(isAnsweredUnderTest(judgeQuestionForValidation, 0), true);
+assert.equal(isAnsweredUnderTest(judgeQuestionForValidation, 2), false,
+  'binary questions accept only the two documented answer indexes');
+const imageQuestionForValidation = { type: 'image', options: ['图一','图二'] };
+assert.equal(isAnsweredUnderTest(imageQuestionForValidation, 1), true);
+assert.equal(isAnsweredUnderTest(imageQuestionForValidation, 3), false,
+  'image-choice answers must be within the supplied option range');
+
 vm.runInContext(extractFunction(app, 'pChoose'), browserHandlerContext);
 vm.runInContext(extractFunction(app, 'eChoose'), browserHandlerContext);
 const optionQuestion = { type: 'single', answer: 1, options: ['甲','乙','丙'] };
