@@ -298,11 +298,13 @@ assert.ok(app.includes('function buildRawLearningRecoveryPacket(storage, exporte
           app.includes('if(storageRecoveryRequired)') &&
           app.includes('onclick="exportRawLearningRecovery()"'),
   'local-storage recovery lock must be visible and provide an executable raw-data export');
-const homeRecoverySource = extractFunction(app, 'renderHome');
-assert.ok(homeRecoverySource.indexOf('var savedPractice=Store.getActivePractice();') >= 0 &&
-          homeRecoverySource.indexOf('var savedPractice=Store.getActivePractice();') <
-          homeRecoverySource.indexOf('if(storageRecoveryRequired)'),
-  'home must read active practice before rendering the recovery warning, so a malformed practice key is disclosed on the first render');
+const recoveryBannerSource = extractFunction(app, 'renderStorageRecoveryBanner');
+const mainRenderSource = extractFunction(app, 'render');
+assert.ok(recoveryBannerSource.includes('导出原始存档恢复包') &&
+          recoveryBannerSource.includes('role="alert"') &&
+          mainRenderSource.indexOf('view.innerHTML = fn();') <
+          mainRenderSource.indexOf('if(storageRecoveryRequired) view.insertAdjacentHTML'),
+  'the recovery warning must appear on every page after page-specific storage reads can detect a damaged record');
 
 const packetContext = vm.createContext({
   KEY: { wrong: 'a_w_v6', practice: 'a_active_practice_v1' },

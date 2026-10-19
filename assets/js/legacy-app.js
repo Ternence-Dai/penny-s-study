@@ -2051,6 +2051,14 @@ function go(p,o){
    ========================================== */
 var view = $('#view'), navTitle = $('#navTitle'), backBtn = $('#backBtn'), tabbar = $('#tabbar');
 
+function renderStorageRecoveryBanner(){
+  return '<section class="w9-storage-recovery" role="alert" aria-live="assertive">' +
+    '<div class="w9-storage-recovery__title">本机学习存档已进入保护模式</div>' +
+    '<p>检测到本地记录无法安全解析或通过结构校验。为避免覆盖原始数据，写入和删除已暂停。</p>' +
+    '<div class="w9-storage-recovery__actions"><button type="button" onclick="exportRawLearningRecovery()">导出原始存档恢复包</button></div>' +
+    '<small>先导出并妥善保管恢复包；导出不会清理缓存或自动解除保护。</small>' +
+    '</section>';
+}
 function render(){
   clearTimers();
   navTitle.textContent = TITLES[state.page] || '星赛通';
@@ -2071,6 +2079,7 @@ function render(){
   };
   var fn = map[state.page] || renderHome;
   view.innerHTML = fn();
+  if(storageRecoveryRequired) view.insertAdjacentHTML('afterbegin', renderStorageRecoveryBanner());
   if (state.page === 'exam' && state.exam && state.exam.running) startExamTimer();
   if (state.page === 'learnDetail') setTimeout(function(){ SimEngine.startAll(); }, 30);
   if (state.page === 'home') setTimeout(function(){ SimEngine.startAll(); }, 30);
@@ -2100,14 +2109,6 @@ function renderHome(){
     '<div class="sign">作者：<b>戴煜</b> · 18662613315@163.com</div></div>';
 
   var savedPractice=Store.getActivePractice();
-  if(storageRecoveryRequired){
-    h += '<section class="w9-storage-recovery" role="alert" aria-live="assertive">' +
-      '<div class="w9-storage-recovery__title">本机学习存档已进入保护模式</div>' +
-      '<p>检测到本地记录无法安全解析或通过结构校验。为避免覆盖原始数据，写入和删除已暂停。</p>' +
-      '<div class="w9-storage-recovery__actions"><button type="button" onclick="exportRawLearningRecovery()">导出原始存档恢复包</button></div>' +
-      '<small>先导出并妥善保管恢复包；导出不会清理缓存或自动解除保护。</small>' +
-      '</section>';
-  }
   if(savedPractice){
     var savedDone=savedPractice.evaluated.filter(Boolean).length;
     var savedRate=Math.round(savedDone/savedPractice.questionIds.length*100);
