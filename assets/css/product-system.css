@@ -386,3 +386,7 @@ body{
   :where(.lib-stats,.metrics-grid){grid-template-columns:minmax(0,1fr)}
 }
 @media(prefers-reduced-motion:reduce){:where(button,a,[role="button"],.card,.kpi,.gcard,.experiment-card,.metric-card,.module-card,.quick,.mode){transition:none!important;transform:none!important}}
+
+
+/* V5 · Core workspace actions */
+.home-action-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.home-action-row .btn{min-height:35px;padding:8px 12px;font-size:10.5px}.progress-overview .po-row{align-items:center}.progress-overview .po-info{min-width:0;flex:1}.progress-overview .po-info p{line-height:1.8}@media(max-width:560px){.home-action-row{display:grid;grid-template-columns:1fr 1fr}.home-action-row .btn{width:100%;min-width:0;padding:8px 7px;font-size:10px}.home-action-row .btn:first-child{grid-column:1/-1}}
