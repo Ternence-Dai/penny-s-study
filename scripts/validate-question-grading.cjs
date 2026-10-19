@@ -340,7 +340,8 @@ const practiceContext=vm.createContext({
   shuffle:list=>list,
   rate:(a,b)=>Math.round(a/b*100)
 });
-for(const name of ['pSubmit','pNext','pPrev','pFinish']){
+vm.runInContext('async '+extractFunction(app,'pSubmit'),practiceContext);
+for(const name of ['pNext','pPrev','pFinish']){
   vm.runInContext(extractFunction(app,name),practiceContext);
 }
 (async()=>{
