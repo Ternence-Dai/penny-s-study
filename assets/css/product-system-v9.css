@@ -163,3 +163,77 @@ body[data-workspace] :where(.eyebrow,.kicker){
   body[data-workspace] :where(.hyhub-intro h2,.study-intro h2,.physchem-intro h2,.product-intro h2,.ekpo-intro h2){font-size:clamp(22px,6vw,30px)}
   body[data-workspace] :where(.card,.panel,.stat-card,.metric-card,.dashboard-card,.module-card,.chart-card){border-radius:14px}
 }
+
+
+/* V9.1 — six-type practice navigation and stable per-question scoring */
+body[data-workspace="study"] .w5-practice-head{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  margin:6px 0 14px;padding:21px 23px;border:1px solid rgba(118,98,221,.18);
+  border-radius:21px;background:
+    radial-gradient(420px 180px at 95% 0%,rgba(118,98,221,.13),transparent 74%),
+    linear-gradient(135deg,#fff 0%,#f8f8ff 100%);
+  box-shadow:var(--ui-shadow)
+}
+body[data-workspace="study"] .w5-practice-kicker{
+  display:block;margin-bottom:7px;color:var(--ui-accent);font-size:9px;
+  font-weight:850;letter-spacing:.13em
+}
+body[data-workspace="study"] .w5-practice-title{
+  color:#202747;font-size:clamp(23px,3vw,31px);font-weight:850;
+  letter-spacing:-.045em;line-height:1.15
+}
+body[data-workspace="study"] .w5-practice-meta{
+  margin-top:7px;color:#77819d;font-size:11px;font-weight:600
+}
+body[data-workspace="study"] .w5-practice-score{
+  display:flex;gap:9px;flex-wrap:wrap
+}
+body[data-workspace="study"] .w5-practice-score span{
+  display:grid;gap:3px;min-width:74px;padding:10px 12px;
+  border:1px solid rgba(105,123,160,.15);border-radius:12px;
+  background:rgba(255,255,255,.82);color:#75809b;font-size:10px;text-align:center
+}
+body[data-workspace="study"] .w5-practice-score b{font-size:20px;line-height:1.1}
+body[data-workspace="study"] .w5-practice-progress{
+  margin:0 0 14px;padding:13px 16px;border:1px solid rgba(105,123,160,.13);
+  border-radius:15px;background:#fff
+}
+body[data-workspace="study"] .w5-practice-progress__meta{
+  display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;
+  color:#78829a;font-size:10px;font-weight:700
+}
+body[data-workspace="study"] .w5-practice-progress__meta b{color:#5d56b2}
+body[data-workspace="study"] .w5-practice-progress__track{
+  height:7px;overflow:hidden;border-radius:99px;background:#edf0f9
+}
+body[data-workspace="study"] .w5-practice-progress__track i{
+  display:block;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,#7662dd,#52a4dc);transition:width .25s ease
+}
+body[data-workspace="study"] .w5-practice-question{
+  padding:clamp(18px,3vw,29px);border-color:rgba(107,108,205,.15);
+  box-shadow:0 12px 34px rgba(45,50,100,.07)
+}
+body[data-workspace="study"] .w5-practice-question .stem{
+  margin:20px 0 24px;color:#202844;font-size:clamp(16px,2vw,20px);
+  font-weight:650;line-height:1.85
+}
+body[data-workspace="study"] .w5-practice-actions{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:15px 0 30px
+}
+body[data-workspace="study"] .w5-practice-actions button{min-width:116px}
+body[data-workspace="study"] .w5-practice-actions button:disabled{
+  opacity:.38;cursor:not-allowed;box-shadow:none
+}
+@media(max-width:640px){
+  body[data-workspace="study"] .w5-practice-head{
+    align-items:flex-start;flex-direction:column;padding:17px;border-radius:16px
+  }
+  body[data-workspace="study"] .w5-practice-score{width:100%}
+  body[data-workspace="study"] .w5-practice-score span{flex:1}
+  body[data-workspace="study"] .w5-practice-actions button{min-width:0;flex:1}
+}
+@media(prefers-reduced-motion:reduce){
+  body[data-workspace="study"] .w5-practice-progress__track i{transition:none}
+}
