@@ -2321,13 +2321,16 @@ function pChoose(i){
 }
 async function pSubmit(){
   var p = state.practice;
-  if (!p||p.submitting||p.showAnswer) return;
+  if (!p||p.submitting||p.showAnswer||
+      (Array.isArray(p.evaluated)&&p.evaluated[p.index]===true)) return;
   var q = p.list[p.index];
   var ua = p.userAnswers[p.index];
   if (!isAnswered(q, ua)) return;
   p.submitting=true;
   try{
     var ok = isCorrect(q, ua);
+    if (!Array.isArray(p.evaluated)) p.evaluated = new Array(p.list.length).fill(false);
+    p.evaluated[p.index]=true;
     if (ok) p.correct++; else p.wrong++;
     Store.bumpQStat(q.id, ok);
     await recordQuestionOutcome(q.id,ok);
@@ -2337,16 +2340,36 @@ async function pSubmit(){
     render();
   }
 }
-function pNext(){state.practice.index++;state.practice.showAnswer=false;render();}
+function pNext(){
+  var p=state.practice;
+  if(!p||!Array.isArray(p.evaluated)||p.evaluated[p.index]!==true||
+     p.index>=p.list.length-1) return;
+  p.index++;
+  p.showAnswer=p.evaluated[p.index]===true;
+  render();
+}
+function pPrev(){
+  var p=state.practice;
+  if(!p||p.index<=0) return;
+  p.index--;
+  p.showAnswer=Array.isArray(p.evaluated)&&p.evaluated[p.index]===true;
+  render();
+}
 function pFinish(){
   var p = state.practice;
   var total = p.list.length, correct = p.correct;
+  var evaluatedCount=Array.isArray(p.evaluated)?p.evaluated.filter(Boolean).length:0;
+  if(evaluatedCount!==total){
+    alert('仍有 '+(total-evaluatedCount)+' 道题尚未完成判分，请继续完成练习。');
+    return;
+  }
   Store.addRecord({mode:'practice', total:total, correct:correct});
   if (confirm('共 ' + total + ' 题\n答对 ' + correct + ' 题\n正确率 ' + rate(correct, total) + '%\n\n点击「确定」再来一组，点击「取消」返回')){
     var list = shuffle(p.list);
     state.practice = {
       list:list, index:0,
       userAnswers: new Array(list.length).fill(null),
+      evaluated: new Array(list.length).fill(false),
       showAnswer:false, correct:0, wrong:0,
       level:p.level, label:p.label
     };
