@@ -310,6 +310,16 @@ assert.deepEqual(Array.from(browserHandlerContext.state.exam.answers[0]), [2, 0,
   'exam ordering handler must preserve numeric indexes and the selected sequence');
 assert.equal(grade(orderQuestion, browserHandlerContext.state.exam.answers[0], norm), true,
   'exam ordering result must satisfy strict sequence grading');
+browserHandlerContext.state.practice = {
+  list: [orderQuestion], index: 0, userAnswers: [null], showAnswer: false
+};
+browserHandlerContext.pChoose(2);
+browserHandlerContext.pChoose(0);
+browserHandlerContext.pChoose(1);
+assert.deepEqual(Array.from(browserHandlerContext.state.practice.userAnswers[0]), [2, 0, 1],
+  'practice ordering interaction must preserve the selected sequence');
+assert.equal(grade(orderQuestion, browserHandlerContext.state.practice.userAnswers[0], norm), true,
+  'practice ordering answer must pass the shared exact-sequence grader');
 assert.ok(practiceAutosaves.length>=6,
   'single, multi-select and ordering interactions must each write a recoverable session snapshot');
 
