@@ -169,10 +169,11 @@ const reviewEnd = app.indexOf('/* ==========================================' + 
 assert.ok(reviewStart >= 0 && reviewEnd > reviewStart,
   'shared spaced-review scheduler must be wired into the learning application');
 const reviewSource = app.slice(reviewStart, reviewEnd);
-assert.ok(reviewSource.includes("import('../../src/domain/index.js')") &&
+const reviewSchedulerImport = /import\(['"]\.\.\/\.\.\/src\/domain\/index\.js(?:\?v=[^'"]+)?['"]\)/;
+assert.ok(reviewSchedulerImport.test(reviewSource) &&
           reviewSource.includes('domain.nextReviewDate(') &&
           reviewSource.includes('Store.scheduleWrongReview('),
-  'practice/exam outcomes must call the shared domain scheduler and persist the due date');
+  'practice/exam outcomes must call the shared, cache-versioned domain scheduler and persist the due date');
 assert.ok(reviewSource.includes('streak>=3') && reviewSource.includes('Store.removeWrong(id)'),
   'three consecutive correct reviews must retire an item from the active wrong book');
 assert.ok(app.includes('async function pSubmit()') &&
