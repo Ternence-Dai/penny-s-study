@@ -53,3 +53,20 @@
 - Service worker 只处理同源 GET 请求，不拦截写入请求或第三方接口，并在激活新缓存时清理旧版本。
 - 新增 `scripts/validate-pwa.cjs` 并加入 standalone CI，验证 manifest、图标、缓存清单、离线导航与请求边界。
 - 离线模式不会自动同步不同设备的本地学习记录；localStorage 进度仍限于当前浏览器/设备。
+
+
+## 7. 扩展开源对标：天文探索、行星知识与学习反馈
+
+> 覆盖说明：天文竞赛题库和实时星空软件不是同一种产品。这里分别参考任务式学习、天体探索与观测情境，不将天文观测软件误当成题库系统。
+
+| 上游项目 | 可核查入口 | 可迁移模式 | 不直接照搬的部分 |
+|---|---|---|---|
+| [Planet Explorer](https://github.com/mariotristan/planets) | [Quiz 交互](https://github.com/mariotristan/planets/blob/main/quiz.js)、[应用流程](https://github.com/mariotristan/planets/blob/main/app.js) | 探索/比较/测验任务、即时反馈、儿童友好阅读节奏、语音与本地进度 | 题量和年龄段较小，不能替代本项目多题型竞赛评分规则 |
+| [Stellarium](https://github.com/Stellarium/stellarium) | [主仓库与功能说明](https://github.com/Stellarium/stellarium) | 天空对象、星图场景、观测时间/位置语境，帮助把抽象对象放进天空环境 | 桌面星象软件，不是线上竞赛练习或知识库 |
+| [Celestia](https://github.com/CelestiaProject/Celestia) | [README 与导航交互说明](https://github.com/CelestiaProject/Celestia/blob/master/README.md) | 3D 空间漫游、轨道/尺度探索、对象信息随视角变化 | 原生桌面 3D 模拟器；当前网站不声称具有等同精度或完整 3D 天体引擎 |
+
+### 对本项目的实现映射
+- 首页提供“知识学习 → 知识问答 → 天文读报 → 错题复盘”学习路径，并连接原学习/判分/语音/错题模块。
+- 下一阶段将每道题绑定知识来源、更新时间、适用年级和时效标记；动态天文数据必须附时间，不把可能变化的数量写成永久事实。
+- 模拟竞赛与普通练习使用同一套题目身份和判分协议，但计时、空题、重复提交与多选部分得分分别测试。
+- 对星图/空间漫游只做经过验证的数据和轻量交互，不以静态插画冒充精确星图。
