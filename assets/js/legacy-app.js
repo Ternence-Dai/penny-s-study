@@ -63,7 +63,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function rate(a,b){return b?Math.round(a/b*100):0;}
 function fmtTime(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
-function norm(s){return String(s==null?'':s).trim().toLowerCase().replace(/([0-9])\s*[′']/g,'$1分').replace(/([0-9])\s*[″"]/g,'$1秒').replace(/[°º]/g,'度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g,'');}
+function norm(s){return String(s==null?'':s).normalize('NFC').trim().toLowerCase().replace(/([0-9])\s*[′']/g,'$1分').replace(/([0-9])\s*[″"]/g,'$1秒').replace(/[°º]/g,'度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g,'');}
 
 /* ==========================================
    存储
