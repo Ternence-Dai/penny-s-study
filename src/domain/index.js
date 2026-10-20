@@ -8,7 +8,10 @@ export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus })
   // Normalize canonically equivalent Unicode and use locale-independent casing so
   // answer keys behave identically across browsers and user locale settings.
   const normalizeAnswer = value => value.normalize("NFC").trim().replace(/\s+/gu, " ").toLowerCase();
-  const correct = normalizeAnswer(submittedAnswer) === normalizeAnswer(expectedAnswer);
+  const normalizedExpected = normalizeAnswer(expectedAnswer);
+  const normalizedSubmitted = normalizeAnswer(submittedAnswer);
+  if (normalizedExpected.length > 10000 || normalizedSubmitted.length > 10000) throw new RangeError("normalized answers must not exceed 10000 characters");
+  const correct = normalizedSubmitted === normalizedExpected;
   return Object.freeze({ correct, score:correct ? 1 : 0, evidenceStatus, feedback: evidenceStatus === "verified" ? (correct ? "回答正确" : "再检查关键概念") : "本题答案尚未完成来源审核，评分仅供练习参考" });
 }
 function parseReviewTimestamp(value) {
