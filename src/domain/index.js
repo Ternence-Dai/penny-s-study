@@ -1,11 +1,21 @@
 export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus }) {
   if (typeof expectedAnswer !== "string" || !expectedAnswer.trim()) throw new TypeError("expectedAnswer is required");
   if (typeof submittedAnswer !== "string") throw new TypeError("submittedAnswer must be a string");
+  if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/u.test(expectedAnswer) ||
+      /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/u.test(submittedAnswer)) {
+    throw new TypeError("answers must not contain non-whitespace control characters");
+  }
+  if (expectedAnswer.length > 10000 || submittedAnswer.length > 10000) {
+    throw new RangeError("answers must not exceed 10000 characters");
+  }
   if (!["verified","review-needed","draft"].includes(evidenceStatus)) throw new RangeError("invalid evidence status");
   // Normalize canonically equivalent Unicode and use locale-independent casing so
   // answer keys behave identically across browsers and user locale settings.
-  const normalizeAnswer = value => value.normalize("NFC").trim().toLowerCase();
-  const correct = normalizeAnswer(submittedAnswer) === normalizeAnswer(expectedAnswer);
+  const normalizeAnswer = value => value.normalize("NFC").trim().replace(/\s+/gu, " ").toLowerCase();
+  const normalizedExpected = normalizeAnswer(expectedAnswer);
+  const normalizedSubmitted = normalizeAnswer(submittedAnswer);
+  if (normalizedExpected.length > 10000 || normalizedSubmitted.length > 10000) throw new RangeError("normalized answers must not exceed 10000 characters");
+  const correct = normalizedSubmitted === normalizedExpected;
   return Object.freeze({ correct, score:correct ? 1 : 0, evidenceStatus, feedback: evidenceStatus === "verified" ? (correct ? "回答正确" : "再检查关键概念") : "本题答案尚未完成来源审核，评分仅供练习参考" });
 }
 function parseReviewTimestamp(value) {

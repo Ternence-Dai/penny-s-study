@@ -1,10 +1,13 @@
 'use strict';
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
+const vm = require('node:vm');
 
 const html = fs.readFileSync('index.html', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
 const worker = fs.readFileSync('service-worker.js', 'utf8');
+assert.doesNotThrow(() => new vm.Script(worker, { filename: 'service-worker.js' }),
+  'service worker must parse before the browser attempts registration');
 const requiredAssets = [
   './index.html',
   './manifest.webmanifest',
@@ -34,6 +37,9 @@ for (const asset of requiredAssets) {
 }
 assert.ok(worker.includes('request.method !== \'GET\''),
   'service worker must not intercept mutations');
+assert.ok(worker.includes('const isStaticAsset') && worker.includes('if (!isStaticAsset) return;'),
+  'runtime caching must be allowlisted to public static assets, not arbitrary same-origin responses');
+
 assert.ok(worker.includes('url.origin !== self.location.origin'),
   'service worker must not intercept third-party requests');
 assert.ok(worker.includes("request.mode === 'navigate'") &&
@@ -47,3 +53,6 @@ assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
 
 console.log('StarStudy PWA manifest, offline shell and static asset checks passed.');
+
+assert.ok(worker.includes('if (url.search) return;'),
+  'runtime cache must skip query variants to prevent unbounded cache-key growth');
