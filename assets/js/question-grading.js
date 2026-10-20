@@ -1,6 +1,8 @@
 /* Pure grading rules for the six supported astronomy question types. */
 (function (root) {
   'use strict';
+  const MAX_FILL_ANSWER_LENGTH = 4096;
+  const MAX_FILL_VARIANTS = 128;
   function isCorrect(question, submittedAnswer, normalize) {
     if (!question || submittedAnswer === undefined || submittedAnswer === null) return false;
     const expected = question.answer;
@@ -35,9 +37,10 @@
         return counts.size === 0;
       }
       case 'fill': {
-        if (typeof submittedAnswer !== 'string' || typeof normalize !== 'function' ||
-            !Array.isArray(expected) || expected.length === 0 ||
-            !expected.every(value => typeof value === 'string')) return false;
+        if (typeof submittedAnswer !== 'string' || submittedAnswer.length > MAX_FILL_ANSWER_LENGTH ||
+            typeof normalize !== 'function' || !Array.isArray(expected) ||
+            expected.length === 0 || expected.length > MAX_FILL_VARIANTS ||
+            !expected.every(value => typeof value === 'string' && value.length <= MAX_FILL_ANSWER_LENGTH)) return false;
         try {
           const actual = normalize(submittedAnswer);
           if (typeof actual !== 'string' || !actual) return false;

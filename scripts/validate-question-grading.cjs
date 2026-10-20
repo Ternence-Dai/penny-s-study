@@ -184,6 +184,12 @@ assert.equal(grade(q('fill', ['银河系']), '', norm), false);
 assert.equal(grade(q('fill', []), 'anything', norm), false);
 assert.equal(grade(q('fill', [{}]), '[object Object]', norm), false);
 assert.equal(grade(q('fill', ['42']), 42, norm), false);
+assert.equal(grade(q('fill', ['42']), 'x'.repeat(4097), value => value), false,
+  'free-text grading must reject oversized submitted answers before normalization');
+assert.equal(grade(q('fill', ['x'.repeat(4097)]), 'x'.repeat(4097), value => value), false,
+  'free-text grading must reject oversized accepted variants');
+assert.equal(grade(q('fill', Array(129).fill('x')), 'x', value => value), false,
+  'free-text grading must cap accepted answer variants');
 assert.equal(grade(q('fill', ['42']), '42', () => 42), false);
 assert.equal(grade(q('fill', ['42']), '42', () => { throw new Error('normalizer failed'); }), false);
 assert.equal(grade(q('fill', ['42']), '42', value => {
