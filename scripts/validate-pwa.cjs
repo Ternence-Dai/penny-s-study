@@ -53,3 +53,6 @@ assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
 
 console.log('StarStudy PWA manifest, offline shell and static asset checks passed.');
+
+assert.ok(worker.includes('if (url.search) return;'),
+  'runtime cache must skip query variants to prevent unbounded cache-key growth');
