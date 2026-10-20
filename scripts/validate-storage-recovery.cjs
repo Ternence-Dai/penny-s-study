@@ -210,3 +210,18 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.equal(data.has('a_active_practice_v1'),false,
     'clearing a practice draft must not clear question statistics or wrong-book data');
 }
+
+
+{
+  const submitStart=html.indexOf('async function pSubmit()');
+  const submitEnd=html.indexOf('\\nfunction pNext()',submitStart);
+  assert.ok(submitStart>=0&&submitEnd>submitStart,'practice submit handler must remain discoverable');
+  const submit=html.slice(submitStart,submitEnd);
+  const persistAt=submit.indexOf('if (!Store.saveActivePractice(p))');
+  const statsAt=submit.indexOf('Store.bumpQStat(q.id, ok)');
+  assert.ok(persistAt>=0&&statsAt>persistAt,
+    'practice session must persist successfully before secondary statistics are updated');
+  assert.match(submit,/p\\.evaluated\\[p\\.index\\]=false/);
+  assert.match(submit,/if \\(ok\\) p\\.correct--; else p\\.wrong--;/,
+    'failed practice persistence must roll back the in-memory score');
+}
