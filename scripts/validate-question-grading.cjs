@@ -10,12 +10,15 @@ vm.runInContext(questionSource, questionContext);
 const questionBank = questionContext.Q;
 assert.ok(Array.isArray(questionBank) && questionBank.length === 300,
   'question bank must contain the documented 300 question records');
-const skyStart = app.indexOf("(function(){\\n  var c = document.getElementById('starsBg')");
-const skyEnd = app.indexOf('\\n})();', skyStart);
-assert.ok(skyStart >= 0 && skyEnd > skyStart, 'astronomy starfield renderer must be present');
-const skySource = app.slice(skyStart, skyEnd + '\\n})();'.length);
+const starsAnchor = app.indexOf("var c = document.getElementById('starsBg')");
+const skyStart = app.lastIndexOf('(function(){', starsAnchor);
+const skyEnd = app.indexOf('\n})();', skyStart);
+assert.ok(starsAnchor >= 0 && skyStart >= 0 && skyEnd > skyStart,
+  'astronomy starfield renderer must be present');
+const skySource = app.slice(skyStart, skyEnd + '\n})();'.length);
 function runSky({ reducedMotion = false, hidden = false } = {}) {
   let frames = 0;
+  let visibilityHandler = null;
   const canvas = {width:0,height:0,style:{},getContext:()=>({
     setTransform(){},clearRect(){},beginPath(){},arc(){},fill(){}
   })};
@@ -28,19 +31,27 @@ function runSky({ reducedMotion = false, hidden = false } = {}) {
     document: {
       hidden,
       getElementById:()=>canvas,
-      addEventListener(){}
+      addEventListener:(name,handler)=>{if(name==='visibilitychange')visibilityHandler=handler;}
     },
     requestAnimationFrame:()=>{frames++;},
     Math
   };
   vm.runInNewContext(skySource, context);
-  return frames;
+  const initialFrames=frames;
+  if(hidden && visibilityHandler){
+    context.document.hidden=false;
+    visibilityHandler();
+  }
+  return {initialFrames,frames};
 }
-assert.equal(runSky({reducedMotion:true}),0,
+assert.equal(runSky({reducedMotion:true}).frames,0,
   'reduced-motion preference must render a static starfield without scheduling animation frames');
-assert.equal(runSky({hidden:true}),0,
+const backgroundSky=runSky({hidden:true});
+assert.equal(backgroundSky.initialFrames,0,
   'background tabs must not schedule continuous starfield animation');
-assert.equal(runSky({reducedMotion:false,hidden:false}),1,
+assert.equal(backgroundSky.frames,1,
+  'starfield animation must resume once a hidden tab becomes visible');
+assert.equal(runSky({reducedMotion:false,hidden:false}).frames,1,
   'visible users who allow motion must keep the animated starfield running');
 assert.ok(app.includes("document.addEventListener('visibilitychange', redrawWhenVisible)") &&
           app.includes("window.matchMedia('(prefers-reduced-motion: reduce)')"),
