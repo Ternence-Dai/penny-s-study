@@ -53,7 +53,7 @@ self.addEventListener('fetch', event => {
   // Runtime caching is limited to versionable public app assets. Never cache
   // arbitrary same-origin GETs such as API, account, or user-data responses.
   const isStaticAsset =
-    /\\/assets\\/(?:css|js|icons)\\/[^/]+\\.(?:css|js|svg)$/.test(url.pathname) ||
+    /\/assets\/(?:css|js|icons)\/[^/]+\.(?:css|js|svg)$/.test(url.pathname) ||
     url.pathname.endsWith('/manifest.webmanifest');
   if (!isStaticAsset) return;
 

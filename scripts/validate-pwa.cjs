@@ -1,10 +1,13 @@
 'use strict';
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
+const vm = require('node:vm');
 
 const html = fs.readFileSync('index.html', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
 const worker = fs.readFileSync('service-worker.js', 'utf8');
+assert.doesNotThrow(() => new vm.Script(worker, { filename: 'service-worker.js' }),
+  'service worker must parse before the browser attempts registration');
 const requiredAssets = [
   './index.html',
   './manifest.webmanifest',
