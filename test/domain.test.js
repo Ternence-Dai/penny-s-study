@@ -36,3 +36,12 @@ test("caps long-term spaced-review intervals and prevents invalid due dates",()=
   reviewedAt:"9999-12-31T23:59:59Z",quality:5,previousIntervalDays:1
  }),RangeError);
 });
+
+
+test("grades equivalent Unicode whitespace consistently",()=>{
+ assert.equal(gradeAnswer({
+  expectedAnswer:"fuel cell efficiency",
+  submittedAnswer:"fuel\\u00a0\\u2009cell\\t efficiency",
+  evidenceStatus:"verified"
+ }).correct,true);
+});
