@@ -238,3 +238,18 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.equal(api.locked, true,
     'a failed storage removal must activate the recovery lock');
 }
+
+
+{
+  let writes=0;
+  const api=makeContext({
+    getItem:()=>null,
+    setItem(){writes++;},
+    removeItem(){throw new Error('quota or browser policy denied removal');}
+  });
+  assert.equal(api.safeStorageRemove('a_r_v6'),false);
+  assert.equal(api.locked,true);
+  assert.equal(api.safeStorageSet('a_r_v6','[]'),false,
+    'a successful-looking later write must not bypass the recovery lock');
+  assert.equal(writes,0,'no write may be attempted after a failed removal has raised the lock');
+}
