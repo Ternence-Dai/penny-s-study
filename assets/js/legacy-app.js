@@ -16,6 +16,8 @@ window.addEventListener('error', function(e){
 (function(){
   var c = document.getElementById('starsBg'), x = c.getContext('2d');
   var stars = [], w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var reducedMotion = !!(window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function resize(){
     w = window.innerWidth; h = window.innerHeight;
     c.width = w * dpr; c.height = h * dpr;
@@ -38,20 +40,26 @@ window.addEventListener('error', function(e){
     x.clearRect(0, 0, w, h);
     for (var i = 0; i < stars.length; i++){
       var s = stars[i];
-      s.a += s.da;
-      if (s.a < 0.1 || s.a > 0.95) s.da = -s.da;
-      s.x += s.vx; s.y += s.vy;
-      if (s.x < 0) s.x = w; if (s.x > w) s.x = 0;
-      if (s.y < 0) s.y = h; if (s.y > h) s.y = 0;
+      if (!reducedMotion && !document.hidden){
+        s.a += s.da;
+        if (s.a < 0.1 || s.a > 0.95) s.da = -s.da;
+        s.x += s.vx; s.y += s.vy;
+        if (s.x < 0) s.x = w; if (s.x > w) s.x = 0;
+        if (s.y < 0) s.y = h; if (s.y > h) s.y = 0;
+      }
       x.globalAlpha = s.a;
       x.beginPath(); x.arc(s.x, s.y, s.r, 0, Math.PI * 2);
       x.fillStyle = '#fff'; x.fill();
     }
     x.globalAlpha = 1;
-    requestAnimationFrame(draw);
+    if (!reducedMotion && !document.hidden) requestAnimationFrame(draw);
+  }
+  function redrawWhenVisible(){
+    if (!document.hidden) draw();
   }
   resize(); init(); draw();
-  window.addEventListener('resize', function(){ resize(); init(); });
+  window.addEventListener('resize', function(){ resize(); init(); draw(); });
+  document.addEventListener('visibilitychange', redrawWhenVisible);
 })();
 
 /* ==========================================
