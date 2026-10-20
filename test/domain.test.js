@@ -60,3 +60,9 @@ test("bounds answer grading input before Unicode normalization",()=>{
   expectedAnswer:"a",submittedAnswer:oversized,evidenceStatus:"verified"
  }),RangeError);
 });
+
+
+test("answer grading enforces the size limit after Unicode normalization",()=>{
+ const expanding="İ".repeat(6000);
+ assert.throws(()=>gradeAnswer({expectedAnswer:expanding,submittedAnswer:"i",evidenceStatus:"verified"}),RangeError);
+});
