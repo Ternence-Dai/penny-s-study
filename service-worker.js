@@ -56,6 +56,9 @@ self.addEventListener('fetch', event => {
     /\/assets\/(?:css|js|icons)\/[^/]+\.(?:css|js|svg)$/.test(url.pathname) ||
     url.pathname.endsWith('/manifest.webmanifest');
   if (!isStaticAsset) return;
+  // Ignore cache-busting or attacker-controlled query variants so the cache cannot
+  // accumulate unbounded entries for the same static asset path.
+  if (url.search) return;
 
   event.respondWith(
     caches.match(request).then(cached => {
