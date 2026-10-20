@@ -221,7 +221,7 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   const statsAt=submit.indexOf('Store.bumpQStat(q.id, ok)');
   assert.ok(persistAt>=0&&statsAt>persistAt,
     'practice session must persist successfully before secondary statistics are updated');
-  assert.match(submit,/p\\.evaluated\\[p\\.index\\]=false/);
-  assert.match(submit,/if \\(ok\\) p\\.correct--; else p\\.wrong--;/,
+  assert.ok(submit.includes('p.evaluated[p.index]=false'));
+  assert.ok(submit.includes('if (ok) p.correct--; else p.wrong--;'),
     'failed practice persistence must roll back the in-memory score');
 }
