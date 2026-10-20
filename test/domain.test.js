@@ -45,3 +45,8 @@ test("grades equivalent Unicode whitespace consistently",()=>{
   evidenceStatus:"verified"
  }).correct,true);
 });
+
+
+test("collapses repeated whitespace before comparing normalized answers",()=>{
+ assert.equal(gradeAnswer({expectedAnswer:"alpha beta",submittedAnswer:" alpha   beta ",evidenceStatus:"verified"}).correct,true);
+});
