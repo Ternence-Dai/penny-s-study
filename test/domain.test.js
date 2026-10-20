@@ -41,7 +41,7 @@ test("caps long-term spaced-review intervals and prevents invalid due dates",()=
 test("grades equivalent Unicode whitespace consistently",()=>{
  assert.equal(gradeAnswer({
   expectedAnswer:"fuel cell efficiency",
-  submittedAnswer:"fuel\\u00a0\\u2009cell\\t efficiency",
+  submittedAnswer:"fuel\u00a0\u2009cell\t efficiency",
   evidenceStatus:"verified"
  }).correct,true);
 });
