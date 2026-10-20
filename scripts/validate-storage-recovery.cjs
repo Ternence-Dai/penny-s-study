@@ -225,3 +225,16 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.ok(submit.includes('if (ok) p.correct--; else p.wrong--;'),
     'failed practice persistence must roll back the in-memory score');
 }
+
+
+{
+  const api = makeContext({
+    getItem: () => null,
+    setItem() {},
+    removeItem() { throw new Error('storage removal denied'); }
+  });
+  assert.equal(api.safeStorageRemove('a_r_v6'), false,
+    'a failed storage removal must be reported rather than treated as successful');
+  assert.equal(api.locked, true,
+    'a failed storage removal must activate the recovery lock');
+}
