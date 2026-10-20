@@ -214,7 +214,7 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 
 {
   const submitStart=html.indexOf('async function pSubmit()');
-  const submitEnd=html.indexOf('\\nfunction pNext()',submitStart);
+  const submitEnd=html.indexOf('\nfunction pNext()',submitStart);
   assert.ok(submitStart>=0&&submitEnd>submitStart,'practice submit handler must remain discoverable');
   const submit=html.slice(submitStart,submitEnd);
   const persistAt=submit.indexOf('if (!Store.saveActivePractice(p))');
