@@ -1,12 +1,14 @@
 export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus }) {
   if (typeof expectedAnswer !== "string" || !expectedAnswer.trim()) throw new TypeError("expectedAnswer is required");
   if (typeof submittedAnswer !== "string") throw new TypeError("submittedAnswer must be a string");
+  if (expectedAnswer.length > 10000 || submittedAnswer.length > 10000) {
+    throw new RangeError("answers must not exceed 10000 characters");
+  }
+
+  // Bound attacker-controlled strings before scanning for control characters.
   if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/u.test(expectedAnswer) ||
       /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/u.test(submittedAnswer)) {
     throw new TypeError("answers must not contain non-whitespace control characters");
-  }
-  if (expectedAnswer.length > 10000 || submittedAnswer.length > 10000) {
-    throw new RangeError("answers must not exceed 10000 characters");
   }
   if (!["verified","review-needed","draft"].includes(evidenceStatus)) throw new RangeError("invalid evidence status");
   // Normalize canonically equivalent Unicode and use locale-independent casing so
