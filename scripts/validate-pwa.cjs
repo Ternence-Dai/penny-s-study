@@ -34,6 +34,9 @@ for (const asset of requiredAssets) {
 }
 assert.ok(worker.includes('request.method !== \'GET\''),
   'service worker must not intercept mutations');
+assert.ok(worker.includes('const isStaticAsset') && worker.includes('if (!isStaticAsset) return;'),
+  'runtime caching must be allowlisted to public static assets, not arbitrary same-origin responses');
+
 assert.ok(worker.includes('url.origin !== self.location.origin'),
   'service worker must not intercept third-party requests');
 assert.ok(worker.includes("request.mode === 'navigate'") &&
