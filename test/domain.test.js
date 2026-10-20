@@ -66,3 +66,9 @@ test("answer grading enforces the size limit after Unicode normalization",()=>{
  const expanding="İ".repeat(6000);
  assert.throws(()=>gradeAnswer({expectedAnswer:expanding,submittedAnswer:"i",evidenceStatus:"verified"}),RangeError);
 });
+
+
+test("answer grading rejects non-whitespace control characters",()=>{
+ assert.throws(()=>gradeAnswer({expectedAnswer:"safe\\u0000answer",submittedAnswer:"safe answer",evidenceStatus:"verified"}),TypeError);
+ assert.throws(()=>gradeAnswer({expectedAnswer:"safe answer",submittedAnswer:"safe\\u007fanswer",evidenceStatus:"verified"}),TypeError);
+});
