@@ -1,6 +1,9 @@
 export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus }) {
   if (typeof expectedAnswer !== "string" || !expectedAnswer.trim()) throw new TypeError("expectedAnswer is required");
   if (typeof submittedAnswer !== "string") throw new TypeError("submittedAnswer must be a string");
+  if (expectedAnswer.length > 10000 || submittedAnswer.length > 10000) {
+    throw new RangeError("answers must not exceed 10000 characters");
+  }
   if (!["verified","review-needed","draft"].includes(evidenceStatus)) throw new RangeError("invalid evidence status");
   // Normalize canonically equivalent Unicode and use locale-independent casing so
   // answer keys behave identically across browsers and user locale settings.
