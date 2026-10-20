@@ -50,3 +50,13 @@ test("grades equivalent Unicode whitespace consistently",()=>{
 test("collapses repeated whitespace before comparing normalized answers",()=>{
  assert.equal(gradeAnswer({expectedAnswer:"alpha beta",submittedAnswer:" alpha   beta ",evidenceStatus:"verified"}).correct,true);
 });
+
+test("bounds answer grading input before Unicode normalization",()=>{
+ const oversized="a".repeat(10001);
+ assert.throws(()=>gradeAnswer({
+  expectedAnswer:oversized,submittedAnswer:"a",evidenceStatus:"verified"
+ }),RangeError);
+ assert.throws(()=>gradeAnswer({
+  expectedAnswer:"a",submittedAnswer:oversized,evidenceStatus:"verified"
+ }),RangeError);
+});
