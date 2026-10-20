@@ -4,7 +4,7 @@ export function gradeAnswer({ expectedAnswer, submittedAnswer, evidenceStatus })
   if (!["verified","review-needed","draft"].includes(evidenceStatus)) throw new RangeError("invalid evidence status");
   // Normalize canonically equivalent Unicode and use locale-independent casing so
   // answer keys behave identically across browsers and user locale settings.
-  const normalizeAnswer = value => value.normalize("NFC").trim().replace(/\\s+/gu, " ").toLowerCase();
+  const normalizeAnswer = value => value.normalize("NFC").trim().replace(/\s+/gu, " ").toLowerCase();
   const correct = normalizeAnswer(submittedAnswer) === normalizeAnswer(expectedAnswer);
   return Object.freeze({ correct, score:correct ? 1 : 0, evidenceStatus, feedback: evidenceStatus === "verified" ? (correct ? "回答正确" : "再检查关键概念") : "本题答案尚未完成来源审核，评分仅供练习参考" });
 }
