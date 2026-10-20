@@ -2529,6 +2529,15 @@ async function pSubmit(){
     if (!Array.isArray(p.evaluated)) p.evaluated = new Array(p.list.length).fill(false);
     p.evaluated[p.index]=true;
     if (ok) p.correct++; else p.wrong++;
+    // Commit the resumable session before mutating secondary mastery/review ledgers.
+    // If persistence fails, roll back the in-memory score so the UI cannot imply
+    // that an unpersisted answer has been safely recorded.
+    if (!Store.saveActivePractice(p)) {
+      p.evaluated[p.index]=false;
+      if (ok) p.correct--; else p.wrong--;
+      alert('练习进度无法安全保存；本题尚未计入成绩。请先检查浏览器存储与恢复状态。');
+      return;
+    }
     Store.bumpQStat(q.id, ok);
     await recordQuestionOutcome(q.id,ok);
     p.showAnswer = true;
