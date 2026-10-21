@@ -41,15 +41,16 @@ for (const asset of requiredAssets) {
   assert.ok(worker.includes("'" + asset + "'"),
     'offline app shell must cache ' + asset);
   if (asset.startsWith('./assets/')) {
-    assert.ok(html.includes('"' + asset + '"') || html.includes("'" + asset + "'"),
-      'offline app shell entry must correspond to an asset referenced by the page: ' + asset);
+    const assetPath = asset.split('?')[0];
+    const escapedPath = assetPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    assert.ok(new RegExp(escapedPath + '(?:\\?[^"\\s]*)?["\\']').test(html),
+      'offline app shell entry must correspond to an asset referenced by the page: ' + assetPath);
   }
 }
 assert.ok(worker.includes('request.method !== \'GET\''),
   'service worker must not intercept mutations');
 assert.ok(worker.includes('const isStaticAsset') && worker.includes('if (!isStaticAsset) return;'),
   'runtime caching must be allowlisted to public static assets, not arbitrary same-origin responses');
-
 assert.ok(worker.includes('url.origin !== self.location.origin'),
   'service worker must not intercept third-party requests');
 assert.ok(worker.includes("request.mode === 'navigate'") &&
@@ -59,12 +60,9 @@ assert.ok(worker.includes("request.mode === 'navigate'") &&
   'offline navigation must use the cached app shell without allowing deep links to overwrite it');
 assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients.claim()'),
   'service worker must clean prior cache versions and claim clients');
-
 const icon = fs.readFileSync('assets/icons/app-icon.svg', 'utf8');
 assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
-
-console.log('StarStudy PWA manifest, offline shell and static asset checks passed.');
-
 assert.ok(worker.includes('if (url.search) return;'),
   'runtime cache must skip query variants to prevent unbounded cache-key growth');
+console.log('StarStudy PWA manifest, offline shell and static asset checks passed.');
