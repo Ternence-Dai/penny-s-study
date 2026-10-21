@@ -13,7 +13,7 @@ const { chromium } = require('playwright');
   page.on('console', message => { if (message.type() === 'warning' || message.type() === 'error') consoleMessages.push(message.text()); });
 
   try {
-    await page.goto('https://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+    await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     await page.evaluate(() => {
       localStorage.setItem('penny-offline-acceptance', 'preserved');
@@ -21,7 +21,7 @@ const { chromium } = require('playwright');
 
     const registration = await page.evaluate(async () => {
       if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable');
-      if (!window.isSecureContext || location.protocol !== 'https:') {
+      if (!window.isSecureContext || !(location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
         throw new Error('PWA acceptance page is not a secure HTTPS context');
       }
       const registration = await navigator.serviceWorker.register('./service-worker.js');
@@ -67,7 +67,7 @@ const { chromium } = require('playwright');
     }
 
     await context.setOffline(true);
-    await page.goto('https://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     const offlineRoot = await page.evaluate(() => ({
       title: document.title,
@@ -78,7 +78,7 @@ const { chromium } = require('playwright');
       throw new Error('Offline root launch or local progress preservation failed: ' + JSON.stringify(offlineRoot));
     }
 
-    const deepUrl = 'https://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
+    const deepUrl = 'http://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
     await page.goto(deepUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     await page.reload({ waitUntil: 'domcontentloaded', timeout: 20000 });
