@@ -66,7 +66,7 @@ self.addEventListener('fetch', event => {
         headers.delete('content-length');
         return cached.text().then(html => {
           const baseTag = '<base href="' + appRootUrl.href + '">';
-          const body = html.replace(/<head(\\s[^>]*)?>/i, match => match + baseTag);
+          const body = html.replace(/<head(\s[^>]*)?>/i, match => match + baseTag);
           return new Response(body, { status: 200, headers });
         });
       }))
