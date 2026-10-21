@@ -1,0 +1,26 @@
+/* Star competition learning — observatory / sky-atlas visual language */
+body[data-workspace="study"]{--sky-ink:#edf2ff;--sky-muted:#9eadd0;--sky-line:rgba(149,168,224,.2);--sky-cyan:#77d7e7;--sky-violet:#a99bff}
+body[data-workspace="study"]{background:radial-gradient(ellipse at 50% -15%,#26376c 0,#111a3b 43%,#090f25 100%)}
+body[data-workspace="study"] #starsBg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.72}
+body[data-workspace="study"] .app{position:relative;z-index:1;background:transparent}
+body[data-workspace="study"] .navbar{background:rgba(9,16,39,.82);border-bottom:1px solid var(--sky-line);backdrop-filter:blur(14px)}
+body[data-workspace="study"] .study-intro{position:relative;overflow:hidden;margin:22px 26px 18px;padding:30px 32px;border:1px solid rgba(145,158,232,.3);border-radius:20px;background:radial-gradient(circle at 88% 30%,rgba(124,111,219,.28),transparent 26%),linear-gradient(115deg,rgba(20,31,72,.97),rgba(24,38,82,.9) 62%,rgba(28,43,86,.84));box-shadow:0 22px 60px rgba(0,0,0,.2)}
+body[data-workspace="study"] .study-intro h2{font-size:clamp(24px,3vw,34px);color:#f5f4ff;letter-spacing:-.6px}
+body[data-workspace="study"] .study-intro p{max-width:760px;color:#c1cbea;font-size:14px;line-height:1.75}
+body[data-workspace="study"] .study-tags span{border:1px solid rgba(159,174,245,.25);background:rgba(141,150,234,.1);color:#dce5ff;padding:7px 10px;border-radius:99px}
+body[data-workspace="study"] .study-intro .orbit{width:104px;height:104px;border:1px solid rgba(151,171,255,.35);border-radius:50%;display:grid;place-items:center;color:#d8d5ff;font-size:42px;box-shadow:0 0 0 13px rgba(130,143,229,.06),0 0 0 28px rgba(130,143,229,.035);animation:sky-orbit 18s linear infinite}
+@keyframes sky-orbit{to{transform:rotate(360deg)}}
+body[data-workspace="study"] .product-workflow{margin:0 26px 20px;padding:20px;border:1px solid var(--sky-line);border-radius:18px;background:rgba(15,24,55,.88);box-shadow:0 12px 34px rgba(0,0,0,.15)}
+body[data-workspace="study"] .product-workflow__head h3{color:#f0f1ff}
+body[data-workspace="study"] .product-workflow__head p{color:#aebbdc}
+body[data-workspace="study"] .product-workflow__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+body[data-workspace="study"] .product-workflow__item{min-height:128px;padding:16px;border:1px solid rgba(154,170,235,.2);border-radius:13px;background:linear-gradient(145deg,rgba(34,48,94,.95),rgba(20,31,67,.95));text-align:left}
+body[data-workspace="study"] .product-workflow__item i{background:rgba(136,156,247,.14);color:#b8c7ff}
+body[data-workspace="study"] .product-workflow__item b{color:#f0f2ff;font-size:14px}
+body[data-workspace="study"] .product-workflow__item small{color:#aebcdb;font-size:12px}
+body[data-workspace="study"] .product-workflow__item span{color:#8de0e9}
+body[data-workspace="study"] #view{margin:0 26px 28px;padding:18px;border:1px solid var(--sky-line);border-radius:18px;background:rgba(12,20,48,.78);color:#e9edff;box-shadow:0 12px 36px rgba(0,0,0,.16)}
+body[data-workspace="study"] .tabbar{background:rgba(12,20,48,.92);border:1px solid var(--sky-line);border-radius:14px;backdrop-filter:blur(12px)}
+body[data-workspace="study"] .tabbar button.active{background:linear-gradient(135deg,#46569a,#267f98);color:#fff}
+@media(max-width:900px){body[data-workspace="study"] .product-workflow__grid{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-workspace="study"] .study-intro,body[data-workspace="study"] .product-workflow,body[data-workspace="study"] #view{margin-left:14px;margin-right:14px}}
+@media(max-width:560px){body[data-workspace="study"] .product-workflow__grid{grid-template-columns:1fr}body[data-workspace="study"] .study-intro{padding:20px 17px}body[data-workspace="study"] .study-intro .orbit{display:none}}
