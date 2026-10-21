@@ -65,8 +65,11 @@ self.addEventListener('fetch', event => {
   }
 
   // Do not cache arbitrary same-origin GETs such as API or user-data responses.
-  const isStaticAsset =
-    /\\/assets\\/(?:css|js|icons)\\/[^/]+\\.(?:css|js|svg)$/.test(url.pathname) ||
+  const isAssetDirectory = ['/assets/css/', '/assets/js/', '/assets/icons/']
+    .some(prefix => url.pathname.includes(prefix));
+  const isAssetExtension = ['.css', '.js', '.svg']
+    .some(extension => url.pathname.endsWith(extension));
+  const isStaticAsset = (isAssetDirectory && isAssetExtension) ||
     url.pathname.endsWith('/manifest.webmanifest');
   if (!isStaticAsset) return;
   // Versioned assets are precached under their exact URL. Skip all other query
