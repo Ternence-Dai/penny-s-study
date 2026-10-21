@@ -14,6 +14,10 @@ const { chromium } = require('playwright');
 
   try {
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+    const contextScript = await page.locator('script[src*="workspace-v5-context.js"]').getAttribute('src');
+    if (!contextScript || !contextScript.includes('v=20261021-mutationobserver-fix-v1')) {
+      throw new Error('Workspace observer fix cache-busting URL is missing: ' + contextScript);
+    }
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     await page.evaluate(() => {
       localStorage.setItem('penny-offline-acceptance', 'preserved');
@@ -54,6 +58,7 @@ const { chromium } = require('playwright');
         './assets/css/reference-interface-v1.css?v=20261021-reference-ui-v1',
         './assets/js/question-bank.js',
         './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
+        './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1',
         './assets/js/workspace-v5.js?v=20261019-v52'
       ];
       const assets = await Promise.all(required.map(async path => ({
