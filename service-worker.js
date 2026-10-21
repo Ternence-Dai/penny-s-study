@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v4';
+const CACHE_NAME = 'penny-study-shell-v5';
 const APP_SHELL = [
   './',
   './index.html',
@@ -16,7 +16,9 @@ const APP_SHELL = [
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
-  './assets/js/legacy-app.js'
+  './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
+  './assets/js/workspace-v5.js?v=20261019-v52',
+  './assets/js/workspace-v5-context.js?v=20261019-v52'
 ];
 
 self.addEventListener('install', event => {
@@ -50,8 +52,6 @@ self.addEventListener('fetch', event => {
       url.pathname === appRootUrl.pathname || url.pathname === appShellUrl.pathname;
     event.respondWith(
       fetch(request).then(response => {
-        // Only the app root/index may refresh the cached shell. A successful
-        // deep-link response must never overwrite the offline entry point.
         if (isAppShellNavigation && response && response.ok && response.type === 'basic') {
           const copy = response.clone();
           return caches.open(CACHE_NAME)
@@ -64,14 +64,13 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Runtime caching is limited to versionable public app assets. Never cache
-  // arbitrary same-origin GETs such as API, account, or user-data responses.
+  // Do not cache arbitrary same-origin GETs such as API or user-data responses.
   const isStaticAsset =
-    /\/assets\/(?:css|js|icons)\/[^/]+\.(?:css|js|svg)$/.test(url.pathname) ||
+    /\\/assets\\/(?:css|js|icons)\\/[^/]+\\.(?:css|js|svg)$/.test(url.pathname) ||
     url.pathname.endsWith('/manifest.webmanifest');
   if (!isStaticAsset) return;
-  // Ignore cache-busting or attacker-controlled query variants so the cache cannot
-  // accumulate unbounded entries for the same static asset path.
+  // Versioned assets are precached under their exact URL. Skip all other query
+  // variants so untrusted query strings cannot grow the runtime cache.
   if (url.search) return;
 
   event.respondWith(
