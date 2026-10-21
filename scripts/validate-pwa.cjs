@@ -56,8 +56,8 @@ assert.ok(worker.includes('url.origin !== self.location.origin'),
 assert.ok(worker.includes("request.mode === 'navigate'") &&
           worker.includes("const isAppShellNavigation") &&
           worker.includes("url.pathname === appRootUrl.pathname") &&
-          worker.includes("caches.match(appShellUrl)"),
-  'offline navigation must use the cached app shell without allowing deep links to overwrite it');
+          worker.includes("caches.match(appShellUrl)") && worker.includes("<base href=\"' + appRootUrl.href + '\">"),
+  'offline navigation must use the cached app shell with an app-root base so deep-link assets resolve correctly');
 assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients.claim()'),
   'service worker must clean prior cache versions and claim clients');
 const icon = fs.readFileSync('assets/icons/app-icon.svg', 'utf8');
