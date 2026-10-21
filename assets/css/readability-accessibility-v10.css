@@ -21,3 +21,20 @@ body :where(button,a,input,select,textarea,[tabindex]):focus-visible { outline:3
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { scroll-behavior:auto !important; animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
 }
+/* Larger pointer targets and native high-contrast colors for accessible controls. */
+@media (pointer: coarse) {
+  body :where(button, a, input, select, textarea, [role="button"]) {
+    min-height: 44px;
+    min-inline-size: 44px;
+  }
+}
+@media (forced-colors: active) {
+  body :where(button, a, input, select, textarea, [tabindex], [role="button"]) {
+    forced-color-adjust: auto;
+    border-color: ButtonText !important;
+  }
+  body :where(button, a, input, select, textarea, [tabindex], [role="button"]):focus-visible {
+    outline: 3px solid Highlight !important;
+    outline-offset: 3px !important;
+  }
+}
