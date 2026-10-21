@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v2';
+const CACHE_NAME = 'penny-study-shell-v3';
 const APP_SHELL = [
   './',
   './index.html',
@@ -38,14 +38,22 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === 'navigate') {
+    const appRootUrl = new URL('./', self.registration.scope);
+    const appShellUrl = new URL('./index.html', self.registration.scope);
+    const isAppShellNavigation =
+      url.pathname === appRootUrl.pathname || url.pathname === appShellUrl.pathname;
     event.respondWith(
       fetch(request).then(response => {
-        if (response && response.ok) {
+        // Only the app root/index may refresh the cached shell. A successful
+        // deep-link response must never overwrite the offline entry point.
+        if (isAppShellNavigation && response && response.ok && response.type === 'basic') {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put('./index.html', copy));
+          return caches.open(CACHE_NAME)
+            .then(cache => cache.put(appShellUrl, copy).catch(() => {}))
+            .then(() => response);
         }
         return response;
-      }).catch(() => caches.match('./index.html'))
+      }).catch(() => caches.match(appShellUrl))
     );
     return;
   }
