@@ -43,8 +43,10 @@ assert.ok(worker.includes('const isStaticAsset') && worker.includes('if (!isStat
 assert.ok(worker.includes('url.origin !== self.location.origin'),
   'service worker must not intercept third-party requests');
 assert.ok(worker.includes("request.mode === 'navigate'") &&
-          worker.includes("caches.match('./index.html')"),
-  'offline navigation must fall back to the cached application shell');
+          worker.includes("const isAppShellNavigation") &&
+          worker.includes("url.pathname === appRootUrl.pathname") &&
+          worker.includes("caches.match(appShellUrl)"),
+  'offline navigation must use the cached app shell without allowing deep links to overwrite it');
 assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients.claim()'),
   'service worker must clean prior cache versions and claim clients');
 
