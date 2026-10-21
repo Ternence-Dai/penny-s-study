@@ -8,7 +8,9 @@ const { chromium } = require('playwright');
   const context = await browser.newContext({ viewport: { width: 1365, height: 900 }, ignoreHTTPSErrors: true });
   const page = await context.newPage();
   const pageErrors = [];
+  const consoleMessages = [];
   page.on('pageerror', error => pageErrors.push(error.message));
+  page.on('console', message => { if (message.type() === 'warning' || message.type() === 'error') consoleMessages.push(message.text()); });
 
   try {
     await page.goto('https://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
@@ -17,14 +19,25 @@ const { chromium } = require('playwright');
       localStorage.setItem('penny-offline-acceptance', 'preserved');
     });
 
-        const registrationHandle = await page.waitForFunction(async () => {
+    const registration = await page.evaluate(async () => {
+      if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable');
+      if (!window.isSecureContext || location.protocol !== 'https:') {
+        throw new Error('PWA acceptance page is not a secure HTTPS context');
+      }
+      const registration = await navigator.serviceWorker.register('./service-worker.js');
+      return {
+        scope: registration.scope,
+        active: registration.active && registration.active.state,
+        installing: registration.installing && registration.installing.state,
+        waiting: registration.waiting && registration.waiting.state
+      };
+    });
+    await page.waitForFunction(async () => {
       const registration = await navigator.serviceWorker.getRegistration();
-      if (!registration || !registration.active) return false;
-      return { scope: registration.scope, active: registration.active.state };
-    }, undefined, { timeout: 15000 });
-    const registration = await registrationHandle.jsonValue();
+      return !!(registration && registration.active && registration.active.state === 'activated');
+    }, undefined, { timeout: 20000 });
     if (!registration.active || !registration.scope.endsWith('/')) {
-      throw new Error('Service worker did not activate with an app-root scope: ' + JSON.stringify(registration));
+      throw new Error('Service worker did not activate with an app-root scope: ' + JSON.stringify(registration) + '; console: ' + consoleMessages.join(' | '));
     }
 
     await page.reload({ waitUntil: 'networkidle' });
@@ -95,7 +108,7 @@ const { chromium } = require('playwright');
     if (!mobile.tabbarVisible || !mobile.learnTab) {
       throw new Error('Mobile offline navigation failed: ' + JSON.stringify(mobile));
     }
-    if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | '));
+    if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | ') + '; console: ' + consoleMessages.join(' | '));
     console.log('PWA browser acceptance passed: service worker activated, app shell assets precached, offline root launch and refresh passed, offline deep-link recovery and local progress preservation passed, mobile navigation passed.');
   } finally {
     await context.setOffline(false);
