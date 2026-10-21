@@ -63,6 +63,7 @@ assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients
 const icon = fs.readFileSync('assets/icons/app-icon.svg', 'utf8');
 assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
-assert.ok(worker.includes('if (url.search) return;'),
-  'runtime cache must skip query variants to prevent unbounded cache-key growth');
+assert.ok(worker.includes('PRECACHED_URLS.has(url.href)') &&
+          worker.includes('if (url.search && !PRECACHED_URLS.has(url.href)) return;'),
+  'runtime cache must serve exact precached versioned assets while skipping arbitrary query variants');
 console.log('StarStudy PWA manifest, offline shell and versioned script checks passed.');
