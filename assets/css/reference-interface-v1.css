@@ -24,3 +24,24 @@ body[data-workspace="study"] .tabbar{background:rgba(12,20,48,.92);border:1px so
 body[data-workspace="study"] .tabbar button.active{background:linear-gradient(135deg,#46569a,#267f98);color:#fff}
 @media(max-width:900px){body[data-workspace="study"] .product-workflow__grid{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-workspace="study"] .study-intro,body[data-workspace="study"] .product-workflow,body[data-workspace="study"] #view{margin-left:14px;margin-right:14px}}
 @media(max-width:560px){body[data-workspace="study"] .product-workflow__grid{grid-template-columns:1fr}body[data-workspace="study"] .study-intro{padding:20px 17px}body[data-workspace="study"] .study-intro .orbit{display:none}}
+
+
+/* StarStudy v2: astronomy classroom and observation-planning workspace */
+body[data-workspace="study"]{--sky-glow:#86a8ff;--sky-line:#34466f}
+body[data-workspace="study"] .study-intro{position:relative;overflow:hidden;min-height:220px;padding:30px 32px;border:1px solid #344a78;border-radius:20px;background:radial-gradient(circle at 82% 20%,rgba(100,140,255,.23),transparent 25%),radial-gradient(circle at 62% 110%,rgba(48,175,205,.13),transparent 35%),linear-gradient(115deg,#101a3a,#1b2853 62%,#142e4a)}
+body[data-workspace="study"] .study-intro h2{font-size:clamp(28px,3vw,42px);letter-spacing:-.035em;color:#f0f3ff}
+body[data-workspace="study"] .study-intro p{max-width:760px;color:#b8c5e6;line-height:1.8}
+body[data-workspace="study"] .product-workflow{margin-top:18px;padding:22px;border:1px solid #34466f;border-radius:18px;background:linear-gradient(145deg,rgba(20,31,68,.96),rgba(13,23,52,.96));box-shadow:0 14px 36px rgba(0,0,0,.2)}
+body[data-workspace="study"] .product-workflow__head h3{font-size:19px;color:#eff3ff}
+body[data-workspace="study"] .product-workflow__grid{gap:12px}
+body[data-workspace="study"] .product-workflow__item{min-height:144px;padding:17px;border:1px solid #3a4e7d;border-radius:14px;background:linear-gradient(150deg,#202f60,#18264d);transition:transform .18s,border-color .18s,box-shadow .18s}
+body[data-workspace="study"] .product-workflow__item:hover{transform:translateY(-2px);border-color:#829fe8;box-shadow:0 12px 25px rgba(0,0,0,.24)}
+body[data-workspace="study"] .product-workflow__item i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(130,159,232,.16);color:#b6c9ff;font-style:normal}
+body[data-workspace="study"] #view{max-width:1660px;margin-inline:auto;padding:22px;border-color:#34466f;background:linear-gradient(150deg,rgba(14,24,54,.94),rgba(10,18,42,.94));box-shadow:0 16px 42px rgba(0,0,0,.2)}
+body[data-workspace="study"] #view :is(.card,.panel,.module-card){border:1px solid #34466f;border-radius:15px;background:rgba(25,39,81,.82);box-shadow:0 9px 24px rgba(0,0,0,.15)}
+body[data-workspace="study"] #view :is(input,select,textarea){min-height:40px;border:1px solid #465b8b;border-radius:9px;background:#101d43;color:#edf2ff}
+body[data-workspace="study"] .tabbar{position:sticky;top:8px;z-index:20;padding:5px}
+body[data-workspace="study"] .tabbar button{min-height:39px;border-radius:10px}
+body[data-workspace="study"] canvas#starsBg{opacity:.72}
+@media(max-width:760px){body[data-workspace="study"] .study-intro{padding:22px 18px;min-height:0}body[data-workspace="study"] .product-workflow{padding:16px}body[data-workspace="study"] #view{padding:13px;margin-bottom:18px}}
+@media(prefers-reduced-motion:reduce){body[data-workspace="study"] .product-workflow__item{transition:none}}
