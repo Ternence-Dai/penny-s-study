@@ -5,22 +5,26 @@ const { chromium } = require('playwright');
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({ viewport: { width: 1365, height: 900 } });
+  const context = await browser.newContext({ viewport: { width: 1365, height: 900 }, ignoreHTTPSErrors: true });
   const page = await context.newPage();
   const pageErrors = [];
   page.on('pageerror', error => pageErrors.push(error.message));
 
   try {
-    await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+    await page.goto('https://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     await page.evaluate(() => {
       localStorage.setItem('penny-offline-acceptance', 'preserved');
     });
 
+    await page.waitForFunction(async () => {
+      const registration = await navigator.serviceWorker.getRegistration();
+      return !!(registration && registration.active);
+    }, undefined, { timeout: 15000 });
     const registration = await page.evaluate(async () => {
       if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable');
-      const ready = await navigator.serviceWorker.ready;
-      return { scope: ready.scope, active: ready.active && ready.active.state };
+      const registration = await navigator.serviceWorker.getRegistration();
+      return { scope: registration && registration.scope, active: registration && registration.active && registration.active.state };
     });
     if (!registration.active || !registration.scope.endsWith('/')) {
       throw new Error('Service worker did not activate with an app-root scope: ' + JSON.stringify(registration));
@@ -53,7 +57,7 @@ const { chromium } = require('playwright');
     }
 
     await context.setOffline(true);
-    await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.goto('https://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     const offlineRoot = await page.evaluate(() => ({
       title: document.title,
@@ -64,7 +68,7 @@ const { chromium } = require('playwright');
       throw new Error('Offline root launch or local progress preservation failed: ' + JSON.stringify(offlineRoot));
     }
 
-    const deepUrl = 'http://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
+    const deepUrl = 'https://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
     await page.goto(deepUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     await page.reload({ waitUntil: 'domcontentloaded', timeout: 20000 });
