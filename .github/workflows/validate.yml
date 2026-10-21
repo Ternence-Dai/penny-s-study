@@ -67,11 +67,10 @@ jobs:
         run: npx playwright install --with-deps --only-shell chromium
       - name: Serve the standalone study app
         run: |
-          openssl req -x509 -newkey rsa:2048 -nodes -keyout /tmp/penny-key.pem -out /tmp/penny-cert.pem -subj '/CN=localhost' -days 1
-          python3 -c "import http.server,ssl; s=http.server.HTTPServer(('0.0.0.0',4173),http.server.SimpleHTTPRequestHandler); c=ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER); c.load_cert_chain('/tmp/penny-cert.pem','/tmp/penny-key.pem'); s.socket=c.wrap_socket(s.socket,server_side=True); s.serve_forever()" > /tmp/penny-http.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/penny-http.log 2>&1 &
           echo $! > /tmp/penny-http.pid
           for attempt in $(seq 1 20); do
-            if curl --silent --insecure --fail https://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
             sleep 1
           done
           cat /tmp/penny-http.log
