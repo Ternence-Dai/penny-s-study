@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Validate readable typography and focus states
+        run: node scripts/validate-readability.cjs
       - name: Parse embedded JavaScript
         run: |
           node <<'NODE'
