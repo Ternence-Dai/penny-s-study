@@ -17,15 +17,12 @@ const { chromium } = require('playwright');
       localStorage.setItem('penny-offline-acceptance', 'preserved');
     });
 
-    await page.waitForFunction(async () => {
+        const registrationHandle = await page.waitForFunction(async () => {
       const registration = await navigator.serviceWorker.getRegistration();
-      return !!(registration && registration.active);
+      if (!registration || !registration.active) return false;
+      return { scope: registration.scope, active: registration.active.state };
     }, undefined, { timeout: 15000 });
-    const registration = await page.evaluate(async () => {
-      if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable');
-      const registration = await navigator.serviceWorker.getRegistration();
-      return { scope: registration && registration.scope, active: registration && registration.active && registration.active.state };
-    });
+    const registration = await registrationHandle.jsonValue();
     if (!registration.active || !registration.scope.endsWith('/')) {
       throw new Error('Service worker did not activate with an app-root scope: ' + JSON.stringify(registration));
     }
