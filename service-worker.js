@@ -60,7 +60,16 @@ self.addEventListener('fetch', event => {
             .then(() => response);
         }
         return response;
-      }).catch(() => caches.match(appShellUrl))
+      }).catch(() => caches.match(appShellUrl).then(cached => {
+        if (!cached) return cached;
+        const headers = new Headers(cached.headers);
+        headers.delete('content-length');
+        return cached.text().then(html => {
+          const baseTag = '<base href="' + appRootUrl.href + '">';
+          const body = html.replace(/<head(\\s[^>]*)?>/i, match => match + baseTag);
+          return new Response(body, { status: 200, headers });
+        });
+      }))
     );
     return;
   }
