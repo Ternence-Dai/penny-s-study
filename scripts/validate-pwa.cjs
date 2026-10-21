@@ -42,8 +42,7 @@ for (const asset of requiredAssets) {
     'offline app shell must cache ' + asset);
   if (asset.startsWith('./assets/')) {
     const assetPath = asset.split('?')[0];
-    const escapedPath = assetPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    assert.ok(new RegExp(escapedPath + '(?:\\?[^"\\s]*)?["\\']').test(html),
+    assert.ok(html.includes(assetPath),
       'offline app shell entry must correspond to an asset referenced by the page: ' + assetPath);
   }
 }
