@@ -24,7 +24,7 @@ const requiredAssets = [
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
   './assets/js/workspace-v5.js?v=20261019-v52',
-  './assets/js/workspace-v5-context.js?v=20261019-v52'
+  './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1'
 ];
 
 assert.ok(html.includes('rel="manifest" href="./manifest.webmanifest"'),
