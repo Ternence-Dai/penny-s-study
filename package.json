@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test && node scripts/validate-question-grading.cjs",
+    "test": "node --test && node scripts/validate-question-grading.cjs && node scripts/validate-question-evidence.cjs",
     "check": "node scripts/check-js-syntax.cjs"
   }
 }
