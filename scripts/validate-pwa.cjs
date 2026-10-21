@@ -13,7 +13,13 @@ const requiredAssets = [
   './manifest.webmanifest',
   './assets/icons/app-icon.svg',
   './assets/css/legacy-app.css',
-  './assets/css/product-system.css?v=20261019-v6',
+  './assets/css/product-system.css?v=20261019-v8',
+  './assets/css/workspace-v5.css?v=20261019-v5',
+  './assets/css/product-system-v9.css?v=20261019-v92',
+  './assets/css/practice-session-v9.css?v=20261019-v9',
+  './assets/css/study-command-center.css?v=20261020-v2',
+  './assets/css/reference-interface-v1.css?v=20261021-reference-ui-v1',
+  './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js'
@@ -34,6 +40,10 @@ assert.ok(Array.isArray(manifest.icons) && manifest.icons.some(icon =>
 for (const asset of requiredAssets) {
   assert.ok(worker.includes("'" + asset + "'"),
     'offline app shell must cache ' + asset);
+  if (asset.startsWith('./assets/')) {
+    assert.ok(html.includes('"' + asset + '"') || html.includes("'" + asset + "'"),
+      'offline app shell entry must correspond to an asset referenced by the page: ' + asset);
+  }
 }
 assert.ok(worker.includes('request.method !== \'GET\''),
   'service worker must not intercept mutations');
