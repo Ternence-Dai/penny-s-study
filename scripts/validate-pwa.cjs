@@ -22,7 +22,9 @@ const requiredAssets = [
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
-  './assets/js/legacy-app.js'
+  './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
+  './assets/js/workspace-v5.js?v=20261019-v52',
+  './assets/js/workspace-v5-context.js?v=20261019-v52'
 ];
 
 assert.ok(html.includes('rel="manifest" href="./manifest.webmanifest"'),
@@ -41,9 +43,8 @@ for (const asset of requiredAssets) {
   assert.ok(worker.includes("'" + asset + "'"),
     'offline app shell must cache ' + asset);
   if (asset.startsWith('./assets/')) {
-    const assetPath = asset.split('?')[0];
-    assert.ok(html.includes(assetPath),
-      'offline app shell entry must correspond to an asset referenced by the page: ' + assetPath);
+    assert.ok(html.includes(asset),
+      'offline app shell entry must exactly match a page asset reference: ' + asset);
   }
 }
 assert.ok(worker.includes('request.method !== \'GET\''),
@@ -64,4 +65,4 @@ assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
 assert.ok(worker.includes('if (url.search) return;'),
   'runtime cache must skip query variants to prevent unbounded cache-key growth');
-console.log('StarStudy PWA manifest, offline shell and static asset checks passed.');
+console.log('StarStudy PWA manifest, offline shell and versioned script checks passed.');
