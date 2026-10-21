@@ -63,7 +63,7 @@
 <script src="./assets/js/question-grading.js"></script>
 <script src="./assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6"></script>
 <script>
-if ('serviceWorker' in navigator && location.protocol === 'https:') {
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('./service-worker.js').catch(function (error) {
       console.warn('离线学习缓存注册失败，在线学习仍可继续。', error);

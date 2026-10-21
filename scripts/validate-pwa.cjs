@@ -56,13 +56,14 @@ assert.ok(worker.includes('url.origin !== self.location.origin'),
 assert.ok(worker.includes("request.mode === 'navigate'") &&
           worker.includes("const isAppShellNavigation") &&
           worker.includes("url.pathname === appRootUrl.pathname") &&
-          worker.includes("caches.match(appShellUrl)"),
-  'offline navigation must use the cached app shell without allowing deep links to overwrite it');
+          worker.includes("caches.match(appShellUrl)") && worker.includes("<base href=\"' + appRootUrl.href + '\">"),
+  'offline navigation must use the cached app shell with an app-root base so deep-link assets resolve correctly');
 assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients.claim()'),
   'service worker must clean prior cache versions and claim clients');
 const icon = fs.readFileSync('assets/icons/app-icon.svg', 'utf8');
 assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
-assert.ok(worker.includes('if (url.search) return;'),
-  'runtime cache must skip query variants to prevent unbounded cache-key growth');
+assert.ok(worker.includes('PRECACHED_URLS.has(url.href)') &&
+          worker.includes('if (url.search && !PRECACHED_URLS.has(url.href)) return;'),
+  'runtime cache must serve exact precached versioned assets while skipping arbitrary query variants');
 console.log('StarStudy PWA manifest, offline shell and versioned script checks passed.');

@@ -20,6 +20,7 @@ const APP_SHELL = [
   './assets/js/workspace-v5.js?v=20261019-v52',
   './assets/js/workspace-v5-context.js?v=20261019-v52'
 ];
+const PRECACHED_URLS = new Set(APP_SHELL.map(asset => new URL(asset, self.location.href).href));
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -59,7 +60,16 @@ self.addEventListener('fetch', event => {
             .then(() => response);
         }
         return response;
-      }).catch(() => caches.match(appShellUrl))
+      }).catch(() => caches.match(appShellUrl).then(cached => {
+        if (!cached) return cached;
+        const headers = new Headers(cached.headers);
+        headers.delete('content-length');
+        return cached.text().then(html => {
+          const baseTag = '<base href="' + appRootUrl.href + '">';
+          const body = html.replace(/<head(\s[^>]*)?>/i, match => match + baseTag);
+          return new Response(body, { status: 200, headers });
+        });
+      }))
     );
     return;
   }
@@ -72,9 +82,9 @@ self.addEventListener('fetch', event => {
   const isStaticAsset = (isAssetDirectory && isAssetExtension) ||
     url.pathname.endsWith('/manifest.webmanifest');
   if (!isStaticAsset) return;
-  // Versioned assets are precached under their exact URL. Skip all other query
-  // variants so untrusted query strings cannot grow the runtime cache.
-  if (url.search) return;
+  // Serve versioned assets only when their exact URL belongs to the precached
+  // shell; skip arbitrary query variants to keep runtime cache keys bounded.
+  if (url.search && !PRECACHED_URLS.has(url.href)) return;
 
   event.respondWith(
     caches.match(request).then(cached => {
