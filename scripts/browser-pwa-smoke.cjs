@@ -16,8 +16,9 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v12") ||
-        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v4")) {
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v13") ||
+        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v4") ||
+        workerSource.includes("product-system-v9.css")) {
       throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
     }
 
