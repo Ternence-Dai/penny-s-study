@@ -2186,10 +2186,13 @@ function renderHome(){
   var circleDash = Math.round(overall * 1.13);
 
   var h = '';
-  // 品牌区
-  h += '<div class="brand"><h2>星赛通</h2>' +
-    '<div class="sub">小学 · 初中天文知识竞赛智能备赛</div>' +
-    '<div class="sign">作者：<b>戴煜</b> · 18662613315@163.com</div></div>';
+  // 学习工作区标题：品牌信息保留在全局栏，首页聚焦当前学段与任务状态。
+  h += '<section class="w9-home-heading">' +
+    '<div><span>ASTRONOMY COMPETITION · LEARNING PLAN</span>' +
+    '<h2>学习指挥台</h2>' +
+    '<p>' + esc(state.level) + '组 · ' + totalQ + ' 道题 · ' + cats.length + ' 个知识点 · 从知识掌握到竞赛复盘的个人学习路径</p></div>' +
+    '<div class="w9-home-heading__actions"><button type="button" onclick="go(\'learn\')">知识地图 ↗</button>' +
+    '<button type="button" onclick="go(\'wrong\')">错题复习 ↗</button></div></section>';
 
   var savedPractice=Store.getActivePractice();
   if(savedPractice){
