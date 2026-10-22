@@ -21,6 +21,7 @@ const APP_SHELL = [
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
   './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1',
+  './assets/js/reference-shell-v4-boot.js?v=20261022-reference-v5',
   './assets/js/workspace-v5.js?v=20261019-v52',
 
 ];
