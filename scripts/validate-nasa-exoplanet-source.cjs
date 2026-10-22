@@ -41,8 +41,9 @@ assert.ok(css.includes('.nasa-exoplanet-explorer__table-wrap') &&
           css.includes('.nasa-exoplanet-explorer__empty--warning') &&
           css.includes('overflow:auto'),
   'NASA result table must support empty, error and constrained-width states');
-assert.ok(worker.includes("penny-study-shell-v21") &&
+assert.ok(worker.includes("penny-study-shell-v22") &&
           worker.includes("nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1") &&
-          worker.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1"),
-  'PWA shell v21 must precache the NASA explorer code and styling');
+          worker.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1") &&
+          worker.includes("reference-shell-v4-boot.js?v=20261022-reference-v6"),
+  'PWA shell v22 must precache the NASA explorer and route-safe reference boot');
 console.log('NASA Exoplanet Archive TAP integration and data-provenance checks passed.');
