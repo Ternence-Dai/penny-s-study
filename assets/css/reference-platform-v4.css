@@ -1,0 +1,20 @@
+/* Reference platform v4: immersive astronomy learning workspace. */
+body[data-workspace="study"]{background:#070d1d;color:#eef3ff}
+body[data-workspace="study"] .app{display:grid;width:100%;max-width:none;margin:0;padding:0;grid-template-columns:238px minmax(0,1fr);grid-template-rows:64px minmax(0,1fr);grid-template-areas:"nav top" "nav view";min-height:100vh;background:radial-gradient(circle at 80% 0,#283f7855,transparent 34%),#070d1d}
+body[data-workspace="study"] .navbar{grid-area:top;height:64px;min-height:64px;position:sticky;top:0;width:auto;margin:0;transform:none;padding:0 20px;background:#0a1430ee;border-bottom:1px solid #2d4168;z-index:30}
+body[data-workspace="study"] .navTitle{}
+body[data-workspace="study"] .view{grid-area:view;min-width:0;max-width:none;margin:0;padding:18px 22px 82px;background:transparent;overflow:auto}
+body[data-workspace="study"] .study-intro,
+body[data-workspace="study"] .product-workflow,
+body[data-workspace="study"] .w9-home-heading{display:none!important}
+body[data-workspace="study"] .astronomy-classroom{max-width:1440px;margin:0 auto}
+body[data-workspace="study"] .classroom-control{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:13px 15px;margin-bottom:12px;border:1px solid #304872;border-radius:10px;background:#101b36}
+body[data-workspace="study"] .classroom-metrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+body[data-workspace="study"] .classroom-module-section,
+body[data-workspace="study"] .classroom-progress-panel{border:1px solid #2f446e;border-radius:10px;background:#0f1a34;box-shadow:0 8px 24px #02081780}
+body[data-workspace="study"] .classroom-module-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+body[data-workspace="study"] .classroom-existing-learning{margin-top:12px}
+body[data-workspace="study"] .tabbar{grid-area:nav;position:sticky;top:0;left:auto;right:auto;bottom:auto;width:100%;max-width:none;height:100vh;align-self:stretch;padding:76px 10px 14px;overflow:auto;border:0;border-right:1px solid #2d4168;background:#09132c}
+body[data-workspace="study"] .tabbar button{width:100%;min-width:0;justify-content:flex-start;gap:10px;border-radius:8px}
+body[data-workspace="study"] .tabbar button.active{background:#21365e}
+@media(max-width:980px){body[data-workspace="study"] .app{grid-template-columns:76px minmax(0,1fr)}body[data-workspace="study"] .tabbar{padding-left:7px;padding-right:7px}body[data-workspace="study"] .tabbar button{font-size:0;justify-content:center}body[data-workspace="study"] .view{padding:14px}}
