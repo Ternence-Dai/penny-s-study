@@ -16,7 +16,7 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v11") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v12") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v4")) {
       throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
     }
@@ -429,7 +429,6 @@ const { chromium } = require('playwright');
         './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
         './assets/js/question-bank.js',
         './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
-        './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1',
         './assets/js/workspace-v5.js?v=20261019-v52'
       ];
       const assets = await Promise.all(required.map(async path => ({
