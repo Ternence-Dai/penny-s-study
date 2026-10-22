@@ -24,7 +24,7 @@ const { chromium } = require('playwright');
       throw new Error('PWA shell does not version and precache the new astronomy classroom interface');
     }
 
-    const referenceStylesheet = page.locator('link[rel="stylesheet"][href*="observatory-learning-console-v2.css"]');
+    const referenceStylesheet = page.locator('link[rel="stylesheet"][href*="reference-platform-v4.css"]');
     if (await referenceStylesheet.count() !== 1) throw new Error('Observatory learning console stylesheet is not linked');
     const referenceCssResponse = await page.request.get(await referenceStylesheet.evaluate(node => node.href));
     const referenceCssText = await referenceCssResponse.text();
