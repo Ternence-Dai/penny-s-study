@@ -2056,13 +2056,13 @@ var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=202610
     if(Object.keys(next).length !== Q.length) throw new Error('题库证据条目数量不匹配');
     questionEvidenceById = next;
     questionEvidenceLoadState = 'ready';
-    if(state.page === 'practice') render();
+    if(state.page === 'practice' || state.page === 'home') render();
     return next;
   })
   .catch(function(error){
     questionEvidenceLoadState = 'unavailable';
     console.warn('本题来源清单暂不可用；题目仍保持待核验状态。', error);
-    if(state.page === 'practice') render();
+    if(state.page === 'practice' || state.page === 'home') render();
     return questionEvidenceById;
   });
 
@@ -2109,6 +2109,23 @@ function renderQuestionEvidence(question){
     description + '</p>' + (candidateSources ? '<ul>' + candidateSources + '</ul>' : '') +
     (item.reviewNote ? '<small>' + esc(item.reviewNote) + '</small>' : '') + '</section>';
 }
+window.getQuestionEvidenceSummary = function(){
+  var total = Array.isArray(Q) ? Q.length : 0;
+  if(questionEvidenceLoadState !== 'ready'){
+    return {loadState:questionEvidenceLoadState,total:total,verified:0,reviewNeeded:total,rejected:0,withSources:0,withoutSources:total};
+  }
+  var rows = Object.keys(questionEvidenceById).map(function(id){return questionEvidenceById[id];});
+  return {
+    loadState:'ready',
+    total:rows.length,
+    verified:rows.filter(function(item){return item.status==='verified';}).length,
+    reviewNeeded:rows.filter(function(item){return item.status==='review-needed';}).length,
+    rejected:rows.filter(function(item){return item.status==='rejected';}).length,
+    withSources:rows.filter(function(item){return Array.isArray(item.sources)&&item.sources.length>0;}).length,
+    withoutSources:rows.filter(function(item){return !Array.isArray(item.sources)||item.sources.length===0;}).length
+  };
+};
+
 var timers = [];
 function clearTimers(){timers.forEach(function(t){clearInterval(t);});timers=[];}
 
