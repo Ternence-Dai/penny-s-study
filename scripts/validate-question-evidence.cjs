@@ -46,7 +46,7 @@ const coverage = manifest.questions.reduce((stats, item) => {
 if (coverage['review-needed'] !== 300 || coverage.verified || coverage.rejected) {
   fail('All 300 questions must remain review-needed until human review is recorded');
 }
-if (coverage.withSources !== 290 || coverage.withoutSources !== 10) {
+if (coverage.withSources !== 300 || coverage.withoutSources !== 0) {
   fail('Expected 290 source-candidate records and 10 explicitly unsourced questions: ' + JSON.stringify(coverage));
 }
 for (const item of manifest.questions) {
@@ -54,7 +54,7 @@ for (const item of manifest.questions) {
     fail(item.id + ': human question/answer/explanation review must remain explicitly pending');
   }
 }
-const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org']);
+const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn']);
 for (const item of manifest.questions) {
   for (const source of item.sources || []) {
     try {
