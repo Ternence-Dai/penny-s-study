@@ -26,7 +26,8 @@ const requiredAssets = [
   './assets/data/question-evidence.json?v=20261022-evidence-index-v1',
   './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
-  './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1'
+  './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v3',
+  './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v3'
 ];
 
 assert.ok(html.includes('rel="manifest" href="./manifest.webmanifest"'),
