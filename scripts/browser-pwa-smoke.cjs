@@ -16,8 +16,8 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v9") ||
-        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-observatory-v2")) {
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v10") ||
+        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-layout-v3")) {
       throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
     }
 
@@ -32,6 +32,29 @@ const { chromium } = require('playwright');
     if (!referenceCssResponse.ok() || !referenceCssText.includes('--sky-panel:#111e3e') ||
         observatoryLayout.display !== 'grid' || !observatoryLayout.columns.startsWith('244px')) {
       throw new Error('Reference observatory layout was not loaded/applied: ' + JSON.stringify(observatoryLayout));
+    }
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    const wideStudy = await page.evaluate(() => {
+      const app = document.querySelector('.app');
+      const navbar = document.querySelector('.navbar');
+      const tabs = document.querySelector('#tabbar');
+      const view = document.querySelector('#view');
+      const rect = node => {
+        const box = node.getBoundingClientRect();
+        return { left: box.left, right: box.right, width: box.width, top: box.top, bottom: box.bottom };
+      };
+      return {
+        viewport: innerWidth,
+        app: rect(app), navbar: rect(navbar), tabs: rect(tabs), view: rect(view),
+        columns: getComputedStyle(app).gridTemplateColumns
+      };
+    });
+    if (wideStudy.app.width < wideStudy.viewport * 0.94 ||
+        Math.abs(wideStudy.tabs.left - wideStudy.app.left) > 2 ||
+        wideStudy.tabs.width < 220 ||
+        wideStudy.tabs.right > wideStudy.view.left + 2 ||
+        wideStudy.tabs.left < wideStudy.app.left - 1) {
+      throw new Error('Study navigation is not in its dedicated left grid column or overlaps the learning view: ' + JSON.stringify(wideStudy));
     }
 
     const skipLink = page.locator('a.skip-link[href="#view"]');
