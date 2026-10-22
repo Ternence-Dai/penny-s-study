@@ -27,6 +27,82 @@ const { chromium } = require('playwright');
     }
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
 
+    // Verify the study command center reads the same local question and interval-review ledgers as the rest of the app.
+    const commandFixture = await page.evaluate(() => {
+      const levelQuestions = window.Q.filter(question => question.level === window.state.level);
+      const chosen = [];
+      const seenCategories = new Set();
+      for (const question of levelQuestions) {
+        if (chosen.length >= 3) break;
+        if (!seenCategories.has(question.category)) {
+          chosen.push(question);
+          seenCategories.add(question.category);
+        }
+      }
+      if (chosen.length < 3) throw new Error('Insufficient distinct learning categories for command-center fixture');
+      const now = Date.now();
+      const stats = {};
+      chosen.forEach((question,index) => {
+        stats[question.id] = { t: 5, c: index === 0 ? 1 : 4, last: now };
+      });
+      const wrong = chosen.map((question,index) => ({
+        id: question.id, count: 1, lastTime: now - index * 1000,
+        intervalDays: 1, nextReviewAt: index < 2 ? now - 1000 : now + 86400000,
+        correctStreak: 0, lastReviewAt: now - 86400000, lastOutcome: 'incorrect'
+      }));
+      localStorage.setItem('a_q_v6', JSON.stringify(stats));
+      localStorage.setItem('a_w_v6', JSON.stringify(wrong));
+      window.render();
+      return {
+        level: window.state.level,
+        weakCategory: chosen[0].category,
+        dueCount: 2
+      };
+    });
+    await page.waitForSelector('#view .w9-study-command');
+    const commandMetrics = await page.evaluate(() => {
+      const panel = document.querySelector('#view .w9-study-command');
+      const value = key => Number(panel?.querySelector('[data-learning-metric="' + key + '"]')?.dataset.value);
+      return {
+        due: value('due-review'),
+        weak: value('weak-topics'),
+        started: value('topic-coverage'),
+        dueButtonDisabled: !!panel?.querySelector('.w9-study-command__review button')?.disabled,
+        weakTopicCount: panel?.querySelectorAll('[data-weak-topic]').length || 0,
+        level: panel?.dataset.level || ''
+      };
+    });
+    if (commandMetrics.due !== 2 || commandMetrics.weak < 1 ||
+        commandMetrics.started !== 3 || commandMetrics.dueButtonDisabled ||
+        commandMetrics.weakTopicCount < 1 || commandMetrics.level !== commandFixture.level) {
+      throw new Error('Study command-center metrics did not reflect isolated learning records: ' +
+        JSON.stringify({ fixture: commandFixture, metrics: commandMetrics }));
+    }
+    await page.locator('#view .w9-study-command__review button').click();
+    await page.waitForFunction(() => window.state.page === 'practice' &&
+      window.state.practice?.label === '到期错题间隔复习' &&
+      window.state.practice.list.length === 2);
+    await page.evaluate(() => {
+      window.Store.clearActivePractice();
+      window.state.practice = null;
+      window.state.page = 'home';
+      window.render();
+    });
+    await page.waitForSelector('#view .w9-study-command');
+    const focusButton = page.locator('#view .w9-study-command__topic button').first();
+    await focusButton.click();
+    await page.waitForFunction(expectedCategory => window.state.page === 'practice' &&
+      window.state.practice?.label === expectedCategory, commandFixture.weakCategory);
+    await page.evaluate(() => {
+      window.Store.clearActivePractice();
+      window.state.practice = null;
+      window.state.page = 'home';
+      window.render();
+      localStorage.removeItem('a_q_v6');
+      localStorage.removeItem('a_w_v6');
+      window.render();
+    });
+
     // Verify the actual 北斗七星 -> 北极星 dynamic diagram and its playback controls.
     await page.evaluate(() => {
       window.state.level = '小学';

@@ -2233,6 +2233,63 @@ function renderHome(){
     '</div>' +
     '</div></div></div>';
 
+  // 备赛学习指挥台：只读本地真实作答统计与间隔复习计划，不生成演示进度。
+  var wrongPlanRows = Store.getWrong();
+  var nowForReview = Date.now();
+  var wrongIdsInLevel = new Set();
+  var dueReviewIds = new Set();
+  wrongPlanRows.forEach(function(row){
+    var question = Q.find(function(item){return item.id === row.id;});
+    if(!question || question.level !== state.level) return;
+    wrongIdsInLevel.add(question.id);
+    if(!Number.isFinite(row.nextReviewAt) || row.nextReviewAt <= nowForReview) dueReviewIds.add(question.id);
+  });
+  var topicProgress = cats.map(function(category){
+    var mastery = getMastery(state.level, category);
+    return {category:category, mastery:mastery};
+  });
+  var startedTopics = topicProgress.filter(function(item){return item.mastery.answered > 0;}).length;
+  var masteredTopics = topicProgress.filter(function(item){
+    return item.mastery.answered >= 3 && item.mastery.rate >= 80;
+  }).length;
+  var weakTopics = topicProgress.filter(function(item){
+    return item.mastery.answered >= 3 && item.mastery.rate < 80;
+  }).sort(function(a,b){
+    return a.mastery.rate-b.mastery.rate ||
+      b.mastery.wrongCount-a.mastery.wrongCount ||
+      b.mastery.answered-a.mastery.answered;
+  }).slice(0,3);
+  var topicCoverage = cats.length ? Math.round(startedTopics/cats.length*100) : 0;
+  h += '<section class="w9-study-command" aria-label="备赛学习指挥台" data-level="' + esc(state.level) + '">' +
+    '<div class="w9-study-command__head"><div><span class="w9-study-command__eyebrow">STUDY READINESS · LOCAL RECORDS</span>' +
+    '<h3>备赛学习指挥台</h3><p>依据本机答题统计和错题间隔计划，定位下一步最值得投入的知识点。</p></div>' +
+    '<span class="w9-study-command__level">' + esc(state.level) + '组 · 实际学习记录</span></div>' +
+    '<div class="w9-study-command__metrics">' +
+      '<article data-learning-metric="topic-coverage" data-value="' + startedTopics + '" data-total="' + cats.length + '"><span>已开始知识点</span><strong>' + startedTopics + ' <small>/ ' + cats.length + '</small></strong><small>覆盖 ' + topicCoverage + '%</small></article>' +
+      '<article data-learning-metric="mastered-topics" data-value="' + masteredTopics + '"><span>稳定掌握</span><strong>' + masteredTopics + '</strong><small>至少 3 次作答且正确率 ≥80%</small></article>' +
+      '<article data-learning-metric="weak-topics" data-value="' + weakTopics.length + '"><span>需强化知识点</span><strong>' + weakTopics.length + '</strong><small>至少 3 次作答且正确率低于 80%</small></article>' +
+      '<article data-learning-metric="due-review" data-value="' + dueReviewIds.size + '"><span>到期待复习错题</span><strong>' + dueReviewIds.size + '</strong><small>含尚未排期的旧错题</small></article>' +
+    '</div>' +
+    '<div class="w9-study-command__coverage"><div><span>当前学段知识点覆盖</span><b>' + topicCoverage + '%</b></div><i><b style="width:' + topicCoverage + '%"></b></i></div>' +
+    '<div class="w9-study-command__lower"><div class="w9-study-command__focus"><div class="w9-study-command__section"><strong>优先强化</strong><small>按正确率和错题量排序 · 最多 3 项</small></div>';
+  if(weakTopics.length){
+    weakTopics.forEach(function(item,index){
+      var encoded = encodeURIComponent(item.category);
+      h += '<article class="w9-study-command__topic" data-weak-topic="' + esc(item.category) + '">' +
+        '<span class="w9-study-command__rank">' + String(index+1).padStart(2,'0') + '</span>' +
+        '<div class="w9-study-command__topic-main"><strong>' + esc(item.category) + '</strong>' +
+        '<small>作答 ' + item.mastery.answered + ' 次 · 错题 ' + item.mastery.wrongCount + ' 道</small></div>' +
+        '<b class="w9-study-command__rate">' + item.mastery.rate + '%</b>' +
+        '<button type="button" onclick="startFocusedPractice(\'' + state.level + '\',\'' + encoded + '\')">专项强化 ↗</button></article>';
+    });
+  }else{
+    h += '<div class="w9-study-command__empty"><strong>暂未发现有足够作答样本的薄弱知识点</strong><span>完成至少 3 次作答后，系统会依据实际正确率生成强化建议。</span></div>';
+  }
+  h += '</div><aside class="w9-study-command__review"><span class="w9-study-command__review-icon">⏱</span>' +
+    '<strong>间隔复习计划</strong><b class="w9-study-command__review-count">' + dueReviewIds.size + ' <small>道到期错题</small></b>' +
+    '<p>旧错题和到期题目按计划优先安排；未到期错题不会提前混入本次复习。</p>' +
+    '<button type="button" ' + (dueReviewIds.size?'':'disabled') + ' onclick="startDueWrongReview()">按计划开始复习</button></aside></div></section>';
+
   // 快捷入口
   h += '<div class="sec-title"> 快速开始</div>';
   h += '<div class="quick-grid">' +
@@ -2288,6 +2345,39 @@ function renderHome(){
     '题库 ' + Q.length + ' 题 · 知识卡 ' + KNOWLEDGE.length + ' 张 · 动态模拟 16 个 · 读报 10 条</div>';
 
   return h;
+}
+function startFocusedPractice(level, encodedCategory){
+  var category;
+  try{ category=decodeURIComponent(String(encodedCategory||'')); }
+  catch(error){ alert('知识点参数无效，未启动练习。'); return; }
+  if(!['小学','初中'].includes(level) || getCategories(level).indexOf(category)<0){
+    alert('未找到对应学段的知识点，未启动练习。');
+    return;
+  }
+  startPractice(level,category);
+}
+function startDueWrongReview(){
+  if(storageRecoveryRequired){
+    alert('本机学习存档处于保护模式，无法安全启动复习。请先导出原始恢复包。');
+    return;
+  }
+  var now=Date.now();
+  var questionById=new Map(Q.map(function(question){return [question.id,question];}));
+  var dueRows=Store.getWrong().filter(function(row){
+    var question=questionById.get(row.id);
+    return question && question.level===state.level &&
+      (!Number.isFinite(row.nextReviewAt) || row.nextReviewAt<=now);
+  }).sort(function(a,b){
+    var aTime=Number.isFinite(a.nextReviewAt)?a.nextReviewAt:0;
+    var bTime=Number.isFinite(b.nextReviewAt)?b.nextReviewAt:0;
+    return aTime-bTime || a.lastTime-b.lastTime;
+  });
+  var picked=dueRows.map(function(row){return questionById.get(row.id);}).filter(Boolean).slice(0,20);
+  if(!picked.length){
+    alert('当前学段暂无到期错题；系统未提前安排未到期题目。');
+    return;
+  }
+  startWith(picked,state.level,'到期错题间隔复习');
 }
 function switchLevel(l){state.level=l;render();}
 var dailyShown = false;
