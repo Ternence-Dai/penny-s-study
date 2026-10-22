@@ -56,7 +56,7 @@
     ].map((item,index)=>'<article class="classroom-metric classroom-metric--'+index+'"><span>'+item[0]+'</span><strong>'+item[1]+'</strong><small>'+item[2]+'</small></article>').join('');
 
     const levelButtons = ['小学','初中'].map(level =>
-      '<button type="button" class="classroom-level '+(level===currentLevel?'active':'')+'" aria-pressed="'+(level===currentLevel)+'" onclick="switchLevel(\\''+level+'\\')">'+level+'组</button>'
+      '<button type="button" class="classroom-level '+(level===currentLevel?'active':'')+'" aria-pressed="'+(level===currentLevel)+'" onclick="switchLevel(\''+level+'\')">'+level+'组</button>'
     ).join('');
 
     const session = resumable ?
@@ -64,12 +64,12 @@
       '<div class="classroom-resume__progress"><b>'+percent+'%</b><i><span style="width:'+percent+'%"></span></i></div>'+
       '<button type="button" onclick="resumePractice()">继续 ↗</button></section>' :
       '<section class="classroom-resume is-idle"><div><span class="classroom-kicker">NEXT STUDY SESSION</span><strong>开始今天的学习任务</strong><small>按知识点掌握、答题统计和到期复习计划安排下一步。</small></div>'+
-      '<button type="button" onclick="startPractice(\\''+currentLevel+'\\',\\'\\')">开始练习 ↗</button></section>';
+      '<button type="button" onclick="startPractice(\''+currentLevel+'\',\'\')">开始练习 ↗</button></section>';
 
     return '<section class="astronomy-classroom" aria-label="天文竞赛学习指挥台">' +
       '<header class="classroom-hero"><div class="classroom-hero__copy"><span class="classroom-kicker">ASTRONOMY / LEARN / PRACTICE / OBSERVE</span>' +
       '<h2>星赛通 · 天文学习指挥台</h2><p>从知识地图到专项训练、竞赛模拟与错题复盘，围绕真实本机学习记录安排学习路径。</p>' +
-      '<div class="classroom-hero__actions"><button type="button" onclick="go(\\'learn\\')">探索知识星图 ↗</button><button type="button" onclick="startExam(\\''+currentLevel+'\\')">开始竞赛模拟</button></div></div>' +
+      '<div class="classroom-hero__actions"><button type="button" onclick="go(\'learn\')">探索知识星图 ↗</button><button type="button" onclick="startExam(\''+currentLevel+'\')">开始竞赛模拟</button></div></div>' +
       '<div class="classroom-hero__orb" aria-hidden="true"><span class="orbit orbit-a"></span><span class="orbit orbit-b"></span><span class="planet planet-main">✦</span><span class="planet planet-small">•</span><b>SKY<br>LAB</b></div></header>' +
       '<section class="classroom-control"><div class="classroom-control__title"><div><span class="classroom-kicker">YOUR LEARNING PROFILE</span><strong>学习计划与学段</strong><small>进度来自本机已保存作答；未作答知识点不会被标记为掌握。</small></div><div class="classroom-levels">'+levelButtons+'</div></div>' +
       '<div class="classroom-metrics">'+metrics+'</div></section>' +
