@@ -89,6 +89,19 @@
       '<div class="classroom-hero__actions"><button type="button" onclick="go(\'learn\')">探索知识星图 ↗</button><button type="button" onclick="startExam(\''+currentLevel+'\')">开始竞赛模拟</button></div></div>' +
       '<div class="classroom-hero__orb" aria-hidden="true"><span class="orbit orbit-a"></span><span class="orbit orbit-b"></span><span class="planet planet-main">✦</span><span class="planet planet-small">•</span><b>SKY<br>LAB</b></div></header>' +
       evidencePanel +
+      '<section class="nasa-exoplanet-explorer" id="nasaExoplanetExplorer" aria-label="NASA 官方系外行星数据">' +
+        '<div class="nasa-exoplanet-explorer__head"><div><span class="classroom-kicker">NASA EXOPLANET ARCHIVE / LIVE DATA</span>' +
+          '<h3>全球系外行星数据</h3><p>只读读取 NASA Exoplanet Archive 的行星综合参数表；数据源、查询时间和缺失值均保留，不作为题库答案。</p></div>' +
+          '<div class="nasa-exoplanet-explorer__actions"><button type="button" data-nasa-exoplanet-load>读取最新公开数据</button>' +
+          '<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener noreferrer">NASA 官方数据站 ↗</a></div></div>' +
+        '<div class="nasa-exoplanet-explorer__meta"><span data-nasa-exoplanet-state aria-live="polite">尚未请求数据 · 点击后从 NASA TAP 读取</span>' +
+          '<span>来源：Planetary Systems Composite Parameters · 单位按官方列定义</span></div>' +
+        '<div class="nasa-exoplanet-explorer__table-wrap" data-nasa-exoplanet-results>' +
+          '<div class="nasa-exoplanet-explorer__empty">尚未载入外部数据。网络请求失败时可通过官方 CSV 链接下载；不会以样例数值填充。</div></div>' +
+        '<div class="nasa-exoplanet-explorer__foot"><a data-nasa-exoplanet-json target="_blank" rel="noopener noreferrer">打开 NASA TAP JSON 查询 ↗</a>' +
+          '<a data-nasa-exoplanet-csv target="_blank" rel="noopener noreferrer">下载官方 CSV ↗</a>' +
+          '<span>检索字段：行星、宿主恒星、发现方法、发现年份、半径、质量、轨道周期、距离</span></div>' +
+      '</section>' +
       '<section class="classroom-control"><div class="classroom-control__title"><div><span class="classroom-kicker">YOUR LEARNING PROFILE</span><strong>学习计划与学段</strong><small>进度来自本机已保存作答；未作答知识点不会被标记为掌握。</small></div><div class="classroom-levels">'+levelButtons+'</div></div>' +
       '<div class="classroom-metrics">'+metrics+'</div></section>' +
       session +
