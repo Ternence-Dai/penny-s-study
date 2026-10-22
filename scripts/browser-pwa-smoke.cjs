@@ -26,6 +26,25 @@ const { chromium } = require('playwright');
       throw new Error('Workspace observer fix cache-busting URL is missing: ' + contextScript);
     }
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
+    await page.evaluate(async () => {
+      await window.questionEvidenceReady;
+      const question = window.Q.find(item => item.id === 'p001');
+      window.state.practice = {
+        label: 'Evidence provenance browser regression',
+        list: [question], index: 0, userAnswers: [null], evaluated: [false],
+        correct: 0, wrong: 0, showAnswer: true, submitting: false
+      };
+      window.state.page = 'practice';
+      window.render();
+    });
+    await page.waitForSelector('#view .w5-question-evidence');
+    const evidenceDisclosure = await page.locator('#view .w5-question-evidence').innerText();
+    if (!evidenceDisclosure.includes('待人工终审') ||
+        !evidenceDisclosure.includes('尚未完成人工逐题审核') ||
+        await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/jupiter/jupiter-facts/"]').count() !== 1) {
+      throw new Error('Question evidence candidates must be visible with an explicit human-review disclaimer');
+    }
+    await page.evaluate(() => { window.state.practice = null; window.state.page = 'home'; window.render(); });
     await page.evaluate(() => {
       localStorage.setItem('penny-offline-acceptance', 'preserved');
     });
@@ -62,9 +81,9 @@ const { chromium } = require('playwright');
         './index.html',
         './manifest.webmanifest',
         './assets/css/legacy-app.css',
-        './assets/css/reference-interface-v1.css?v=20261021-reference-ui-v1',
+        './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
         './assets/js/question-bank.js',
-        './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
+        './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
         './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1',
         './assets/js/workspace-v5.js?v=20261019-v52'
       ];
@@ -88,6 +107,21 @@ const { chromium } = require('playwright');
     }));
     if (!offlineRoot.heading || offlineRoot.preserved !== 'preserved') {
       throw new Error('Offline root launch or local progress preservation failed: ' + JSON.stringify(offlineRoot));
+    }
+    const offlineEvidence = await page.evaluate(async () => {
+      await window.questionEvidenceReady;
+      window.state.practice = {
+        label: 'Offline evidence source regression',
+        list: [window.Q.find(item => item.id === 'p001')], index: 0,
+        userAnswers: [null], evaluated: [false], correct: 0, wrong: 0,
+        showAnswer: true, submitting: false
+      };
+      window.state.page = 'practice';
+      window.render();
+      return document.querySelector('#view .w5-question-evidence')?.textContent || '';
+    });
+    if (!offlineEvidence.includes('待人工终审')) {
+      throw new Error('The public evidence index or question-review disclaimer is missing in offline mode');
     }
 
     const deepUrl = 'http://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
