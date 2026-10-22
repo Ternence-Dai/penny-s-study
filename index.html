@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="./assets/css/study-command-center.css?v=20261020-v2">
 <link rel="stylesheet" href="./assets/css/reference-interface-v1.css?v=20261021-reference-ui-v1">
 <link rel="stylesheet" href="./assets/css/readability-accessibility-v10.css?v=20261021-v10">
-</head>
-<body data-workspace="study">
+<style>.skip-link{position:fixed;top:12px;left:16px;z-index:10000;transform:translateY(-180%);padding:12px 16px;border:2px solid #f59e0b;border-radius:9px;background:#fff;color:#14202b;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.24)}.skip-link:focus{transform:translateY(0);outline:3px solid #f59e0b;outline-offset:3px}</style></head>
+<body data-workspace="study"><a class="skip-link" href="#view">跳过导航，进入主要内容</a>
 <canvas id="starsBg"></canvas>
 <div class="app">
   <header class="navbar">
@@ -36,7 +36,7 @@
       <button class="product-workflow__item" type="button" onclick="document.querySelector('.tabbar [data-tab=\'wrong\']').click()"><i>04</i><b>错题复盘</b><small>薄弱知识点 · 再练习</small><span>打开错题 ↗</span></button>
     </div><div class="product-workflow__foot">借鉴 Planet Explorer 的任务化探索与 Stellarium 的天体情境；题目正确性仍需独立来源核验。</div>
   </section>
-  <main class="view" id="view"></main>
+  <main class="view" id="view" tabindex="-1"></main>
   <nav class="tabbar" id="tabbar">
     <button data-tab="home" class="active"><span class="ico"></span>首页</button>
     <button data-tab="learn"><span class="ico"></span>学习</button>
