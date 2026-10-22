@@ -38,6 +38,22 @@ for (const id of candidateIds) {
   if (!item.sources.length) fail(id + ': expected at least one authoritative source candidate');
   if (!/尚未完成人工/.test(item.reviewNote || '')) fail(id + ': must explicitly retain human-review disclaimer');
 }
+const coverage = manifest.questions.reduce((stats, item) => {
+  stats[item.status] = (stats[item.status] || 0) + 1;
+  stats[item.sources.length ? 'withSources' : 'withoutSources'] += 1;
+  return stats;
+}, {withSources:0,withoutSources:0});
+if (coverage['review-needed'] !== 300 || coverage.verified || coverage.rejected) {
+  fail('All 300 questions must remain review-needed until human review is recorded');
+}
+if (coverage.withSources !== 290 || coverage.withoutSources !== 10) {
+  fail('Expected 290 source-candidate records and 10 explicitly unsourced questions: ' + JSON.stringify(coverage));
+}
+for (const item of manifest.questions) {
+  if (!/尚未完成人工逐题核对/.test(item.reviewNote || '')) {
+    fail(item.id + ': human question/answer/explanation review must remain explicitly pending');
+  }
+}
 const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org']);
 for (const item of manifest.questions) {
   for (const source of item.sources || []) {
