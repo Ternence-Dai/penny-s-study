@@ -16,12 +16,13 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v21") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v22") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1") ||
         !workerSource.includes("nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1") ||
         !workerSource.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1") ||
+        !workerSource.includes("reference-shell-v4-boot.js?v=20261022-reference-v6") ||
         workerSource.includes("product-system-v9.css")) {
       throw new Error('PWA shell does not version and precache the new astronomy classroom interface');
     }
@@ -305,6 +306,20 @@ const { chromium } = require('playwright');
     await page.locator('#view .learn-card').filter({ hasText: '星座' }).click();
     await page.waitForFunction(() => window.state?.page === 'learnDetail' &&
       window.state?.learnCategory === '星座');
+    // Re-fire the delayed startup fallback: it must not replace a lesson route
+    // with the home classroom or detach the active simulation canvas.
+    await page.evaluate(() => window.dispatchEvent(new Event('load')));
+    await page.waitForTimeout(260);
+    const detailAfterLateLoad = await page.evaluate(() => ({
+      page: window.state?.page || '',
+      category: window.state?.learnCategory || '',
+      starSimulation: !!document.querySelector('.sim-box[data-simid="starMap"] canvas.sim-canvas'),
+      homeCommand: !!document.querySelector('#view .classroom-hero')
+    }));
+    if (detailAfterLateLoad.page !== 'learnDetail' || detailAfterLateLoad.category !== '星座' ||
+        !detailAfterLateLoad.starSimulation || detailAfterLateLoad.homeCommand) {
+      throw new Error('Late classroom boot overwrote the active knowledge detail: ' + JSON.stringify(detailAfterLateLoad));
+    }
     const starCanvas = page.locator('.sim-box[data-simid="starMap"] canvas.sim-canvas');
     await starCanvas.waitFor({ state: 'visible', timeout: 10000 });
     const starCanvasId = await starCanvas.getAttribute('id');
