@@ -69,12 +69,12 @@ const { chromium } = require('playwright');
       return {
         viewport: innerWidth,
         app: rect('.app'), navbar: rect('.navbar'), tabs: rect('#tabbar'),
-        hero: rect('.study-intro'), workflow: rect('.product-workflow'), view: rect('#view'),
+        hero: rect('#view .classroom-hero'), workflow: rect('#view .classroom-module-section'), view: rect('#view'),
         areas: getComputedStyle(document.querySelector('.app')).gridTemplateAreas
       };
     });
     if (!desktopShell.app || desktopShell.app.width < desktopShell.viewport * .94 ||
-        !desktopShell.areas.includes('"tabs hero"') ||
+        !desktopShell.areas.includes('"tabs view"') ||
         Math.abs(desktopShell.tabs.left - desktopShell.app.left) > 2 ||
         desktopShell.tabs.width < 220 ||
         desktopShell.tabs.right > desktopShell.view.left + 2 ||
