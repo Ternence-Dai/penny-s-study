@@ -16,7 +16,7 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v15") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v16") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v5") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v3") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v3") ||
