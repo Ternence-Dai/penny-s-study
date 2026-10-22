@@ -32,8 +32,8 @@ const { chromium } = require('playwright');
       display: getComputedStyle(node).display,
       columns: getComputedStyle(node).gridTemplateColumns
     }));
-    if (!referenceCssResponse.ok() || !referenceCssText.includes('--sky-panel:#111e3e') ||
-        observatoryLayout.display !== 'grid' || !observatoryLayout.columns.startsWith('244px')) {
+    if (!referenceCssResponse.ok() || !referenceCssText.includes('grid-template-columns:238px minmax(0,1fr)') ||
+        observatoryLayout.display !== 'grid' || !observatoryLayout.columns.startsWith('238px')) {
       throw new Error('Reference observatory layout was not loaded/applied: ' + JSON.stringify(observatoryLayout));
     }
     await page.setViewportSize({ width: 1920, height: 1080 });
