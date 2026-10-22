@@ -3,7 +3,11 @@
   'use strict';
   function mount() {
     const target = document.getElementById('view');
-    if (!target || typeof window.renderAstronomyClassroom !== 'function') return false;
+    // The legacy router already maps home -> renderAstronomyClassroom().
+    // This fallback must never overwrite a learning, practice, exam, or review
+    // page after a delayed DOMContentLoaded/load callback.
+    if (!target || !window.state || window.state.page !== 'home' ||
+        typeof window.renderAstronomyClassroom !== 'function') return false;
     const html = window.renderAstronomyClassroom();
     if (!html) return false;
     target.innerHTML = html;
