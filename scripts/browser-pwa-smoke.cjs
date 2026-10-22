@@ -71,6 +71,7 @@ const { chromium } = require('playwright');
       return {
         viewport: innerWidth,
         app: rect('.app'), navbar: rect('.navbar'), tabs: rect('#tabbar'),
+        scrollWidth: document.documentElement.scrollWidth,
         hero: rect('#view .classroom-hero'), workflow: rect('#view .classroom-module-section'), view: rect('#view'),
         areas: getComputedStyle(document.querySelector('.app')).gridTemplateAreas
       };
@@ -86,7 +87,7 @@ const { chromium } = require('playwright');
     }
     if (desktopShell.tabs.top > 2 || desktopShell.tabs.height < 900 ||
         desktopShell.view.width < desktopShell.viewport * .72 ||
-        document.documentElement.scrollWidth > desktopShell.viewport + 2) {
+        desktopShell.scrollWidth > desktopShell.viewport + 2) {
       throw new Error('Observatory left rail or learning canvas is constrained by a mobile/centered navigation rule: ' +
         JSON.stringify(desktopShell));
     }
