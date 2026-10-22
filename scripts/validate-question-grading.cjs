@@ -502,7 +502,7 @@ console.log('Browser answer-handler integration checks passed.');
 
 // Practice sessions support going back without losing draft answers or
 // counting a previously evaluated question a second time.
-assert.ok(html.includes('observatory-learning-console-v2.css?v=20261022-command-center-v5') &&
+assert.ok(html.includes('observatory-learning-console-v2.css?v=20261022-command-center-v6') &&
           html.includes('study-command-center.css?v=20261022-learning-readiness-v1') &&
           html.includes('practice-session-v9.css?v=20261019-v9'),
   'astronomy app must load its product-native observatory, learning command center and practice styles');
