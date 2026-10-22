@@ -16,8 +16,8 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v13") ||
-        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v4") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v14") ||
+        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v5") ||
         workerSource.includes("product-system-v9.css")) {
       throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
     }
@@ -56,6 +56,31 @@ const { chromium } = require('playwright');
         wideStudy.tabs.right > wideStudy.view.left + 2 ||
         wideStudy.tabs.left < wideStudy.app.left - 1) {
       throw new Error('Study navigation is not in its dedicated left grid column or overlaps the learning view: ' + JSON.stringify(wideStudy));
+    }
+
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    const desktopShell = await page.evaluate(() => {
+      const rect = selector => {
+        const node = document.querySelector(selector);
+        if (!node) return null;
+        const box = node.getBoundingClientRect();
+        return { left: box.left, right: box.right, top: box.top, width: box.width, height: box.height };
+      };
+      return {
+        viewport: innerWidth,
+        app: rect('.app'), navbar: rect('.navbar'), tabs: rect('#tabbar'),
+        hero: rect('.study-intro'), workflow: rect('.product-workflow'), view: rect('#view'),
+        areas: getComputedStyle(document.querySelector('.app')).gridTemplateAreas
+      };
+    });
+    if (!desktopShell.app || desktopShell.app.width < desktopShell.viewport * .94 ||
+        !desktopShell.areas.includes('"tabs hero"') ||
+        Math.abs(desktopShell.tabs.left - desktopShell.app.left) > 2 ||
+        desktopShell.tabs.width < 220 ||
+        desktopShell.tabs.right > desktopShell.view.left + 2 ||
+        desktopShell.hero.left < desktopShell.tabs.right - 1 ||
+        desktopShell.workflow.left < desktopShell.tabs.right - 1) {
+      throw new Error('Observatory desktop shell grid places navigation over learning content: ' + JSON.stringify(desktopShell));
     }
 
     const skipLink = page.locator('a.skip-link[href="#view"]');
