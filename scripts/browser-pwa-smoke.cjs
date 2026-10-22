@@ -26,6 +26,64 @@ const { chromium } = require('playwright');
       throw new Error('Workspace observer fix cache-busting URL is missing: ' + contextScript);
     }
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
+
+    // Verify the actual 北斗七星 -> 北极星 dynamic diagram and its playback controls.
+    await page.evaluate(() => {
+      window.state.level = '小学';
+      window.state.learnCategory = '星座';
+      window.state.page = 'learnDetail';
+      window.render();
+    });
+    const starCanvas = page.locator('.sim-box[data-simid="starMap"] canvas.sim-canvas');
+    await starCanvas.waitFor({ state: 'visible', timeout: 10000 });
+    const starCanvasId = await starCanvas.getAttribute('id');
+    await page.waitForFunction(id => {
+      const canvas = document.getElementById(id);
+      const instance = window.SimEngine && window.SimEngine.active[id];
+      return !!canvas && canvas.width > 0 && canvas.height > 0 &&
+        !!instance && instance.playing && instance.t > 0.15;
+    }, starCanvasId, { timeout: 10000 });
+    const starDescription = await page.locator('.sim-box[data-simid="starMap"] .dyn-caption').innerText();
+    if (!starDescription.includes('北斗七星') || !starDescription.includes('北极星') ||
+        await starCanvas.evaluate(el => el.getContext('2d').getImageData(0, 0, el.width, el.height).data.some((v, i) => i % 4 === 3 && v > 0)) === false) {
+      throw new Error('Star-map simulator did not render its labelled constellation and star field');
+    }
+    const frameBefore = await starCanvas.evaluate(el => el.toDataURL());
+    await page.waitForTimeout(280);
+    const frameAfter = await starCanvas.evaluate(el => el.toDataURL());
+    if (frameBefore === frameAfter) {
+      throw new Error('Star-map animation did not change rendered frames over time');
+    }
+    await page.locator('.sim-box[data-simid="starMap"] .sim-play').click();
+    const pausedAt = await page.evaluate(id => window.SimEngine.active[id].t, starCanvasId);
+    await page.waitForTimeout(300);
+    const stillPausedAt = await page.evaluate(id => window.SimEngine.active[id].t, starCanvasId);
+    if (Math.abs(stillPausedAt - pausedAt) > 0.001) {
+      throw new Error('Star-map playback did not pause its simulation clock');
+    }
+    const speedSlider = page.locator('.sim-box[data-simid="starMap"] .sim-speed');
+    await speedSlider.evaluate(el => {
+      el.value = '1.8';
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    const speedState = await page.evaluate(id => ({
+      speed: window.SimEngine.active[id].speed,
+      label: document.querySelector('.sim-box[data-simid="starMap"] .sim-sp-val')?.textContent
+    }), starCanvasId);
+    if (speedState.speed !== 1.8 || speedState.label !== '1.8x') {
+      throw new Error('Star-map speed control failed to update the simulation rate and visible label');
+    }
+    await page.locator('.sim-box[data-simid="starMap"] .sim-reset').click();
+    const resetClock = await page.evaluate(id => window.SimEngine.active[id].t, starCanvasId);
+    if (resetClock !== 0) throw new Error('Star-map reset did not return the simulation clock to zero');
+    await page.locator('.sim-box[data-simid="starMap"] .sim-play').click();
+    await page.waitForFunction(id => window.SimEngine.active[id].t > 0.05, starCanvasId, { timeout: 3000 });
+    await page.evaluate(() => {
+      window.SimEngine.stopAll();
+      window.state.page = 'home';
+      window.render();
+    });
+
     await page.evaluate(async () => {
       await window.questionEvidenceReady;
       const question = window.Q.find(item => item.id === 'p001');
@@ -155,7 +213,7 @@ const { chromium } = require('playwright');
       throw new Error('Mobile offline navigation failed: ' + JSON.stringify(mobile));
     }
     if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | ') + '; console: ' + consoleMessages.join(' | '));
-    console.log('PWA browser acceptance passed: service worker activated, app shell assets precached, offline root launch and refresh passed, offline deep-link recovery and local progress preservation passed, mobile navigation passed.');
+    console.log('PWA browser acceptance passed: animated star map rendered changing frames, pause/resume, reset and speed controls passed; question provenance disclosure, service worker/app-shell precache, offline root and deep-link recovery, local progress preservation and mobile navigation passed.');
   } finally {
     await context.setOffline(false);
     await browser.close();
