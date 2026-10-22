@@ -2156,7 +2156,7 @@ function render(){
     tabbar.classList.add('hidden');
   }
   var map = {
-    home:renderHome, practice:renderPractice, exam:renderExam, result:renderResult,
+    home:typeof window.renderAstronomyClassroom === 'function' ? window.renderAstronomyClassroom : renderHome, practice:renderPractice, exam:renderExam, result:renderResult,
     wrong:renderWrong, learn:renderLearn, learnDetail:renderLearnDetail,
     ai:renderAI, profile:renderProfile, news:renderNews
   };
