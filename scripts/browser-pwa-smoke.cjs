@@ -16,8 +16,8 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v10") ||
-        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-layout-v3")) {
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v11") ||
+        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v4")) {
       throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
     }
 
@@ -69,6 +69,22 @@ const { chromium } = require('playwright');
       throw new Error('Workspace observer fix cache-busting URL is missing: ' + contextScript);
     }
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
+    const studyHome = await page.evaluate(() => {
+      const heading = document.querySelector('#view .w9-home-heading');
+      const command = document.querySelector('#view .w9-study-command');
+      const tabs = document.querySelector('#tabbar');
+      const view = document.querySelector('#view');
+      const tab = tabs?.getBoundingClientRect();
+      const main = view?.getBoundingClientRect();
+      return {
+        heading: !!heading, command: !!command,
+        tabbarOutsideLearningView: !!tab && !!main && tab.right <= main.left + 2,
+        activeTab: document.querySelector('#tabbar button.active')?.dataset.tab || ''
+      };
+    });
+    if (!studyHome.heading || !studyHome.command || !studyHome.tabbarOutsideLearningView || studyHome.activeTab !== 'home') {
+      throw new Error('Study homepage is not a dedicated observatory command center: ' + JSON.stringify(studyHome));
+    }
 
     // Verify the study command center reads the same local question and interval-review ledgers as the rest of the app.
     const commandFixture = await page.evaluate(() => {
