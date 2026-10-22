@@ -85,6 +85,12 @@ const { chromium } = require('playwright');
       throw new Error('Observatory desktop shell grid places navigation over learning content: ' + JSON.stringify(desktopShell));
     }
 
+    await page.waitForSelector('.astronomy-classroom');
+    const classroom = await page.locator('.astronomy-classroom').count();
+    if (classroom !== 1 || !(await page.locator('.classroom-module-grid').count())) {
+      throw new Error('Astronomy reference classroom is not mounted as the home workspace');
+    }
+
     const skipLink = page.locator('a.skip-link[href="#view"]');
     if (await skipLink.count() !== 1) throw new Error('Keyboard skip-navigation link is missing');
     await page.keyboard.press('Tab');
