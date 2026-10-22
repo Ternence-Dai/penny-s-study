@@ -299,12 +299,12 @@ const { chromium } = require('playwright');
     });
 
     // Verify the actual 北斗七星 -> 北极星 dynamic diagram and its playback controls.
-    await page.evaluate(() => {
-      window.state.level = '小学';
-      window.state.learnCategory = '星座';
-      window.state.page = 'learnDetail';
-      window.render();
-    });
+    await page.locator('#tabbar [data-tab="learn"]').click();
+    await page.waitForFunction(() => window.state?.page === 'learn' &&
+      document.querySelectorAll('#view .learn-card').length > 0);
+    await page.locator('#view .learn-card').filter({ hasText: '星座' }).click();
+    await page.waitForFunction(() => window.state?.page === 'learnDetail' &&
+      window.state?.learnCategory === '星座');
     const starCanvas = page.locator('.sim-box[data-simid="starMap"] canvas.sim-canvas');
     await starCanvas.waitFor({ state: 'visible', timeout: 10000 });
     const starCanvasId = await starCanvas.getAttribute('id');
