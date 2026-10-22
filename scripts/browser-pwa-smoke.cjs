@@ -16,7 +16,7 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v14") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v15") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v5") ||
         workerSource.includes("product-system-v9.css")) {
       throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
@@ -140,6 +140,24 @@ const { chromium } = require('playwright');
         dueCount: 2
       };
     });
+
+    await page.waitForSelector('#view .astronomy-classroom');
+    const classroom = await page.evaluate(() => {
+      const root = document.querySelector('#view .astronomy-classroom');
+      return {
+        present: !!root,
+        metrics: root?.querySelectorAll('.classroom-metric').length || 0,
+        modules: root?.querySelectorAll('.classroom-module').length || 0,
+        localStats: root?.querySelector('.classroom-progress-grid')?.innerText || '',
+        originalLearningFlow: !!root?.querySelector('.w9-study-command'),
+        originalQuestionMap: !!root?.querySelector('.map-grid')
+      };
+    });
+    if (!classroom.present || classroom.metrics !== 4 || classroom.modules !== 6 ||
+        !classroom.originalLearningFlow || !classroom.originalQuestionMap) {
+      throw new Error('Astronomy classroom command center or retained learning system failed: ' + JSON.stringify(classroom));
+    }
+
     await page.waitForSelector('#view .w9-study-command');
     const commandMetrics = await page.evaluate(() => {
       const panel = document.querySelector('#view .w9-study-command');
