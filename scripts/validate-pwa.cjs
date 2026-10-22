@@ -6,6 +6,7 @@ const vm = require('node:vm');
 const html = fs.readFileSync('index.html', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
 const worker = fs.readFileSync('service-worker.js', 'utf8');
+const runtime = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 assert.doesNotThrow(() => new vm.Script(worker, { filename: 'service-worker.js' }),
   'service worker must parse before the browser attempts registration');
 const requiredAssets = [
@@ -43,7 +44,10 @@ assert.ok(Array.isArray(manifest.icons) && manifest.icons.some(icon =>
 for (const asset of requiredAssets) {
   assert.ok(worker.includes("'" + asset + "'"),
     'offline app shell must cache ' + asset);
-  if (asset.startsWith('./assets/')) {
+  if (asset.includes('/assets/data/')) {
+    assert.ok(runtime.includes(asset),
+      'offline evidence data entry must exactly match the runtime fetch URL: ' + asset);
+  } else if (asset.startsWith('./assets/')) {
     assert.ok(html.includes(asset),
       'offline app shell entry must exactly match a page asset reference: ' + asset);
   }
