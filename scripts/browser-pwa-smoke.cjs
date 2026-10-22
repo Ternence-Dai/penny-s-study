@@ -521,7 +521,7 @@ const { chromium } = require('playwright');
     const deepRecovery = await page.evaluate(() => ({
       url: location.pathname + location.search,
       title: document.title,
-      appVisible: !!document.querySelector('.study-intro h2'),
+      appVisible: !!document.querySelector('.classroom-hero h2'),
       learnTabVisible: !!document.querySelector('#tabbar [data-tab="learn"]'),
       preserved: localStorage.getItem('penny-offline-acceptance')
     }));
