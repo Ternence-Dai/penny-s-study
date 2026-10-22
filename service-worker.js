@@ -1,13 +1,13 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v24';
+const CACHE_NAME = 'penny-study-shell-v25';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
   './assets/icons/app-icon.svg',
   './assets/css/legacy-app.css',
-  './assets/css/reference-platform-v4.css?v=20261022-reference-v7',
+  './assets/css/reference-platform-v4.css?v=20261022-reference-v8',
   './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
   './assets/css/product-system.css?v=20261019-v8',
   './assets/css/workspace-v5.css?v=20261019-v5',
@@ -15,13 +15,13 @@ const APP_SHELL = [
   './assets/css/study-command-center.css?v=20261022-learning-readiness-v1',
   './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
   './assets/css/observatory-learning-console-v2.css?v=20261022-command-center-v6',
-  './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1',
+  './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/data/question-evidence.json?v=20261022-evidence-index-v3',
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
-  './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1',
+  './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v5-workspace-v1',
   './assets/js/reference-shell-v4-boot.js?v=20261022-reference-v6',
   './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
