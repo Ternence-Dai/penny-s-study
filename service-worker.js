@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v20';
+const CACHE_NAME = 'penny-study-shell-v21';
 const APP_SHELL = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const APP_SHELL = [
   './assets/icons/app-icon.svg',
   './assets/css/legacy-app.css',
   './assets/css/reference-platform-v4.css?v=20261022-reference-v7',
+  './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
   './assets/css/product-system.css?v=20261019-v8',
   './assets/css/workspace-v5.css?v=20261019-v5',
   './assets/css/practice-session-v9.css?v=20261019-v9',
@@ -22,6 +23,7 @@ const APP_SHELL = [
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
   './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1',
   './assets/js/reference-shell-v4-boot.js?v=20261022-reference-v5',
+  './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
 
 ];
