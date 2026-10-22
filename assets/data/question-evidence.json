@@ -24,7 +24,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p002",
@@ -48,7 +48,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p003",
@@ -77,7 +77,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p004",
@@ -96,7 +96,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p005",
@@ -120,7 +120,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p006",
@@ -144,7 +144,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p007",
@@ -168,7 +168,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p008",
@@ -192,7 +192,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p009",
@@ -216,7 +216,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p010",
@@ -240,7 +240,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p011",
@@ -269,7 +269,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p012",
@@ -288,7 +288,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p013",
@@ -312,7 +312,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p014",
@@ -331,7 +331,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p015",
@@ -355,7 +355,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p016",
@@ -379,7 +379,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p017",
@@ -403,7 +403,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p018",
@@ -427,7 +427,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p019",
@@ -446,7 +446,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p020",
@@ -475,7 +475,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p021",
@@ -499,7 +499,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p022",
@@ -518,7 +518,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p023",
@@ -542,7 +542,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p024",
@@ -561,7 +561,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p025",
@@ -585,7 +585,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p026",
@@ -599,7 +599,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p027",
@@ -613,7 +613,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p028",
@@ -627,7 +627,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p029",
@@ -641,7 +641,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p030",
@@ -655,7 +655,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p031",
@@ -669,7 +669,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p032",
@@ -683,7 +683,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p033",
@@ -697,7 +697,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p034",
@@ -711,7 +711,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p035",
@@ -725,7 +725,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p036",
@@ -739,7 +739,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p037",
@@ -753,7 +753,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p038",
@@ -767,7 +767,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p039",
@@ -781,7 +781,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p040",
@@ -795,7 +795,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p041",
@@ -809,7 +809,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p042",
@@ -823,7 +823,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p043",
@@ -837,7 +837,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p044",
@@ -851,7 +851,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p045",
@@ -865,7 +865,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p046",
@@ -879,7 +879,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p047",
@@ -893,7 +893,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p048",
@@ -907,7 +907,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p049",
@@ -921,7 +921,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p050",
@@ -935,7 +935,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p051",
@@ -949,7 +949,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p052",
@@ -963,7 +963,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p053",
@@ -977,7 +977,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p054",
@@ -991,7 +991,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p055",
@@ -1005,7 +1005,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p056",
@@ -1019,7 +1019,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p057",
@@ -1033,7 +1033,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p058",
@@ -1047,7 +1047,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p059",
@@ -1061,7 +1061,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p060",
@@ -1075,7 +1075,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p061",
@@ -1089,7 +1089,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p062",
@@ -1103,7 +1103,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p063",
@@ -1117,7 +1117,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p064",
@@ -1131,7 +1131,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p065",
@@ -1145,7 +1145,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p066",
@@ -1159,7 +1159,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p067",
@@ -1173,7 +1173,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p068",
@@ -1187,7 +1187,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p069",
@@ -1201,7 +1201,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p070",
@@ -1215,7 +1215,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p071",
@@ -1229,7 +1229,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p072",
@@ -1243,7 +1243,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p073",
@@ -1257,7 +1257,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p074",
@@ -1271,7 +1271,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p075",
@@ -1285,7 +1285,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p076",
@@ -1304,7 +1304,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p077",
@@ -1323,7 +1323,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p078",
@@ -1342,7 +1342,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p079",
@@ -1361,7 +1361,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p080",
@@ -1380,7 +1380,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p081",
@@ -1399,7 +1399,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p082",
@@ -1418,7 +1418,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p083",
@@ -1437,7 +1437,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p084",
@@ -1456,7 +1456,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p085",
@@ -1475,7 +1475,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p086",
@@ -1494,7 +1494,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p087",
@@ -1513,7 +1513,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p088",
@@ -1532,7 +1532,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p089",
@@ -1551,7 +1551,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p090",
@@ -1570,7 +1570,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p091",
@@ -1589,7 +1589,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p092",
@@ -1608,7 +1608,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p093",
@@ -1627,7 +1627,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p094",
@@ -1646,7 +1646,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p095",
@@ -1665,7 +1665,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p096",
@@ -1684,7 +1684,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p097",
@@ -1703,7 +1703,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p098",
@@ -1722,7 +1722,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p099",
@@ -1741,7 +1741,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p100",
@@ -1760,7 +1760,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p101",
@@ -1779,7 +1779,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p102",
@@ -1798,7 +1798,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p103",
@@ -1817,7 +1817,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p104",
@@ -1836,7 +1836,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p105",
@@ -1855,7 +1855,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p106",
@@ -1874,7 +1874,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p107",
@@ -1893,7 +1893,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p108",
@@ -1912,7 +1912,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p109",
@@ -1931,7 +1931,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p110",
@@ -1950,7 +1950,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p111",
@@ -1969,7 +1969,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p112",
@@ -1988,7 +1988,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p113",
@@ -2007,7 +2007,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p114",
@@ -2026,7 +2026,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p115",
@@ -2045,7 +2045,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p116",
@@ -2064,7 +2064,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p117",
@@ -2083,7 +2083,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p118",
@@ -2102,7 +2102,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p119",
@@ -2121,7 +2121,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p120",
@@ -2140,7 +2140,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p121",
@@ -2159,7 +2159,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p122",
@@ -2178,7 +2178,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p123",
@@ -2197,7 +2197,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p124",
@@ -2216,7 +2216,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p125",
@@ -2235,7 +2235,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p126",
@@ -2249,7 +2249,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p127",
@@ -2263,7 +2263,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p128",
@@ -2277,7 +2277,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p129",
@@ -2291,7 +2291,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p130",
@@ -2305,7 +2305,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p131",
@@ -2319,7 +2319,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p132",
@@ -2333,7 +2333,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p133",
@@ -2347,7 +2347,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p134",
@@ -2361,7 +2361,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p135",
@@ -2375,7 +2375,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p136",
@@ -2394,7 +2394,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p137",
@@ -2413,7 +2413,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p138",
@@ -2432,7 +2432,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p139",
@@ -2451,7 +2451,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p140",
@@ -2470,7 +2470,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p141",
@@ -2484,7 +2484,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p142",
@@ -2498,7 +2498,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p143",
@@ -2512,7 +2512,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p144",
@@ -2526,7 +2526,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p145",
@@ -2540,7 +2540,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p146",
@@ -2559,7 +2559,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p147",
@@ -2578,7 +2578,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p148",
@@ -2597,7 +2597,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p149",
@@ -2616,7 +2616,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "p150",
@@ -2635,7 +2635,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j001",
@@ -2654,7 +2654,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j002",
@@ -2673,7 +2673,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j003",
@@ -2692,7 +2692,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j004",
@@ -2711,7 +2711,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j005",
@@ -2730,7 +2730,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j006",
@@ -2749,7 +2749,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j007",
@@ -2768,7 +2768,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j008",
@@ -2787,7 +2787,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j009",
@@ -2806,7 +2806,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j010",
@@ -2825,7 +2825,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j011",
@@ -2844,7 +2844,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j012",
@@ -2863,7 +2863,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j013",
@@ -2882,7 +2882,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j014",
@@ -2901,7 +2901,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j015",
@@ -2920,7 +2920,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j016",
@@ -2934,7 +2934,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j017",
@@ -2948,7 +2948,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j018",
@@ -2962,7 +2962,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j019",
@@ -2976,7 +2976,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j020",
@@ -2990,7 +2990,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j021",
@@ -3004,7 +3004,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j022",
@@ -3018,7 +3018,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j023",
@@ -3032,7 +3032,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j024",
@@ -3046,7 +3046,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j025",
@@ -3060,7 +3060,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j026",
@@ -3074,7 +3074,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j027",
@@ -3088,7 +3088,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j028",
@@ -3102,7 +3102,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j029",
@@ -3116,7 +3116,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j030",
@@ -3130,7 +3130,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j031",
@@ -3149,7 +3149,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j032",
@@ -3168,7 +3168,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j033",
@@ -3187,7 +3187,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j034",
@@ -3206,7 +3206,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j035",
@@ -3225,7 +3225,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j036",
@@ -3244,7 +3244,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j037",
@@ -3263,7 +3263,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j038",
@@ -3282,7 +3282,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j039",
@@ -3301,7 +3301,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j040",
@@ -3320,7 +3320,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j041",
@@ -3339,7 +3339,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j042",
@@ -3358,7 +3358,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j043",
@@ -3377,7 +3377,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j044",
@@ -3396,7 +3396,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j045",
@@ -3415,7 +3415,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j046",
@@ -3434,7 +3434,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j047",
@@ -3453,7 +3453,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j048",
@@ -3472,7 +3472,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j049",
@@ -3491,7 +3491,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j050",
@@ -3510,7 +3510,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j051",
@@ -3529,7 +3529,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j052",
@@ -3548,7 +3548,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j053",
@@ -3567,7 +3567,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j054",
@@ -3586,7 +3586,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j055",
@@ -3605,7 +3605,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j056",
@@ -3624,7 +3624,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j057",
@@ -3643,7 +3643,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j058",
@@ -3662,7 +3662,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j059",
@@ -3681,7 +3681,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j060",
@@ -3700,7 +3700,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j061",
@@ -3714,7 +3714,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j062",
@@ -3728,7 +3728,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j063",
@@ -3742,7 +3742,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j064",
@@ -3756,7 +3756,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j065",
@@ -3770,7 +3770,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j066",
@@ -3784,7 +3784,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j067",
@@ -3798,7 +3798,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j068",
@@ -3812,7 +3812,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j069",
@@ -3826,7 +3826,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j070",
@@ -3840,7 +3840,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j071",
@@ -3854,7 +3854,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j072",
@@ -3868,7 +3868,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j073",
@@ -3882,7 +3882,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j074",
@@ -3896,7 +3896,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j075",
@@ -3910,7 +3910,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j076",
@@ -3924,7 +3924,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j077",
@@ -3938,7 +3938,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j078",
@@ -3952,7 +3952,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j079",
@@ -3966,7 +3966,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j080",
@@ -3980,7 +3980,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j081",
@@ -3994,7 +3994,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j082",
@@ -4008,7 +4008,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j083",
@@ -4022,7 +4022,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j084",
@@ -4036,7 +4036,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j085",
@@ -4050,7 +4050,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j086",
@@ -4069,7 +4069,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j087",
@@ -4088,7 +4088,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j088",
@@ -4107,7 +4107,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j089",
@@ -4126,7 +4126,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j090",
@@ -4145,7 +4145,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j091",
@@ -4164,7 +4164,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j092",
@@ -4183,7 +4183,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j093",
@@ -4202,7 +4202,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j094",
@@ -4221,7 +4221,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j095",
@@ -4240,7 +4240,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j096",
@@ -4259,7 +4259,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j097",
@@ -4278,7 +4278,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j098",
@@ -4297,7 +4297,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j099",
@@ -4316,7 +4316,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j100",
@@ -4335,7 +4335,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j101",
@@ -4354,7 +4354,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j102",
@@ -4373,7 +4373,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j103",
@@ -4392,7 +4392,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j104",
@@ -4411,7 +4411,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j105",
@@ -4430,7 +4430,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j106",
@@ -4449,7 +4449,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j107",
@@ -4468,7 +4468,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j108",
@@ -4487,7 +4487,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j109",
@@ -4506,7 +4506,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j110",
@@ -4514,7 +4514,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j111",
@@ -4522,7 +4522,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j112",
@@ -4530,7 +4530,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j113",
@@ -4538,7 +4538,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j114",
@@ -4552,7 +4552,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j115",
@@ -4566,7 +4566,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j116",
@@ -4580,7 +4580,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j117",
@@ -4594,7 +4594,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j118",
@@ -4608,7 +4608,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j119",
@@ -4616,7 +4616,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j120",
@@ -4624,7 +4624,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j121",
@@ -4632,7 +4632,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j122",
@@ -4640,7 +4640,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j123",
@@ -4648,7 +4648,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j124",
@@ -4656,7 +4656,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
+      "reviewNote": "暂未找到足以直接支持本题的官方主题来源候选；题干、标准答案和解析尚未完成人工逐题核对，须补充来源后再进入复核。"
     },
     {
       "id": "j125",
@@ -4670,7 +4670,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j126",
@@ -4684,7 +4684,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j127",
@@ -4698,7 +4698,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j128",
@@ -4712,7 +4712,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j129",
@@ -4726,7 +4726,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j130",
@@ -4740,7 +4740,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j131",
@@ -4754,7 +4754,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j132",
@@ -4768,7 +4768,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j133",
@@ -4782,7 +4782,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j134",
@@ -4796,7 +4796,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j135",
@@ -4810,7 +4810,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j136",
@@ -4824,7 +4824,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j137",
@@ -4838,7 +4838,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j138",
@@ -4852,7 +4852,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j139",
@@ -4866,7 +4866,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j140",
@@ -4880,7 +4880,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j141",
@@ -4894,7 +4894,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j142",
@@ -4908,7 +4908,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j143",
@@ -4922,7 +4922,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j144",
@@ -4936,7 +4936,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j145",
@@ -4950,7 +4950,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j146",
@@ -4964,7 +4964,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j147",
@@ -4983,7 +4983,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j148",
@@ -5002,7 +5002,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j149",
@@ -5021,7 +5021,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     },
     {
       "id": "j150",
@@ -5040,7 +5040,7 @@
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
     }
   ]
 }
