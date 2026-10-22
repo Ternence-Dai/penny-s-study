@@ -124,7 +124,7 @@ const productCss = fs.readFileSync('assets/css/product-system.css', 'utf8');
 assert.ok(html.includes('product-system.css?v=20261019-v8'),
   'astronomy app must load the current V8 learning workspace styles');
 assert.ok(html.includes('practice-session-v9.css?v=20261019-v9') &&
-          /legacy-app\.js\?v=20261020-[^"' ]+/.test(html),
+          /legacy-app\.js\?v=\\d{8}-[^"' ]+/.test(html),
   'astronomy app must load the recoverable practice UI and a cache-busted session runtime');
 assert.ok(productCss.includes('Astronomy learning workspace'),
   'astronomy V3 design layer must be present');
