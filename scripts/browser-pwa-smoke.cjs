@@ -14,6 +14,13 @@ const { chromium } = require('playwright');
 
   try {
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+    const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
+    const workerSource = await workerResponse.text();
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v9") ||
+        !workerSource.includes("observatory-learning-console-v2.css?v=20261022-observatory-v2")) {
+      throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
+    }
+
     const referenceStylesheet = page.locator('link[rel="stylesheet"][href*="observatory-learning-console-v2.css"]');
     if (await referenceStylesheet.count() !== 1) throw new Error('Observatory learning console stylesheet is not linked');
     const referenceCssResponse = await page.request.get(await referenceStylesheet.evaluate(node => node.href));
