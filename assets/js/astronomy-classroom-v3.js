@@ -83,7 +83,29 @@
       '<section class="classroom-resume is-idle"><div><span class="classroom-kicker">NEXT STUDY SESSION</span><strong>开始今天的学习任务</strong><small>按知识点掌握、答题统计和到期复习计划安排下一步。</small></div>'+
       '<button type="button" onclick="startPractice(\''+currentLevel+'\',\'\')">开始练习 ↗</button></section>';
 
-    return '<section class="astronomy-classroom" aria-label="天文竞赛学习指挥台">' +
+    const inspector = '<aside class="classroom-inspector" aria-label="本机学习上下文与题库证据检查器">' +
+      '<section class="classroom-inspector-card"><span class="classroom-kicker">LEARNING CONTEXT / LOCAL RECORDS</span>' +
+        '<h3>当前学习上下文</h3><div class="classroom-inspector-level">'+safe(currentLevel)+'组 · 本机记录</div>' +
+        '<div class="classroom-inspector-stat"><span>累计答题</span><strong>'+stats.total+'</strong></div>' +
+        '<div class="classroom-inspector-stat"><span>已覆盖知识主题</span><strong>'+touched+' / '+categories.length+'</strong></div>' +
+        '<div class="classroom-inspector-stat"><span>到期错题</span><strong>'+dueWrong.length+'</strong></div>' +
+        '<div class="classroom-inspector-stat"><span>当前练习</span><strong>'+(resumable?percent+'%':'未开始')+'</strong></div>' +
+        '<p>未作答的知识主题保持未知，不自动记为掌握；进度仅来自当前浏览器保存的作答记录。</p></section>' +
+      '<section class="classroom-inspector-card"><span class="classroom-kicker">QUESTION BANK / REVIEW GATE</span>' +
+        '<h3>题库质量闸门</h3><div class="classroom-inspector-status">'+safe(evidenceStatus)+'</div>' +
+        '<div class="classroom-inspector-stat"><span>题目总量</span><strong>'+evidence.total+'</strong></div>' +
+        '<div class="classroom-inspector-stat"><span>人工复核完成</span><strong>'+evidence.verified+'</strong></div>' +
+        '<div class="classroom-inspector-stat"><span>待核验</span><strong>'+evidence.reviewNeeded+'</strong></div>' +
+        '<p>'+safe(evidenceState)+'。官方来源链接不等于题干、答案和解析已经过审。</p></section>' +
+      '<section class="classroom-inspector-card"><span class="classroom-kicker">QUICK ACTIONS</span><h3>继续学习</h3>' +
+        (resumable?'<button type="button" class="classroom-inspector-action" onclick="resumePractice()">▶ 继续上次练习 <b>↗</b></button>':'<button type="button" class="classroom-inspector-action" onclick="startPractice(\''+currentLevel+'\',\'\')">＋ 开始专项练习 <b>↗</b></button>') +
+        '<button type="button" class="classroom-inspector-action" onclick="startExam(\''+currentLevel+'\')">计时竞赛模拟 <b>↗</b></button>' +
+        '<button type="button" class="classroom-inspector-action" onclick="go(\'wrong\')">到期错题复习 <b>↗</b></button>' +
+        '<a class="classroom-inspector-action" href="#nasaExoplanetExplorer">NASA 系外行星数据 ↗</a></section>' +
+      '<section class="classroom-inspector-card classroom-inspector-card--note"><span class="classroom-kicker">DATA BOUNDARY</span>' +
+        '<h3>数据来源边界</h3><p>个人学习数据来自本机记录；NASA TAP 仅提供公开天文数据查询，不作为题库答案正确性的自动证明。</p></section></aside>';
+
+    return '<section class="astronomy-classroom" aria-label="天文竞赛学习指挥台"><div class="classroom-primary">' +
       '<header class="classroom-hero"><div class="classroom-hero__copy"><span class="classroom-kicker">ASTRONOMY / LEARN / PRACTICE / OBSERVE</span>' +
       '<h2>星赛通 · 天文学习指挥台</h2><p>从知识地图到专项训练、竞赛模拟与错题复盘，围绕真实本机学习记录安排学习路径。</p>' +
       '<div class="classroom-hero__actions"><button type="button" onclick="go(\'learn\')">探索知识星图 ↗</button><button type="button" onclick="startExam(\''+currentLevel+'\')">开始竞赛模拟</button></div></div>' +
@@ -110,7 +132,7 @@
       '<section class="classroom-progress-panel"><div class="classroom-section-head"><div><span class="classroom-kicker">LOCAL LEARNING RECORDS</span><h3>学习表现与复习安排</h3><p>只展示本机已有作答记录；空白记录不作推断。</p></div></div>' +
       '<div class="classroom-progress-grid"><div><span>累计答题</span><strong>'+stats.total+'</strong><small>本机学习记录</small></div><div><span>正确率</span><strong>'+stats.rate+'%</strong><small>基于已批改答案</small></div><div><span>学习天数</span><strong>'+stats.days+'</strong><small>本机活动记录</small></div><div><span>需强化主题</span><strong>'+needsWork+'</strong><small>至少 3 次作答且正确率低于 80%</small></div></div></section>' +
       '<section class="classroom-existing-learning" aria-label="详细学习内容">'+oldHome+'</section>' +
-      '</section>';
+      '</div>' + inspector + '</section>';
   };
 
   // Existing application render() uses this explicit hook for the home route.
