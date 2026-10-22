@@ -144,6 +144,28 @@ const { chromium } = require('playwright');
     });
 
     await page.waitForSelector('#view .astronomy-classroom');
+    await page.waitForFunction(() => {
+      const summary = window.getQuestionEvidenceSummary?.();
+      return summary && summary.loadState === 'ready' && !!document.querySelector('.classroom-evidence');
+    }, undefined, { timeout: 10000 });
+    const evidenceCoverage = await page.evaluate(() => {
+      const summary = window.getQuestionEvidenceSummary();
+      const panel = document.querySelector('.classroom-evidence');
+      return {
+        ...summary,
+        visible: !!panel,
+        visibleText: panel?.innerText || '',
+        metrics: panel?.querySelectorAll('.classroom-evidence__metrics article').length || 0
+      };
+    });
+    if (!evidenceCoverage.visible || evidenceCoverage.total !== 300 ||
+        evidenceCoverage.verified !== 0 || evidenceCoverage.reviewNeeded !== 300 ||
+        evidenceCoverage.withSources !== 21 || evidenceCoverage.withoutSources !== 279 ||
+        evidenceCoverage.metrics !== 4 ||
+        !evidenceCoverage.visibleText.includes('尚未达到正式题库验收标准')) {
+      throw new Error('Question bank source-quality status is not transparently reflected in the classroom: ' +
+        JSON.stringify(evidenceCoverage));
+    }
     const classroom = await page.evaluate(() => {
       const root = document.querySelector('#view .astronomy-classroom');
       return {
@@ -496,7 +518,7 @@ const { chromium } = require('playwright');
         './assets/css/legacy-app.css',
         './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
         './assets/js/question-bank.js',
-        './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
+        './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
         './assets/js/workspace-v5.js?v=20261019-v52'
       ];
       const assets = await Promise.all(required.map(async path => ({
