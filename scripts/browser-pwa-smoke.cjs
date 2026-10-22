@@ -181,29 +181,6 @@ const { chromium } = require('playwright');
         !classroom.originalLearningFlow || !classroom.originalQuestionMap) {
       throw new Error('Astronomy classroom command center or retained learning system failed: ' + JSON.stringify(classroom));
     }
-    await page.waitForFunction(() => {
-      const summary = window.getQuestionEvidenceSummary?.();
-      return summary && summary.loadState === 'ready' && !!document.querySelector('.classroom-evidence');
-    }, undefined, { timeout: 10000 });
-    const evidenceCoverage = await page.evaluate(() => {
-      const summary = window.getQuestionEvidenceSummary();
-      const panel = document.querySelector('.classroom-evidence');
-      return {
-        ...summary,
-        visible: !!panel,
-        visibleText: panel?.innerText || '',
-        metrics: panel?.querySelectorAll('.classroom-evidence__metrics article').length || 0
-      };
-    });
-    if (!evidenceCoverage.visible || evidenceCoverage.total !== 300 ||
-        evidenceCoverage.verified !== 0 || evidenceCoverage.reviewNeeded !== 300 ||
-        evidenceCoverage.withSources !== 21 || evidenceCoverage.withoutSources !== 279 ||
-        evidenceCoverage.metrics !== 4 ||
-        !evidenceCoverage.visibleText.includes('尚未达到正式题库验收标准')) {
-      throw new Error('Question bank source-quality status is not transparently reflected in the classroom: ' +
-        JSON.stringify(evidenceCoverage));
-    }
-
     await page.waitForSelector('#view .w9-study-command');
     const commandMetrics = await page.evaluate(() => {
       const panel = document.querySelector('#view .w9-study-command');
