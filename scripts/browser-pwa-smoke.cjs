@@ -102,8 +102,8 @@ const { chromium } = require('playwright');
     }
 
     await page.waitForSelector('.astronomy-classroom');
-    const classroom = await page.locator('.astronomy-classroom').count();
-    if (classroom !== 1 || !(await page.locator('.classroom-module-grid').count())) {
+    const referenceClassroomCount = await page.locator('.astronomy-classroom').count();
+    if (referenceClassroomCount !== 1 || !(await page.locator('.classroom-module-grid').count())) {
       throw new Error('Astronomy reference classroom is not mounted as the home workspace');
     }
 
