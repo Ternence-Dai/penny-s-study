@@ -23,8 +23,8 @@ body[data-workspace="study"] #view :is(input,select,textarea){min-height:42px;bo
 /* V3 full-screen observatory: dedicated left navigation + learning command center */
 body[data-workspace="study"] .app{
   display:grid;width:100%;max-width:none;min-height:100vh;margin:0;padding:0;
-  grid-template-columns:244px minmax(0,1fr);grid-template-rows:76px minmax(0,1fr);
-  grid-template-areas:"brand brand" "tabs view";gap:0;overflow:visible;
+  grid-template-columns:244px minmax(0,1fr);grid-template-rows:76px auto auto minmax(0,1fr);
+  grid-template-areas:"brand brand" "tabs hero" "tabs workflow" "tabs view";gap:0;overflow:visible;
   background:radial-gradient(ellipse at 72% -15%,#536bb53a,transparent 36%),#080f24
 }
 body[data-workspace="study"] .navbar{
@@ -130,4 +130,12 @@ body[data-workspace="study"] .sec-title{color:#aabce0;font-size:12px;letter-spac
  body[data-workspace="study"] .progress-overview{padding:14px}
  body[data-workspace="study"] .w9-study-command{padding:14px}
  body[data-workspace="study"] .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(min-width:681px){
+ body[data-workspace="study"] .navbar{grid-area:brand;inset:auto 0 auto 0;left:auto;right:auto;top:0;width:100%;height:76px}
+ body[data-workspace="study"] .tabbar{grid-area:tabs;position:sticky;top:76px;width:100%;max-width:none;min-width:0;height:calc(100vh - 76px);max-height:calc(100vh - 76px);transform:none}
+ body[data-workspace="study"] .study-intro{grid-area:hero;align-self:stretch;min-width:0}
+ body[data-workspace="study"] .product-workflow{grid-area:workflow;min-width:0}
+ body[data-workspace="study"] #view{grid-area:view;min-width:0;width:100%;max-width:none}
 }
