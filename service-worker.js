@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v23';
+const CACHE_NAME = 'penny-study-shell-v24';
 const APP_SHELL = [
   './',
   './index.html',
@@ -18,7 +18,7 @@ const APP_SHELL = [
   './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
-  './assets/data/question-evidence.json?v=20261022-evidence-index-v2',
+  './assets/data/question-evidence.json?v=20261022-evidence-index-v3',
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
   './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1',
