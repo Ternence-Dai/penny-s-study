@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Per-question evidence registry. All initial entries remain review-needed until a human verifies authoritative sources.",
+  "description": "Per-question source registry. All 300 questions remain review-needed. NASA/IAU links are topic-level candidate references only; a source link does not verify the question wording, answer or explanation.",
   "questions": [
     {
       "id": "p001",
@@ -10,11 +10,21 @@
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p002",
@@ -24,11 +34,21 @@
           "title": "Mercury: Facts",
           "url": "https://science.nasa.gov/mercury/facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p003",
@@ -48,19 +68,35 @@
           "title": "IAU 2006 General Assembly: Result of the Resolution Votes",
           "url": "https://www.iau.org/IAU/Iau/News/PR2006/iau-2006-general-assembly-resolution-votes.aspx",
           "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p004",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p005",
@@ -70,11 +106,21 @@
           "title": "Terrestrial Planets",
           "url": "https://science.nasa.gov/exoplanets/terrestrial/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p006",
@@ -84,11 +130,21 @@
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p007",
@@ -98,11 +154,21 @@
           "title": "Planet Sizes and Locations in Our Solar System",
           "url": "https://science.nasa.gov/solar-system/planet-sizes-and-locations-in-our-solar-system/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p008",
@@ -112,11 +178,21 @@
           "title": "Planet Sizes and Locations in Our Solar System",
           "url": "https://science.nasa.gov/solar-system/planet-sizes-and-locations-in-our-solar-system/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p009",
@@ -126,11 +202,21 @@
           "title": "Asteroid Facts",
           "url": "https://science.nasa.gov/solar-system/asteroids/facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p010",
@@ -140,11 +226,21 @@
           "title": "Mars: Facts",
           "url": "https://science.nasa.gov/mars/facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p011",
@@ -159,11 +255,21 @@
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p012",
@@ -173,11 +279,16 @@
           "title": "About the Planets",
           "url": "https://science.nasa.gov/solar-system/planets/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p013",
@@ -187,19 +298,40 @@
           "title": "Planet Sizes and Locations in Our Solar System",
           "url": "https://science.nasa.gov/solar-system/planet-sizes-and-locations-in-our-solar-system/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p014",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p015",
@@ -209,11 +341,21 @@
           "title": "Venus: Facts",
           "url": "https://science.nasa.gov/venus/venus-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p016",
@@ -223,11 +365,21 @@
           "title": "Mercury: Facts",
           "url": "https://science.nasa.gov/mercury/facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p017",
@@ -237,11 +389,21 @@
           "title": "Venus: Facts",
           "url": "https://science.nasa.gov/venus/venus-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p018",
@@ -251,19 +413,40 @@
           "title": "Uranus: Facts",
           "url": "https://science.nasa.gov/Uranus/facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p019",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p020",
@@ -278,11 +461,21 @@
           "title": "Pluto",
           "url": "https://science.nasa.gov/dwarf-planets/pluto/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p021",
@@ -292,11 +485,21 @@
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p022",
@@ -306,11 +509,16 @@
           "title": "Solar System: Facts",
           "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p023",
@@ -320,19 +528,40 @@
           "title": "Ganymede: Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-moons/ganymede/facts/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p024",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p025",
@@ -342,1883 +571,3942 @@
           "title": "Orbits and Kepler’s Laws",
           "url": "https://science.nasa.gov/solar-system/orbits-and-keplers-laws/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Solar System Facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA About the Planets",
+          "url": "https://science.nasa.gov/solar-system/planets/",
+          "publisher": "NASA Science"
         }
       ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "AI 初步对照 NASA/IAU 官方资料收集了来源候选；尚未完成人工逐题核对题干、标准答案和解析，不能视为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p026",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p027",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p028",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p029",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p030",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p031",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p032",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p033",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p034",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p035",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p036",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p037",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p038",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p039",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p040",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p041",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p042",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p043",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p044",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p045",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p046",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p047",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p048",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p049",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p050",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p051",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p052",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p053",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p054",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p055",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p056",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p057",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p058",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p059",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p060",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU The 88 Constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p061",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p062",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p063",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p064",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p065",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p066",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p067",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p068",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p069",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p070",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p071",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p072",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p073",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p074",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p075",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p076",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p077",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p078",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p079",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p080",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p081",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p082",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p083",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p084",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p085",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p086",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p087",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p088",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p089",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p090",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p091",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p092",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p093",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p094",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p095",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p096",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p097",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p098",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p099",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p100",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p101",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p102",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p103",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p104",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p105",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p106",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p107",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p108",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p109",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p110",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p111",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p112",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p113",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p114",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p115",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Facts",
+          "url": "https://science.nasa.gov/moon/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Moon Composition and Structure",
+          "url": "https://science.nasa.gov/moon/composition/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p116",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p117",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p118",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p119",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p120",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p121",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p122",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p123",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p124",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p125",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p126",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p127",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p128",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p129",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p130",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p131",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p132",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p133",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p134",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p135",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p136",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Meteors and Meteorites Facts",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Meteor Showers",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p137",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Meteors and Meteorites Facts",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Meteor Showers",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p138",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Meteors and Meteorites Facts",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Meteor Showers",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p139",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Meteors and Meteorites Facts",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Meteor Showers",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p140",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Meteors and Meteorites Facts",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Meteor Showers",
+          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p141",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p142",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p143",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p144",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p145",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p146",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p147",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p148",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p149",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "p150",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j001",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j002",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j003",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j004",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j005",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j006",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j007",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j008",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j009",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j010",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j011",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j012",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j013",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j014",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j015",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "IAU The 88 Constellations and Coordinate Boundaries",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
+          "publisher": "International Astronomical Union"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j016",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j017",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j018",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j019",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j020",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j021",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j022",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j023",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j024",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j025",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j026",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j027",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j028",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j029",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j030",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j031",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j032",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j033",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j034",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j035",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j036",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j037",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j038",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j039",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j040",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j041",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j042",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Universe Glossary",
+          "url": "https://science.nasa.gov/universe/glossary/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j043",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j044",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j045",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j046",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j047",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j048",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j049",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j050",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j051",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j052",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j053",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j054",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j055",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j056",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j057",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j058",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j059",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j060",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Seeing Equinoxes and Solstices from Space",
+          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j061",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j062",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j063",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j064",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j065",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j066",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j067",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j068",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j069",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j070",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j071",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j072",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j073",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j074",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j075",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Telescopes 101",
+          "url": "https://science.nasa.gov/universe/telescopes-101/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j076",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j077",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j078",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j079",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j080",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j081",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j082",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j083",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j084",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j085",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Moon Phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j086",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j087",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j088",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j089",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j090",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j091",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j092",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j093",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j094",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j095",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j096",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j097",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Eclipses and the Moon",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Eclipse Viewing Safety",
+          "url": "https://science.nasa.gov/eclipses/safety/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j098",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j099",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j100",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j101",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j102",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j103",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j104",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j105",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j106",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j107",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j108",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j109",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Types of Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
+          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j110",
@@ -2226,7 +4514,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j111",
@@ -2234,7 +4522,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j112",
@@ -2242,7 +4530,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j113",
@@ -2250,47 +4538,77 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j114",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Planetary Motion: The History of an Idea",
+          "url": "https://science.nasa.gov/earth/earth-observatory/planetary-motion/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j115",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Planetary Motion: The History of an Idea",
+          "url": "https://science.nasa.gov/earth/earth-observatory/planetary-motion/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j116",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Planetary Motion: The History of an Idea",
+          "url": "https://science.nasa.gov/earth/earth-observatory/planetary-motion/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j117",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Planetary Motion: The History of an Idea",
+          "url": "https://science.nasa.gov/earth/earth-observatory/planetary-motion/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j118",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Planetary Motion: The History of an Idea",
+          "url": "https://science.nasa.gov/earth/earth-observatory/planetary-motion/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j119",
@@ -2298,7 +4616,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j120",
@@ -2306,7 +4624,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j121",
@@ -2314,7 +4632,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j122",
@@ -2322,7 +4640,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j123",
@@ -2330,7 +4648,7 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j124",
@@ -2338,215 +4656,391 @@
       "sources": [],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "未找到足以直接支持本题的官方主题来源候选；本题须补充资料并人工核对题干、答案和解析，当前不得视为已验证。"
     },
     {
       "id": "j125",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j126",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j127",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j128",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j129",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j130",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j131",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j132",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j133",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j134",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j135",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j136",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j137",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j138",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j139",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j140",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j141",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j142",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j143",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j144",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j145",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j146",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "NASA Stars",
+          "url": "https://science.nasa.gov/universe/stars/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j147",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j148",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j149",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     },
     {
       "id": "j150",
       "status": "review-needed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "IAU 2012 Resolution B2: Astronomical Unit",
+          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
+          "publisher": "International Astronomical Union"
+        },
+        {
+          "title": "NASA Facts About Earth: Size and Distance",
+          "url": "https://science.nasa.gov/earth/facts/",
+          "publisher": "NASA Science"
+        }
+      ],
       "reviewedAt": null,
       "reviewer": null,
-      "reviewNote": "尚未完成权威来源核验；不得将该题标记为已验证。"
+      "reviewNote": "已登记 NASA / IAU 官方主题资料候选；该来源登记不等于逐题事实核验。仍须人工逐题核对题干、标准答案与解析后，才可更改核验状态。"
     }
   ]
 }
