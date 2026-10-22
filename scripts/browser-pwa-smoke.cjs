@@ -156,9 +156,10 @@ const { chromium } = require('playwright');
 
     const skipLink = page.locator('a.skip-link[href="#view"]');
     if (await skipLink.count() !== 1) throw new Error('Keyboard skip-navigation link is missing');
-    // Earlier interaction tests leave focus on their last action button; reset before
-    // checking that skip navigation is the first keyboard stop from a fresh page state.
-    await page.evaluate(() => document.activeElement?.blur());
+    // Reload into a fresh document so the keyboard test starts before any
+    // interactive control receives focus; this proves the real first tab stop.
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.waitForSelector('a.skip-link[href="#view"]');
     await page.keyboard.press('Tab');
     const firstKeyboardTarget = await page.evaluate(() => document.activeElement?.classList.contains('skip-link'));
     if (!firstKeyboardTarget) throw new Error('Skip navigation is not the first keyboard focus target');
