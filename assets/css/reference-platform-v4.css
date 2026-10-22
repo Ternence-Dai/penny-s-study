@@ -130,3 +130,70 @@ body[data-workspace="study"] .tabbar button.active{background:#21365e}
     margin:0!important;padding:14px 12px calc(92px + env(safe-area-inset-bottom))!important;overflow:auto!important;
   }
 }
+
+
+/* Classroom reference shell v5: task space + always-visible study/evidence inspector. */
+body[data-workspace="study"] .astronomy-classroom{
+  display:grid!important;grid-template-columns:minmax(0,1fr) 292px;align-items:start;gap:14px;
+  width:100%;max-width:1820px;margin:0 auto;padding:0 0 24px;
+}
+body[data-workspace="study"] .classroom-primary{
+  display:flex;min-width:0;flex-direction:column;gap:14px;
+}
+body[data-workspace="study"] .classroom-inspector{
+  position:sticky;top:14px;display:flex;min-width:0;max-height:calc(100vh - 96px);
+  flex-direction:column;gap:10px;overflow:auto;padding:0 2px 12px 0;scrollbar-width:thin;
+}
+body[data-workspace="study"] .classroom-inspector-card{
+  display:flex;min-width:0;flex-direction:column;gap:8px;padding:13px;
+  border:1px solid #354b76;border-radius:10px;
+  background:linear-gradient(150deg,#111f3d,#0b1730);box-shadow:0 8px 23px #02081755;
+}
+body[data-workspace="study"] .classroom-inspector-card h3{
+  margin:0;color:#edf3ff;font-size:13px;font-weight:850;letter-spacing:-.02em;
+}
+body[data-workspace="study"] .classroom-inspector-card p{
+  margin:0;color:#98acd0;font-size:9px;line-height:1.7;
+}
+body[data-workspace="study"] .classroom-inspector-level{
+  padding:7px 9px;border:1px solid #455f95;border-radius:6px;background:#192c51;
+  color:#b7cef5;font-size:9px;font-weight:850;
+}
+body[data-workspace="study"] .classroom-inspector-stat{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:7px 8px;border:1px solid #30466f;border-radius:6px;background:#0d1b37;
+}
+body[data-workspace="study"] .classroom-inspector-stat span{color:#8fa7d2;font-size:8px}
+body[data-workspace="study"] .classroom-inspector-stat strong{
+  color:#f1f5ff;font-size:15px;font-weight:850;font-variant-numeric:tabular-nums
+}
+body[data-workspace="study"] .classroom-inspector-status{
+  padding:8px 9px;border:1px solid #5b563d;border-left:3px solid #d5b36d;border-radius:6px;
+  background:#2a281f;color:#e7cf92;font-size:9px;line-height:1.5;font-weight:800;
+}
+body[data-workspace="study"] .classroom-inspector-action{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;
+  min-height:34px;padding:8px 9px;border:1px solid #405b8a;border-radius:6px;
+  background:#172b50;color:#d5e2ff;text-align:left;text-decoration:none;
+  font-size:9px;font-weight:800;cursor:pointer;
+}
+body[data-workspace="study"] .classroom-inspector-action:hover{border-color:#82a5e8;background:#203965}
+body[data-workspace="study"] .classroom-inspector-action b{color:#88dfe8;font-size:10px}
+body[data-workspace="study"] .classroom-inspector-card--note{border-color:#2c606b;background:linear-gradient(150deg,#102d40,#0b1c30)}
+body[data-workspace="study"] .classroom-inspector-card--note .classroom-kicker{color:#76d4d7}
+body[data-workspace="study"] .classroom-inspector :where(a,button):focus-visible{
+  outline:3px solid #80e3ec!important;outline-offset:3px;
+}
+@media(max-width:1240px){
+  body[data-workspace="study"] .astronomy-classroom{grid-template-columns:minmax(0,1fr) 260px}
+}
+@media(max-width:980px){
+  body[data-workspace="study"] .astronomy-classroom{grid-template-columns:minmax(0,1fr)}
+  body[data-workspace="study"] .classroom-inspector{
+    position:static;max-height:none;overflow:visible;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:0;
+  }
+}
+@media(max-width:680px){
+  body[data-workspace="study"] .classroom-inspector{grid-template-columns:1fr;gap:9px}
+  body[data-workspace="study"] .classroom-inspector-card{padding:12px}
+}
