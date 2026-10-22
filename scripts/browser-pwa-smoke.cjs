@@ -492,7 +492,7 @@ const { chromium } = require('playwright');
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     const offlineRoot = await page.evaluate(() => ({
       title: document.title,
-      heading: document.querySelector('.study-intro h2')?.textContent.trim(),
+      heading: document.querySelector('.classroom-hero h2')?.textContent.trim(),
       preserved: localStorage.getItem('penny-offline-acceptance')
     }));
     if (!offlineRoot.heading || offlineRoot.preserved !== 'preserved') {
