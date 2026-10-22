@@ -16,7 +16,7 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v17") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v19") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v5") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1") ||
@@ -83,6 +83,22 @@ const { chromium } = require('playwright');
         desktopShell.hero.left < desktopShell.tabs.right - 1 ||
         desktopShell.workflow.left < desktopShell.tabs.right - 1) {
       throw new Error('Observatory desktop shell grid places navigation over learning content: ' + JSON.stringify(desktopShell));
+    }
+    if (desktopShell.tabs.top > 2 || desktopShell.tabs.height < 900 ||
+        desktopShell.view.width < desktopShell.viewport * .72 ||
+        document.documentElement.scrollWidth > desktopShell.viewport + 2) {
+      throw new Error('Observatory left rail or learning canvas is constrained by a mobile/centered navigation rule: ' +
+        JSON.stringify(desktopShell));
+    }
+    const duplicateProductChrome = await page.evaluate(() => ({
+      visibleStudyIntro: [...document.querySelectorAll('.study-intro')].some(node =>
+        node.getClientRects().length && getComputedStyle(node).display !== 'none'),
+      visibleGenericWorkflow: [...document.querySelectorAll('.product-workflow')].some(node =>
+        node.getClientRects().length && getComputedStyle(node).display !== 'none')
+    }));
+    if (duplicateProductChrome.visibleStudyIntro || duplicateProductChrome.visibleGenericWorkflow) {
+      throw new Error('The classroom must not show the legacy duplicate hero/workflow chrome: ' +
+        JSON.stringify(duplicateProductChrome));
     }
 
     await page.waitForSelector('.astronomy-classroom');
@@ -570,6 +586,24 @@ const { chromium } = require('playwright');
     });
     if (!mobile.tabbarVisible || !mobile.learnTab) {
       throw new Error('Mobile offline navigation failed: ' + JSON.stringify(mobile));
+    }
+    const mobileGeometry = await page.evaluate(() => {
+      const tabs = document.getElementById('tabbar');
+      const rect = tabs.getBoundingClientRect();
+      return {
+        left: rect.left, right: rect.right, width: rect.width,
+        top: rect.top, bottom: rect.bottom,
+        position: getComputedStyle(tabs).position,
+        direction: getComputedStyle(tabs).flexDirection,
+        viewport: innerWidth
+      };
+    });
+    if (mobileGeometry.position !== 'fixed' ||
+        mobileGeometry.direction !== 'row' ||
+        mobileGeometry.left > 1 ||
+        mobileGeometry.right < mobileGeometry.viewport - 1 ||
+        mobileGeometry.bottom < 840) {
+      throw new Error('Mobile study navigation is not a full-width bottom tab bar: ' + JSON.stringify(mobileGeometry));
     }
     if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | ') + '; console: ' + consoleMessages.join(' | '));
     console.log('PWA browser acceptance passed: animated star map rendered changing frames, pause/resume, reset and speed controls passed; question provenance disclosure, service worker/app-shell precache, offline root and deep-link recovery, local progress preservation and mobile navigation passed.');
