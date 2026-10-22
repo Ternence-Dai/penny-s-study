@@ -2037,7 +2037,7 @@ var state = {
 
 var questionEvidenceById = Object.create(null);
 var questionEvidenceLoadState = 'loading';
-var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261022-evidence-index-v1')
+var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261022-evidence-index-v2')
   .then(function(response){
     if(!response.ok) throw new Error('HTTP ' + response.status);
     return response.json();
