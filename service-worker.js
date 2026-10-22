@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v11';
+const CACHE_NAME = 'penny-study-shell-v12';
 const APP_SHELL = [
   './',
   './index.html',
@@ -20,7 +20,7 @@ const APP_SHELL = [
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
-  './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1'
+
 ];
 const PRECACHED_URLS = new Set(APP_SHELL.map(asset => new URL(asset, self.location.href).href));
 
