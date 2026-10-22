@@ -16,10 +16,10 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v16") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v17") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v5") ||
-        !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v3") ||
-        !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v3") ||
+        !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1") ||
+        !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1") ||
         workerSource.includes("product-system-v9.css")) {
       throw new Error('PWA shell does not version and precache the new astronomy classroom interface');
     }
@@ -158,6 +158,28 @@ const { chromium } = require('playwright');
     if (!classroom.present || classroom.metrics !== 4 || classroom.modules !== 6 ||
         !classroom.originalLearningFlow || !classroom.originalQuestionMap) {
       throw new Error('Astronomy classroom command center or retained learning system failed: ' + JSON.stringify(classroom));
+    }
+    await page.waitForFunction(() => {
+      const summary = window.getQuestionEvidenceSummary?.();
+      return summary && summary.loadState === 'ready' && !!document.querySelector('.classroom-evidence');
+    }, undefined, { timeout: 10000 });
+    const evidenceCoverage = await page.evaluate(() => {
+      const summary = window.getQuestionEvidenceSummary();
+      const panel = document.querySelector('.classroom-evidence');
+      return {
+        ...summary,
+        visible: !!panel,
+        visibleText: panel?.innerText || '',
+        metrics: panel?.querySelectorAll('.classroom-evidence__metrics article').length || 0
+      };
+    });
+    if (!evidenceCoverage.visible || evidenceCoverage.total !== 300 ||
+        evidenceCoverage.verified !== 0 || evidenceCoverage.reviewNeeded !== 300 ||
+        evidenceCoverage.withSources !== 21 || evidenceCoverage.withoutSources !== 279 ||
+        evidenceCoverage.metrics !== 4 ||
+        !evidenceCoverage.visibleText.includes('尚未达到正式题库验收标准')) {
+      throw new Error('Question bank source-quality status is not transparently reflected in the classroom: ' +
+        JSON.stringify(evidenceCoverage));
     }
 
     await page.waitForSelector('#view .w9-study-command');
