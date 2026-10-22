@@ -16,10 +16,12 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v20") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v21") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1") ||
+        !workerSource.includes("nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1") ||
+        !workerSource.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1") ||
         workerSource.includes("product-system-v9.css")) {
       throw new Error('PWA shell does not version and precache the new astronomy classroom interface');
     }
@@ -107,6 +109,50 @@ const { chromium } = require('playwright');
     if (referenceClassroomCount !== 1 || !(await page.locator('.classroom-module-grid').count())) {
       throw new Error('Astronomy reference classroom is not mounted as the home workspace');
     }
+
+    const nasaPanel = page.locator('#nasaExoplanetExplorer');
+    await nasaPanel.waitFor({ state: 'visible' });
+    if (!(await nasaPanel.locator('a[data-nasa-exoplanet-json]').getAttribute('href')).includes('/TAP/sync?') ||
+        !(await nasaPanel.locator('a[data-nasa-exoplanet-csv]').getAttribute('href')).includes('format=csv')) {
+      throw new Error('NASA exoplanet workspace must expose official TAP JSON and CSV source links');
+    }
+    let nasaRequestUrl = '';
+    await page.route('https://exoplanetarchive.ipac.caltech.edu/TAP/sync**', async route => {
+      nasaRequestUrl = route.request().url();
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify([
+          { pl_name:'TOI-700 d', hostname:'TOI-700', discoverymethod:'Transit', disc_year:2023,
+            pl_rade:1.073, pl_bmasse:null, pl_orbper:37.42, sy_dist:31.1 },
+          { pl_name:'HD 209458 b', hostname:'HD 209458', discoverymethod:'Transit', disc_year:1999,
+            pl_rade:15.5, pl_bmasse:220.0, pl_orbper:3.5247, sy_dist:47.0 }
+        ])
+      });
+    });
+    await nasaPanel.locator('[data-nasa-exoplanet-load]').click();
+    await page.waitForFunction(() => document.querySelector('[data-nasa-exoplanet-state]')?.textContent.includes('读取成功'));
+    const nasaTable = await nasaPanel.locator('tbody').innerText();
+    if (!nasaRequestUrl.includes('format=json') ||
+        !nasaRequestUrl.includes('pscomppars') ||
+        !nasaTable.includes('TOI-700 d') ||
+        !nasaTable.includes('HD 209458 b') ||
+        !nasaTable.includes('未发布')) {
+      throw new Error('NASA TAP result mapping, source query or null-value handling failed: ' +
+        JSON.stringify({ nasaRequestUrl, nasaTable }));
+    }
+    await page.unroute('https://exoplanetarchive.ipac.caltech.edu/TAP/sync**');
+    await page.route('https://exoplanetarchive.ipac.caltech.edu/TAP/sync**', async route => {
+      await route.fulfill({ status:503, contentType:'text/plain', body:'temporary upstream outage' });
+    });
+    await nasaPanel.locator('[data-nasa-exoplanet-load]').click();
+    await page.waitForSelector('#nasaExoplanetExplorer .nasa-exoplanet-explorer__empty--warning');
+    const nasaFailure = await nasaPanel.locator('[data-nasa-exoplanet-state]').innerText();
+    if (!nasaFailure.includes('实时读取未成功') ||
+        !(await nasaPanel.locator('.nasa-exoplanet-explorer__empty--warning a').count())) {
+      throw new Error('NASA outage must be disclosed with a usable official data download link');
+    }
+    await page.unroute('https://exoplanetarchive.ipac.caltech.edu/TAP/sync**');
 
     const skipLink = page.locator('a.skip-link[href="#view"]');
     if (await skipLink.count() !== 1) throw new Error('Keyboard skip-navigation link is missing');
@@ -517,6 +563,8 @@ const { chromium } = require('playwright');
         './manifest.webmanifest',
         './assets/css/legacy-app.css',
         './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
+        './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
+        './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
         './assets/js/question-bank.js',
         './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
         './assets/js/workspace-v5.js?v=20261019-v52'
