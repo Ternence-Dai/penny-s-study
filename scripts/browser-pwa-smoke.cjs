@@ -16,10 +16,10 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v24") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v25") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
-        !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1") ||
-        !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1") ||
+        !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1") ||
+        !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v5-workspace-v1") ||
         !workerSource.includes("nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1") ||
         !workerSource.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1") ||
         !workerSource.includes("reference-shell-v4-boot.js?v=20261022-reference-v6") ||
@@ -76,6 +76,9 @@ const { chromium } = require('playwright');
         app: rect('.app'), navbar: rect('.navbar'), tabs: rect('#tabbar'),
         scrollWidth: document.documentElement.scrollWidth,
         hero: rect('#view .classroom-hero'), workflow: rect('#view .classroom-module-section'), view: rect('#view'),
+        primary: rect('#view .classroom-primary'), inspector: rect('#view .classroom-inspector'),
+        inspectorCards: document.querySelectorAll('#view .classroom-inspector-card').length,
+        inspectorActions: document.querySelectorAll('#view .classroom-inspector-action').length,
         areas: getComputedStyle(document.querySelector('.app')).gridTemplateAreas
       };
     });
@@ -84,6 +87,9 @@ const { chromium } = require('playwright');
         Math.abs(desktopShell.tabs.left - desktopShell.app.left) > 2 ||
         desktopShell.tabs.width < 220 ||
         desktopShell.tabs.right > desktopShell.view.left + 2 ||
+        !desktopShell.inspector || desktopShell.inspector.width < 270 ||
+        desktopShell.primary.right > desktopShell.inspector.left + 2 ||
+        desktopShell.inspectorActions !== 4 || desktopShell.inspectorCards !== 4 ||
         desktopShell.hero.left < desktopShell.tabs.right - 1 ||
         desktopShell.workflow.left < desktopShell.tabs.right - 1) {
       throw new Error('Observatory desktop shell grid places navigation over learning content: ' + JSON.stringify(desktopShell));
@@ -107,8 +113,16 @@ const { chromium } = require('playwright');
 
     await page.waitForSelector('.astronomy-classroom');
     const referenceClassroomCount = await page.locator('.astronomy-classroom').count();
-    if (referenceClassroomCount !== 1 || !(await page.locator('.classroom-module-grid').count())) {
-      throw new Error('Astronomy reference classroom is not mounted as the home workspace');
+    if (referenceClassroomCount !== 1 || !(await page.locator('.classroom-module-grid').count()) ||
+        !(await page.locator('.classroom-inspector').count())) {
+      throw new Error('Astronomy reference classroom and study inspector are not mounted as the home workspace');
+    }
+
+    const inspectorContent = await page.locator('.classroom-inspector').innerText();
+    if (!inspectorContent.includes('当前学习上下文') ||
+        !inspectorContent.includes('题库质量闸门') ||
+        !inspectorContent.includes('数据来源边界')) {
+      throw new Error('Astronomy study inspector is missing its local learning/evidence context');
     }
 
     const nasaPanel = page.locator('#nasaExoplanetExplorer');
