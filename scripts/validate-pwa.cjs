@@ -6,6 +6,7 @@ const vm = require('node:vm');
 const html = fs.readFileSync('index.html', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
 const worker = fs.readFileSync('service-worker.js', 'utf8');
+const runtime = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 assert.doesNotThrow(() => new vm.Script(worker, { filename: 'service-worker.js' }),
   'service worker must parse before the browser attempts registration');
 const requiredAssets = [
@@ -18,11 +19,12 @@ const requiredAssets = [
   './assets/css/product-system-v9.css?v=20261019-v92',
   './assets/css/practice-session-v9.css?v=20261019-v9',
   './assets/css/study-command-center.css?v=20261020-v2',
-  './assets/css/reference-interface-v1.css?v=20261021-reference-ui-v1',
+  './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
-  './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
+  './assets/data/question-evidence.json?v=20261022-evidence-index-v1',
+  './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
   './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1'
 ];
@@ -42,7 +44,10 @@ assert.ok(Array.isArray(manifest.icons) && manifest.icons.some(icon =>
 for (const asset of requiredAssets) {
   assert.ok(worker.includes("'" + asset + "'"),
     'offline app shell must cache ' + asset);
-  if (asset.startsWith('./assets/')) {
+  if (asset.includes('/assets/data/')) {
+    assert.ok(runtime.includes(asset),
+      'offline evidence data entry must exactly match the runtime fetch URL: ' + asset);
+  } else if (asset.startsWith('./assets/')) {
     assert.ok(html.includes(asset),
       'offline app shell entry must exactly match a page asset reference: ' + asset);
   }
@@ -63,6 +68,8 @@ assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients
 const icon = fs.readFileSync('assets/icons/app-icon.svg', 'utf8');
 assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
   'application icon must be a valid square SVG asset');
+assert.ok(worker.includes("'/assets/data/'") && worker.includes("'.json'"),
+  'service worker must cache only exact precached public evidence JSON assets');
 assert.ok(worker.includes('PRECACHED_URLS.has(url.href)') &&
           worker.includes('if (url.search && !PRECACHED_URLS.has(url.href)) return;'),
   'runtime cache must serve exact precached versioned assets while skipping arbitrary query variants');

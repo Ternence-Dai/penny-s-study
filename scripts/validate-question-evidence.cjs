@@ -24,4 +24,31 @@ for (const item of manifest.questions) {
 }
 for (const id of ids) if (!seen.has(id)) fail('Missing evidence entry: ' + id);
 if (rows.length !== 300 || seen.size !== rows.length) fail('Evidence registry must cover all 300 unique question IDs');
+
+const candidateIds = [
+  'p001','p002','p003','p005','p006','p007','p008','p009','p010','p011','p012',
+  'p013','p015','p016','p017','p018','p020','p021','p022','p023','p025'
+];
+for (const id of candidateIds) {
+  const item = manifest.questions.find(entry => entry.id === id);
+  if (!item || item.status !== 'review-needed' || item.reviewedAt !== null || item.reviewer !== null) {
+    fail(id + ': AI-collected sources must not be promoted to human-verified');
+    continue;
+  }
+  if (!item.sources.length) fail(id + ': expected at least one authoritative source candidate');
+  if (!/尚未完成人工/.test(item.reviewNote || '')) fail(id + ': must explicitly retain human-review disclaimer');
+}
+const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org']);
+for (const item of manifest.questions) {
+  for (const source of item.sources || []) {
+    try {
+      const url = new URL(source.url);
+      if (url.protocol !== 'https:' || !sourceHostAllowlist.has(url.hostname.toLowerCase())) {
+        fail(item.id + ': evidence source host is not on the NASA/IAU allowlist');
+      }
+    } catch {
+      fail(item.id + ': invalid evidence source URL');
+    }
+  }
+}
 if (!process.exitCode) console.log('Question provenance registry OK: ' + seen.size + ' questions covered; unreviewed entries remain explicitly review-needed.');

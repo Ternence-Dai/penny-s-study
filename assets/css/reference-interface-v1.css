@@ -45,3 +45,21 @@ body[data-workspace="study"] .tabbar button{min-height:39px;border-radius:10px}
 body[data-workspace="study"] canvas#starsBg{opacity:.72}
 @media(max-width:760px){body[data-workspace="study"] .study-intro{padding:22px 18px;min-height:0}body[data-workspace="study"] .product-workflow{padding:16px}body[data-workspace="study"] #view{padding:13px;margin-bottom:18px}}
 @media(prefers-reduced-motion:reduce){body[data-workspace="study"] .product-workflow__item{transition:none}}
+
+
+/* Question evidence: distinguish collected source candidates from human-verified answers. */
+body .w5-question-evidence{
+  margin-top:14px;padding:13px 15px;border:1px solid rgba(221,164,78,.45);
+  border-radius:12px;background:rgba(150,101,34,.10);color:var(--tx);
+  font-size:13px;line-height:1.65;
+}
+body .w5-question-evidence.is-verified{
+  border-color:rgba(64,167,126,.45);background:rgba(30,120,89,.09);
+}
+body .w5-question-evidence>b{display:block;margin-bottom:5px;font-size:13px;font-weight:800}
+body .w5-question-evidence>p{margin:5px 0;color:var(--sub);font-size:12px}
+body .w5-question-evidence ul{margin:8px 0 5px;padding-left:20px;display:grid;gap:6px}
+body .w5-question-evidence li{padding-left:2px}
+body .w5-question-evidence a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+body .w5-question-evidence small{display:block;color:var(--sub);font-size:11px}
+body .w5-question-evidence>small{margin-top:8px}
