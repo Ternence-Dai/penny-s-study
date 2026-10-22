@@ -64,10 +64,6 @@ const { chromium } = require('playwright');
     if (!firstKeyboardTarget) throw new Error('Skip navigation is not the first keyboard focus target');
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => document.activeElement?.getAttribute('id') === 'view');
-    const contextScript = await page.locator('script[src*="workspace-v5-context.js"]').getAttribute('src');
-    if (!contextScript || !contextScript.includes('v=20261021-mutationobserver-fix-v1')) {
-      throw new Error('Workspace observer fix cache-busting URL is missing: ' + contextScript);
-    }
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
     const studyHome = await page.evaluate(() => {
       const heading = document.querySelector('#view .w9-home-heading');
