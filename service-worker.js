@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v7';
+const CACHE_NAME = 'penny-study-shell-v8';
 const APP_SHELL = [
   './',
   './index.html',
@@ -12,11 +12,12 @@ const APP_SHELL = [
   './assets/css/product-system-v9.css?v=20261019-v92',
   './assets/css/practice-session-v9.css?v=20261019-v9',
   './assets/css/study-command-center.css?v=20261020-v2',
-  './assets/css/reference-interface-v1.css?v=20261021-reference-ui-v1',
+  './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
+  './assets/data/question-evidence.json?v=20261022-evidence-index-v1',
   './assets/js/question-grading.js',
-  './assets/js/legacy-app.js?v=20261020-study-motion-accessibility-v6',
+  './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
   './assets/js/workspace-v5-context.js?v=20261021-mutationobserver-fix-v1'
 ];
@@ -75,9 +76,9 @@ self.addEventListener('fetch', event => {
   }
 
   // Do not cache arbitrary same-origin GETs such as API or user-data responses.
-  const isAssetDirectory = ['/assets/css/', '/assets/js/', '/assets/icons/']
+  const isAssetDirectory = ['/assets/css/', '/assets/js/', '/assets/icons/', '/assets/data/']
     .some(prefix => url.pathname.includes(prefix));
-  const isAssetExtension = ['.css', '.js', '.svg']
+  const isAssetExtension = ['.css', '.js', '.svg', '.json']
     .some(extension => url.pathname.endsWith(extension));
   const isStaticAsset = (isAssetDirectory && isAssetExtension) ||
     url.pathname.endsWith('/manifest.webmanifest');
