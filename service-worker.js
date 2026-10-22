@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v12';
+const CACHE_NAME = 'penny-study-shell-v13';
 const APP_SHELL = [
   './',
   './index.html',
@@ -9,7 +9,6 @@ const APP_SHELL = [
   './assets/css/legacy-app.css',
   './assets/css/product-system.css?v=20261019-v8',
   './assets/css/workspace-v5.css?v=20261019-v5',
-  './assets/css/product-system-v9.css?v=20261019-v92',
   './assets/css/practice-session-v9.css?v=20261019-v9',
   './assets/css/study-command-center.css?v=20261022-learning-readiness-v1',
   './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
