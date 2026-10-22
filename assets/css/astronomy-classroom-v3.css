@@ -1,0 +1,65 @@
+body[data-workspace="study"] .astronomy-classroom{display:flex;flex-direction:column;gap:16px;min-width:0;width:100%;max-width:none;margin:0;padding:0 0 28px;color:#e9f0ff}
+body[data-workspace="study"] .classroom-hero{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:22px;min-height:230px;overflow:hidden;padding:28px clamp(20px,3vw,40px);border:1px solid #3b5285;border-radius:18px;background:radial-gradient(ellipse at 80% 0,#6578cc38,transparent 42%),linear-gradient(118deg,#111d3e,#1b2d5c 64%,#183b56);box-shadow:0 18px 46px #02081775}
+body[data-workspace="study"] .classroom-hero:after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(#c4d2ff6e .7px,transparent .7px);background-size:29px 29px;opacity:.13}
+body[data-workspace="study"] .classroom-kicker{display:block;color:#9faeff;font-size:9px;font-weight:900;letter-spacing:.17em}
+body[data-workspace="study"] .classroom-hero h2{margin:8px 0 7px;color:#f4f6ff;font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-.05em}
+body[data-workspace="study"] .classroom-hero p{max-width:760px;margin:0;color:#bdcbed;font-size:12px;line-height:1.8}
+body[data-workspace="study"] .classroom-hero__copy{position:relative;z-index:1;min-width:0}
+body[data-workspace="study"] .classroom-hero__actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}
+body[data-workspace="study"] .classroom-hero__actions button,body[data-workspace="study"] .classroom-resume>button{min-height:36px;padding:8px 12px;border:1px solid #8798d18a;border-radius:7px;background:#3c58a6;color:#fff;font-size:9px;font-weight:850}
+body[data-workspace="study"] .classroom-hero__actions button+button{border-color:#60769b;background:#20395e}
+body[data-workspace="study"] .classroom-hero__orb{position:relative;display:grid;place-items:center;width:164px;height:164px;flex:0 0 164px;border:1px solid #a1b4f24a;border-radius:50%;background:radial-gradient(circle,#5366ae34,transparent 64%);box-shadow:0 0 0 16px #b7c6ff08,0 0 0 32px #b7c6ff06}
+body[data-workspace="study"] .classroom-hero__orb .orbit{position:absolute;inset:12px;border:1px solid #b9c7ff66;border-radius:50%;transform:rotate(-25deg) scaleY(.46)}
+body[data-workspace="study"] .classroom-hero__orb .orbit-b{inset:29px;transform:rotate(52deg) scaleY(.48);border-color:#80d9ed70}
+body[data-workspace="study"] .classroom-hero__orb .planet-main{display:grid;place-items:center;width:56px;height:56px;border:1px solid #d1d6ff80;border-radius:50%;background:radial-gradient(circle at 35% 25%,#d5dcff,#6d78cd 48%,#283e79);color:#fff;font-size:22px;box-shadow:0 0 36px #9cafff66}
+body[data-workspace="study"] .classroom-hero__orb .planet-small{position:absolute;right:6px;top:50px;display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#86d9e7;color:#17304b;box-shadow:0 0 15px #86d9e7}
+body[data-workspace="study"] .classroom-hero__orb>b{position:absolute;bottom:22px;color:#d3dcff;font-size:7px;letter-spacing:.2em;line-height:1.5;text-align:center}
+body[data-workspace="study"] .classroom-control,body[data-workspace="study"] .classroom-module-section,body[data-workspace="study"] .classroom-progress-panel{min-width:0;padding:16px 18px;border:1px solid #34466f;border-radius:13px;background:#101d3a;box-shadow:0 8px 24px #02081742}
+body[data-workspace="study"] .classroom-control__title{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px}
+body[data-workspace="study"] .classroom-control__title>div:first-child{display:flex;flex-direction:column;gap:3px}
+body[data-workspace="study"] .classroom-control__title strong{color:#e7eeff;font-size:14px}
+body[data-workspace="study"] .classroom-control__title small{color:#92a6cf;font-size:9px}
+body[data-workspace="study"] .classroom-levels{display:flex;gap:5px;padding:4px;border:1px solid #334879;border-radius:8px;background:#0b1731}
+body[data-workspace="study"] .classroom-level{min-width:58px;padding:7px 11px;border:1px solid transparent;border-radius:5px;background:transparent;color:#a9badc;font-size:9px;font-weight:800}
+body[data-workspace="study"] .classroom-level.active{border-color:#7288cd;background:#314b88;color:#fff}
+body[data-workspace="study"] .classroom-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+body[data-workspace="study"] .classroom-metric{display:flex;flex-direction:column;gap:5px;min-width:0;padding:11px;border:1px solid #344970;border-radius:8px;background:#15264a}
+body[data-workspace="study"] .classroom-metric>span{color:#9eafd3;font-size:9px}
+body[data-workspace="study"] .classroom-metric>strong{color:#f1f4ff;font-size:23px;font-weight:850;line-height:1.1;font-variant-numeric:tabular-nums}
+body[data-workspace="study"] .classroom-metric>small{color:#879cc4;font-size:8px}
+body[data-workspace="study"] .classroom-metric--0{border-top:2px solid #6c9bf5}body[data-workspace="study"] .classroom-metric--1{border-top:2px solid #9b87e9}body[data-workspace="study"] .classroom-metric--2{border-top:2px solid #65c7d5}body[data-workspace="study"] .classroom-metric--3{border-top:2px solid #dbad62}
+body[data-workspace="study"] .classroom-resume{display:flex;align-items:center;gap:16px;padding:13px 16px;border:1px solid #46649a;border-left:4px solid #78a6f5;border-radius:10px;background:linear-gradient(110deg,#1a2d55,#142444)}
+body[data-workspace="study"] .classroom-resume>div:first-child{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+body[data-workspace="study"] .classroom-resume strong{color:#f0f4ff;font-size:12px}
+body[data-workspace="study"] .classroom-resume small{color:#9eb1d8;font-size:9px}
+body[data-workspace="study"] .classroom-resume__progress{display:flex;align-items:center;gap:8px;width:140px;color:#b9caf0;font-size:10px}
+body[data-workspace="study"] .classroom-resume__progress i{height:6px;flex:1;overflow:hidden;border-radius:8px;background:#0a1730}
+body[data-workspace="study"] .classroom-resume__progress i span{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#4f9af4,#7bd8e6)}
+body[data-workspace="study"] .classroom-resume.is-idle{border-left-color:#8a82dc}
+body[data-workspace="study"] .classroom-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
+body[data-workspace="study"] .classroom-section-head h3{margin:3px 0;color:#eef3ff;font-size:16px}
+body[data-workspace="study"] .classroom-section-head p{margin:3px 0 0;color:#92a6cb;font-size:9px;line-height:1.6}
+body[data-workspace="study"] .classroom-path-badge{padding:6px 8px;border:1px solid #446b76;border-radius:5px;background:#152f48;color:#9cd9dd;font-size:8px;font-weight:850}
+body[data-workspace="study"] .classroom-module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+body[data-workspace="study"] .classroom-module{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0;min-height:135px;padding:13px;border:1px solid #384e7b;border-radius:9px;background:linear-gradient(145deg,#1a2d55,#132443);text-align:left;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}
+body[data-workspace="study"] .classroom-module:hover{transform:translateY(-2px);border-color:#738dc9;background:linear-gradient(145deg,#233b6d,#172d50)}
+body[data-workspace="study"] .classroom-module__number{color:#859bc9;font-size:8px;font-weight:900;letter-spacing:.15em}
+body[data-workspace="study"] .classroom-module__icon{display:grid;place-items:center;width:28px;height:28px;border:1px solid #506699;border-radius:7px;background:#253d6c;color:#b7d2f8;font-size:15px}
+body[data-workspace="study"] .classroom-module>strong{color:#eef3ff;font-size:11px}
+body[data-workspace="study"] .classroom-module>small{min-height:28px;color:#9fb1d3;font-size:8px;line-height:1.55}
+body[data-workspace="study"] .classroom-module>b{margin-top:auto;color:#85dce1;font-size:8px;font-weight:850}
+body[data-workspace="study"] .classroom-module--violet{border-top:2px solid #a38eea}body[data-workspace="study"] .classroom-module--amber{border-top:2px solid #d1a75e}body[data-workspace="study"] .classroom-module--mint{border-top:2px solid #59b9a4}
+body[data-workspace="study"] .classroom-progress-panel .classroom-progress-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+body[data-workspace="study"] .classroom-progress-grid>div{display:flex;flex-direction:column;gap:4px;padding:11px;border:1px solid #344970;border-radius:8px;background:#15264a}
+body[data-workspace="study"] .classroom-progress-grid span{color:#9eafd3;font-size:9px}
+body[data-workspace="study"] .classroom-progress-grid strong{color:#f1f4ff;font-size:21px}
+body[data-workspace="study"] .classroom-progress-grid small{color:#879cc4;font-size:8px}
+body[data-workspace="study"] .classroom-existing-learning{min-width:0;padding:0}
+body[data-workspace="study"] .classroom-existing-learning .w9-home-heading{display:none}
+body[data-workspace="study"] .classroom-existing-learning .sec-title:has(+.quick-grid){display:none}
+body[data-workspace="study"] .classroom-existing-learning .quick-grid{display:none}
+body[data-workspace="study"] .classroom-existing-learning .version{color:#6c7da4}
+@media(max-width:1120px){body[data-workspace="study"] .classroom-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:780px){body[data-workspace="study"] .classroom-hero{min-height:0;padding:20px}.classroom-hero__orb{width:120px;height:120px;flex-basis:120px}.classroom-control__title{align-items:flex-start;flex-direction:column}.classroom-metrics,.classroom-progress-panel .classroom-progress-grid{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-workspace="study"] .classroom-resume{align-items:flex-start;flex-wrap:wrap}body[data-workspace="study"] .classroom-resume__progress{width:100%}}
+@media(max-width:560px){body[data-workspace="study"] .classroom-hero__orb{display:none}body[data-workspace="study"] .classroom-module-grid{grid-template-columns:1fr 1fr}body[data-workspace="study"] .classroom-section-head{align-items:flex-start;flex-direction:column}body[data-workspace="study"] .classroom-module{min-height:125px;padding:10px}body[data-workspace="study"] .classroom-module>small{min-height:0}}
+@media(prefers-reduced-motion:reduce){body[data-workspace="study"] .astronomy-classroom *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
