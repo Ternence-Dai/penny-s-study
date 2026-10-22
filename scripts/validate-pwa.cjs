@@ -20,11 +20,13 @@ const requiredAssets = [
   './assets/css/study-command-center.css?v=20261022-learning-readiness-v1',
   './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
   './assets/css/observatory-learning-console-v2.css?v=20261022-command-center-v6',
+  './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
   './assets/data/question-evidence.json?v=20261022-evidence-index-v1',
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
+  './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
   './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1',
   './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1'
