@@ -103,6 +103,162 @@ const { chromium } = require('playwright');
       throw new Error('Question evidence candidates must be visible with an explicit human-review disclaimer');
     }
     await page.evaluate(() => { window.state.practice = null; window.state.page = 'home'; window.render(); });
+
+    // Exercise the complete practice path with a deterministic two-question fixture.
+    // All records live in this isolated Playwright browser context.
+    page.on('dialog', dialog => dialog.accept());
+    const questionBank = await page.evaluate(async () => {
+      await window.questionEvidenceReady;
+      return {
+        total: window.Q.length,
+        elementary: window.Q.filter(question => question.level === '小学').length
+      };
+    });
+    if (questionBank.total !== 300 || questionBank.elementary < 100) {
+      throw new Error('Penny question catalogue did not expose the expected 300-question bank: ' + JSON.stringify(questionBank));
+    }
+    await page.evaluate(() => {
+      const list = ['p001', 'p002'].map(id => window.Q.find(question => question.id === id));
+      if (list.some(question => !question)) throw new Error('Practice fixture questions are missing from the bank');
+      window.state.practice = {
+        list, index: 0, userAnswers: [null, null], evaluated: [false, false],
+        correct: 0, wrong: 0, showAnswer: false, submitting: false,
+        level: '小学', label: '浏览器练习恢复验收'
+      };
+      if (!window.Store.saveActivePractice(window.state.practice)) {
+        throw new Error('Could not persist deterministic practice fixture');
+      }
+      window.state.page = 'practice';
+      window.render();
+    });
+    if (!(await page.locator('#view .stem').innerText()).includes('体积最大的行星')) {
+      throw new Error('Deterministic practice fixture did not render its first question');
+    }
+    await page.locator('#view .option').nth(0).click(); // p001: deliberately incorrect (Earth, not Jupiter)
+    await page.locator('#view .w5-practice-actions .btn-main').click();
+    await page.waitForSelector('#view .explain .head.no', { timeout: 10000 });
+    await page.waitForFunction(() => {
+      const wrong = JSON.parse(localStorage.getItem('a_w_v6') || '[]');
+      const session = JSON.parse(localStorage.getItem('a_active_practice_v1') || 'null');
+      return wrong.some(item => item.id === 'p001' && item.count === 1 &&
+          item.lastOutcome === 'incorrect' && item.intervalDays === 1) &&
+        session && session.wrong === 1 && session.evaluated[0] === true;
+    }, undefined, { timeout: 10000 });
+    const firstPracticeSnapshot = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('a_active_practice_v1') || 'null'));
+    if (!firstPracticeSnapshot || firstPracticeSnapshot.questionIds.join(',') !== 'p001,p002' ||
+        firstPracticeSnapshot.userAnswers[0] !== 0 || firstPracticeSnapshot.index !== 0) {
+      throw new Error('Wrong practice answer and resumable session snapshot were not persisted consistently');
+    }
+
+    await page.locator('#view .w5-practice-actions .btn-main').click();
+    await page.waitForFunction(() => window.state.practice?.index === 1);
+    await page.locator('#backBtn').click();
+    await page.waitForSelector('#view .w9-practice-resume', { timeout: 10000 });
+    const resumeCard = await page.locator('#view .w9-practice-resume').innerText();
+    if (!resumeCard.includes('继续上次练习') || !resumeCard.includes('已完成 1 / 2 题')) {
+      throw new Error('Home learning dashboard did not summarize the interrupted practice session: ' + resumeCard);
+    }
+
+    // A full page reload must preserve the exact question IDs, index, answer and score.
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector('#view .w9-practice-resume', { timeout: 10000 });
+    await page.locator('#view .w9-practice-resume__actions .btn-main').click();
+    await page.waitForFunction(() => window.state.page === 'practice' && window.state.practice?.index === 1);
+    if (!(await page.locator('#view .stem').innerText()).includes('距离太阳最近的行星')) {
+      throw new Error('Resumed practice did not restore the second question at its saved position');
+    }
+    const restoredScore = await page.locator('#view .w5-practice-score').innerText();
+    if (!restoredScore.includes('1 答错') || !restoredScore.includes('0 答对')) {
+      throw new Error('Resumed practice did not restore its answered/wrong counters: ' + restoredScore);
+    }
+    await page.locator('#view .w5-practice-actions .btn-ghost').first().click();
+    await page.waitForSelector('#view .explain .head.no');
+    if (!(await page.locator('#view').innerText()).includes('已判分 · 不重复计分')) {
+      throw new Error('Previously evaluated question did not restore its locked grading state');
+    }
+    const savedStatsBeforeRepeat = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('a_q_v6') || '{}').p001?.t || 0);
+    await page.keyboard.press('Enter'); // Enter advances after review; it must not grade the same answer twice.
+    await page.waitForFunction(() => window.state.practice?.index === 1);
+    const savedStatsAfterRepeat = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('a_q_v6') || '{}').p001?.t || 0);
+    if (savedStatsBeforeRepeat !== 1 || savedStatsAfterRepeat !== 1) {
+      throw new Error('Revisiting an already graded practice answer changed its question statistics');
+    }
+
+    // Complete question two correctly and verify the review queue and focused retry entry point.
+    await page.locator('#view .option').nth(0).click(); // p002: Mercury is correct.
+    await page.locator('#view .w5-practice-actions .btn-main').click();
+    await page.waitForSelector('#view .explain .head.ok', { timeout: 10000 });
+    await page.waitForFunction(() => {
+      const session = JSON.parse(localStorage.getItem('a_active_practice_v1') || 'null');
+      return session && session.correct === 1 && session.wrong === 1 &&
+        session.evaluated.every(Boolean);
+    });
+    await page.locator('#backBtn').click();
+    await page.locator('#tabbar [data-tab="wrong"]').click();
+    await page.waitForSelector('#view .group-head', { timeout: 10000 });
+    const wrongSummary = await page.locator('#view .sub').first().innerText();
+    if (!wrongSummary.includes('1 道待掌握题')) {
+      throw new Error('Wrong-answer ledger did not aggregate the single incorrect fixture: ' + wrongSummary);
+    }
+    await page.locator('#view .group-head').first().click();
+    const wrongCard = await page.locator('#view .group-body .card').first().innerText();
+    if (!wrongCard.includes('体积最大的行星') || !wrongCard.includes('错 1 次') ||
+        !wrongCard.includes('连续答对 0 / 3')) {
+      throw new Error('Wrong-book review card did not preserve question identity and spaced-review state: ' + wrongCard);
+    }
+    await page.locator('#view .group-body .btn-amber').click();
+    await page.waitForFunction(() => window.state.page === 'practice' &&
+      window.state.practice?.list.some(question => question.id === 'p001'));
+    await page.evaluate(() => {
+      window.Store.clearActivePractice();
+      window.Store.clearWrong();
+      window.state.practice = null;
+      window.state.page = 'home';
+      window.render();
+    });
+
+    // Exercise timed-exam navigation, answer-card review, scoring and result rendering.
+    await page.evaluate(() => {
+      const list = ['p001', 'p002'].map(id => window.Q.find(question => question.id === id));
+      window.state.exam = {
+        list, index: 0, answers: [null, null], remain: 120, total: 120,
+        showCard: false, running: false
+      };
+      window.state.page = 'exam';
+      window.render();
+    });
+    await page.locator('#view .option').nth(0).click();
+    await page.locator('#view .btn-row button').nth(1).click();
+    await page.waitForFunction(() => window.state.exam?.index === 1);
+    await page.locator('#view .option').nth(0).click();
+    await page.locator('#view .topbar .card-btn').click();
+    await page.waitForSelector('#view .sheet.show');
+    await page.locator('#view .sheet-item').first().click();
+    await page.waitForFunction(() => window.state.exam?.index === 0 && !window.state.exam?.showCard);
+    await page.locator('#view .btn-main').click();
+    await page.waitForSelector('#view .score-card', { timeout: 10000 });
+    const examResult = await page.locator('#view').innerText();
+    if (!examResult.includes('本次得分') || !examResult.includes('满分 4 分') ||
+        !examResult.includes('50%') || !examResult.includes('1 题')) {
+      throw new Error('Competition exam did not produce the expected score and answer breakdown: ' + examResult);
+    }
+    const examStats = await page.locator('#view .stat-row').innerText();
+    if (!examStats.includes('1') || !examStats.includes('答对') || !examStats.includes('答错')) {
+      throw new Error('Competition result summary omitted correct/incorrect counts: ' + examStats);
+    }
+
+    // Clear only synthetic fixture records; keep this browser context clean for PWA/offline tests.
+    await page.evaluate(() => {
+      ['a_w_v6','a_r_v6','a_d_v6','a_q_v6','a_active_practice_v1'].forEach(key => localStorage.removeItem(key));
+      window.state.exam = null;
+      window.state.result = null;
+      window.state.practice = null;
+      window.state.page = 'home';
+      window.render();
+    });
     await page.evaluate(() => {
       localStorage.setItem('penny-offline-acceptance', 'preserved');
     });
