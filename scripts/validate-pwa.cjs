@@ -14,6 +14,7 @@ const requiredAssets = [
   './manifest.webmanifest',
   './assets/icons/app-icon.svg',
   './assets/css/legacy-app.css',
+  './assets/css/reference-platform-v4.css?v=20261022-reference-v7',
   './assets/css/product-system.css?v=20261019-v8',
   './assets/css/workspace-v5.css?v=20261019-v5',
   './assets/css/practice-session-v9.css?v=20261019-v9',
@@ -24,7 +25,7 @@ const requiredAssets = [
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
-  './assets/data/question-evidence.json?v=20261022-evidence-index-v1',
+  './assets/data/question-evidence.json?v=20261022-evidence-index-v3',
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
   './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
@@ -66,7 +67,7 @@ assert.ok(worker.includes("request.mode === 'navigate'") &&
           worker.includes("url.pathname === appRootUrl.pathname") &&
           worker.includes("caches.match(appShellUrl)") && worker.includes("<base href=\"' + appRootUrl.href + '\">"),
   'offline navigation must use the cached app shell with an app-root base so deep-link assets resolve correctly');
-assert.ok(worker.includes('penny-study-shell-') && worker.includes('self.clients.claim()'),
+assert.ok(worker.includes("const CACHE_NAME = 'penny-study-shell-v24'") && worker.includes('self.clients.claim()'),
   'service worker must clean prior cache versions and claim clients');
 const icon = fs.readFileSync('assets/icons/app-icon.svg', 'utf8');
 assert.ok(icon.includes('<svg') && icon.includes('viewBox="0 0 512 512"'),
