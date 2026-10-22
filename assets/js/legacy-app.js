@@ -2034,6 +2034,81 @@ var state = {
   learnCategory:null, expanded:{}, aiMsgs:[], aiTyping:false,
   newsFilter:'全部', aiModel:'general'
 };
+
+var questionEvidenceById = Object.create(null);
+var questionEvidenceLoadState = 'loading';
+var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261022-evidence-index-v1')
+  .then(function(response){
+    if(!response.ok) throw new Error('HTTP ' + response.status);
+    return response.json();
+  })
+  .then(function(manifest){
+    if(!manifest || manifest.schemaVersion !== 1 || !Array.isArray(manifest.questions) ||
+       manifest.questions.length !== 300) throw new Error('题库证据清单结构不完整');
+    var knownIds = new Set(Q.map(function(question){return question.id;}));
+    var next = Object.create(null);
+    manifest.questions.forEach(function(item){
+      if(!item || !knownIds.has(item.id) || next[item.id] ||
+         !['review-needed','verified','rejected'].includes(item.status) ||
+         !Array.isArray(item.sources)) throw new Error('题库证据条目无效');
+      next[item.id] = item;
+    });
+    if(Object.keys(next).length !== Q.length) throw new Error('题库证据条目数量不匹配');
+    questionEvidenceById = next;
+    questionEvidenceLoadState = 'ready';
+    if(state.page === 'practice') render();
+    return next;
+  })
+  .catch(function(error){
+    questionEvidenceLoadState = 'unavailable';
+    console.warn('本题来源清单暂不可用；题目仍保持待核验状态。', error);
+    if(state.page === 'practice') render();
+    return questionEvidenceById;
+  });
+
+function safeQuestionEvidenceUrl(value){
+  try{
+    var url = new URL(value);
+    var allowed = ['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org'];
+    return url.protocol === 'https:' && allowed.indexOf(url.hostname.toLowerCase()) >= 0 ? url.href : null;
+  }catch(error){return null;}
+}
+function renderQuestionEvidence(question){
+  if(questionEvidenceLoadState === 'loading'){
+    return '<section class="w5-question-evidence" aria-live="polite"><b>题目来源核验</b><p>正在加载官方资料索引…</p></section>';
+  }
+  if(questionEvidenceLoadState !== 'ready'){
+    return '<section class="w5-question-evidence" role="note"><b>来源索引暂不可用</b><p>本题仍未完成人工来源审核；请勿把标准答案当作已认证结论。</p></section>';
+  }
+  var item = questionEvidenceById[question.id];
+  if(!item){
+    return '<section class="w5-question-evidence" role="note"><b>来源记录缺失</b><p>本题证据条目缺失，需检查题库清单。</p></section>';
+  }
+  if(item.status === 'verified'){
+    var verifiedSources = item.sources.map(function(source){
+      var href = safeQuestionEvidenceUrl(source.url);
+      if(!href) return '';
+      return '<li><a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' +
+        esc(source.title) + '</a><small>' + esc(source.publisher || '官方资料') + '</small></li>';
+    }).join('');
+    return '<section class="w5-question-evidence is-verified"><b>人工复核来源</b><ul>' + verifiedSources + '</ul>' +
+      '<p>' + esc(item.reviewNote || '') + '</p></section>';
+  }
+  var candidateSources = item.sources.map(function(source){
+    var href = safeQuestionEvidenceUrl(source.url);
+    if(!href) return '';
+    return '<li><a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' +
+      esc(source.title) + '</a><small>' + esc(source.publisher || '官方资料') + '</small></li>';
+  }).join('');
+  var heading = item.status === 'rejected' ? '该题需要修订' :
+    (item.sources.length ? '官方资料候选 · 待人工终审' : '尚未收录官方来源');
+  var description = item.status === 'rejected'
+    ? '现有内容不建议用于正式测评，需先修订题干或答案。'
+    : '下列链接仅为事实核对的来源候选；题干、标准答案和解析尚未完成人工逐题审核，不代表已验证。';
+  return '<section class="w5-question-evidence" role="note"><b>' + heading + '</b><p>' +
+    description + '</p>' + (candidateSources ? '<ul>' + candidateSources + '</ul>' : '') +
+    (item.reviewNote ? '<small>' + esc(item.reviewNote) + '</small>' : '') + '</section>';
+}
 var timers = [];
 function clearTimers(){timers.forEach(function(t){clearInterval(t);});timers=[];}
 
@@ -2398,7 +2473,8 @@ function renderPractice(){
     h += '<div class="explain"><div class="head ' + (ok?'ok':'no') + '">' +
       (ok?'✓ 回答正确':'✗ 回答错误') + '</div>' +
       '<div class="line">正确答案：' + esc(answerText(q)) + '</div>' +
-      '<div class="line">' + esc(q.explanation) + '</div></div>';
+      '<div class="line">' + esc(q.explanation) + '</div>' +
+      renderQuestionEvidence(q) + '</div>';
   }
   h += '<div class="footer w5-practice-actions">' +
     '<button class="btn btn-ghost" ' + (p.index===0?'disabled':'') + ' onclick="pPrev()">上一题</button>';
