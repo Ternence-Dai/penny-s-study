@@ -168,7 +168,7 @@ const { chromium } = require('playwright');
     if (!(await page.locator('#view .stem').innerText()).includes('距离太阳最近的行星')) {
       throw new Error('Resumed practice did not restore the second question at its saved position');
     }
-    const restoredScore = (await page.locator('#view .w5-practice-score').innerText()).replace(/\\s+/g, ' ').trim();
+    const restoredScore = (await page.locator('#view .w5-practice-score').innerText()).replace(/\s+/g, ' ').trim();
     if (!restoredScore.includes('1 答错') || !restoredScore.includes('0 答对')) {
       throw new Error('Resumed practice did not restore its answered/wrong counters: ' + restoredScore);
     }
@@ -204,7 +204,7 @@ const { chromium } = require('playwright');
       throw new Error('Wrong-answer ledger did not aggregate the single incorrect fixture: ' + wrongSummary);
     }
     await page.locator('#view .group-head').first().click();
-    const wrongCard = (await page.locator('#view .group-body .card').first().innerText()).replace(/\\s+/g, ' ').trim();
+    const wrongCard = (await page.locator('#view .group-body .card').first().innerText()).replace(/\s+/g, ' ').trim();
     if (!wrongCard.includes('体积最大的行星') || !wrongCard.includes('错 1 次') ||
         !wrongCard.includes('连续答对 0 / 3')) {
       throw new Error('Wrong-book review card did not preserve question identity and spaced-review state: ' + wrongCard);
@@ -240,12 +240,12 @@ const { chromium } = require('playwright');
     await page.waitForFunction(() => window.state.exam?.index === 0 && !window.state.exam?.showCard);
     await page.locator('#view .btn-main').click();
     await page.waitForSelector('#view .score-card', { timeout: 10000 });
-    const examResult = (await page.locator('#view').innerText()).replace(/\\s+/g, ' ').trim();
+    const examResult = (await page.locator('#view').innerText()).replace(/\s+/g, ' ').trim();
     if (!examResult.includes('本次得分') || !examResult.includes('满分 4 分') ||
         !examResult.includes('50%') || !examResult.includes('1 题')) {
       throw new Error('Competition exam did not produce the expected score and answer breakdown: ' + examResult);
     }
-    const examStats = (await page.locator('#view .stat-row').innerText()).replace(/\\s+/g, ' ').trim();
+    const examStats = (await page.locator('#view .stat-row').innerText()).replace(/\s+/g, ' ').trim();
     if (!examStats.includes('1') || !examStats.includes('答对') || !examStats.includes('答错')) {
       throw new Error('Competition result summary omitted correct/incorrect counts: ' + examStats);
     }
