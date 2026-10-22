@@ -18,8 +18,10 @@ const { chromium } = require('playwright');
     const workerSource = await workerResponse.text();
     if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v15") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v5") ||
+        !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v3") ||
+        !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v3") ||
         workerSource.includes("product-system-v9.css")) {
-      throw new Error('PWA shell does not version and precache the new observatory workspace stylesheet');
+      throw new Error('PWA shell does not version and precache the new astronomy classroom interface');
     }
 
     const referenceStylesheet = page.locator('link[rel="stylesheet"][href*="observatory-learning-console-v2.css"]');
