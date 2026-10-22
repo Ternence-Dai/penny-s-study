@@ -14,6 +14,19 @@ const { chromium } = require('playwright');
 
   try {
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+    const referenceStylesheet = page.locator('link[rel="stylesheet"][href*="observatory-learning-console-v2.css"]');
+    if (await referenceStylesheet.count() !== 1) throw new Error('Observatory learning console stylesheet is not linked');
+    const referenceCssResponse = await page.request.get(await referenceStylesheet.evaluate(node => node.href));
+    const referenceCssText = await referenceCssResponse.text();
+    const observatoryLayout = await page.locator('.app').evaluate(node => ({
+      display: getComputedStyle(node).display,
+      columns: getComputedStyle(node).gridTemplateColumns
+    }));
+    if (!referenceCssResponse.ok() || !referenceCssText.includes('--sky-panel:#111e3e') ||
+        observatoryLayout.display !== 'grid' || !observatoryLayout.columns.startsWith('244px')) {
+      throw new Error('Reference observatory layout was not loaded/applied: ' + JSON.stringify(observatoryLayout));
+    }
+
     const skipLink = page.locator('a.skip-link[href="#view"]');
     if (await skipLink.count() !== 1) throw new Error('Keyboard skip-navigation link is missing');
     await page.keyboard.press('Tab');
