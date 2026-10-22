@@ -31,6 +31,23 @@
     const percent = resumable && activePractice.questionIds.length ?
       Math.round(done/activePractice.questionIds.length*100) : 0;
     const oldHome = renderHome();
+    const evidence = typeof window.getQuestionEvidenceSummary === 'function'
+      ? window.getQuestionEvidenceSummary()
+      : {loadState:'unavailable',total:Q.length,verified:0,reviewNeeded:Q.length,rejected:0,withSources:0,withoutSources:Q.length};
+    const evidenceState = evidence.loadState === 'ready' ? 'INDEX LOADED · HUMAN REVIEW REQUIRED' : 'SOURCE INDEX NOT READY';
+    const evidenceStatus = evidence.loadState === 'ready'
+      ? (evidence.verified === evidence.total ? '已完成人工来源复核' : '尚未达到正式题库验收标准')
+      : '来源索引暂不可用 · 所有题目按待核验处理';
+    const evidencePanel = '<section class="classroom-evidence" aria-label="题库来源与事实核验状态">' +
+      '<div class="classroom-evidence__head"><div><span class="classroom-kicker">QUESTION BANK / EVIDENCE QUALITY</span>' +
+      '<h3>题库来源与事实核验</h3><p>题库条目不会因挂载了 NASA / IAU 链接就自动视为正确；必须逐题核对题干、答案和解析。</p></div>' +
+      '<span class="classroom-evidence__state">'+safe(evidenceState)+'</span></div>' +
+      '<div class="classroom-evidence__metrics">' +
+        '<article><span>题库总量</span><strong>'+evidence.total+'</strong><small>小学组 + 初中组</small></article>' +
+        '<article><span>已人工复核</span><strong>'+evidence.verified+'</strong><small>可进入正式题库候选</small></article>' +
+        '<article><span>来源待终审</span><strong>'+evidence.reviewNeeded+'</strong><small>含 '+evidence.withSources+' 条官方来源候选</small></article>' +
+        '<article><span>尚无来源</span><strong>'+evidence.withoutSources+'</strong><small>须补权威出处或修订</small></article>' +
+      '</div><p class="classroom-evidence__note"><b>'+safe(evidenceStatus)+'</b>。在题目逐条复核完成前，练习结果只用于学习反馈，不作为正式竞赛成绩或知识认证。</p></section>';
 
     const modules = [
       {id:'learn',number:'01',icon:'✦',title:'知识星图',description:'按知识主题进入概念、图示、天体运动与动态模拟',action:'进入知识地图',tone:'sky'},
@@ -71,6 +88,7 @@
       '<h2>星赛通 · 天文学习指挥台</h2><p>从知识地图到专项训练、竞赛模拟与错题复盘，围绕真实本机学习记录安排学习路径。</p>' +
       '<div class="classroom-hero__actions"><button type="button" onclick="go(\'learn\')">探索知识星图 ↗</button><button type="button" onclick="startExam(\''+currentLevel+'\')">开始竞赛模拟</button></div></div>' +
       '<div class="classroom-hero__orb" aria-hidden="true"><span class="orbit orbit-a"></span><span class="orbit orbit-b"></span><span class="planet planet-main">✦</span><span class="planet planet-small">•</span><b>SKY<br>LAB</b></div></header>' +
+      evidencePanel +
       '<section class="classroom-control"><div class="classroom-control__title"><div><span class="classroom-kicker">YOUR LEARNING PROFILE</span><strong>学习计划与学段</strong><small>进度来自本机已保存作答；未作答知识点不会被标记为掌握。</small></div><div class="classroom-levels">'+levelButtons+'</div></div>' +
       '<div class="classroom-metrics">'+metrics+'</div></section>' +
       session +
