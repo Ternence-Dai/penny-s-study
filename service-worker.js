@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v16';
+const CACHE_NAME = 'penny-study-shell-v17';
 const APP_SHELL = [
   './',
   './index.html',
@@ -14,13 +14,13 @@ const APP_SHELL = [
   './assets/css/study-command-center.css?v=20261022-learning-readiness-v1',
   './assets/css/reference-interface-v1.css?v=20261022-evidence-sources-v1',
   './assets/css/observatory-learning-console-v2.css?v=20261022-command-center-v5',
-  './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v3',
+  './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v4-evidence-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
   './assets/data/question-evidence.json?v=20261022-evidence-index-v1',
   './assets/js/question-grading.js',
-  './assets/js/legacy-app.js?v=20261022-question-evidence-source-ui-v1',
-  './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v3',
+  './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
+  './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v4-evidence-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
 
 ];
