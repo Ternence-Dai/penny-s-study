@@ -1,8 +1,15 @@
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const bankSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('assets/data/question-evidence.json', 'utf8'));
-const rows = bankSource.split(/\r?\n/).map(line => line.match(/^\s*\['([a-z]\d{3})'/)).filter(Boolean).map(match => match[1]);
+const questionRows = new Map();
+const rows = bankSource.split(/\r?\n/).map(line => {
+  const match = line.match(/^\s*\['([a-z]\d{3})'/);
+  if (match) questionRows.set(match[1], line.trim());
+  return match ? match[1] : null;
+}).filter(Boolean);
 const fail = message => { console.error(message); process.exitCode = 1; };
+const requiredReviewedFields = ['stem', 'answer', 'explanation'];
 if (manifest.schemaVersion !== 1 || !Array.isArray(manifest.questions)) fail('Unsupported question evidence manifest schema');
 const ids = new Set(rows);
 const seen = new Set();
@@ -16,10 +23,31 @@ for (const item of manifest.questions) {
     if (!source || typeof source.title !== 'string' || !source.title.trim() || typeof source.url !== 'string' || !source.url.startsWith('https://')) fail(item.id + ': source requires a title and HTTPS URL');
     if (source.publisher != null && typeof source.publisher !== 'string') fail(item.id + ': publisher must be text');
   }
-  if (item.status === 'verified') {
-    if (!item.sources.length) fail(item.id + ': verified questions require at least one source');
-    if (typeof item.reviewer !== 'string' || !item.reviewer.trim()) fail(item.id + ': verified questions require a reviewer');
-    if (typeof item.reviewedAt !== 'string' || !/(?:Z|[+-]\d{2}:\d{2})$/.test(item.reviewedAt) || !Number.isFinite(Date.parse(item.reviewedAt))) fail(item.id + ': verified questions require a timezone-qualified review timestamp');
+  if (item.status === 'review-needed') {
+    if (item.reviewer != null || item.reviewedAt != null || item.contentSha256 != null) {
+      fail(item.id + ': pending questions must not carry completed review metadata');
+    }
+    if (!/尚未完成人工逐题核对/.test(item.reviewNote || '')) {
+      fail(item.id + ': pending questions must retain the human-review disclaimer');
+    }
+  }
+  if (item.status === 'verified' || item.status === 'rejected') {
+    if (!item.sources.length) fail(item.id + ': reviewed questions require at least one source');
+    if (typeof item.reviewer !== 'string' || !item.reviewer.trim()) fail(item.id + ': reviewed questions require a reviewer');
+    if (typeof item.reviewedAt !== 'string' || !/(?:Z|[+-]\d{2}:\d{2})$/.test(item.reviewedAt) || !Number.isFinite(Date.parse(item.reviewedAt))) {
+      fail(item.id + ': reviewed questions require a timezone-qualified review timestamp');
+    }
+    if (!Array.isArray(item.reviewedFields) || requiredReviewedFields.some(field => !item.reviewedFields.includes(field)) ||
+        new Set(item.reviewedFields).size !== requiredReviewedFields.length || item.reviewedFields.length !== requiredReviewedFields.length) {
+      fail(item.id + ': reviewer must explicitly attest to reviewing stem, answer and explanation');
+    }
+    const expectedHash = crypto.createHash('sha256').update(questionRows.get(item.id), 'utf8').digest('hex');
+    if (typeof item.contentSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(item.contentSha256) || item.contentSha256 !== expectedHash) {
+      fail(item.id + ': review record is stale or is not bound to the exact current question content');
+    }
+    if (item.status === 'rejected' && (typeof item.rejectionReason !== 'string' || !item.rejectionReason.trim())) {
+      fail(item.id + ': rejected questions require a documented rejection reason');
+    }
   }
 }
 for (const id of ids) if (!seen.has(id)) fail('Missing evidence entry: ' + id);
@@ -31,29 +59,20 @@ const candidateIds = [
 ];
 for (const id of candidateIds) {
   const item = manifest.questions.find(entry => entry.id === id);
-  if (!item || item.status !== 'review-needed' || item.reviewedAt !== null || item.reviewer !== null) {
-    fail(id + ': AI-collected sources must not be promoted to human-verified');
-    continue;
-  }
-  if (!item.sources.length) fail(id + ': expected at least one authoritative source candidate');
-  if (!/尚未完成人工/.test(item.reviewNote || '')) fail(id + ': must explicitly retain human-review disclaimer');
+  if (!item || !item.sources.length) fail(id + ': expected at least one authoritative source candidate');
 }
+
 const coverage = manifest.questions.reduce((stats, item) => {
   stats[item.status] = (stats[item.status] || 0) + 1;
   stats[item.sources.length ? 'withSources' : 'withoutSources'] += 1;
   return stats;
 }, {withSources:0,withoutSources:0});
-if (coverage['review-needed'] !== 300 || coverage.verified || coverage.rejected) {
-  fail('All 300 questions must remain review-needed until human review is recorded');
-}
+const reviewedCount = (coverage.verified || 0) + (coverage.rejected || 0) + (coverage['review-needed'] || 0);
+if (reviewedCount !== 300) fail('Question review states must account for all 300 questions');
 if (coverage.withSources !== 300 || coverage.withoutSources !== 0) {
-  fail('Expected 290 source-candidate records and 10 explicitly unsourced questions: ' + JSON.stringify(coverage));
+  fail('Expected source records for all 300 questions: ' + JSON.stringify(coverage));
 }
-for (const item of manifest.questions) {
-  if (!/尚未完成人工逐题核对/.test(item.reviewNote || '')) {
-    fail(item.id + ': human question/answer/explanation review must remain explicitly pending');
-  }
-}
+
 const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn']);
 for (const item of manifest.questions) {
   for (const source of item.sources || []) {
@@ -67,4 +86,7 @@ for (const item of manifest.questions) {
     }
   }
 }
-if (!process.exitCode) console.log('Question provenance registry OK: ' + seen.size + ' questions covered; unreviewed entries remain explicitly review-needed.');
+if (!process.exitCode) {
+  const pending = coverage['review-needed'] || 0;
+  console.log('Question provenance registry OK: ' + seen.size + ' questions covered; ' + pending + ' remain review-needed.');
+}
