@@ -1,0 +1,80 @@
+/* Evidence-based topic mastery map: practice planning from actual local attempts. */
+body[data-workspace="study"] .classroom-topic-map{
+  display:flex;flex-direction:column;gap:12px;min-width:0;padding:17px 18px;
+  border:1px solid #3a4d74;border-radius:13px;background:linear-gradient(145deg,#111e3d,#142443);
+  box-shadow:0 8px 24px #02081742
+}
+body[data-workspace="study"] .classroom-topic-map .classroom-section-head{align-items:flex-start;margin-bottom:0}
+body[data-workspace="study"] .classroom-topic-map .classroom-section-head h3{margin:4px 0;color:#edf3ff;font-size:17px}
+body[data-workspace="study"] .classroom-topic-map .classroom-section-head p{max-width:720px;color:#9cafcf;font-size:10px;line-height:1.65}
+body[data-workspace="study"] .classroom-topic-map__legend{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+body[data-workspace="study"] .classroom-topic-map__legend span,
+body[data-workspace="study"] .classroom-topic-card__state{
+  display:inline-flex;align-items:center;padding:4px 7px;border:1px solid #445775;
+  border-radius:6px;background:#182a49;color:#aebfdb;font-size:9px;font-weight:800;white-space:nowrap
+}
+body[data-workspace="study"] .classroom-topic-map__legend .is-needs,
+body[data-workspace="study"] .classroom-topic-card.needs-work .classroom-topic-card__state{
+  border-color:#8c5b59;background:#3a292f;color:#f0b2a7
+}
+body[data-workspace="study"] .classroom-topic-map__legend .is-steady,
+body[data-workspace="study"] .classroom-topic-card.steady .classroom-topic-card__state{
+  border-color:#3d7569;background:#183b3e;color:#9fdfc6
+}
+body[data-workspace="study"] .classroom-topic-map__grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px
+}
+body[data-workspace="study"] .classroom-topic-card{
+  display:grid;gap:8px;min-width:0;padding:11px 12px;border:1px solid #35496d;
+  border-radius:9px;background:#0e1b36
+}
+body[data-workspace="study"] .classroom-topic-card.needs-work{border-left:3px solid #d38b78}
+body[data-workspace="study"] .classroom-topic-card.steady{border-left:3px solid #5db99b}
+body[data-workspace="study"] .classroom-topic-card.warming{border-left:3px solid #8c9ee0}
+body[data-workspace="study"] .classroom-topic-card.new{border-left:3px solid #65758f}
+body[data-workspace="study"] .classroom-topic-card__top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-width:0
+}
+body[data-workspace="study"] .classroom-topic-card__top strong{
+  min-width:0;color:#edf3ff;font-size:11px;font-weight:850;line-height:1.5
+}
+body[data-workspace="study"] .classroom-topic-card__meta{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;color:#9aaccd;font-size:9px
+}
+body[data-workspace="study"] .classroom-topic-card__track{
+  height:6px;overflow:hidden;border-radius:99px;background:#273957
+}
+body[data-workspace="study"] .classroom-topic-card__track i{
+  display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#5586d2,#62c5c9)
+}
+body[data-workspace="study"] .classroom-topic-card.needs-work .classroom-topic-card__track i{background:linear-gradient(90deg,#ac675f,#df9a7d)}
+body[data-workspace="study"] .classroom-topic-card.steady .classroom-topic-card__track i{background:linear-gradient(90deg,#388a77,#74c9a2)}
+body[data-workspace="study"] .classroom-topic-card__foot{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0
+}
+body[data-workspace="study"] .classroom-topic-card__foot>span{
+  min-width:0;color:#92a5c6;font-size:9px;line-height:1.5
+}
+body[data-workspace="study"] .classroom-topic-card__foot button{
+  flex:0 0 auto;min-height:31px;padding:6px 9px;border:1px solid #536f9a;border-radius:6px;
+  background:#223b68;color:#d8e8ff;font-size:9px;font-weight:850;cursor:pointer
+}
+body[data-workspace="study"] .classroom-topic-card__foot button:hover{border-color:#8ba7d8;background:#2c4b7b}
+body[data-workspace="study"] .classroom-topic-map__note{
+  margin:0;padding-top:9px;border-top:1px solid #2b4164;color:#91a5c6;font-size:9px;line-height:1.65
+}
+body[data-workspace="study"] .classroom-topic-map :where(button):focus-visible{
+  outline:3px solid #8ad7e5!important;outline-offset:2px
+}
+@media(max-width:980px){
+  body[data-workspace="study"] .classroom-topic-map__grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  body[data-workspace="study"] .classroom-topic-map{padding:14px 12px}
+  body[data-workspace="study"] .classroom-topic-map .classroom-section-head{flex-direction:column;gap:8px}
+  body[data-workspace="study"] .classroom-topic-map__legend{justify-content:flex-start}
+  body[data-workspace="study"] .classroom-topic-card__foot button{min-height:36px}
+}
+@media(prefers-reduced-motion:reduce){
+  body[data-workspace="study"] .classroom-topic-map *{transition:none!important;animation:none!important}
+}

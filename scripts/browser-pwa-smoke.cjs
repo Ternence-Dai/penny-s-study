@@ -2,6 +2,7 @@
 
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
+const fs = require('node:fs');
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
@@ -16,10 +17,11 @@ const { chromium } = require('playwright');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v25") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v26") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1") ||
-        !workerSource.includes("astronomy-classroom-v3.js?v=20261022-classroom-v5-workspace-v1") ||
+        !workerSource.includes("astronomy-classroom-v3.js?v=20261023-topic-map-v1") ||
+        !workerSource.includes("topic-mastery-map-v1.css?v=20261023-topic-map-v1") ||
         !workerSource.includes("nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1") ||
         !workerSource.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1") ||
         !workerSource.includes("reference-shell-v4-boot.js?v=20261022-reference-v6") ||
@@ -288,6 +290,73 @@ const { chromium } = require('playwright');
       throw new Error('Study command-center metrics did not reflect isolated learning records: ' +
         JSON.stringify({ fixture: commandFixture, metrics: commandMetrics }));
     }
+    const topicMapEvidence = await page.evaluate(category => {
+      const map = document.querySelector('.classroom-topic-map');
+      const weak = [...(map?.querySelectorAll('.classroom-topic-card') || [])].find(card =>
+        card.querySelector('.classroom-topic-card__top strong')?.textContent === category);
+      const unseenCount = map?.querySelectorAll('.classroom-topic-card.new').length || 0;
+      return {
+        present: !!map,
+        cardCount: map?.querySelectorAll('.classroom-topic-card').length || 0,
+        weakState: weak?.getAttribute('data-topic-state') || '',
+        weakText: weak?.innerText || '',
+        weakAction: !!weak?.querySelector('button[data-classroom-topic]'),
+        unseenCount,
+        coverageCaption: map?.querySelector('.classroom-topic-map__note')?.textContent || ''
+      };
+    }, commandFixture.weakCategory);
+    if (!topicMapEvidence.present || topicMapEvidence.cardCount < 3 ||
+        topicMapEvidence.weakState !== 'needs-work' ||
+        !topicMapEvidence.weakText.includes('1 道到期错题') ||
+        !topicMapEvidence.weakAction || topicMapEvidence.unseenCount < 1 ||
+        !topicMapEvidence.coverageCaption.includes('覆盖率表示')) {
+      throw new Error('Topic mastery map did not distinguish weak, new and review-due subjects from local records: ' +
+        JSON.stringify({fixture:commandFixture,evidence:topicMapEvidence}));
+    }
+    fs.mkdirSync('artifacts', { recursive: true });
+    await page.evaluate(() => {
+      document.activeElement?.blur();
+      const map = document.querySelector('.classroom-topic-map');
+      map?.scrollIntoView({block:'start'});
+    });
+    const cleanEvidenceStyle = await page.addStyleTag({
+      content: '#readerPanel{display:none!important} .toast,#toast,.skip-link:focus,#mobileNav,.bottomnav{display:none!important}'
+    });
+    await page.screenshot({ path: 'artifacts/penny-topic-mastery-desktop.png', fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobileTopicMap = await page.evaluate(() => {
+      const map = document.querySelector('.classroom-topic-map')?.getBoundingClientRect();
+      const view = document.querySelector('#view')?.getBoundingClientRect();
+      const grid = document.querySelector('.classroom-topic-map__grid');
+      return {
+        viewWidth:view?.width,mapLeft:map?.left,mapRight:map?.right,mapWidth:map?.width,
+        columns:grid?getComputedStyle(grid).gridTemplateColumns:''
+      };
+    });
+    if (!mobileTopicMap.mapWidth || mobileTopicMap.mapWidth < 340 ||
+        mobileTopicMap.mapLeft < 0 || mobileTopicMap.mapRight > 391 ||
+        !mobileTopicMap.viewWidth || mobileTopicMap.viewWidth < 360 ||
+        mobileTopicMap.columns.split(' ').filter(Boolean).length !== 1) {
+      throw new Error('Mobile topic mastery map is clipped or not a single-column learning list: ' +
+        JSON.stringify(mobileTopicMap));
+    }
+    await page.evaluate(() => {
+      document.activeElement?.blur();
+      document.querySelector('.classroom-topic-map')?.scrollIntoView({block:'start'});
+    });
+    await page.screenshot({ path: 'artifacts/penny-topic-mastery-mobile.png', fullPage: true });
+    await cleanEvidenceStyle.evaluate(node => node.remove());
+    await page.setViewportSize({ width: 1365, height: 900 });
+    await page.locator('.classroom-topic-card[data-topic-state="needs-work"] [data-classroom-topic]').click();
+    await page.waitForFunction(expectedCategory => window.state.page === 'practice' &&
+      window.state.practice?.label === expectedCategory, commandFixture.weakCategory);
+    await page.evaluate(() => {
+      window.Store.clearActivePractice();
+      window.state.practice = null;
+      window.state.page = 'home';
+      window.render();
+    });
+    await page.waitForSelector('#view .w9-study-command');
     await page.locator('#view .w9-study-command__review button').click();
     await page.waitForFunction(() => window.state.page === 'practice' &&
       window.state.practice?.label === '到期错题间隔复习' &&
