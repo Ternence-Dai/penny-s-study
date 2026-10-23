@@ -62,7 +62,8 @@
         '<i aria-hidden="true">'+(reviewQueueExpanded?'收起 −':'展开 +')+'</i></button>'+
       (reviewQueueExpanded
         ? '<div class="classroom-review-queue__content"><p>按当前学段展示最多 8 道待核验题目；完整 300 题仍保留在题库证据清单中。请逐项核对题干、答案、解析和来源，不能仅凭来源链接判定通过。</p>'+
-          (reviewQueueRows || '<p>当前学段没有待核验题目。</p>')+
+          (evidence.loadState !== 'ready' ? '<p>证据索引暂不可用，无法生成逐题清单；所有题目继续按待核验处理。</p>' :
+            (reviewQueueRows || '<p>当前学段没有待核验题目。</p>'))+
           '<small>此处为只读审阅视图，不会修改审核状态或把题目自动标记为已验证。</small></div>'
         : '')+'</div>';
     if (!document.documentElement.dataset.questionReviewQueueBound) {
