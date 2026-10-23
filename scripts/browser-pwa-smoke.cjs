@@ -314,7 +314,15 @@ const fs = require('node:fs');
         JSON.stringify({fixture:commandFixture,evidence:topicMapEvidence}));
     }
     fs.mkdirSync('artifacts', { recursive: true });
-    await page.locator('.classroom-topic-map').screenshot({ path: 'artifacts/penny-topic-mastery-desktop.png' });
+    await page.evaluate(() => {
+      document.activeElement?.blur();
+      const map = document.querySelector('.classroom-topic-map');
+      map?.scrollIntoView({block:'start'});
+    });
+    const cleanEvidenceStyle = await page.addStyleTag({
+      content: '#readerPanel{display:none!important} .toast,#toast,.skip-link:focus,#mobileNav,.bottomnav{display:none!important}'
+    });
+    await page.screenshot({ path: 'artifacts/penny-topic-mastery-desktop.png', fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
     const mobileTopicMap = await page.evaluate(() => {
       const map = document.querySelector('.classroom-topic-map')?.getBoundingClientRect();
@@ -332,12 +340,12 @@ const fs = require('node:fs');
       throw new Error('Mobile topic mastery map is clipped or not a single-column learning list: ' +
         JSON.stringify(mobileTopicMap));
     }
-    await page.evaluate(() => document.activeElement?.blur());
-    const cleanEvidenceLayer = await page.addStyleTag({
-      content: '#readerPanel{display:none!important} .toast,#toast,.skip-link:focus{display:none!important}'
+    await page.evaluate(() => {
+      document.activeElement?.blur();
+      document.querySelector('.classroom-topic-map')?.scrollIntoView({block:'start'});
     });
-    await page.locator('.classroom-topic-map').screenshot({ path: 'artifacts/penny-topic-mastery-mobile.png' });
-    await cleanEvidenceLayer.evaluate(node => node.remove());
+    await page.screenshot({ path: 'artifacts/penny-topic-mastery-mobile.png', fullPage: true });
+    await cleanEvidenceStyle.evaluate(node => node.remove());
     await page.setViewportSize({ width: 1365, height: 900 });
     await page.locator('.classroom-topic-card[data-topic-state="needs-work"] [data-classroom-topic]').click();
     await page.waitForFunction(expectedCategory => window.state.page === 'practice' &&
