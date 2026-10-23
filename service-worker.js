@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v25';
+const CACHE_NAME = 'penny-study-shell-v26';
 const APP_SHELL = [
   './',
   './index.html',
@@ -9,6 +9,7 @@ const APP_SHELL = [
   './assets/css/legacy-app.css',
   './assets/css/reference-platform-v4.css?v=20261022-reference-v8',
   './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
+  './assets/css/topic-mastery-map-v1.css?v=20261023-topic-map-v1',
   './assets/css/product-system.css?v=20261019-v8',
   './assets/css/workspace-v5.css?v=20261019-v5',
   './assets/css/practice-session-v9.css?v=20261019-v9',
@@ -21,7 +22,7 @@ const APP_SHELL = [
   './assets/data/question-evidence.json?v=20261022-evidence-index-v3',
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261022-question-evidence-dashboard-v2',
-  './assets/js/astronomy-classroom-v3.js?v=20261022-classroom-v5-workspace-v1',
+  './assets/js/astronomy-classroom-v3.js?v=20261023-topic-map-v1',
   './assets/js/reference-shell-v4-boot.js?v=20261022-reference-v6',
   './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
