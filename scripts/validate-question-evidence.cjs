@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const crypto = require('node:crypto');
+const assert = require('node:assert/strict');
 const bankSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const classroom = fs.readFileSync('assets/js/astronomy-classroom-v3.js', 'utf8');
 const classroomCss = fs.readFileSync('assets/css/study-command-center.css', 'utf8');
