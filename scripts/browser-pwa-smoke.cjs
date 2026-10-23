@@ -332,7 +332,12 @@ const fs = require('node:fs');
       throw new Error('Mobile topic mastery map is clipped or not a single-column learning list: ' +
         JSON.stringify(mobileTopicMap));
     }
+    await page.evaluate(() => document.activeElement?.blur());
+    const cleanEvidenceLayer = await page.addStyleTag({
+      content: '#readerPanel{display:none!important} .toast,#toast,.skip-link:focus{display:none!important}'
+    });
     await page.locator('.classroom-topic-map').screenshot({ path: 'artifacts/penny-topic-mastery-mobile.png' });
+    await cleanEvidenceLayer.evaluate(node => node.remove());
     await page.setViewportSize({ width: 1365, height: 900 });
     await page.locator('.classroom-topic-card[data-topic-state="needs-work"] [data-classroom-topic]').click();
     await page.waitForFunction(expectedCategory => window.state.page === 'practice' &&
