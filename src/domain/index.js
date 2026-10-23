@@ -34,8 +34,9 @@ function parseReviewTimestamp(value) {
   }
   if (match[7] !== "Z") {
     const hour = Number(match[9]), minute = Number(match[10]);
-    if (minute > 59 || hour > 14 || (hour === 14 && minute !== 0)) {
-      throw new TypeError("reviewedAt contains an invalid timezone offset");
+    if (minute > 59 || hour > 14 || (hour === 14 && minute !== 0) ||
+        (match[8] === "-" && hour === 0 && minute === 0)) {
+      throw new TypeError("reviewedAt contains an invalid or unknown timezone offset");
     }
   }
   const timestamp = Date.parse(value);
