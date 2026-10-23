@@ -12,6 +12,36 @@ const rows = bankSource.split(/\r?\n/).map(line => {
   return match ? match[1] : null;
 }).filter(Boolean);
 const fail = message => { console.error(message); process.exitCode = 1; };
+function isValidReviewTimestamp(value) {
+  if (typeof value !== 'string') return false;
+  const match = /^(\d{4})-(\d{2})-(\d{2})T([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d)(?:\.\d{1,3})?)?(Z|([+-])(\d{2}):(\d{2}))$/.exec(value);
+  if (!match) return false;
+  const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (month < 1 || month > 12 || day < 1 || day > days[month - 1]) return false;
+  if (match[7] !== 'Z') {
+    const hour = Number(match[9]), minute = Number(match[10]);
+    if (minute > 59 || hour > 14 || (hour === 14 && minute !== 0)) return false;
+  }
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return false;
+  const utcYear = new Date(timestamp).getUTCFullYear();
+  return utcYear >= 0 && utcYear <= 9999;
+}
+
+for (const [value, expected] of [
+  ['2026-02-28T12:30:00Z', true],
+  ['2024-02-29T12:30:00.123+08:00', true],
+  ['2026-02-30T12:30:00Z', false],
+  ['2026-01-01T12:30:00+14:30', false],
+  ['2026-01-01T12:30:00', false],
+  ['2026-13-01T12:30:00Z', false],
+]) {
+  assert.equal(isValidReviewTimestamp(value), expected,
+    'review timestamp parser must reject invalid calendar dates and offsets: ' + value);
+}
+
 const requiredReviewedFields = ['stem', 'answer', 'explanation'];
 if (manifest.schemaVersion !== 1 || !Array.isArray(manifest.questions)) fail('Unsupported question evidence manifest schema');
 const ids = new Set(rows);
@@ -37,8 +67,8 @@ for (const item of manifest.questions) {
   if (item.status === 'verified' || item.status === 'rejected') {
     if (!item.sources.length) fail(item.id + ': reviewed questions require at least one source');
     if (typeof item.reviewer !== 'string' || !item.reviewer.trim()) fail(item.id + ': reviewed questions require a reviewer');
-    if (typeof item.reviewedAt !== 'string' || !/(?:Z|[+-]\d{2}:\d{2})$/.test(item.reviewedAt) || !Number.isFinite(Date.parse(item.reviewedAt))) {
-      fail(item.id + ': reviewed questions require a timezone-qualified review timestamp');
+    if (!isValidReviewTimestamp(item.reviewedAt)) {
+      fail(item.id + ': reviewed questions require a valid ISO timestamp with an explicit timezone and real calendar date');
     }
     if (!Array.isArray(item.reviewedFields) || requiredReviewedFields.some(field => !item.reviewedFields.includes(field)) ||
         new Set(item.reviewedFields).size !== requiredReviewedFields.length || item.reviewedFields.length !== requiredReviewedFields.length) {
