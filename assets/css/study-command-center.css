@@ -138,3 +138,25 @@ body[data-workspace="study"] .w9-study-command__review button{margin-top:auto;bo
 body[data-workspace="study"] .w9-study-command__review button:disabled{opacity:.55;cursor:not-allowed}
 @media(max-width:900px){body[data-workspace="study"] .w9-study-command__metrics{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-workspace="study"] .w9-study-command__lower{grid-template-columns:1fr}}
 @media(max-width:520px){body[data-workspace="study"] .w9-study-command{padding:15px;border-radius:16px}body[data-workspace="study"] .w9-study-command__head{flex-direction:column}body[data-workspace="study"] .w9-study-command__head h3{font-size:18px}body[data-workspace="study"] .w9-study-command__topic{grid-template-columns:25px minmax(0,1fr) auto;gap:6px}body[data-workspace="study"] .w9-study-command__topic button{grid-column:2 / 4;justify-self:end}body[data-workspace="study"] .w9-study-command__section{align-items:flex-start;flex-direction:column}}
+
+
+/* First-screen, read-only question evidence review queue. */
+.classroom-review-queue{margin:16px 0 4px;border:1px solid rgba(245,158,11,.34);border-radius:14px;background:linear-gradient(135deg,rgba(245,158,11,.09),rgba(59,130,246,.045));overflow:hidden}
+.classroom-review-queue__toggle{width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:13px 15px;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.classroom-review-queue__toggle span{font-weight:750}
+.classroom-review-queue__toggle b{margin-left:auto;color:#b45309;font-size:13px}
+.classroom-review-queue__toggle i{font-style:normal;font-size:12px;color:var(--sub)}
+.classroom-review-queue__toggle:focus-visible,.classroom-review-item summary:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+.classroom-review-queue__content{padding:0 15px 15px}
+.classroom-review-queue__content>p{font-size:13px;line-height:1.65;color:var(--sub)}
+.classroom-review-item{margin:9px 0;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.classroom-review-item summary{display:grid;gap:5px;padding:11px 12px;cursor:pointer;list-style:none}
+.classroom-review-item summary::-webkit-details-marker{display:none}
+.classroom-review-item summary span{font-size:11px;font-weight:750;color:#b45309;letter-spacing:.04em}
+.classroom-review-item summary b{font-size:13px;line-height:1.55;font-weight:650}
+.classroom-review-item__body{padding:0 12px 12px;font-size:12px;line-height:1.65}
+.classroom-review-item__body p{margin:8px 0;color:var(--sub)}
+.classroom-review-item__body strong{color:var(--text)}
+.classroom-review-item__sources{display:grid;gap:5px;margin-top:10px}
+.classroom-review-item__sources>a{overflow-wrap:anywhere;color:var(--primary,#2563eb);text-decoration:underline;text-underline-offset:2px}
+@media(max-width:600px){.classroom-review-queue__toggle{align-items:flex-start;flex-direction:column;gap:6px}.classroom-review-queue__toggle b{margin-left:0}.classroom-review-queue__content{padding:0 11px 12px}}

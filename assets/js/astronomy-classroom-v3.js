@@ -2,6 +2,7 @@
    Keeps the original question bank, grading, study records, simulation and interval-review flows. */
 (function () {
   'use strict';
+  let reviewQueueExpanded = false;
   function safe(value) {
     return typeof esc === 'function' ? esc(String(value == null ? '' : value)) :
       String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -38,6 +39,42 @@
     const evidenceStatus = evidence.loadState === 'ready'
       ? (evidence.verified === evidence.total ? '已完成人工来源复核' : '尚未达到正式题库验收标准')
       : '来源索引暂不可用 · 所有题目按待核验处理';
+    const pendingQuestions = evidence.loadState === 'ready'
+      ? questions.filter(question => questionEvidenceById[question.id] &&
+          questionEvidenceById[question.id].status === 'review-needed')
+      : [];
+    const reviewQueueRows = pendingQuestions.slice(0, 8).map(question => {
+      const item = questionEvidenceById[question.id];
+      const sourceLinks = item.sources.map(source => {
+        const href = typeof safeQuestionEvidenceUrl === 'function' ? safeQuestionEvidenceUrl(source.url) : null;
+        return href ? '<a href="'+safe(href)+'" target="_blank" rel="noopener noreferrer">'+
+          safe(source.title)+' · '+safe(source.publisher || '官方资料')+'</a>' : '';
+      }).filter(Boolean).join('');
+      return '<details class="classroom-review-item"><summary><span>'+safe(question.id.toUpperCase())+
+        ' · '+safe(question.category)+'</span><b>'+safe(question.stem)+'</b></summary>'+
+        '<div class="classroom-review-item__body"><p><strong>标准答案（待核对）：</strong>'+safe(answerText(question))+'</p>'+
+        '<p><strong>现有解析（待核对）：</strong>'+safe(question.explanation)+'</p>'+
+        '<div class="classroom-review-item__sources"><strong>来源候选（不代表已验证）</strong>'+sourceLinks+'</div></div></details>';
+    }).join('');
+    const reviewQueue = '<div class="classroom-review-queue">' +
+      '<button type="button" class="classroom-review-queue__toggle" data-question-review-toggle aria-expanded="'+
+        String(reviewQueueExpanded)+'"><span>打开逐题复核队列</span><b>'+evidence.reviewNeeded+' 题待人工核验</b>'+
+        '<i aria-hidden="true">'+(reviewQueueExpanded?'收起 −':'展开 +')+'</i></button>'+
+      (reviewQueueExpanded
+        ? '<div class="classroom-review-queue__content"><p>按当前学段展示最多 8 道待核验题目；完整 300 题仍保留在题库证据清单中。请逐项核对题干、答案、解析和来源，不能仅凭来源链接判定通过。</p>'+
+          (evidence.loadState !== 'ready' ? '<p>证据索引暂不可用，无法生成逐题清单；所有题目继续按待核验处理。</p>' :
+            (reviewQueueRows || '<p>当前学段没有待核验题目。</p>'))+
+          '<small>此处为只读审阅视图，不会修改审核状态或把题目自动标记为已验证。</small></div>'
+        : '')+'</div>';
+    if (!document.documentElement.dataset.questionReviewQueueBound) {
+      document.addEventListener('click', event => {
+        const toggle = event.target.closest('[data-question-review-toggle]');
+        if (!toggle) return;
+        reviewQueueExpanded = !reviewQueueExpanded;
+        render();
+      });
+      document.documentElement.dataset.questionReviewQueueBound = 'true';
+    }
     const evidencePanel = '<section class="classroom-evidence" aria-label="题库来源与事实核验状态">' +
       '<div class="classroom-evidence__head"><div><span class="classroom-kicker">QUESTION BANK / EVIDENCE QUALITY</span>' +
       '<h3>题库来源与事实核验</h3><p>题库条目不会因挂载了 NASA / IAU 链接就自动视为正确；必须逐题核对题干、答案和解析。</p></div>' +
@@ -47,7 +84,7 @@
         '<article><span>已人工复核</span><strong>'+evidence.verified+'</strong><small>可进入正式题库候选</small></article>' +
         '<article><span>来源待终审</span><strong>'+evidence.reviewNeeded+'</strong><small>含 '+evidence.withSources+' 条官方来源候选</small></article>' +
         '<article><span>尚无来源</span><strong>'+evidence.withoutSources+'</strong><small>须补权威出处或修订</small></article>' +
-      '</div><p class="classroom-evidence__note"><b>'+safe(evidenceStatus)+'</b>。在题目逐条复核完成前，练习结果只用于学习反馈，不作为正式竞赛成绩或知识认证。</p></section>';
+      '</div>'+reviewQueue+'<p class="classroom-evidence__note"><b>'+safe(evidenceStatus)+'</b>。在题目逐条复核完成前，练习结果只用于学习反馈，不作为正式竞赛成绩或知识认证。</p></section>';
 
     const modules = [
       {id:'learn',number:'01',icon:'✦',title:'知识星图',description:'按知识主题进入概念、图示、天体运动与动态模拟',action:'进入知识地图',tone:'sky'},
