@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const crypto = require('node:crypto');
 const bankSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const classroom = fs.readFileSync('assets/js/astronomy-classroom-v3.js', 'utf8');
+const classroomCss = fs.readFileSync('assets/css/study-command-center.css', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('assets/data/question-evidence.json', 'utf8'));
 const questionRows = new Map();
 const rows = bankSource.split(/\r?\n/).map(line => {
@@ -103,3 +104,12 @@ assert.ok(classroom.includes('answerText(question)') &&
 assert.ok(classroom.includes('只读审阅视图') &&
           !classroom.includes("status = 'verified'"),
   'the review queue must not auto-approve or mutate question evidence status');
+
+assert.ok(classroom.includes('证据索引暂不可用，无法生成逐题清单') &&
+          classroom.includes('所有题目继续按待核验处理'),
+  'an unavailable evidence index must not be presented as an empty or approved review queue');
+for (const selector of [
+  '.classroom-review-queue{', '.classroom-review-queue__toggle',
+  '.classroom-review-item summary', '.classroom-review-item__sources'
+]) assert.ok(classroomCss.includes(selector),
+  'question review queue must have responsive, keyboard-visible styles: ' + selector);
