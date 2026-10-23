@@ -83,6 +83,70 @@
       '<section class="classroom-resume is-idle"><div><span class="classroom-kicker">NEXT STUDY SESSION</span><strong>开始今天的学习任务</strong><small>按知识点掌握、答题统计和到期复习计划安排下一步。</small></div>'+
       '<button type="button" onclick="startPractice(\''+currentLevel+'\',\'\')">开始练习 ↗</button></section>';
 
+    const qStats = Store.getQStats();
+    const topicRows = mastery.map(item => {
+      const topicQuestions = questions.filter(question => question.category === item.category);
+      const attemptedQuestions = topicQuestions.filter(question =>
+        qStats[question.id] && Number(qStats[question.id].t) > 0
+      ).length;
+      const dueCount = dueWrong.filter(row => {
+        const question = questionById.get(row.id);
+        return question && question.category === item.category;
+      }).length;
+      let stateKey = 'new';
+      let stateLabel = '尚未开始';
+      if (item.score.answered >= 3 && item.score.rate < 80) {
+        stateKey = 'needs-work';
+        stateLabel = '需要强化';
+      } else if (item.score.answered >= 3 && item.score.rate >= 80) {
+        stateKey = 'steady';
+        stateLabel = '阶段稳定';
+      } else if (item.score.answered > 0) {
+        stateKey = 'warming';
+        stateLabel = '继续积累';
+      }
+      const coveragePct = topicQuestions.length
+        ? Math.round(attemptedQuestions / topicQuestions.length * 100) : 0;
+      const uniqueLabel = attemptedQuestions + ' / ' + topicQuestions.length + ' 题有作答记录';
+      const accuracyLabel = item.score.answered
+        ? '作答正确率 ' + item.score.rate + '%' : '正确率待积累';
+      return {
+        category:item.category,
+        stateKey,stateLabel,
+        dueCount,
+        coveragePct,
+        uniqueLabel,
+        accuracyLabel,
+        total:topicQuestions.length
+      };
+    });
+    const topicMap = '<section class="classroom-topic-map" aria-label="按真实作答记录计算的知识主题掌握地图">' +
+      '<div class="classroom-section-head"><div><span class="classroom-kicker">TOPIC MASTERY / NEXT BEST ACTION</span>' +
+        '<h3>知识主题掌握地图</h3><p>按本机作答统计与到期错题安排下一步；未开始主题保持未知，不推算掌握度。</p></div>' +
+        '<div class="classroom-topic-map__legend"><span class="is-needs">需要强化</span><span class="is-steady">阶段稳定</span><span class="is-new">尚未开始</span></div></div>' +
+      '<div class="classroom-topic-map__grid">' +
+      topicRows.map(row =>
+        '<article class="classroom-topic-card '+row.stateKey+'" data-topic-state="'+row.stateKey+'">' +
+          '<div class="classroom-topic-card__top"><strong>'+safe(row.category)+'</strong><span class="classroom-topic-card__state">'+row.stateLabel+'</span></div>' +
+          '<div class="classroom-topic-card__meta"><span>'+row.uniqueLabel+'</span><span>'+row.accuracyLabel+'</span></div>' +
+          '<div class="classroom-topic-card__track" role="img" aria-label="'+safe(row.category)+'，有作答记录题目覆盖 '+row.coveragePct+'%"><i style="width:'+row.coveragePct+'%"></i></div>' +
+          '<div class="classroom-topic-card__foot"><span>'+(row.dueCount ? row.dueCount+' 道到期错题' : (row.stateKey === 'new' ? '等待首次作答' : '暂无到期错题'))+'</span>' +
+          '<button type="button" data-classroom-topic="'+safe(row.category)+'" aria-label="练习知识主题 '+safe(row.category)+'">专项练习 ↗</button></div>' +
+        '</article>'
+      ).join('') +
+      '</div><p class="classroom-topic-map__note">覆盖率表示当前学段中至少作答过一次的题目比例；正确率按本机已批改作答次数计算，两者含义不同。</p></section>';
+
+    if (!document.documentElement.dataset.classroomTopicActionsBound) {
+      document.addEventListener('click', event => {
+        const button = event.target.closest('[data-classroom-topic]');
+        if (!button) return;
+        const category = button.getAttribute('data-classroom-topic');
+        if (!category) return;
+        startPractice(state.level, category);
+      });
+      document.documentElement.dataset.classroomTopicActionsBound = 'true';
+    }
+
     const inspector = '<aside class="classroom-inspector" aria-label="本机学习上下文与题库证据检查器">' +
       '<section class="classroom-inspector-card"><span class="classroom-kicker">LEARNING CONTEXT / LOCAL RECORDS</span>' +
         '<h3>当前学习上下文</h3><div class="classroom-inspector-level">'+safe(currentLevel)+'组 · 本机记录</div>' +
@@ -127,6 +191,7 @@
       '<section class="classroom-control"><div class="classroom-control__title"><div><span class="classroom-kicker">YOUR LEARNING PROFILE</span><strong>学习计划与学段</strong><small>进度来自本机已保存作答；未作答知识点不会被标记为掌握。</small></div><div class="classroom-levels">'+levelButtons+'</div></div>' +
       '<div class="classroom-metrics">'+metrics+'</div></section>' +
       session +
+      topicMap +
       '<section class="classroom-module-section"><div class="classroom-section-head"><div><span class="classroom-kicker">LEARNING PATH</span><h3>学习工作区</h3><p>选择当前需要执行的学习任务，所有入口连接现有题库、阅卷、模拟与学习记录。</p></div><span class="classroom-path-badge">'+mastered+' 个主题稳定掌握</span></div>' +
       '<div class="classroom-module-grid">'+moduleHtml+'</div></section>' +
       '<section class="classroom-progress-panel"><div class="classroom-section-head"><div><span class="classroom-kicker">LOCAL LEARNING RECORDS</span><h3>学习表现与复习安排</h3><p>只展示本机已有作答记录；空白记录不作推断。</p></div></div>' +
