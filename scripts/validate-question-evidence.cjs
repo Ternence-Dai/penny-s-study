@@ -22,7 +22,8 @@ function isValidReviewTimestamp(value) {
   if (month < 1 || month > 12 || day < 1 || day > days[month - 1]) return false;
   if (match[7] !== 'Z') {
     const hour = Number(match[9]), minute = Number(match[10]);
-    if (minute > 59 || hour > 14 || (hour === 14 && minute !== 0)) return false;
+    if (minute > 59 || hour > 14 || (hour === 14 && minute !== 0) ||
+        (match[8] === '-' && hour === 0 && minute === 0)) return false;
   }
   const timestamp = Date.parse(value);
   if (!Number.isFinite(timestamp)) return false;
@@ -35,6 +36,7 @@ for (const [value, expected] of [
   ['2024-02-29T12:30:00.123+08:00', true],
   ['2026-02-30T12:30:00Z', false],
   ['2026-01-01T12:30:00+14:30', false],
+  ['2026-01-01T12:30:00-00:00', false],
   ['2026-01-01T12:30:00', false],
   ['2026-13-01T12:30:00Z', false],
 ]) {
