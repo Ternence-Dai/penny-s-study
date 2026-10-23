@@ -18,6 +18,17 @@ test("schedules deterministic spaced repetition",()=>{
  assert.equal(nextReviewDate({reviewedAt:"2026-01-01T00:00:00Z",quality:5,previousIntervalDays:4}).intervalDays,10);
 });
 
+test("rejects RFC 3339 unknown local offset for review scheduling",()=>{
+ assert.throws(()=>nextReviewDate({
+  reviewedAt:"2026-01-01T00:00:00-00:00",quality:4
+ }),TypeError);
+ assert.equal(nextReviewDate({
+  reviewedAt:"2026-01-01T00:00:00+00:00",quality:4
+ }).dueAt,"2026-01-02T00:00:00.000Z");
+ assert.equal(nextReviewDate({
+  reviewedAt:"2026-01-01T00:00:00Z",quality:4
+ }).dueAt,"2026-01-02T00:00:00.000Z");
+});
 test("requires timezone-qualified review timestamps and safe review intervals",()=>{
  assert.throws(()=>nextReviewDate({reviewedAt:"2026-01-01T00:00:00",quality:4}),TypeError);
  assert.throws(()=>nextReviewDate({reviewedAt:"2026-02-30T00:00:00Z",quality:4}),TypeError);
