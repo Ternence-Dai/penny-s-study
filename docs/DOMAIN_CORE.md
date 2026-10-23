@@ -42,3 +42,19 @@ The wrong-question ledger stores optional, validated review metadata: interval d
 ## Question-bank option integrity
 
 The 300-question validation also rejects blank or non-text choice options, options that become duplicates after trimming, and repeated fill-in accepted-answer entries. This catches malformed imported bank content before it reaches the grading UI.
+
+ 
+## Version-bound question review evidence
+
+The question evidence manifest supports three distinct states: `review-needed`, `verified`, and `rejected`. A source link alone never changes a question's review state.
+
+A question may be marked `verified` or `rejected` only when the record includes:
+- a reviewer attribution and timezone-qualified review timestamp;
+- explicit review attestations for the question stem, answer key, and explanation;
+- a SHA-256 digest of the exact current question-bank row, binding the decision to the reviewed wording, options, answer and explanation;
+- at least one source on the approved NASA/IAU/Chinese official-source host allowlist; and
+- a non-empty rejection reason when the outcome is `rejected`.
+
+If the question-bank row changes after review, its digest no longer matches and the validator rejects the stale review record. The current 300 questions remain `review-needed`; this change does not promote any AI-collected candidate source or question to verified.
+
+This is a data-integrity gate, not an authentication system: reviewer names are attribution fields, not proof of identity. Publishing a review decision still requires a trusted human review and a controlled repository change. The static site does not provide secure multi-user review submission or role-based authorization.
