@@ -77,3 +77,11 @@ jobs:
           exit 1
       - name: Verify install shell, offline launch, deep links and mobile navigation
         run: node scripts/browser-pwa-smoke.cjs
+      - name: Upload desktop and mobile topic mastery screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: penny-topic-mastery-ui-evidence
+          path: artifacts/*.png
+          if-no-files-found: ignore
+          retention-days: 7
