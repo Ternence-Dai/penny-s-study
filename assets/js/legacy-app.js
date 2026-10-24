@@ -2136,7 +2136,12 @@ var TITLES = {
 };
 var TABS = ['home','learn','ai','news','wrong','profile'];
 
+const VALID_STUDY_PAGES = new Set(['home','practice','exam','result','wrong','learn','learnDetail','ai','profile','news']);
 function go(p,o){
+  if (typeof p !== 'string' || !VALID_STUDY_PAGES.has(p)) {
+    console.warn('Ignored navigation to an unknown astronomy learning page:', p);
+    return false;
+  }
   if(state.page==='practice'&&state.practice) Store.saveActivePractice(state.practice);
   SimEngine.stopAll();
   if (state.page === 'news' && p !== 'news') Reader.stop();
@@ -2144,6 +2149,7 @@ function go(p,o){
   if (o) Object.assign(state, o);
   window.scrollTo(0,0);
   render();
+  return true;
 }
 
 /* ==========================================
@@ -2166,7 +2172,10 @@ function render(){
     backBtn.classList.add('hidden');
     tabbar.classList.remove('hidden');
     document.querySelectorAll('.tabbar button').forEach(function(b){
-      b.classList.toggle('active', b.dataset.tab === state.page);
+      const active = b.dataset.tab === state.page;
+      b.classList.toggle('active', active);
+      if (active) b.setAttribute('aria-current', 'page');
+      else b.removeAttribute('aria-current');
     });
   } else {
     backBtn.classList.remove('hidden');

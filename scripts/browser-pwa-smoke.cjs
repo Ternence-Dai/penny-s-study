@@ -183,6 +183,20 @@ const fs = require('node:fs');
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => document.activeElement?.getAttribute('id') === 'view');
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
+    const initialStudyRoute = await page.evaluate(() => ({
+      page: state.page,
+      current: document.querySelector('#tabbar button.active')?.getAttribute('aria-current')
+    }));
+    const invalidStudyRoute = await page.evaluate(() => window.go('__invalid_study_page__'));
+    const afterInvalidStudyRoute = await page.evaluate(() => ({
+      page: state.page,
+      current: document.querySelector('#tabbar button.active')?.getAttribute('aria-current')
+    }));
+    if (initialStudyRoute.page !== 'home' || initialStudyRoute.current !== 'page' ||
+        invalidStudyRoute !== false || JSON.stringify(initialStudyRoute) !== JSON.stringify(afterInvalidStudyRoute)) {
+      throw new Error('Astronomy navigation must expose the current tab and reject unknown routes safely: ' +
+        JSON.stringify({initialStudyRoute,invalidStudyRoute,afterInvalidStudyRoute}));
+    }
     const studyHome = await page.evaluate(() => {
       const heading = document.querySelector('#view .w9-home-heading');
       const command = document.querySelector('#view .w9-study-command');
@@ -385,7 +399,8 @@ const fs = require('node:fs');
     // Verify the actual 北斗七星 -> 北极星 dynamic diagram and its playback controls.
     await page.locator('#tabbar [data-tab="learn"]').click();
     await page.waitForFunction(() => window.state?.page === 'learn' &&
-      document.querySelectorAll('#view .learn-card').length > 0);
+      document.querySelectorAll('#view .learn-card').length > 0 &&
+      document.querySelector('#tabbar button.active[data-tab="learn"]')?.getAttribute('aria-current') === 'page');
     await page.locator('#view .learn-card').filter({ hasText: '星座' }).click();
     await page.waitForFunction(() => window.state?.page === 'learnDetail' &&
       window.state?.learnCategory === '星座');
