@@ -157,7 +157,7 @@ assert.ok(html.includes('viewport-fit=cover') && !html.includes('user-scalable=n
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
-const norm = value => String(value == null ? '' : value).normalize('NFC').trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g, '');
+const norm = value => String(value == null ? '' : value).normalize('NFC').trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/(?<![0-9])\.(?![0-9])|(?<=[0-9])\.(?=\s|$)/g, '').replace(/[\s，,。、；;：:！!？?'"′″（）()]/g, '');
 const q = (type, answer) => ({ type, answer });
 assert.equal(norm('3.26'), '3.26',
   'decimal points between digits are significant scientific notation and must be preserved');
