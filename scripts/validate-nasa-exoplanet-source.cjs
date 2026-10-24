@@ -41,7 +41,7 @@ assert.ok(css.includes('.nasa-exoplanet-explorer__table-wrap') &&
           css.includes('.nasa-exoplanet-explorer__empty--warning') &&
           css.includes('overflow:auto'),
   'NASA result table must support empty, error and constrained-width states');
-assert.ok(worker.includes("penny-study-shell-v26") &&
+assert.ok(worker.includes("penny-study-shell-v27") &&
           worker.includes("nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1") &&
           worker.includes("nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1") &&
           worker.includes("reference-shell-v4-boot.js?v=20261022-reference-v6"),
