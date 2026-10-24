@@ -157,8 +157,27 @@ assert.ok(html.includes('viewport-fit=cover') && !html.includes('user-scalable=n
 const context = vm.createContext({});
 vm.runInContext(source, context);
 const grade = context.PennyQuestionGrading.isCorrect;
-const norm = value => String(value == null ? '' : value).normalize('NFC').trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/[\s，,。.、；;：:！!？?'"′″（）()]/g, '');
+const norm = value => String(value == null ? '' : value).normalize('NFC').trim().toLowerCase().replace(/([0-9])\s*[′']/g, '$1分').replace(/([0-9])\s*[″"]/g, '$1秒').replace(/[°º]/g, '度').replace(/(?<![0-9])\.(?![0-9])|(?<=[0-9])\.(?=\s|$)/g, '').replace(/[\s，,。、；;：:！!？?'"′″（）()]/g, '');
 const q = (type, answer) => ({ type, answer });
+assert.equal(norm('3.26'), '3.26',
+  'decimal points between digits are significant scientific notation and must be preserved');
+assert.notEqual(norm('3.26'), norm('326'),
+  'a decimal answer must not collapse into an integer answer');
+assert.equal(norm('365.2425'), '365.2425');
+assert.notEqual(norm('365.2425'), norm('3652425'));
+assert.equal(grade(q('fill', ['3.26']), '3.26', norm), true);
+assert.equal(grade(q('fill', ['3.26']), '326', norm), false,
+  'the live grader must reject an integer when the accepted answer is a decimal');
+assert.equal(grade(q('fill', ['365.2425']), '3652425', norm), false);
+assert.equal(grade(q('fill', ['3.26']), '3.26。', norm), true,
+  'sentence punctuation may be removed without discarding the decimal point');
+const parsecQuestion = questionBank.find(question => question.id === 'j149');
+const tropicalYearQuestion = questionBank.find(question => question.id === 'j113');
+assert.ok(parsecQuestion && tropicalYearQuestion, 'decimal astronomy reference questions must remain in the bank');
+assert.equal(grade(parsecQuestion, '3.26', norm), true);
+assert.equal(grade(parsecQuestion, '326', norm), false);
+assert.equal(grade(tropicalYearQuestion, '365.2425', norm), true);
+assert.equal(grade(tropicalYearQuestion, '3652425', norm), false);
 assert.equal(norm("20°30'"), norm("20°30′"), 'ASCII apostrophe must normalize as angle minutes');
 assert.equal(norm('20°30"'), norm('20°30″'), 'ASCII quote must normalize as angle seconds');
 assert.equal(grade(q('fill', ['20°30′']), "20°30'", norm), true);
