@@ -100,13 +100,11 @@ self.addEventListener('fetch', event => {
       return fetch(request).then(response => {
         if (response && response.ok && response.type === 'basic') {
           const copy = response.clone();
-          // Keep the fetch event alive until the static asset is safely cached.
-          // Otherwise the worker may be terminated after responding to the page
-          // but before this detached cache.put() promise finishes.
-          return caches.open(CACHE_NAME)
+          // Keep the fetch event alive without delaying the network response.
+          const cacheWrite = caches.open(CACHE_NAME)
             .then(cache => cache.put(request, copy))
-            .then(() => response)
-            .catch(() => response);
+            .catch(() => {});
+          event.waitUntil(cacheWrite);
         }
         return response;
       });
