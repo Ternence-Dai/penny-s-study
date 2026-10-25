@@ -706,14 +706,20 @@ const fs = require('node:fs');
       const cache = await caches.open(shellName);
       const assetUrl = new URL('./assets/js/question-grading.js', location.href).href;
       await cache.delete(assetUrl);
-      const response = await fetch(assetUrl, { cache: 'reload' });
-      const cached = await cache.match(assetUrl);
-      return { ok: response.ok, status: response.status, cached: !!cached, assetUrl };
+      const response = await fetch(assetUrl);
+      return { ok: response.ok, status: response.status, assetUrl };
     });
-    if (!runtimeCacheRefill.ok || !runtimeCacheRefill.cached) {
-      throw new Error('A successfully fetched static asset was not committed to the PWA cache: ' +
+    if (!runtimeCacheRefill.ok) {
+      throw new Error('A static asset could not be fetched through the service worker: ' +
         JSON.stringify(runtimeCacheRefill));
     }
+    await page.waitForFunction(async assetUrl => {
+      const keys = await caches.keys();
+      const shellName = keys.find(key => key.startsWith('penny-study-shell-'));
+      if (!shellName) return false;
+      const cache = await caches.open(shellName);
+      return !!(await cache.match(assetUrl));
+    }, runtimeCacheRefill.assetUrl, { timeout: 5000 });
 
     await context.setOffline(true);
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
