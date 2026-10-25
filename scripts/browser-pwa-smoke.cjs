@@ -696,6 +696,25 @@ const fs = require('node:fs');
       throw new Error('Incomplete offline app shell: ' + JSON.stringify(cacheReport));
     }
 
+    // Evict one precached asset and force the service worker's network-to-cache
+    // path. The response must not finish before the replacement cache entry is
+    // committed, otherwise an immediate offline transition can lose the asset.
+    const runtimeCacheRefill = await page.evaluate(async () => {
+      const keys = await caches.keys();
+      const shellName = keys.find(key => key.startsWith('penny-study-shell-'));
+      if (!shellName) return { ok: false, cached: false, status: 0 };
+      const cache = await caches.open(shellName);
+      const assetUrl = new URL('./assets/js/question-grading.js', location.href).href;
+      await cache.delete(assetUrl);
+      const response = await fetch(assetUrl, { cache: 'reload' });
+      const cached = await cache.match(assetUrl);
+      return { ok: response.ok, status: response.status, cached: !!cached, assetUrl };
+    });
+    if (!runtimeCacheRefill.ok || !runtimeCacheRefill.cached) {
+      throw new Error('A successfully fetched static asset was not committed to the PWA cache: ' +
+        JSON.stringify(runtimeCacheRefill));
+    }
+
     await context.setOffline(true);
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
@@ -706,6 +725,14 @@ const fs = require('node:fs');
     }));
     if (!offlineRoot.heading || offlineRoot.preserved !== 'preserved') {
       throw new Error('Offline root launch or local progress preservation failed: ' + JSON.stringify(offlineRoot));
+    }
+    const refilledAssetOffline = await page.evaluate(async () => {
+      const response = await fetch('./assets/js/question-grading.js');
+      return { ok: response.ok, status: response.status };
+    });
+    if (!refilledAssetOffline.ok) {
+      throw new Error('The asset fetched and recached online was not available immediately offline: ' +
+        JSON.stringify(refilledAssetOffline));
     }
     const offlineEvidence = await page.evaluate(async () => {
       await window.questionEvidenceReady;
