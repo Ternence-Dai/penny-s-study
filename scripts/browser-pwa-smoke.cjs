@@ -702,24 +702,20 @@ const fs = require('node:fs');
     const runtimeCacheRefill = await page.evaluate(async () => {
       const keys = await caches.keys();
       const shellName = keys.find(key => key.startsWith('penny-study-shell-'));
-      if (!shellName) return { ok: false, cached: false, status: 0 };
+      if (!shellName) return { ok: false, cachedAfterResponse: false, status: 0 };
       const cache = await caches.open(shellName);
       const assetUrl = new URL('./assets/js/question-grading.js', location.href).href;
       await cache.delete(assetUrl);
       const response = await fetch(assetUrl);
-      return { ok: response.ok, status: response.status, assetUrl };
+      // Check immediately after fetch resolves. Waiting/polling here would hide
+      // a detached cache write that finishes only after the network response.
+      const cachedAfterResponse = !!(await cache.match(assetUrl));
+      return { ok: response.ok, status: response.status, assetUrl, cachedAfterResponse };
     });
-    if (!runtimeCacheRefill.ok) {
-      throw new Error('A static asset could not be fetched through the service worker: ' +
+    if (!runtimeCacheRefill.ok || !runtimeCacheRefill.cachedAfterResponse) {
+      throw new Error('A static asset response completed before its cache entry was durable: ' +
         JSON.stringify(runtimeCacheRefill));
     }
-    await page.waitForFunction(async assetUrl => {
-      const keys = await caches.keys();
-      const shellName = keys.find(key => key.startsWith('penny-study-shell-'));
-      if (!shellName) return false;
-      const cache = await caches.open(shellName);
-      return !!(await cache.match(assetUrl));
-    }, runtimeCacheRefill.assetUrl, { timeout: 5000 });
 
     await context.setOffline(true);
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
