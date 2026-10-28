@@ -97,14 +97,16 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
-      return fetch(request).then(response => {
+      return fetch(request).then(async response => {
         if (response && response.ok && response.type === 'basic') {
-          const copy = response.clone();
-          // Keep the fetch event alive without delaying the network response.
-          const cacheWrite = caches.open(CACHE_NAME)
-            .then(cache => cache.put(request, copy))
-            .catch(() => {});
-          event.waitUntil(cacheWrite);
+          try {
+            // respondWith owns this promise. Awaiting the cache write ensures
+            // the asset is available before the fetch response resolves.
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(request, response.clone());
+          } catch {
+            // A quota or cache-write failure must not discard a valid response.
+          }
         }
         return response;
       });
