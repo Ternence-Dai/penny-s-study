@@ -300,32 +300,32 @@ var Store = {
    知识卡片（含模拟器 ID）
    ========================================== */
 var KNOWLEDGE = [
-{id:'k_ss',level:'小学',category:'太阳系',icon:'敖',title:'太阳系大家庭',sim:'solar',content:'【八大行星顺序】由近到远：\n水星→金星→地球→火星→木星→土星→天王星→海王星\n\n【分类】\n· 类地行星：水、金、地、火（岩石）\n· 巨行星：木、土（气态）\n· 远日行星：天王、海王（冰质）\n\n【记住】最大木星、最小水星、最热金星、环最美土星。'},
-{id:'k_phase',level:'小学',category:'月相',icon:'',title:'月相变化规律',sim:'moonPhase',content:'【顺序】新月→上弦月→满月→下弦月→新月\n\n【口诀】上上上西西，下下下东东\n· 上弦月：上半夜、西边、亮面朝西\n· 下弦月：下半夜、东边、亮面朝东\n\n【时间】初一新月、初七八上弦、十五六满月、廿二三下弦。\n\n【周期】朔望月约29.53天。'},
+{id:'k_ss',level:'小学',category:'太阳系',icon:'🪐',title:'太阳系大家庭',sim:'solar',content:'【八大行星顺序】由近到远：\n水星→金星→地球→火星→木星→土星→天王星→海王星\n\n【分类】\n· 类地行星：水、金、地、火（岩石）\n· 巨行星：木、土（气态）\n· 远日行星：天王、海王（冰质）\n\n【记住】最大木星、最小水星、最热金星、环最美土星。'},
+{id:'k_phase',level:'小学',category:'月相',icon:'🌙',title:'月相变化规律',sim:'moonPhase',content:'【顺序】新月→上弦月→满月→下弦月→新月\n\n【口诀】上上上西西，下下下东东\n· 上弦月：上半夜、西边、亮面朝西\n· 下弦月：下半夜、东边、亮面朝东\n\n【时间】初一新月、初七八上弦、十五六满月、廿二三下弦。\n\n【周期】朔望月约29.53天。'},
 {id:'k_star_map',level:'小学',category:'星座',icon:'⭐',title:'认识星空',sim:'starMap',content:'【找北极星】\n1. 找北斗七星\n2. 勺头两星连线\n3. 朝勺口延长约5倍\n\n【重要】\n· 北极星地平高度≈观测者纬度\n· 北极星不是最亮的星（天狼星最亮）\n· 冬季代表：猎户座（腰带三星）\n· 夏季代表：天蝎座、天琴座、天鹅座'},
 {id:'k_star',level:'小学',category:'恒星',icon:'☀️',title:'恒星是什么',sim:'spectrum',content:'【定义】自身能发光发热、内部进行核聚变的天体。\n\n【太阳】距地球最近，约1.5亿千米\n【比邻星】距太阳最近，约4.22光年\n【天狼星】夜空最亮，视星等-1.46\n\n【恒星/行星/卫星】\n· 恒星：自己发光\n· 行星：反射光，绕恒星\n· 卫星：反射光，绕行星\n\n【寿命】主序星阶段约90%。'},
-{id:'k_eclipse',level:'小学',category:'日食月食',icon:'',title:'日食与月食',sim:'eclipse',content:'【日食】太阳→月球→地球\n· 农历初一（朔）发生\n· 分日全食、日偏食、日环食\n\n【月食】太阳→地球→月球\n· 农历十五前后（望）发生\n· 分月全食、月偏食、半影月食\n· 没有"月环食"\n\n【为何不是每月都有】\n白道与黄道有约5°09′夹角。'},
-{id:'k_motion',level:'小学',category:'天体运动',icon:'',title:'地球的运动',sim:'earth',content:'【自转】\n· 绕地轴，自西向东\n· 周期约24小时\n· 产生昼夜交替\n\n【公转】\n· 绕太阳，自西向东\n· 周期约365.2422天\n· 产生四季变化\n\n【节气】\n春分3.21、夏至6.22、秋分9.23、冬至12.22。'},
-{id:'k_moon',level:'小学',category:'月球',icon:'',title:'月球小档案',sim:'moonPhase',content:'【基本】\n· 地球唯一的天然卫星\n· 平均距离约38.4万千米\n· 直径约3476千米\n· 表面重力约为地球1/6\n\n【表面】\n· 无大气 → 昼夜温差大（+120~-180℃）\n· 无声音、天空漆黑\n· 环形山（陨石撞击）、月海（火山平原）\n\n【探月】1969阿波罗11号首次登月。'},
-{id:'k_galaxy',level:'小学',category:'星系',icon:'',title:'银河系与宇宙',sim:'galaxy',content:'【银河系】\n· 棒旋星系，直径约10万光年\n· 恒星约1000~4000亿颗\n· 太阳距银心约2.6万光年\n\n【河外星系】\n· 仙女座星系M31：约254万光年\n· 大麦哲伦云、小麦哲伦云\n\n【宇宙】\n本星系群直径约1000万光年，可观测宇宙直径约930亿光年。'},
-{id:'k_tele',level:'小学',category:'望远镜',icon:'',title:'天文望远镜入门',sim:'telescope',content:'【核心】不是放大，而是"聚光"！\n口径越大 → 聚光能力越强\n\n【两种基本类型】\n· 折射式：用凸透镜作物镜\n· 反射式：用凹面镜作物镜\n\n【放大倍率】\n= 物镜焦距 ÷ 目镜焦距\n有效倍率上限 ≈ 口径(mm) × 2\n\n【安全】观测太阳必须使用专用滤光片！'},
+{id:'k_eclipse',level:'小学',category:'日食月食',icon:'🌑',title:'日食与月食',sim:'eclipse',content:'【日食】太阳→月球→地球\n· 农历初一（朔）发生\n· 分日全食、日偏食、日环食\n\n【月食】太阳→地球→月球\n· 农历十五前后（望）发生\n· 分月全食、月偏食、半影月食\n· 没有"月环食"\n\n【为何不是每月都有】\n白道与黄道有约5°09′夹角。'},
+{id:'k_motion',level:'小学',category:'天体运动',icon:'🌍',title:'地球的运动',sim:'earth',content:'【自转】\n· 绕地轴，自西向东\n· 周期约24小时\n· 产生昼夜交替\n\n【公转】\n· 绕太阳，自西向东\n· 周期约365.2422天\n· 产生四季变化\n\n【节气】\n春分3.21、夏至6.22、秋分9.23、冬至12.22。'},
+{id:'k_moon',level:'小学',category:'月球',icon:'🌕',title:'月球小档案',sim:'moonPhase',content:'【基本】\n· 地球唯一的天然卫星\n· 平均距离约38.4万千米\n· 直径约3476千米\n· 表面重力约为地球1/6\n\n【表面】\n· 无大气 → 昼夜温差大（+120~-180℃）\n· 无声音、天空漆黑\n· 环形山（陨石撞击）、月海（火山平原）\n\n【探月】1969阿波罗11号首次登月。'},
+{id:'k_galaxy',level:'小学',category:'星系',icon:'🌌',title:'银河系与宇宙',sim:'galaxy',content:'【银河系】\n· 棒旋星系，直径约10万光年\n· 恒星约1000~4000亿颗\n· 太阳距银心约2.6万光年\n\n【河外星系】\n· 仙女座星系M31：约254万光年\n· 大麦哲伦云、小麦哲伦云\n\n【宇宙】\n本星系群直径约1000万光年，可观测宇宙直径约930亿光年。'},
+{id:'k_tele',level:'小学',category:'望远镜',icon:'🔭',title:'天文望远镜入门',sim:'telescope',content:'【核心】不是放大，而是"聚光"！\n口径越大 → 聚光能力越强\n\n【两种基本类型】\n· 折射式：用凸透镜作物镜\n· 反射式：用凹面镜作物镜\n\n【放大倍率】\n= 物镜焦距 ÷ 目镜焦距\n有效倍率上限 ≈ 口径(mm) × 2\n\n【安全】观测太阳必须使用专用滤光片！'},
 {id:'k_meteor',level:'小学',category:'流星',icon:'☄️',title:'流星与流星雨',sim:'meteor',content:'【流星】\n流星体高速进入地球大气层，与大气摩擦生热发光。\n\n【火流星】特别明亮的流星\n【陨石】未烧尽落到地面的残骸\n\n【流星雨】\n地球穿过彗星轨道遗留的尘埃带时形成。\n\n【著名】英仙座（8月）、双子座（12月）、象限仪座（1月）。'},
 {id:'k_sun',level:'小学',category:'太阳',icon:'☀️',title:'太阳活动',sim:'sunStruct',content:'【太阳黑子】\n· 太阳活动的基本标志\n· 温度比周围低约1500℃\n· 变化周期约11年\n\n【其他活动】\n· 耀斑：太阳大气突然释放巨大能量\n· 日珥：太阳边缘喷出的巨大气体\n· 太阳风：太阳向外吹出的带电粒子流\n\n【影响】极光、干扰通信、影响卫星。'},
-{id:'k_unit',level:'小学',category:'天文单位',icon:'',title:'天文距离单位',sim:'lightyear',content:'【天文单位 AU】\n1 AU ≈ 1.496亿千米 = 地日平均距离\n\n【光年 ly】\n1 光年 ≈ 9.46万亿千米\n\n【秒差距 pc】\n1 秒差距 ≈ 3.26光年 ≈ 206265 AU\n\n【大小】秒差距 > 光年 > 天文单位'},
-{id:'k_history',level:'小学',category:'天文史',icon:'',title:'航天与天文史',sim:'rocket',content:'【世界】\n· 1961 加加林首次进入太空\n· 1969 阿姆斯特朗首次登月\n\n【中国】\n· 2003 杨利伟乘神舟五号\n· 2008 翟志刚首次太空行走\n· 2016 FAST"中国天眼"落成\n· 2020 嫦娥五号月球采样返回\n· 2021 天问一号着陆火星'},
-{id:'k_j_coord',level:'初中',category:'天球坐标',icon:'吝',title:'天球坐标系统',sim:'coord',content:'【天球】以观测者为球心的假想球面。\n\n【地平坐标】\n· 基圈：地平圈\n· 分量：方位角A + 地平高度h\n· 随观测地点和时间变化\n\n【赤道坐标】\n· 基圈：天赤道\n· 分量：赤经α + 赤纬δ\n· 与地点、时间无关\n\n【赤经】自春分点起算，1h=15°\n【赤纬】自天赤道起算，北正南负\n【北天极地平高度】= 观测者地理纬度'},
-{id:'k_j_evo',level:'初中',category:'恒星演化',icon:'',title:'恒星演化路径',sim:'evolution',content:'【小质量恒星（< 8 倍太阳质量）】\n分子云 → 主序星 → 红巨星 → 行星状星云 → 白矮星\n太阳最终成为白矮星\n\n【大质量恒星（> 8 倍太阳质量）】\n分子云 → 主序星 → 红超巨星 → 超新星爆发\n→ 中子星（1.4~3 倍太阳质量）\n→ 黑洞（> 3 倍太阳质量）\n\n【主序星】恒星一生最长的阶段（约占90%）。'},
-{id:'k_j_mag',level:'初中',category:'星等',icon:'',title:'星等与光度',sim:'hr',content:'【视星等 m】肉眼看到的亮度，越小越亮\n太阳-26.7、满月-12.7、天狼星-1.46、肉眼极限+6\n\n【绝对星等 M】\n把恒星放到10秒差距处的视星等\n\n【距离模数】\nM = m + 5 − 5·lg d\n\n【亮度比】每差1等约2.512倍，差5等=100倍。'},
-{id:'k_j_motion',level:'初中',category:'天体运动',icon:'',title:'视运动与坐标系',sim:'earth',content:'【周日视运动】\n由地球自转引起，天体东升西落\n周期：1恒星日 = 23h56m4s\n\n【周年视运动】\n由地球公转引起\n太阳沿黄道自西向东移动\n\n【黄赤交角】约23°26′\n是四季变化和昼夜长短变化的根本原因\n\n【拱极星】天极附近永不落下的星\n北纬φ处，赤纬δ > 90°−φ 的星为拱极星。'},
-{id:'k_j_tele',level:'初中',category:'望远镜',icon:'',title:'望远镜原理与参数',sim:'telescope',content:'【核心参数】\n· 口径D：物镜直径，决定聚光能力和分辨率\n· 分辨率 ≈ 1.22 λ / D（角秒）\n\n【放大倍率】\n放大倍率 = 物镜焦距 ÷ 目镜焦距\n有效倍率上限 ≈ 口径(mm) × 2\n\n【类型】\n· 折射式：凸透镜物镜\n· 反射式（牛顿式）：凹面镜物镜\n· 折反射式：兼顾两者'},
-{id:'k_j_phase',level:'初中',category:'月相',icon:'',title:'月相与月球运动',sim:'moonPhase',content:'【两个周期】\n· 恒星月：27.32天（月球公转）\n· 朔望月：29.53天（月相变化）\n\n【为什么朔望月更长】\n地球同时绕太阳公转，月球需多走约2.2天。\n\n【月球同步自转】\n自转周期 = 公转周期 = 27.32天\n所以地球上永远只能看到月球同一面。'},
-{id:'k_j_eclipse',level:'初中',category:'日食月食',icon:'',title:'日月食机制',sim:'eclipse',content:'【日食】太阳→月球→地球\n· 只在朔（初一）发生\n· 日全食、日偏食、日环食\n\n【月食】太阳→地球→月球\n· 只在望（十五前后）发生\n· 月全食、月偏食、半影月食\n\n【为什么不是每月都有】\n白道与黄道有约5°09′交角。\n\n【沙罗周期】约18年11天8小时。'},
-{id:'k_j_galaxy',level:'初中',category:'星系',icon:'',title:'星系与宇宙膨胀',sim:'galaxy',content:'【银河系】\n· 棒旋星系，直径约10万光年\n· 恒星约1000~4000亿颗\n· 太阳距银心约2.6万光年\n· 中心有人马座A*（超大质量黑洞）\n\n【哈勃定律】\nv = H₀ × d（H₀约70 km/s/Mpc）\n说明宇宙在膨胀\n\n【宇宙年龄】约138亿年\n【可观测宇宙直径】约930亿光年'},
-{id:'k_j_history',level:'初中',category:'天文史',icon:'',title:'中外天文简史',sim:'rocket',content:'【中国古代】\n· 张衡（东汉）：浑天仪、地动仪、《灵宪》\n· 祖冲之（南朝）：《大明历》\n· 一行（唐）：《大衍历》\n· 郭守敬（元）：登封观星台，《授时历》\n\n【西方】\n托勒密（地心说）→哥白尼（日心说）→第谷→开普勒（三定律）→伽利略（望远镜）→牛顿（万有引力）'},
+{id:'k_unit',level:'小学',category:'天文单位',icon:'📏',title:'天文距离单位',sim:'lightyear',content:'【天文单位 AU】\n1 AU ≈ 1.496亿千米 = 地日平均距离\n\n【光年 ly】\n1 光年 ≈ 9.46万亿千米\n\n【秒差距 pc】\n1 秒差距 ≈ 3.26光年 ≈ 206265 AU\n\n【大小】秒差距 > 光年 > 天文单位'},
+{id:'k_history',level:'小学',category:'天文史',icon:'🚀',title:'航天与天文史',sim:'rocket',content:'【世界】\n· 1961 加加林首次进入太空\n· 1969 阿姆斯特朗首次登月\n\n【中国】\n· 2003 杨利伟乘神舟五号\n· 2008 翟志刚首次太空行走\n· 2016 FAST"中国天眼"落成\n· 2020 嫦娥五号月球采样返回\n· 2021 天问一号着陆火星'},
+{id:'k_j_coord',level:'初中',category:'天球坐标',icon:'🧭',title:'天球坐标系统',sim:'coord',content:'【天球】以观测者为球心的假想球面。\n\n【地平坐标】\n· 基圈：地平圈\n· 分量：方位角A + 地平高度h\n· 随观测地点和时间变化\n\n【赤道坐标】\n· 基圈：天赤道\n· 分量：赤经α + 赤纬δ\n· 与地点、时间无关\n\n【赤经】自春分点起算，1h=15°\n【赤纬】自天赤道起算，北正南负\n【北天极地平高度】= 观测者地理纬度'},
+{id:'k_j_evo',level:'初中',category:'恒星演化',icon:'💫',title:'恒星演化路径',sim:'evolution',content:'【小质量恒星（< 8 倍太阳质量）】\n分子云 → 主序星 → 红巨星 → 行星状星云 → 白矮星\n太阳最终成为白矮星\n\n【大质量恒星（> 8 倍太阳质量）】\n分子云 → 主序星 → 红超巨星 → 超新星爆发\n→ 中子星（1.4~3 倍太阳质量）\n→ 黑洞（> 3 倍太阳质量）\n\n【主序星】恒星一生最长的阶段（约占90%）。'},
+{id:'k_j_mag',level:'初中',category:'星等',icon:'📊',title:'星等与光度',sim:'hr',content:'【视星等 m】肉眼看到的亮度，越小越亮\n太阳-26.7、满月-12.7、天狼星-1.46、肉眼极限+6\n\n【绝对星等 M】\n把恒星放到10秒差距处的视星等\n\n【距离模数】\nM = m + 5 − 5·lg d\n\n【亮度比】每差1等约2.512倍，差5等=100倍。'},
+{id:'k_j_motion',level:'初中',category:'天体运动',icon:'🌐',title:'视运动与坐标系',sim:'earth',content:'【周日视运动】\n由地球自转引起，天体东升西落\n周期：1恒星日 = 23h56m4s\n\n【周年视运动】\n由地球公转引起\n太阳沿黄道自西向东移动\n\n【黄赤交角】约23°26′\n是四季变化和昼夜长短变化的根本原因\n\n【拱极星】天极附近永不落下的星\n北纬φ处，赤纬δ > 90°−φ 的星为拱极星。'},
+{id:'k_j_tele',level:'初中',category:'望远镜',icon:'🔭',title:'望远镜原理与参数',sim:'telescope',content:'【核心参数】\n· 口径D：物镜直径，决定聚光能力和分辨率\n· 分辨率 ≈ 1.22 λ / D（角秒）\n\n【放大倍率】\n放大倍率 = 物镜焦距 ÷ 目镜焦距\n有效倍率上限 ≈ 口径(mm) × 2\n\n【类型】\n· 折射式：凸透镜物镜\n· 反射式（牛顿式）：凹面镜物镜\n· 折反射式：兼顾两者'},
+{id:'k_j_phase',level:'初中',category:'月相',icon:'🌙',title:'月相与月球运动',sim:'moonPhase',content:'【两个周期】\n· 恒星月：27.32天（月球公转）\n· 朔望月：29.53天（月相变化）\n\n【为什么朔望月更长】\n地球同时绕太阳公转，月球需多走约2.2天。\n\n【月球同步自转】\n自转周期 = 公转周期 = 27.32天\n所以地球上永远只能看到月球同一面。'},
+{id:'k_j_eclipse',level:'初中',category:'日食月食',icon:'🌑',title:'日月食机制',sim:'eclipse',content:'【日食】太阳→月球→地球\n· 只在朔（初一）发生\n· 日全食、日偏食、日环食\n\n【月食】太阳→地球→月球\n· 只在望（十五前后）发生\n· 月全食、月偏食、半影月食\n\n【为什么不是每月都有】\n白道与黄道有约5°09′交角。\n\n【沙罗周期】约18年11天8小时。'},
+{id:'k_j_galaxy',level:'初中',category:'星系',icon:'🌌',title:'星系与宇宙膨胀',sim:'galaxy',content:'【银河系】\n· 棒旋星系，直径约10万光年\n· 恒星约1000~4000亿颗\n· 太阳距银心约2.6万光年\n· 中心有人马座A*（超大质量黑洞）\n\n【哈勃定律】\nv = H₀ × d（H₀约70 km/s/Mpc）\n说明宇宙在膨胀\n\n【宇宙年龄】约138亿年\n【可观测宇宙直径】约930亿光年'},
+{id:'k_j_history',level:'初中',category:'天文史',icon:'📜',title:'中外天文简史',sim:'rocket',content:'【中国古代】\n· 张衡（东汉）：浑天仪、地动仪、《灵宪》\n· 祖冲之（南朝）：《大明历》\n· 一行（唐）：《大衍历》\n· 郭守敬（元）：登封观星台，《授时历》\n\n【西方】\n托勒密（地心说）→哥白尼（日心说）→第谷→开普勒（三定律）→伽利略（望远镜）→牛顿（万有引力）'},
 {id:'k_j_sun',level:'初中',category:'太阳',icon:'☀️',title:'太阳的结构与活动',sim:'sunStruct',content:'【结构（由内到外）】\n核心 → 辐射层 → 对流层 → 光球 → 色球 → 日冕\n\n【温度】\n· 核心：约1500万℃（氢核聚变）\n· 光球：约5500℃\n· 色球：约4000~几万℃\n· 日冕：最外层，百万℃\n\n【活动】黑子、耀斑、日珥、太阳风。'},
 {id:'k_j_star',level:'初中',category:'恒星',icon:'⭐',title:'恒星的光谱与分类',sim:'spectrum',content:'【光谱型（温度由高到低）】\nO → B → A → F → G → K → M\n· O型：>30000K，蓝白色\n· G型：约5800K，黄色（太阳是G2V）\n· M型：<3500K，红色\n\n【赫罗图】\n· 主序星：左上到右下的对角带\n· 巨星、超巨星：右上\n· 白矮星：左下\n\n质量越大，光度越高，寿命越短。'},
-{id:'k_j_unit',level:'初中',category:'天文单位',icon:'',title:'距离单位与视差',sim:'lightyear',content:'【三种距离单位】\n· 天文单位 AU ≈ 1.496亿千米\n· 光年 ly ≈ 9.46万亿千米\n· 秒差距 pc ≈ 3.26光年 ≈ 206265 AU\n\n【周年视差】\n地球绕日公转导致近距离恒星在背景上的微小位移。\n\n公式：d(秒差距) = 1 / p(角秒)\n\n【比邻星】视差0.77角秒 → 距离1.3 pc ≈ 4.22 ly'},
-{id:'k_j_dso',level:'初中',category:'深空天体',icon:'',title:'深空天体与宇宙学',sim:'blackhole',content:'【深空天体】\n· 星云：猎户座大星云M42、蟹状星云M1\n· 星团：昴星团M45（疏散）、M13（球状）\n· 星系：M31仙女座、M33三角座\n\n【特殊天体】\n· 类星体：极亮的活跃星系核\n· 脉冲星：快速自转的中子星\n· 黑洞：人马座A*、M87*\n\n【宇宙学】\n大爆炸约138亿年前，微波背景辐射2.725K，暗物质约27%，暗能量约68%。'}
+{id:'k_j_unit',level:'初中',category:'天文单位',icon:'📐',title:'距离单位与视差',sim:'lightyear',content:'【三种距离单位】\n· 天文单位 AU ≈ 1.496亿千米\n· 光年 ly ≈ 9.46万亿千米\n· 秒差距 pc ≈ 3.26光年 ≈ 206265 AU\n\n【周年视差】\n地球绕日公转导致近距离恒星在背景上的微小位移。\n\n公式：d(秒差距) = 1 / p(角秒)\n\n【比邻星】视差0.77角秒 → 距离1.3 pc ≈ 4.22 ly'},
+{id:'k_j_dso',level:'初中',category:'深空天体',icon:'🌠',title:'深空天体与宇宙学',sim:'blackhole',content:'【深空天体】\n· 星云：猎户座大星云M42、蟹状星云M1\n· 星团：昴星团M45（疏散）、M13（球状）\n· 星系：M31仙女座、M33三角座\n\n【特殊天体】\n· 类星体：极亮的活跃星系核\n· 脉冲星：快速自转的中子星\n· 黑洞：人马座A*、M87*\n\n【宇宙学】\n大爆炸约138亿年前，微波背景辐射2.725K，暗物质约27%，暗能量约68%。'}
 ];
 
 /* ==========================================
@@ -661,7 +661,7 @@ SimEngine.sims.eclipse = {
     ctx.fillText('地球', earthX, earthY + earthR + 16);
     // 状态
     var dist = Math.abs(moonX - sunX);
-    var status = dist < sunR ? ' 日食进行中' : (progress < 0.5 ? '月球接近太阳' : '月球远离太阳');
+    var status = dist < sunR ? '🌑 日食进行中' : (progress < 0.5 ? '月球接近太阳' : '月球远离太阳');
     ctx.fillStyle = 'rgba(138,147,184,0.8)';
     ctx.font = '10px sans-serif';
     ctx.fillText(status + ' · 日食几何示意', w / 2, h - 6);
@@ -1630,7 +1630,7 @@ function simHTML(id, customTitle){
   var title = customTitle || SIM_TITLES[id] || '动态模拟';
   var hint = SIM_HINTS[id] || '';
   return '<div class="sim-box" data-simid="' + id + '">' +
-    '<div class="sim-head"><span class="sim-tag"> ' + title + '</span><span class="sim-info">动态模拟</span></div>' +
+    '<div class="sim-head"><span class="sim-tag">🎬 ' + title + '</span><span class="sim-info">动态模拟</span></div>' +
     '<canvas class="sim-canvas" data-sim="' + id + '" id="sim_' + id + '_' + Math.random().toString(36).slice(2, 8) + '"></canvas>' +
     '<div class="sim-ctrl">' +
       '<button class="sim-play active">⏸ 暂停</button>' +
@@ -1935,10 +1935,10 @@ Reader.init();
    AI 知识库与模型
    ========================================== */
 var AI_MODELS = [
-  {id:'general', name:'通用天文助手', icon:'', desc:'天文竞赛综合问答'},
-  {id:'quiz', name:'随机出题官', icon:'', desc:'随机抽取题目测验'},
-  {id:'explain', name:'概念讲解员', icon:'', desc:'通俗讲解天文概念'},
-  {id:'exam', name:'竞赛教练', icon:'', desc:'备赛策略与考点解析'}
+  {id:'general', name:'通用天文助手', icon:'🌟', desc:'天文竞赛综合问答'},
+  {id:'quiz', name:'随机出题官', icon:'📝', desc:'随机抽取题目测验'},
+  {id:'explain', name:'概念讲解员', icon:'📖', desc:'通俗讲解天文概念'},
+  {id:'exam', name:'竞赛教练', icon:'🎯', desc:'备赛策略与考点解析'}
 ];
 
 var AI_KB = [
@@ -2335,20 +2335,20 @@ function renderHome(){
     '<button type="button" ' + (dueReviewIds.size?'':'disabled') + ' onclick="startDueWrongReview()">按计划开始复习</button></aside></div></section>';
 
   // 快捷入口
-  h += '<div class="sec-title"> 快速开始</div>';
+  h += '<div class="sec-title">🚀 快速开始</div>';
   h += '<div class="quick-grid">' +
-    '<div class="quick-card q-blue" onclick="startPractice(\'' + state.level + '\',\'\')"><span class="qi"></span><div class="qt">开始练习</div><div class="qs">5 种题型</div></div>' +
+    '<div class="quick-card q-blue" onclick="startPractice(\'' + state.level + '\',\'\')"><span class="qi">📝</span><div class="qt">开始练习</div><div class="qs">5 种题型</div></div>' +
     '<div class="quick-card q-purple" onclick="startExam(\'' + state.level + '\')"><span class="qi">⏱️</span><div class="qt">模拟竞赛</div><div class="qs">限时倒扣分</div></div>' +
-    '<div class="quick-card q-cyan" onclick="go(\'learn\')"><span class="qi"></span><div class="qt">知识学习</div><div class="qs">动态模拟</div></div>' +
-    '<div class="quick-card q-green" onclick="go(\'news\')"><span class="qi"></span><div class="qt">天文读报</div><div class="qs">语音播报</div></div>' +
-    '<div class="quick-card q-amber" onclick="go(\'ai\')"><span class="qi">烙</span><div class="qt">AI 模型</div><div class="qs">智能问答</div></div>' +
-    '<div class="quick-card q-pink" onclick="go(\'wrong\')"><span class="qi"></span><div class="qt">错题归纳</div><div class="qs">' + stats.wrongCount + ' 道</div></div>' +
+    '<div class="quick-card q-cyan" onclick="go(\'learn\')"><span class="qi">📚</span><div class="qt">知识学习</div><div class="qs">动态模拟</div></div>' +
+    '<div class="quick-card q-green" onclick="go(\'news\')"><span class="qi">📰</span><div class="qt">天文读报</div><div class="qs">语音播报</div></div>' +
+    '<div class="quick-card q-amber" onclick="go(\'ai\')"><span class="qi">🤖</span><div class="qt">AI 模型</div><div class="qs">智能问答</div></div>' +
+    '<div class="quick-card q-pink" onclick="go(\'wrong\')"><span class="qi">📕</span><div class="qt">错题归纳</div><div class="qs">' + stats.wrongCount + ' 道</div></div>' +
     '</div>';
 
   // 每日一题
   var daily = getDaily(state.level);
   if (daily){
-    h += '<div class="sec-title"> 每日一题</div>';
+    h += '<div class="sec-title">📅 每日一题</div>';
     h += '<div class="card">' +
       '<div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:8px;">' + esc(daily.category) + ' <span class="type-badge ' + typeBadge(daily.type) + '">' + typeLabel(daily.type) + '</span></div>' +
       '<div style="font-size:15.5px;line-height:1.6;margin-bottom:10px;font-weight:500;">' + esc(daily.stem) + '</div>';
@@ -2365,12 +2365,12 @@ function renderHome(){
   }
 
   // 知识点地图
-  h += '<div class="sec-title">️ 知识点地图（' + cats.length + ' 个）</div>';
+  h += '<div class="sec-title">🗺️ 知识点地图（' + cats.length + ' 个）</div>';
   h += '<div class="map-grid">';
   cats.forEach(function(c){
     var m = getMastery(state.level, c);
     var k = getKnowledge(state.level, c);
-    var icon = k ? k.icon : '';
+    var icon = k ? k.icon : '📖';
     var bc = m.rate >= 80 ? 'var(--green)' : (m.rate >= 50 ? 'var(--amber)' : 'var(--red)');
     var bw = m.answered ? m.rate : 0;
     h += '<div class="map-card" onclick="openLearn(\'' + c.replace(/'/g,"\\'") + '\')">' +
@@ -2445,10 +2445,10 @@ function renderLearn(){
   cats.forEach(function(c){
     var m = getMastery(state.level, c);
     var k = getKnowledge(state.level, c);
-    var icon = k ? k.icon : '';
+    var icon = k ? k.icon : '📖';
     var bc = m.rate >= 80 ? 'var(--green)' : (m.rate >= 50 ? 'var(--amber)' : 'var(--red)');
     var bw = m.answered ? m.rate : 0;
-    var hasSim = k && k.sim ? '' : '';
+    var hasSim = k && k.sim ? '🎬' : '';
     h += '<div class="learn-card" onclick="openLearn(\'' + c.replace(/'/g,"\\'") + '\')">' +
       '<div class="learn-head"><div class="learn-ico">' + icon + '</div>' +
       '<div style="flex:1;"><div class="learn-name">' + esc(c) + ' ' + hasSim + '</div>' +
@@ -2464,7 +2464,7 @@ function openLearn(c){state.learnCategory=c;go('learnDetail');}
 
 function renderLearnDetail(){
   var c = state.learnCategory;
-  if (!c) return '<div class="empty"><div class="ico"></div><div class="txt">知识点不存在</div></div>';
+  if (!c) return '<div class="empty"><div class="ico">😕</div><div class="txt">知识点不存在</div></div>';
   var k = getKnowledge(state.level, c);
   var m = getMastery(state.level, c);
   var list = getQuestions(state.level, c);
@@ -2473,20 +2473,20 @@ function renderLearnDetail(){
     '<span class="tag">' + esc(c) + '</span>' +
     '<span class="tag ok">' + list.length + ' 道题</span>' +
     (m.wrongCount ? '<span class="tag err">错 ' + m.wrongCount + '</span>' : '') + '</div>';
-  h += '<div class="title" style="font-size:22px;margin-bottom:14px;">' + (k ? esc(k.icon) + ' ' + esc(k.title) : ' ' + esc(c)) + '</div>';
+  h += '<div class="title" style="font-size:22px;margin-bottom:14px;">' + (k ? esc(k.icon) + ' ' + esc(k.title) : '📖 ' + esc(c)) + '</div>';
 
   // 动态模拟器 + 知识卡片
   if (k){
     h += '<div class="study-box">' +
-      '<div style="font-size:14.5px;font-weight:700;color:var(--blue);margin-bottom:10px;"> 动态演示</div>' +
+      '<div style="font-size:14.5px;font-weight:700;color:var(--blue);margin-bottom:10px;">🎬 动态演示</div>' +
       simHTML(k.sim || 'solar') +
-      '<div style="font-size:14.5px;font-weight:700;color:var(--blue);margin:14px 0 10px;"> 知识卡片</div>' +
+      '<div style="font-size:14.5px;font-weight:700;color:var(--blue);margin:14px 0 10px;">📖 知识卡片</div>' +
       '<div class="k-content" style="font-size:14px;line-height:1.95;">' + esc(k.content) + '</div></div>';
   }
 
   // 掌握度
   h += '<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
-    '<div style="font-size:14.5px;font-weight:700;"> 掌握情况</div>' +
+    '<div style="font-size:14.5px;font-weight:700;">📈 掌握情况</div>' +
     '<div style="font-size:19px;font-weight:800;color:' + (m.answered?(m.rate>=80?'var(--green)':m.rate>=50?'var(--amber)':'var(--red)'):'var(--sub)') + ';">' +
     (m.answered ? m.rate + '%' : '—') + '</div></div>' +
     '<div class="mastery-bar"><i style="width:' + (m.answered?m.rate:0) + '%;background:' + (m.rate>=80?'var(--green)':m.rate>=50?'var(--amber)':'var(--red)') + ';"></i></div>' +
@@ -2506,7 +2506,7 @@ function renderLearnDetail(){
     '<button class="btn btn-ghost" onclick="go(\'learn\')">返回列表</button>' +
     '<button class="btn btn-main" onclick="startPractice(\'' + state.level + '\',\'' + c.replace(/'/g,"\\'") + '\')">开始练习</button></div>';
   if (m.wrongCount){
-    h += '<button class="btn btn-amber" style="margin-top:10px;" onclick="reAsk(\'' + state.level + '\',\'' + c.replace(/'/g,"\\'") + '\')"> 针对错题再提问（' + m.wrongCount + ' 道）</button>';
+    h += '<button class="btn btn-amber" style="margin-top:10px;" onclick="reAsk(\'' + state.level + '\',\'' + c.replace(/'/g,"\\'") + '\')">🔁 针对错题再提问（' + m.wrongCount + ' 道）</button>';
   }
   return h;
 }
@@ -2580,7 +2580,7 @@ function discardActivePractice(){
 }
 function renderPractice(){
   var p = state.practice;
-  if (!p) return '<div class="empty"><div class="ico"></div><div class="txt">数据丢失</div></div>';
+  if (!p) return '<div class="empty"><div class="ico">😕</div><div class="txt">数据丢失</div></div>';
   var q = p.list[p.index];
   var ua = p.userAnswers[p.index];
   var total = p.list.length;
@@ -2861,7 +2861,7 @@ function startExam(level){
 }
 function renderExam(){
   var e = state.exam;
-  if (!e) return '<div class="empty"><div class="ico"></div><div class="txt">数据丢失</div></div>';
+  if (!e) return '<div class="empty"><div class="ico">😕</div><div class="txt">数据丢失</div></div>';
   var q = e.list[e.index];
   var ua = e.answers[e.index];
   var answered = e.answers.filter(function(a,i){return isAnswered(e.list[i], a);}).length;
@@ -2990,7 +2990,7 @@ async function submitExam(){
    ========================================== */
 function renderResult(){
   var r = state.result;
-  if (!r) return '<div class="empty"><div class="ico"></div><div class="txt">没有成绩数据</div></div>';
+  if (!r) return '<div class="empty"><div class="ico">😕</div><div class="txt">没有成绩数据</div></div>';
   var wl = r.details.filter(function(d){return !d.isCorrect;});
   var h = '<div class="score-card">' +
     '<div class="lb">本次得分</div><div class="num">' + r.score + '</div>' +
@@ -3025,7 +3025,7 @@ function renderResult(){
     });
   } else {
     h += '<div class="card" style="text-align:center;padding:36px 20px;">' +
-      '<div style="font-size:40px;margin-bottom:10px;"></div>' +
+      '<div style="font-size:40px;margin-bottom:10px;">🎉</div>' +
       '<div style="font-size:16px;font-weight:700;">全部答对，太棒了！</div></div>';
   }
   h += '<div class="btn-row" style="margin:20px 0 40px;">' +
@@ -3059,12 +3059,12 @@ function renderWrong(){
   var h = '<div class="title">错题归纳</div>' +
     '<div class="sub" style="margin-bottom:14px;">共 ' + wid.length + ' 道待掌握题 · ' + dueCount + ' 道到期可复习 · 分布在 ' + gl.length + ' 个知识点</div>' +
     '<div class="card" style="background:linear-gradient(135deg,rgba(255,184,77,.10),rgba(255,91,91,.08));border-color:rgba(255,184,77,.25);">' +
-    '<div style="font-size:12.5px;line-height:1.8;color:#C8D2E8;"> <b style="color:var(--amber);">间隔复习</b>：答错后安排约 1 天后复习；连续答对会逐步拉长间隔，连续答对 3 次后从活动错题本移除。已到期题目会优先抽取。</div></div>';
+    '<div style="font-size:12.5px;line-height:1.8;color:#C8D2E8;">💡 <b style="color:var(--amber);">间隔复习</b>：答错后安排约 1 天后复习；连续答对会逐步拉长间隔，连续答对 3 次后从活动错题本移除。已到期题目会优先抽取。</div></div>';
   gl.forEach(function(gr){
     var key = gr.level + '|' + gr.category;
     var ex = !!state.expanded[key];
     var k = getKnowledge(gr.level, gr.category);
-    var icon = k ? k.icon : '';
+    var icon = k ? k.icon : '📖';
     h += '<div class="group-head" onclick="toggleG(\'' + key.replace(/'/g,"\\'") + '\')">' +
       '<div class="gh-l"><div class="learn-ico" style="width:34px;height:34px;font-size:17px;">' + icon + '</div>' +
       '<div><div class="gn">' + esc(gr.category) + '</div>' +
@@ -3094,7 +3094,7 @@ function renderWrong(){
           '<div style="display:flex;gap:10px;margin-top:12px;justify-content:flex-end;">' +
           '<button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();removeW(\'' + it.q.id + '\')">移除</button></div></div>';
       });
-      h += '<button class="btn btn-amber" style="margin-bottom:14px;" onclick="reAsk(\'' + gr.level + '\',\'' + gr.category.replace(/'/g,"\\'") + '\')"> 针对「' + esc(gr.category) + '」再提问</button></div>';
+      h += '<button class="btn btn-amber" style="margin-bottom:14px;" onclick="reAsk(\'' + gr.level + '\',\'' + gr.category.replace(/'/g,"\\'") + '\')">🔁 针对「' + esc(gr.category) + '」再提问</button></div>';
     }
   });
   h += '<button class="btn btn-ghost" style="margin:10px 0 40px;" onclick="clearW()">清空错题本</button>';
@@ -3128,17 +3128,17 @@ function clearW(){if(confirm('所有错题记录将被删除，不可恢复。�
    ========================================== */
 function renderAI(){
   if (state.aiMsgs.length === 0){
-    state.aiMsgs = [{role:'bot', text:'你好，我是星赛通本地知识库助手 \n\n选择上方的模型切换不同功能，或直接在输入框提问。'}];
+    state.aiMsgs = [{role:'bot', text:'你好，我是星赛通本地知识库助手 🌌\n\n选择上方的模型切换不同功能，或直接在输入框提问。'}];
   }
   var h = '';
   // 头部
   h += '<div class="ai-hero">' +
-    '<h3> 本地知识库助手</h3>' +
+    '<h3>🌌 本地知识库助手</h3>' +
     '<p>基于本地知识库，提供天文问答、随机出题、概念讲解与备赛建议。</p>' +
     '</div>';
   h += '<div class="card" style="margin:10px 0;padding:12px;border:1px solid var(--line);font-size:12px;line-height:1.65;color:var(--sub)"><b>能力说明：</b>当前是浏览器内置知识库与规则匹配，不连接云端大模型，也不进行实时联网检索。回答可能不完整或过时，竞赛事实请以教材和权威天文资料为准。</div>';
   // 模型选择
-  h += '<div class="sec-title" style="margin-top:6px;">️ 选择模式</div>';
+  h += '<div class="sec-title" style="margin-top:6px;">⚛️ 选择模式</div>';
   h += '<div class="model-grid">';
   AI_MODELS.forEach(function(m){
     h += '<div class="model-card ' + (state.aiModel === m.id ? 'active' : '') + '" onclick="setAIModel(\'' + m.id + '\')">' +
@@ -3149,14 +3149,14 @@ function renderAI(){
   h += '</div>';
   // 快捷提问
   var quick = getQuickQuestions(state.aiModel);
-  h += '<div class="sec-title"> 快捷提问</div>';
+  h += '<div class="sec-title">💡 快捷提问</div>';
   h += '<div class="ai-quick">';
   quick.forEach(function(q){
     h += '<button onclick="aiAsk(\'' + q.replace(/'/g,"\\'") + '\')">' + q + '</button>';
   });
   h += '</div>';
   // 对话
-  h += '<div class="sec-title"> 对话</div>';
+  h += '<div class="sec-title">💬 对话</div>';
   h += '<div class="ai-chat" id="aiChat">';
   state.aiMsgs.forEach(function(m){
     h += '<div class="ai-msg ' + m.role + '">' + fmtAI(m.text) + '</div>';
@@ -3222,7 +3222,7 @@ function aiRespond(text, model){
     if (q.indexOf('初中') >= 0) level = '初中';
     var p = getQuestions(level);
     var q1 = p[Math.floor(Math.random() * p.length)];
-    return ' 随机一道' + level + '组的题目：\n\n【' + typeLabel(q1.type) + '】' + q1.stem +
+    return '📝 随机一道' + level + '组的题目：\n\n【' + typeLabel(q1.type) + '】' + q1.stem +
       (q1.options ? '\n\n' + q1.options.map(function(t,i){return LETTERS[i] + '. ' + t;}).join('\n') : '') +
       '\n\n（点击底部"练习"标签可进入答题模式）';
   }
@@ -3236,7 +3236,7 @@ function aiRespond(text, model){
         if (kw.indexOf(k) >= 0 && k.length > bs){ bs = k.length; best = item; }
       });
     });
-    if (best) return ' ' + best.a;
+    if (best) return '📖 ' + best.a;
   }
   // 通用匹配
   var best2 = null, bs2 = 0;
@@ -3251,10 +3251,10 @@ function aiRespond(text, model){
   // 备赛模型
   if (model === 'exam'){
     if (q.indexOf('备赛') >= 0 || q.indexOf('策略') >= 0){
-      return ' 备赛建议：\n\n【知识准备】\n1. 系统学习教材知识点（太阳系、恒星、星系）\n2. 熟记重要数据（行星顺序、距离单位、星等）\n3. 理解天球坐标与日月食原理\n\n【实践】\n· 学会使用望远镜\n· 认识四季星空和主要星座\n· 关注天文新闻\n\n【刷题】\n· 每天 20 题，分知识点攻克\n· 重点复习错题\n· 模拟竞赛计时练习';
+      return '🎯 备赛建议：\n\n【知识准备】\n1. 系统学习教材知识点（太阳系、恒星、星系）\n2. 熟记重要数据（行星顺序、距离单位、星等）\n3. 理解天球坐标与日月食原理\n\n【实践】\n· 学会使用望远镜\n· 认识四季星空和主要星座\n· 关注天文新闻\n\n【刷题】\n· 每天 20 题，分知识点攻克\n· 重点复习错题\n· 模拟竞赛计时练习';
     }
     if (q.indexOf('考什么') >= 0 || q.indexOf('考点') >= 0){
-      return ' 竞赛主要考点：\n\n【小学组】\n· 太阳系天体常识\n· 月相变化\n· 星座辨认\n· 日食月食\n· 望远镜基础\n\n【初中组】\n· 天球坐标系统\n· 恒星演化\n· 星等与光度\n· 天体视运动\n· 望远镜原理';
+      return '📋 竞赛主要考点：\n\n【小学组】\n· 太阳系天体常识\n· 月相变化\n· 星座辨认\n· 日食月食\n· 望远镜基础\n\n【初中组】\n· 天球坐标系统\n· 恒星演化\n· 星等与光度\n· 天体视运动\n· 望远镜原理';
     }
   }
   // 默认
@@ -3272,7 +3272,7 @@ function renderProfile(){
     var m = getMastery(state.level, c);
     if (m.answered >= 3 && (!weakest || m.rate < weakest.rate)) weakest = {category:c, rate:m.rate};
   });
-  var h = '<div class="profile-card"><div class="av"></div>' +
+  var h = '<div class="profile-card"><div class="av">🔭</div>' +
     '<div class="nk">天文小达人</div>' +
     '<div class="sub" style="margin-top:6px;">坚持每天学一点，竞赛更从容</div>' +
     '<div class="sign">出品：<b>星赛通</b></div></div>';
@@ -3283,24 +3283,24 @@ function renderProfile(){
     '<div><div class="n">' + s.wrongCount + '</div><div class="l">错题数</div></div></div>';
   if (weakest){
     h += '<div class="card" style="background:linear-gradient(135deg,rgba(255,184,77,.12),rgba(255,91,91,.08));border-color:rgba(255,184,77,.25);">' +
-      '<div style="font-size:12.5px;color:var(--sub);margin-bottom:6px;"> 薄弱知识点</div>' +
+      '<div style="font-size:12.5px;color:var(--sub);margin-bottom:6px;">📌 薄弱知识点</div>' +
       '<div style="display:flex;justify-content:space-between;align-items:center;">' +
       '<div style="font-size:16.5px;font-weight:700;">' + esc(weakest.category) + '</div>' +
       '<div style="font-size:20px;font-weight:800;color:var(--red);">' + weakest.rate + '%</div></div>' +
       '<button class="btn btn-amber" style="margin-top:12px;" onclick="reAsk(\'' + state.level + '\',\'' + weakest.category.replace(/'/g,"\\'") + '\')">立即强化练习</button></div>';
   }
   h += '<div class="card" style="padding:0;">' +
-    '<div class="row-item" onclick="go(\'learn\')"><span> 知识点学习</span><span class="arrow">' + cats.length + ' 个 ›</span></div>' +
+    '<div class="row-item" onclick="go(\'learn\')"><span>📚 知识点学习</span><span class="arrow">' + cats.length + ' 个 ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
-    '<div class="row-item" onclick="go(\'news\')"><span> 天文读报</span><span class="arrow">' + NEWS.length + ' 条 ›</span></div>' +
+    '<div class="row-item" onclick="go(\'news\')"><span>📰 天文读报</span><span class="arrow">' + NEWS.length + ' 条 ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
-    '<div class="row-item" onclick="go(\'ai\')"><span>烙 AI 天文模型</span><span class="arrow">4 个模型 ›</span></div>' +
+    '<div class="row-item" onclick="go(\'ai\')"><span>🤖 AI 天文模型</span><span class="arrow">4 个模型 ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
-    '<div class="row-item" onclick="go(\'wrong\')"><span> 错题归纳</span><span class="arrow">' + s.wrongCount + ' 道 ›</span></div></div>';
+    '<div class="row-item" onclick="go(\'wrong\')"><span>📕 错题归纳</span><span class="arrow">' + s.wrongCount + ' 道 ›</span></div></div>';
   h += '<div class="card" style="padding:0;">' +
-    '<div class="row-item" onclick="clearAI()"><span style="color:var(--sub);">粒 清除 AI 对话</span><span class="arrow">›</span></div>' +
+    '<div class="row-item" onclick="clearAI()"><span style="color:var(--sub);">🧹 清除 AI 对话</span><span class="arrow">›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
-    '<div class="row-item" onclick="clearAll()"><span style="color:var(--red);"> 清除所有数据</span><span class="arrow">›</span></div></div>';
+    '<div class="row-item" onclick="clearAll()"><span style="color:var(--red);">🗑 清除所有数据</span><span class="arrow">›</span></div></div>';
   h += '<div class="version">星赛通 v6.0 · 网页版<br>' +
     '出品：星赛通<br>' +
     '题库 ' + Q.length + ' 题 · 知识卡 ' + KNOWLEDGE.length + ' 张<br>' +
@@ -3326,12 +3326,12 @@ function renderNews(){
   h += '<div class="news-list">';
   list.forEach(function(n){
     h += '<div class="news-card" data-id="' + n.id + '">' +
-      '<div class="news-top"><span class="tag">' + esc(n.cat) + '</span><span class="news-date"> ' + esc(n.date) + '</span></div>' +
+      '<div class="news-top"><span class="tag">' + esc(n.cat) + '</span><span class="news-date">📅 ' + esc(n.date) + '</span></div>' +
       '<div class="news-title">' + esc(n.title) + '</div>' +
       '<div class="news-summary">' + esc(n.body.slice(0, 80)) + '...</div>' +
       '<div class="news-actions">' +
-      '<button onclick="Reader.read(NEWS.filter(function(x){return x.id===\'' + n.id + '\';})[0])"> 语音朗读</button>' +
-      '<button onclick="showNewsDetail(\'' + n.id + '\')"> 阅读全文</button>' +
+      '<button onclick="Reader.read(NEWS.filter(function(x){return x.id===\'' + n.id + '\';})[0])">🔊 语音朗读</button>' +
+      '<button onclick="showNewsDetail(\'' + n.id + '\')">📖 阅读全文</button>' +
       '</div></div>';
   });
   h += '</div>';
@@ -3346,12 +3346,12 @@ function showNewsDetail(id){
   var body = n.body.split('\n\n').map(function(p){
     return '<p style="margin:0 0 12px;line-height:1.9;color:#C8D2E8;font-size:14.5px;">' + esc(p) + '</p>';
   }).join('');
-  var html = '<div class="tags"><span class="tag">' + esc(n.cat) + '</span><span class="news-date" style="margin-left:auto;"> ' + esc(n.date) + '</span></div>' +
+  var html = '<div class="tags"><span class="tag">' + esc(n.cat) + '</span><span class="news-date" style="margin-left:auto;">📅 ' + esc(n.date) + '</span></div>' +
     '<div class="title" style="font-size:20px;margin-bottom:14px;line-height:1.4;">' + esc(n.title) + '</div>' +
     '<div class="card">' + body + '</div>' +
     '<div class="btn-row" style="margin-top:18px;">' +
     '<button class="btn btn-ghost" onclick="go(\'news\')">返回列表</button>' +
-    '<button class="btn btn-main" onclick="Reader.read(NEWS.filter(function(x){return x.id===\'' + n.id + '\';})[0])"> 语音朗读</button></div>';
+    '<button class="btn btn-main" onclick="Reader.read(NEWS.filter(function(x){return x.id===\'' + n.id + '\';})[0])">🔊 语音朗读</button></div>';
   view.innerHTML = html;
   navTitle.textContent = '资讯详情';
   backBtn.classList.remove('hidden');
