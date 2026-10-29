@@ -97,10 +97,16 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
-      return fetch(request).then(response => {
+      return fetch(request).then(async response => {
         if (response && response.ok && response.type === 'basic') {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          try {
+            // respondWith owns this promise. Await the cache write so an
+            // immediate offline transition cannot race a detached cache.put().
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(request, response.clone());
+          } catch {
+            // Cache quota/write failures must not discard a valid network response.
+          }
         }
         return response;
       });
