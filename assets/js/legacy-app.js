@@ -2038,7 +2038,7 @@ var state = {
 var questionEvidenceById = Object.create(null);
 function isValidQuestionEvidenceReviewTimestamp(value){
   if(typeof value !== 'string') return false;
-  var match = /^(\\d{4})-(\\d{2})-(\\d{2})T([01]\\d|2[0-3]):([0-5]\\d)(?::([0-5]\\d)(?:\\.\\d{1,3})?)?(Z|([+-])(\\d{2}):(\\d{2}))$/.exec(value);
+  var match = /^(\d{4})-(\d{2})-(\d{2})T([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d)(?:\.\d{1,3})?)?(Z|([+-])(\d{2}):(\d{2}))$/.exec(value);
   if(!match) return false;
   var year=Number(match[1]), month=Number(match[2]), day=Number(match[3]);
   var leap=year%4===0&&(year%100!==0||year%400===0);
