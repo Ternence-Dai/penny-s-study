@@ -1,0 +1,15 @@
+{
+  "description": "星赛通天文竞赛学习平台桌面版（Electron 壳 + 本地静态服务）",
+  "devDependencies": {
+    "electron": "^33.2.1"
+  },
+  "main": "main.cjs",
+  "name": "starrace-desktop",
+  "private": true,
+  "productName": "星赛通",
+  "scripts": {
+    "build:win": "node build-windows.cjs",
+    "start": "electron ."
+  },
+  "version": "1.0.0"
+}
