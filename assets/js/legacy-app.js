@@ -2036,6 +2036,19 @@ var state = {
 };
 
 var questionEvidenceById = Object.create(null);
+var LOCAL_FILE_NOTICE = '当前是直接打开本地文件的方式，复习计划和题目来源索引需要通过在线版或本地服务打开才能使用。';
+function showLocalFileNotice(){
+  if (location.protocol !== 'file:') return;
+  if (!document.body || document.getElementById('localFileNotice')) return;
+  var bar = document.createElement('div');
+  bar.id = 'localFileNotice';
+  bar.setAttribute('role', 'note');
+  bar.style.cssText = 'margin:10px 12px;padding:10px 12px;border:1px solid rgba(255,184,77,.45);border-radius:10px;background:rgba(255,184,77,.12);color:#ffb84d;font-size:12.5px;line-height:1.6;';
+  bar.textContent = '⚠ ' + LOCAL_FILE_NOTICE;
+  var view = document.getElementById('view');
+  if (view && view.parentNode) view.parentNode.insertBefore(bar, view);
+  else document.body.appendChild(bar);
+}
 var questionEvidenceLoadState = 'loading';
 var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261022-evidence-index-v3')
   .then(function(response){
@@ -2062,6 +2075,7 @@ var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=202610
   .catch(function(error){
     questionEvidenceLoadState = 'unavailable';
     console.warn('本题来源清单暂不可用；题目仍保持待核验状态。', error);
+    showLocalFileNotice();
     if(state.page === 'practice' || state.page === 'home') render();
     return questionEvidenceById;
   });
@@ -2078,7 +2092,8 @@ function renderQuestionEvidence(question){
     return '<section class="w5-question-evidence" aria-live="polite"><b>题目来源核验</b><p>正在加载官方资料索引…</p></section>';
   }
   if(questionEvidenceLoadState !== 'ready'){
-    return '<section class="w5-question-evidence" role="note"><b>来源索引暂不可用</b><p>本题仍未完成人工来源审核；请勿把标准答案当作已认证结论。</p></section>';
+    var localFileHint = location.protocol === 'file:' ? '<p>' + LOCAL_FILE_NOTICE + '</p>' : '';
+    return '<section class="w5-question-evidence" role="note"><b>来源索引暂不可用</b><p>本题仍未完成人工来源审核；请勿把标准答案当作已认证结论。</p>' + localFileHint + '</section>';
   }
   var item = questionEvidenceById[question.id];
   if(!item){
@@ -2130,7 +2145,7 @@ var timers = [];
 function clearTimers(){timers.forEach(function(t){clearInterval(t);});timers=[];}
 
 var TITLES = {
-  home:'星赛通 · 戴煜', learn:'知识点学习', news:'天文知识读报', ai:'本地知识库助手',
+  home:'星赛通', learn:'知识点学习', news:'天文知识读报', ai:'本地知识库助手',
   wrong:'错题归纳', profile:'我的', practice:'练习', exam:'模拟竞赛',
   result:'成绩单', learnDetail:'知识点详情'
 };
@@ -2370,7 +2385,7 @@ function renderHome(){
 
   // 底部统计
   h += '<div class="version" style="margin-top:26px;">星赛通 v6.0 · 网页版<br>' +
-    '作者：戴煜 · 18662613315@163.com<br>' +
+    '出品：星赛通<br>' +
     '题库 ' + Q.length + ' 题 · 知识卡 ' + KNOWLEDGE.length + ' 张 · 动态模拟 16 个 · 读报 10 条</div>';
 
   return h;
@@ -2824,6 +2839,7 @@ async function recordQuestionOutcome(id, correct){
     });
   }catch(error){
     console.warn('错题复习计划未能更新；原错题与基础学习统计仍予保留。',error);
+    showLocalFileNotice();
   }
 }
 
@@ -3259,7 +3275,7 @@ function renderProfile(){
   var h = '<div class="profile-card"><div class="av"></div>' +
     '<div class="nk">天文小达人</div>' +
     '<div class="sub" style="margin-top:6px;">坚持每天学一点，竞赛更从容</div>' +
-    '<div class="sign">作者：<b>戴煜</b> · 18662613315@163.com</div></div>';
+    '<div class="sign">出品：<b>星赛通</b></div></div>';
   h += '<div class="grid2">' +
     '<div><div class="n">' + s.total + '</div><div class="l">累计答题</div></div>' +
     '<div><div class="n">' + s.rate + '%</div><div class="l">正确率</div></div>' +
@@ -3286,7 +3302,7 @@ function renderProfile(){
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAll()"><span style="color:var(--red);"> 清除所有数据</span><span class="arrow">›</span></div></div>';
   h += '<div class="version">星赛通 v6.0 · 网页版<br>' +
-    '作者：戴煜 · 邮箱：18662613315@163.com<br>' +
+    '出品：星赛通<br>' +
     '题库 ' + Q.length + ' 题 · 知识卡 ' + KNOWLEDGE.length + ' 张<br>' +
     '动态模拟 ' + Object.keys(SimEngine.sims).length + ' 个 · 读报 ' + NEWS.length + ' 条</div>';
   return h;
