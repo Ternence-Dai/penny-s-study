@@ -2163,7 +2163,7 @@ var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=202610
 function safeQuestionEvidenceUrl(value){
   try{
     var url = new URL(value);
-    var allowed = ['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn'];
+    var allowed = ['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn','spaceplace.nasa.gov','imagine.gsfc.nasa.gov','science.gsfc.nasa.gov','pmo.cas.cn','nesdis.noaa.gov','www.nesdis.noaa.gov','pressbooks.online.ucf.edu'];
     return url.protocol === 'https:' && allowed.indexOf(url.hostname.toLowerCase()) >= 0 ? url.href : null;
   }catch(error){return null;}
 }

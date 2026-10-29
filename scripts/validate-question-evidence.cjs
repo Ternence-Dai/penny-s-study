@@ -108,7 +108,7 @@ if (coverage.withSources !== 300 || coverage.withoutSources !== 0) {
   fail('Expected source records for all 300 questions: ' + JSON.stringify(coverage));
 }
 
-const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn']);
+const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn','spaceplace.nasa.gov','imagine.gsfc.nasa.gov','science.gsfc.nasa.gov','pmo.cas.cn','nesdis.noaa.gov','www.nesdis.noaa.gov','pressbooks.online.ucf.edu']);
 for (const item of manifest.questions) {
   for (const source of item.sources || []) {
     try {

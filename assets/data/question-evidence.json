@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "description": "Per-question source registry. A-level verification round (2026-10-29): 65 questions verified and 1 rejected as a duplicate against NASA / IAU / CAS primary sources, each with claim, pinpoint, asOf and answerDigest records; all remaining questions stay review-needed. A registered source link alone does not verify a question; only entries with status \"verified\" carry a completed review record.",
+ "description": "Per-question source registry. Verification rounds (all 2026-10-29): round 1 (A-level) 65 verified and 1 rejected as a duplicate; round 2 (B/C-level) +162 verified, +5 rejected; round 3 used the expanded allowlist approved by Dai (NASA Space Place, NASA GSFC subdomains imagine/science, Purple Mountain Observatory pmo.cas.cn, NOAA NESDIS, OpenStax textbooks via UCF Pressbooks) for +51 verified. Totals: 278 verified, 6 rejected, 16 remain review-needed. A registered source link alone does not verify a question; only entries with status \"verified\" carry a completed review record.",
  "questions": [
   {
    "id": "p001",
@@ -610,17 +610,27 @@
   },
   {
    "id": "p026",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Moon Phases",
-     "url": "https://science.nasa.gov/moon/moon-phases/",
-     "publisher": "NASA Science"
+     "title": "历书科普问题解答",
+     "url": "https://pmo.cas.cn/xwdt2019/kpdt2019/202203/t20220317_6399980.html",
+     "publisher": "中国科学院紫金山天文台"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "3f34c8b64988d69e1b6087cd0a3e41fa40a242dd25e2591fa5d2644b5be10b04",
+   "claim": "农历十五左右即望日，望时所见为满月，故农历十五前后的月相是满月（望的定义见同页第 7 问）",
+   "pinpoint": "月食发生在农历十五左右 (望日)",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（满月）"
   },
   {
    "id": "p027",
@@ -840,17 +850,27 @@
   },
   {
    "id": "p036",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Moon Phases",
-     "url": "https://science.nasa.gov/moon/moon-phases/",
-     "publisher": "NASA Science"
+     "title": "历书科普问题解答",
+     "url": "https://pmo.cas.cn/xwdt2019/kpdt2019/202203/t20220317_6399980.html",
+     "publisher": "中国科学院紫金山天文台"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "084f770ec35e37ed1c978808c1d0b719d5ab66c20e539e318d5fa07316298487",
+   "claim": "从新月（朔）到满月（望）平均约 14.76 天，选项中约 14 天",
+   "pinpoint": "朔到望的平均长度是14.76日",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（14天）"
   },
   {
    "id": "p037",
@@ -878,45 +898,75 @@
   },
   {
    "id": "p038",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Moon Phases",
-     "url": "https://science.nasa.gov/moon/moon-phases/",
-     "publisher": "NASA Science"
+     "title": "历书科普问题解答",
+     "url": "https://pmo.cas.cn/xwdt2019/kpdt2019/202203/t20220317_6399980.html",
+     "publisher": "中国科学院紫金山天文台"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "ba8c0338e901ed5e75a792f1734ec939f229a1cb8deec4eeca85ffaf609f9b65",
+   "claim": "“圆缺”指月球视形状的周期变化，即月相变化",
+   "pinpoint": "月球的视形状有大致29天左右的周期变化，月相即指这种变化的位相",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（月相变化）"
   },
   {
    "id": "p039",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Moon Phases",
-     "url": "https://science.nasa.gov/moon/moon-phases/",
-     "publisher": "NASA Science"
+     "title": "历书科普问题解答",
+     "url": "https://pmo.cas.cn/xwdt2019/kpdt2019/202203/t20220317_6399980.html",
+     "publisher": "中国科学院紫金山天文台"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "a35ac6a793a0e344408709b22eff740b105ac21d94763fdca96bece8516d5215",
+   "claim": "上弦月西边半圆明亮、下弦月东边半圆明亮，两者亮面朝向相反",
+   "pinpoint": "上弦日，太阳西落后人们可以看到半个明月(月球的西边半圆月面明亮)高挂天空；下弦日，大约在午夜时分人们可以看到半个明月(月球的东边半圆月面明亮)从东方升起",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（该说法错误）"
   },
   {
    "id": "p040",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Moon Phases",
-     "url": "https://science.nasa.gov/moon/moon-phases/",
-     "publisher": "NASA Science"
+     "title": "What Are the Moon's Phases?",
+     "url": "https://spaceplace.nasa.gov/moon-phases/",
+     "publisher": "NASA Space Place"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "610c2a694f01b7897627120bfcdfed0c3a4ffffbf7915d4fbd4349459999e8fd",
+   "claim": "蛾眉月即新月之后出现的细弯月相（waxing crescent），呈细弯形",
+   "pinpoint": "Waxing Crescent: In the Northern Hemisphere, we see the waxing crescent phase as a thin crescent of light on the right.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（新月前后细弯的月相）"
   },
   {
    "id": "p041",
@@ -1002,7 +1052,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：NASA《What is the North Star and How Do You Find It?》确认北斗勺头两颗星指向北极星（“The two stars on the end of the Dipper's \\\"cup\\\" point the way to Polaris”），但“延长约 5 倍”的倍数在白名单内（含 spaceplace.nasa.gov）无逐点原文。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "p045",
@@ -1030,59 +1080,99 @@
   },
   {
    "id": "p046",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "APOD: 1996 May 15 - The Milky Way Near the Northern Cross",
+     "url": "https://science.nasa.gov/image-article/apod-1996-may-15-the-milky-way-near-the-northern-cross/",
+     "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "c8275f4299eeb32ebde92cd932f7667cdab1f6af6de76b1dcc08018087c98e81",
+   "claim": "天鹅座（Cygnus）的主星构成称为北十字（Northern Cross）的星群，即题面所说的“大十字”",
+   "pinpoint": "Cygnus contains the asterism known as the Northern Cross",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（天鹅座）"
   },
   {
    "id": "p047",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "APOD: 2012 April 17 - Antares and Clouds",
+     "url": "https://science.nasa.gov/image-article/apod-2012-april-17-antares-and-clouds/",
+     "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "b4d70d615c7737e30bb7739fdc8cb77e269395b07cc961b49545c27fe0e63784",
+   "claim": "心宿二（Antares）是天蝎座最亮的星",
+   "pinpoint": "Antares is the brightest star in the constellation of Scorpius",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（心宿二）"
   },
   {
    "id": "p048",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "Chapter 2: Reference Systems",
+     "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter2-1/",
+     "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "c7e5fb7ca0bf2665dd37c56b738446b9e90da91c8ef01656aebbf108a66be36a",
+   "claim": "在北半球，北极星的地平高度约等于观测者所在的地理纬度",
+   "pinpoint": "In the northern hemisphere for example, simply measuring the height of the star Polaris above the horizon results in a fairly close approximation of one's latitude.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（该说法正确）"
   },
   {
    "id": "p049",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "APOD: 2016 March 18 - The W in Cassiopeia",
+     "url": "https://science.nasa.gov/image-article/apod-2016-march-18-the-w-in-cassiopeia/",
+     "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "6e1a7fecf91e35f325ec17206ec6bceb0c21cc484f16b9c71882a8a345076fbd",
+   "claim": "仙后座五颗亮星排成 W 形",
+   "pinpoint": "A familiar, zigzag, W pattern in northern constellation Cassiopeia is traced by five bright stars",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（W形）"
   },
   {
    "id": "p050",
@@ -1230,45 +1320,75 @@
   },
   {
    "id": "p056",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "What's Up: April 2025 Skywatching Tips from NASA",
+     "url": "https://science.nasa.gov/solar-system/skywatching/whats-up-april-2025-skywatching-tips-from-nasa/",
+     "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "6ce0b6aed201e8a1acc5a4ea2ff6180520aa357e5f4f51c4c2c91033a943bb31",
+   "claim": "沿北斗勺柄的弧线延长（arc to Arcturus）可以找到大角星",
+   "pinpoint": "Facing east, use the Dipper’s handle to “arc to Arcturus,” the fourth-brightest star in the night sky.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（大角星）"
   },
   {
    "id": "p057",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "2.1 The Sky Above – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/?p=76",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "c9078687531a204eaa6f7f8c91d27da4d4b3466888a7d9a657bf41b1b678b5fc",
+   "claim": "黄道所经星座名单含白羊座、金牛座、狮子座等，不含大熊座，故大熊座不是黄道十二宫之一",
+   "pinpoint": "Moving counter-clockwise from top center are: Gemini, Cancer, Leo, Virgo, Libra, Scorpius, Ophiuchus, Sagittarius, Capricorn, Aquarius, Pisces, Aries, Taurus, and back to Gemini.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（大熊座）"
   },
   {
    "id": "p058",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "2.1 The Sky Above – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/?p=76",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "8bfbe7be3321ec2308acfd22965456c541fda82705fac31a934a2cf93353eeb9",
+   "claim": "不同纬度的观测者可见的星空范围不同（如两极观测者各只能看到一侧半片天空）",
+   "pinpoint": "Only that half of the sky north of the celestial equator is ever visible to an observer at the North Pole. Similarly, an observer at the South Pole would see only the southern half of the sky.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（该说法正确）"
   },
   {
    "id": "p059",
@@ -1296,17 +1416,27 @@
   },
   {
    "id": "p060",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "Discovering the Universe Through the Constellation Orion",
+     "url": "https://science.nasa.gov/universe/stories/quick-reads/discovering-the-universe-through-the-constellation-orion/",
+     "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "a3ad59c3c5cf0f3366636fd80db4ed6d6ae9e7cf6a4cd3344f8a6fb2c4a4adbf",
+   "claim": "猎户座是夜空中最容易辨认的星座之一",
+   "pinpoint": "It's one of the most recognizable constellations in the night sky and can be seen from around the world.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（猎户座）"
   },
   {
    "id": "p061",
@@ -1493,7 +1623,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：NASA Space Place《How Does Our Sun Compare With Other Stars?》作 “Our Sun is an average sized star”，NASA Sun Facts 作 “G2 V, yellow dwarf main-sequence star”，均只述大小平均与光谱型，未直述“中等质量”。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "p069",
@@ -1545,17 +1675,27 @@
   },
   {
    "id": "p071",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Stars",
-     "url": "https://science.nasa.gov/universe/stars/",
-     "publisher": "NASA Science"
+     "title": "The Solar Neighborhood",
+     "url": "https://imagine.gsfc.nasa.gov/features/cosmic/solar_neighborhood_info.html",
+     "publisher": "NASA GSFC"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "e7e61bcf54a43d695ee8ada747419a8a238e575f0ffb846d7dcaafc2f5524090",
+   "claim": "比邻星（离太阳最近的恒星）距离太阳 4.22 光年（GSFC Imagine the Universe! 页原文；另有 NASA 页面作 4.24 光年，口径差异见第三轮汇报）",
+   "pinpoint": "We've already learned the closest star to ours is 39,900,000,000,000 km (4.22 light years) away.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（4.22光年）"
   },
   {
    "id": "p072",
@@ -1593,7 +1733,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：NASA GSFC Sun-Earth Day 页与 OpenStax 21.1 一致作太阳每秒约 400 万吨物质转化为能量（“converts 4 million tons of matter into pure energy”），与本题键“约430万吨”不符；430 万吨口径仅见白名单外 NSSDC 太阳参数表。初中版 j133 键为 400 万吨且已获同一原文支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "p074",
@@ -1957,22 +2097,32 @@
   },
   {
    "id": "p089",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Eclipses and the Moon",
-     "url": "https://science.nasa.gov/moon/eclipses/",
+     "title": "The Moon's Shadow",
+     "url": "https://science.nasa.gov/earth/earth-observatory/the-moons-shadow-1172/",
      "publisher": "NASA Science"
     },
     {
-     "title": "NASA Eclipse Viewing Safety",
-     "url": "https://science.nasa.gov/eclipses/safety/",
+     "title": "APOD: 2023 October 29 - A Partial Lunar Eclipse",
+     "url": "https://science.nasa.gov/image-article/apod-2023-october-29-a-partial-lunar-eclipse/",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "65c66e4731e58979f2ac40d4cc4e997997ec1f1b06002a5af7bcdfc561f0c00c",
+   "claim": "全球每年日食发生 2–5 次，多于月食（约一年一至两次），日食通常比月食更常见",
+   "pinpoint": "can be observed somewhere on the Earth's surface at least twice and as often as five times per year",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（该说法正确）"
   },
   {
    "id": "p090",
@@ -2048,22 +2198,27 @@
   },
   {
    "id": "p093",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "December Solstice Brings Winter, Summer Seasons",
+     "url": "https://www.nasa.gov/blogs/watch-the-skies/2021/12/20/december-solstice-brings-winter-summer-seasons/",
+     "publisher": "NASA"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "a7d119f2546a9b1ebfd820c474e35f75ba0691745491d0cf200facad7353dc66",
+   "claim": "地球自转（每天自转一周）产生昼夜交替",
+   "pinpoint": "Earth spins around this pole, making one complete turn each day. That is why we have day and night.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（该说法正确）"
   },
   {
    "id": "p094",
@@ -2163,22 +2318,27 @@
   },
   {
    "id": "p098",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+     "title": "Seeing Equinoxes and Solstices from Space",
+     "url": "https://science.nasa.gov/earth/earth-observatory/seeing-equinoxes-and-solstices-from-space-52248/",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "298d448fc4cf2029405bd33a9c996f1c2f9eadc38c400883f84ad0e864d36849",
+   "claim": "北半球冬至（12 月 21 日）时太阳直射南回归线（Tropic of Capricorn）",
+   "pinpoint": "On December 21, the Sun resides directly over the Tropic of Capricorn when viewed from the ground",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（南回归线）"
   },
   {
    "id": "p099",
@@ -2231,22 +2391,27 @@
   },
   {
    "id": "p101",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+     "title": "Total Solar Eclipse FAQ",
+     "url": "https://science.nasa.gov/eclipses/future-eclipses/eclipse-2024/faq",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "7d2d21bb00569eb4ad22bea24a533cd8884115cd768f24aefc1838276438f379",
+   "claim": "地球自西向东自转，使太阳等天体看上去东升西落",
+   "pinpoint": "Earth rotates eastward on its axis, which means the Moon, Sun, and stars appear to move from east to west across the sky.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（地球自西向东自转）"
   },
   {
    "id": "p102",
@@ -2289,45 +2454,55 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮日期证据复查（已汇报，未改题面与答案键）：白名单来源一致将北半球夏至置于 6 月 21 日前后——NASA 博客 “the summer (June) solstice occurs around June 20-21”；OpenStax 4.2 “On or about June 21” 并注至日日期可差一两天；NASA 至日页与 NOAA NESDIS 两篇均作 June 21；无一来源单独作“6 月 22 日”。答案键原为 6 月 22 日，待主代理裁定。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "p104",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "4.2 The Seasons – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/4-2-the-seasons/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "e22751ec1a93d5f8d6c4627669d6e7c9a80b7feb97bb541959cb7c22a82a33e4",
+   "claim": "极昼与极夜（24 小时有日照或无日照）发生在极圈以内地区",
+   "pinpoint": "On June 21, all places within 23° of the South Pole—that is, south of what we call the Antarctic Circle—do not see the Sun at all for 24 hours.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（极圈内）"
   },
   {
    "id": "p105",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+     "title": "How to Be an Orbital Mechanic: Reading Orbit Plots with Parker Solar Probe",
+     "url": "https://science.nasa.gov/blogs/the-sun-spot/2018/11/07/how-to-be-an-orbital-mechanic-reading-orbit-plots-with-parker-solar-probe/",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "180204a895cb568a897b02ee807a901df32512e031340a225835769f73db5a78",
+   "claim": "地球公转（轨道）速度约 29 km/s，约合 30 km/s",
+   "pinpoint": "slower than the orbital speed of Earth (about 29 kilometers per second or 65,000 miles per hour)",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（30 km/s）"
   },
   {
    "id": "p106",
@@ -2418,7 +2593,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：NASA Moon Facts 与 Weather on the Moon 仅述月球大气极稀薄（外逸层、近月面分子密度远低于地球大气），白名单内未直述“声音无法在月面传播”。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "p110",
@@ -2860,31 +3035,51 @@
   },
   {
    "id": "p128",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "6.1 Telescopes – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/6-1-telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "71c9896fa71c5283cc1582272bfae06b347a781f80e9e837321657196003eecc",
+   "claim": "折射式望远镜的主光学元件（物镜）是凸透镜",
+   "pinpoint": "The primary optical element in a telescope is either a convex lens (in a refracting telescope) or a concave mirror (in a reflector) that brings the light to a focus.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（凸透镜）"
   },
   {
    "id": "p129",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "26.5 Telescopes – College Physics",
+     "url": "https://pressbooks.online.ucf.edu/algphysics/chapter/telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "c1c28454b85d48687902056226ff8d755cdb0648400b603d60ab583871018862",
+   "claim": "望远镜放大倍率等于物镜焦距除以目镜焦距，1200mm 物镜要得到 60 倍放大需配 20mm 目镜",
+   "pinpoint": "It can be shown that the angular magnification of a telescope is related to the focal lengths of the objective and eyepiece; and is given by M = θ′/θ = −fo/fe.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（20mm）"
   },
   {
    "id": "p130",
@@ -2912,31 +3107,51 @@
   },
   {
    "id": "p131",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "6.1 Telescopes – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/6-1-telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "c2fbec35df49a3e690428424fda9b6680c682b3fa7aac07f11c539544ecb6df9",
+   "claim": "放大倍率过高会使像抖动、难以观看，望远镜有有效放大倍率范围，并非倍率越高观测效果越好",
+   "pinpoint": "If the magnification is too high, your image will shimmer and shake and be difficult to view.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（该说法错误）"
   },
   {
    "id": "p132",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "26.5 Telescopes – College Physics",
+     "url": "https://pressbooks.online.ucf.edu/algphysics/chapter/telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "1a4eb459bfa9a7188bffb18c3f9d310721731daa3fb9a0917c721c82166a3307",
+   "claim": "望远镜的放大倍率等于物镜焦距除以目镜焦距",
+   "pinpoint": "It can be shown that the angular magnification of a telescope is related to the focal lengths of the objective and eyepiece; and is given by M = θ′/θ = −fo/fe.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：[\"目镜\"]"
   },
   {
    "id": "p133",
@@ -2988,17 +3203,27 @@
   },
   {
    "id": "p135",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "6.1 Telescopes – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/6-1-telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "929126d3a90557569767d8278d3d655b5e5288f40b568ed280a2ea38b86edfd9",
+   "claim": "望远镜的口径指主镜或透镜（物镜）集光面的直径",
+   "pinpoint": "The key characteristic of a telescope is the aperture of the main mirror or lens; when someone says they have a 6-inch or 8-inch telescope, they mean the diameter of the collecting surface.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（物镜直径）"
   },
   {
    "id": "p136",
@@ -3382,7 +3607,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：已查 OpenStax《Astronomy》2.1 全文、紫金山天文台《历书基本术语简介》（地平坐标系仅定义北点、南点）、NASA《Basics of Space Flight》第 2 章，白名单内均无“天球赤道与地平圈交点为东点”的逐点表述。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j002",
@@ -3482,22 +3707,27 @@
   },
   {
    "id": "j006",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Universe Glossary: Right Ascension and Declination",
-     "url": "https://science.nasa.gov/universe/glossary/",
+     "title": "Chapter 2: Reference Systems",
+     "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter2-1/",
      "publisher": "NASA Science"
-    },
-    {
-     "title": "IAU The 88 Constellations and Coordinate Boundaries",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "457bb7e3e832796d3ec7972dcd7eefdc4a8742f1b0236dea51741304c9254e6a",
+   "claim": "北半球观测者测得的北极星地平高度近似等于其地理纬度",
+   "pinpoint": "In the northern hemisphere for example, simply measuring the height of the star Polaris above the horizon results in a fairly close approximation of one's latitude.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（北极星的地平高度）"
   },
   {
    "id": "j007",
@@ -3549,22 +3779,27 @@
   },
   {
    "id": "j009",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Universe Glossary: Right Ascension and Declination",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "IAU The 88 Constellations and Coordinate Boundaries",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "2.1 The Sky Above – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/?p=76",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "daf6108b7a65e01f43a22d847fb5fca181f84ab96bbeb9d75f0c8b096031d0b6",
+   "claim": "在赤道观测，天极位于地平线上（高度 0°）",
+   "pinpoint": "At the equator, the celestial poles are on the horizon, and the stars rise straight up and set straight down.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（地平圈上）"
   },
   {
    "id": "j010",
@@ -3583,7 +3818,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：NASA《Basics of Space Flight》第 2 章仅述赤经赤纬可唯一确定天体在天球上的位置，未逐字表述“赤道坐标与观测者的地点和时间无关”；OpenStax 2.1 亦无此表述。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j011",
@@ -3602,7 +3837,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《Astronomy》2.1 仅作 “The ecliptic does not lie along the celestial equator but is inclined to it at an angle of about 23.5°”，与答案键 23°26′ 精度不符；按历轮口径，近似值不作为逐点支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j012",
@@ -3654,22 +3889,27 @@
   },
   {
    "id": "j014",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Universe Glossary: Right Ascension and Declination",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "IAU The 88 Constellations and Coordinate Boundaries",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "2.1 The Sky Above – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/?p=76",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "0bcd960bd24f9e6210d926b32bdbdc8eb5ff82304f7f00854146f8641bebb964",
+   "claim": "北天极（北极星在其附近）的地平高度等于观测者纬度，纬度 30°N 处约为 30°",
+   "pinpoint": "It appears above the northern horizon at an angular height, or altitude, equal to the observer's latitude.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（30°）"
   },
   {
    "id": "j015",
@@ -3889,17 +4129,27 @@
   },
   {
    "id": "j024",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Stars: Birth, Life Cycle and Death",
-     "url": "https://science.nasa.gov/universe/stars/",
-     "publisher": "NASA Science"
+     "title": "18.4 The H–R Diagram",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/18-4-the-h-r-diagram/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "d07f1c414f43bfcfb42ae894876cbf1c8dd7110eb852a717fade060d36c2f4f1",
+   "claim": "赫罗图上主序星沿一条自左上向右下的对角带分布",
+   "pinpoint": "The great majority are aligned along a narrow sequence running from the upper left (hot, highly luminous) to the lower right (cool, less luminous). This band of points is called the main sequence.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（左上到右下的对角带）"
   },
   {
    "id": "j025",
@@ -4119,22 +4369,27 @@
   },
   {
    "id": "j034",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
-     "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Universe Glossary",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
+     "title": "Imagine the Universe! Teacher Guide (PDF)",
+     "url": "https://imagine.gsfc.nasa.gov/teachers/gammaraybursts/imagine/imagine_full.pdf",
+     "publisher": "NASA GSFC"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "981f07824e91aca8030e611cb74d5ef01692b582e6e8cc3dcb72178dcdc5a6e4",
+   "claim": "太阳视星等约为 −26（GSFC Imagine 教师指南原文；可接受答案中的 −26.7、−26.74 本轮未在白名单来源中找到逐点原文）",
+   "pinpoint": "The full Moon is near magnitude -13, and the Sun near mag –26.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：[\"-26.7\",\"-26.74\",\"-26\"]（其中 -26 获原文支撑）"
   },
   {
    "id": "j035",
@@ -4177,7 +4432,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《Astronomy》2e 相关章节（17.1、19.3、19.4）已无距离模数公式内容；公式 M = m + 5 − 5·lg d 仅见于白名单外页面（GSFC lambda.gsfc.nasa.gov PDF 不在白名单），未采用。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j037",
@@ -4354,22 +4609,27 @@
   },
   {
    "id": "j044",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+     "title": "Total Solar Eclipse FAQ",
+     "url": "https://science.nasa.gov/eclipses/future-eclipses/eclipse-2024/faq",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "3d2b2e3cd67318f7a246c550386febec873dcea0e204353aa727d69a417dc35a",
+   "claim": "从地面观测，天体因地球自西向东自转而呈现自东向西的周日视运动",
+   "pinpoint": "Earth rotates eastward on its axis, which means the Moon, Sun, and stars appear to move from east to west across the sky.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（自东向西）"
   },
   {
    "id": "j045",
@@ -4422,79 +4682,99 @@
   },
   {
    "id": "j047",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "Earth from Orbit: Summer Solstice",
+     "url": "https://www.nesdis.noaa.gov/news/earth-orbit-summer-solstice",
+     "publisher": "NOAA NESDIS"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "0055b31a20f2b5f4783db625f6d62a9c6a3ebef0d3ad0d5894cf4b74ee2d2735",
+   "claim": "一年中太阳直射点最北到达北回归线（Tropic of Cancer）",
+   "pinpoint": "The sun's direct rays reach their northernmost position with respect to Earth's equator, along the Tropic of Cancer, at 23.5 degrees north latitude.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（北回归线）"
   },
   {
    "id": "j048",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "4.3 Keeping Time – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/4-3-keeping-time/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "0c5773e6053174c3f40852fa08d34341199e6a8dc13428c00d76649098cee11f",
+   "claim": "太阳日比恒星日长约 4 分钟，即恒星日比太阳日短约 4 分钟",
+   "pinpoint": "So the solar day is about 4 minutes longer than the sidereal day.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（约4分钟）"
   },
   {
    "id": "j049",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "2.1 The Sky Above – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/?p=76",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "545b6917d3aec1d49f86ad420de54fdce25649cc3875c358915311c4a430d137",
+   "claim": "拱极星是绕天极周日运动、始终不落到地平线以下的星（其是否拱极取决于观测者纬度）",
+   "pinpoint": "For this observer, stars within 38° of the North Pole can never set. They are always above the horizon, day and night.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（绕天极附近周日运动且始终不落到地平线下的星）"
   },
   {
    "id": "j050",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "2.1 The Sky Above – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/?p=76",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "00d4c8c3a4f2cb799c2310431947b35d97fc86b2513f89b1ef002ebb415aca9b",
+   "claim": "纬度 φ 处距北天极在 φ 以内的星永不落下，即赤纬大于 90°−φ 的星为拱极星；北纬 40° 时阈值为 50°",
+   "pinpoint": "For this observer, stars within 38° of the North Pole can never set. They are always above the horizon, day and night.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（50°）"
   },
   {
    "id": "j051",
@@ -4571,41 +4851,51 @@
   },
   {
    "id": "j054",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "4.2 The Seasons – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/4-2-the-seasons/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "2febc949c7169fa81ac9f95be22e68dadd9d954bb871bbc0675ae2b063ff61cf",
+   "claim": "赤道全年每天昼夜近乎等长（约 12 小时日照、12 小时夜晚），昼夜长短变化最小",
+   "pinpoint": "Near the equator, for instance, all seasons are much the same. Every day of the year, the Sun is up half the time, so there are approximately 12 hours of sunshine and 12 hours of night.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（赤道）"
   },
   {
    "id": "j055",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "4.2 The Seasons – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/4-2-the-seasons/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "ec805df3aa88f6a0b27899f01e81a375a51db40432dfffd5c7f2425d9cca1bd2",
+   "claim": "极昼出现在夏季的极圈内（极点附近地区 24 小时有日照）",
+   "pinpoint": "As Earth turns on its axis, the North Pole is continuously illuminated by the Sun; all places within 23° of the pole have sunshine for 24 hours.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（夏季的极圈内）"
   },
   {
    "id": "j056",
@@ -4634,121 +4924,171 @@
   },
   {
    "id": "j057",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+     "title": "Eclipses and the Moon",
+     "url": "https://science.nasa.gov/moon/eclipses/",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "2d78756d95f76bff75c5ff179f23c068c7b4b4248d5b48458c2e792e98813e5e",
+   "claim": "月球轨道面（白道）与地球公转面（黄道面）的夹角约 5°",
+   "pinpoint": "The Moon’s orbit is tilted about 5 degrees compared to the plane of Earth’s orbit around the Sun.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（该说法正确）"
   },
   {
    "id": "j058",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "The 2017 Winter Solstice Arrives",
+     "url": "https://www.nesdis.noaa.gov/content/2017-winter-solstice-arrives",
+     "publisher": "NOAA NESDIS"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "d99e4778bb21a7e814fbab39bd9d60eb1f78a784f49ac89a4873c99537b27eda",
+   "claim": "太阳直射点到达南回归线（Tropic of Capricorn）时即北半球冬至",
+   "pinpoint": "The sun's direct rays reach their southernmost position with respect to Earth's equator, along the Tropic of Capricorn, at 23.5 degrees south latitude.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：3（冬至）"
   },
   {
    "id": "j059",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "4.2 The Seasons – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/4-2-the-seasons/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "68859e9a98c840229fca65f96bc83c2209ff35e58031fc9a1517535fc41c9f6f",
+   "claim": "太阳直射北回归线时（同页下文称该纬度为 Tropic of Cancer）北半球节气是夏至",
+   "pinpoint": "On or about June 21 (the date we who live in the Northern Hemisphere call the summer solstice or sometimes the first day of summer), the Sun shines down most directly upon the Northern Hemisphere of Earth.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：[\"夏至\"]"
   },
   {
    "id": "j060",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Facts About Earth: Orbit and Rotation",
-     "url": "https://science.nasa.gov/earth/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Seeing Equinoxes and Solstices from Space",
-     "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-     "publisher": "NASA Science"
+     "title": "4.2 The Seasons – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/4-2-the-seasons/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "fd33256fe37e5d916d1d1a600f7e15f9543eb08555ef7a9da42f599238544e88",
+   "claim": "地球在公转轨道上离太阳最近（近日点）在每年 1 月",
+   "pinpoint": "Earth is actually closest to the Sun in January, when the Northern Hemisphere is in the middle of winter.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（1月初）"
   },
   {
    "id": "j061",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "6.1 Telescopes – Astronomy",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/6-1-telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "056f72bce2785a0a04e6ac3e0166e7f9a6b7601fc822c0afbccbcdc1b172592b",
+   "claim": "反射式望远镜的主光学元件是凹面镜，牛顿式属反射式，其物镜为凹面镜",
+   "pinpoint": "The primary optical element in a telescope is either a convex lens (in a refracting telescope) or a concave mirror (in a reflector) that brings the light to a focus.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（凹面镜）"
   },
   {
    "id": "j062",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "26.5 Telescopes – College Physics",
+     "url": "https://pressbooks.online.ucf.edu/algphysics/chapter/telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "1c579ee4a292f963d783758733e4014fbe0d834d38df024aaf2795889a631ec4",
+   "claim": "按倍率公式，物镜焦距 1200mm 除以目镜焦距 20mm，放大倍率为 60 倍",
+   "pinpoint": "It can be shown that the angular magnification of a telescope is related to the focal lengths of the objective and eyepiece; and is given by M = θ′/θ = −fo/fe.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（60倍）"
   },
   {
    "id": "j063",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "26.5 Telescopes – College Physics",
+     "url": "https://pressbooks.online.ucf.edu/algphysics/chapter/telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "6bb9e6ab82fcb0dfa5cda8d29d3438b79a5415885d2e28c4b5be08e003141f60",
+   "claim": "以凹面镜为物镜的反射式望远镜不产生色差（色差源于透镜对不同色光的折射差异）",
+   "pinpoint": "This telescope forms an image in the same manner as the two-convex-lens telescope already discussed, but it does not suffer from chromatic aberrations.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（该说法正确）"
   },
   {
    "id": "j064",
@@ -4762,7 +5102,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《Astronomy》6.1 与《College Physics》26.5 全文均无“有效倍率上限 ≈ 50×/英寸口径（约 2×/毫米）”的数值法则；近命中在 spacemath.gsfc.nasa.gov，不在 2026-10-29 批准的白名单内，未采用。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j065",
@@ -4790,17 +5130,27 @@
   },
   {
    "id": "j066",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "27.6 Limits of Resolution: The Rayleigh Criterion – College Physics",
+     "url": "https://pressbooks.online.ucf.edu/algphysics/chapter/limits-of-resolution-the-rayleigh-criterion/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "ec80a1e57ef72df04a9b42d9ce64eb122ec8e1479186a3eea3f5b869466d9f84",
+   "claim": "瑞利判据下望远镜的理论分辨率（最小可分辨角）为 1.22λ/D",
+   "pinpoint": "The first minimum is at an angle of θ = 1.22 λ/D, so that two point objects are just resolvable if they are separated by the angle θ = 1.22 λ/D",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（1.22λ/D）"
   },
   {
    "id": "j067",
@@ -4814,7 +5164,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：本题依赖“有效倍率上限≈口径（毫米）×2”法则，该法则在白名单内无逐点原文（见 j064 复查记录），80mm→160 倍无从逐点支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j068",
@@ -4852,7 +5202,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：白名单内未找到称施密特-卡塞格林望远镜为折反射式（catadioptric）的定义原文；相关表述仅见于 ntrs.nasa.gov 等非白名单页面，未采用。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j070",
@@ -4880,17 +5230,27 @@
   },
   {
    "id": "j071",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "26.5 Telescopes – College Physics",
+     "url": "https://pressbooks.online.ucf.edu/algphysics/chapter/telescopes/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "0d7c8587c628b1dac4f0900a7ccbd9d8e4decaea71ca8eb1d9b9217880e70568",
+   "claim": "望远镜的放大倍率等于物镜焦距除以目镜焦距",
+   "pinpoint": "It can be shown that the angular magnification of a telescope is related to the focal lengths of the objective and eyepiece; and is given by M = θ′/θ = −fo/fe.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：[\"目镜\"]"
   },
   {
    "id": "j072",
@@ -4904,7 +5264,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《College Physics》26.5 仅分别述及“长焦物镜可得最大角放大率”与口径对集光/分辨的影响，未直述“大口径长焦适合观测行星细节”，属间接支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j073",
@@ -4918,7 +5278,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：在 science.nasa.gov、pressbooks.online.ucf.edu、spaceplace.nasa.gov、imagine.gsfc.nasa.gov、iau.org 检索 collimation/校准光轴，白名单内无“反射望远镜需定期校准光轴”的原文。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j074",
@@ -4946,17 +5306,27 @@
   },
   {
    "id": "j075",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
+     "title": "Webb's Scientific Instruments",
+     "url": "https://science.nasa.gov/mission/webb/science-overview/science-explainers/webbs-scientific-instruments/",
      "publisher": "NASA Science"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "b1b0f26f015155786c00bf1d59fcd93f2251cfdafbc99dd2414b34beb911ed53",
+   "claim": "视场是望远镜（仪器）在任一时刻能观测到的天空范围",
+   "pinpoint": "An instrument’s field of view is the amount of sky that it can observe at any given point in time.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：0（能观测到的天空范围）"
   },
   {
    "id": "j076",
@@ -5152,17 +5522,27 @@
   },
   {
    "id": "j084",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Moon Phases",
-     "url": "https://science.nasa.gov/moon/moon-phases/",
-     "publisher": "NASA Science"
+     "title": "历书科普问题解答",
+     "url": "https://pmo.cas.cn/xwdt2019/kpdt2019/202203/t20220317_6399980.html",
+     "publisher": "中国科学院紫金山天文台"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "8db92670ba2b62925a1d5bc25185b4ed5a5ea8b327aa57d2846f61b8d15dfb01",
+   "claim": "朔为农历初一（同页第 1 问），下弦为日月地心视黄经差 270° 的月相，按朔望月约 29.5 天推算在朔后约 22 天，即农历廿二、廿三出现下弦月",
+   "pinpoint": "常使用的月相名称有四种，即朔、上弦、望、下弦，它们分别指月球与太阳的地心视黄经相差0°、90°、180°和270°的月相",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：3（下弦月）"
   },
   {
    "id": "j085",
@@ -5565,7 +5945,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：白名单内 NASA 专家页（www.nasa.gov）作 “the observable universe is about 92 billion light-years across”，与答案键 930 亿光年（93 billion）数值不符；93 billion 表述仅见于白名单外 GSFC 子域（asd.gsfc.nasa.gov），未采用。930 亿光年为通行数值，差异源于来源估计口径。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j102",
@@ -5665,22 +6045,27 @@
   },
   {
    "id": "j106",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Types of Galaxies",
-     "url": "https://science.nasa.gov/universe/galaxies/types/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
-     "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
-     "publisher": "NASA Science"
+     "title": "26.5 The Expanding Universe",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/26-5-the-expanding-universe/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "959bb1a851f5fe5d7072f85c5ae9e4da0e726b2c6afe1c661f3c3ce77f60a381",
+   "claim": "哈勃定律为 v = H₀ × d，空格处应填距离 d",
+   "pinpoint": "Hubble's law (v = H × d) allows us to calculate the distance to any galaxy.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：[\"d\"]"
   },
   {
    "id": "j107",
@@ -5876,17 +6261,37 @@
   },
   {
    "id": "j115",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Planetary Motion: The History of an Idea",
-     "url": "https://science.nasa.gov/earth/earth-observatory/planetary-motion/",
-     "publisher": "NASA Science"
+     "title": "13.1 Newton's Law of Universal Gravitation",
+     "url": "https://pressbooks.online.ucf.edu/phy2048tjb/chapter/13-1-newtons-law-of-universal-gravitation/",
+     "publisher": "OpenStax"
+    },
+    {
+     "title": "3.1 The Laws of Planetary Motion",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/3-1-the-laws-of-planetary-motion/",
+     "publisher": "OpenStax"
+    },
+    {
+     "title": "5.1 Forces",
+     "url": "https://pressbooks.online.ucf.edu/phy2048tjb/chapter/5-1-forces/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "bba7fe289029df082785e5f5d55b06d3a5c8ea5c5511345f8b9a5a51a7065ed3",
+   "claim": "四人生年依次为托勒密（90–168）、哥白尼（1473–1543）、开普勒（1571–1630）、牛顿（1642–1727），由早到晚为托勒密→哥白尼→开普勒→牛顿",
+   "pinpoint": "Ptolemy (90–168 CE); Nicolaus Copernicus (1473–1543); Johannes Kepler (1571–1630); Isaac Newton (1642–1727)",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：[1,0,3,2]"
   },
   {
    "id": "j116",
@@ -6284,21 +6689,36 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "第三轮（扩白名单后）复查：NASA《Solar Storms and Flares》列举太阳风暴影响为磁暴、无线电中断、停电与极光，未提及地震；“不包括地震”只能由影响清单间接推知，白名单内无逐点原文。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
   },
   {
    "id": "j133",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Sun Facts",
-     "url": "https://science.nasa.gov/sun/facts/",
-     "publisher": "NASA Science"
+     "title": "Sun-Earth Day 2011: Ancient Observatories",
+     "url": "https://science.gsfc.nasa.gov/attic/sunearthday.nasa.gov/2011/multimedia/ancient_observatories.php",
+     "publisher": "NASA GSFC"
+    },
+    {
+     "title": "21.1 Star Formation",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/21-1-star-formation/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:40:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 第三轮核验：已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "23481ee99f59fe29ad493ce48600c580d9174b27a1c8940a92aaf700d134a3c9",
+   "claim": "太阳每秒约有 400 万吨物质转化为能量（OpenStax 21.1 亦作 about 4 million tons turning into energy）",
+   "pinpoint": "During a single second, the sun converts 4 million tons of matter into pure energy.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（400万吨）"
   },
   {
    "id": "j134",
