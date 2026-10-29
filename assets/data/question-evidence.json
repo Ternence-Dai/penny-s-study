@@ -1,54 +1,54 @@
 {
   "schemaVersion": 1,
-  "description": "Per-question source registry. All 300 questions remain review-needed. NASA, IAU and Chinese national research/space-agency links are topic-level candidate references only; a source link does not verify the question wording, answer or explanation.",
+  "description": "Per-question source registry. A-level verification round (2026-10-29): 65 questions verified and 1 rejected as a duplicate against NASA / IAU / CAS primary sources, each with claim, pinpoint, asOf and answerDigest records; all remaining questions stay review-needed. A registered source link alone does not verify a question; only entries with status \"verified\" carry a completed review record.",
   "questions": [
     {
       "id": "p001",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "0e9c45b2da31fe6ec0bcc438536280f01e25820af3df7b7a5d7196a04963b99a",
+      "claim": "木星是太阳系中体积最大的行星",
+      "pinpoint": "Jupiter is the biggest planet in our solar system",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（木星）"
     },
     {
       "id": "p002",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "Mercury: Facts",
           "url": "https://science.nasa.gov/mercury/facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "4d72230b082cd967c5a89b4566d4744a2e12f0f10648cb220bc13c127745a829",
+      "claim": "水星是距离太阳最近的行星",
+      "pinpoint": "Mercury is the closest planet to the Sun; its year lasts just 88 Earth days",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（水星）"
     },
     {
       "id": "p003",
@@ -124,27 +124,27 @@
     },
     {
       "id": "p006",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "528056d9624d6379f325dd305ba029a3e9fc83da24b17abc5c1613c1aef359d4",
+      "claim": "八大行星中体积和质量最大的是木星",
+      "pinpoint": "Jupiter is the biggest planet in our solar system",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"木星\"]"
     },
     {
       "id": "p007",
@@ -244,51 +244,51 @@
     },
     {
       "id": "p011",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
-        {
-          "title": "The Great Red Spot: An Ancient Storm in Jupiter's Atmosphere",
-          "url": "https://science.nasa.gov/asset/hubble/the-great-red-spot-an-ancient-storm-in-jupiters-atmosphere/",
-          "publisher": "NASA Science"
-        },
         {
           "title": "Jupiter Facts",
           "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "9f52c226167bde55b42bab9e0bfb0e5ccaf3728cb21111114d3961e98d4d6afd",
+      "claim": "木星表面最著名的特征是大红斑（巨型风暴）",
+      "pinpoint": "The Great Red Spot is Jupiter’s iconic giant storm",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（大红斑）"
     },
     {
       "id": "p012",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+          "title": "NASA: Neptune Facts",
+          "url": "https://science.nasa.gov/neptune/neptune-facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "7280fa73e3a5ec290a04cb8bc66ad2eacfec2bb2f260c027d09894b9221c8ff1",
+      "claim": "海王星是太阳系中距离太阳最远的行星（第八颗，距日30倍地日距离以上）",
+      "pinpoint": "Neptune is the eighth and most distant planet in our solar system; more than 30 times as far from the Sun as Earth",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（海王星）"
     },
     {
       "id": "p013",
@@ -316,46 +316,51 @@
     },
     {
       "id": "p014",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
+          "title": "NASA: Saturn Moons",
+          "url": "https://science.nasa.gov/saturn/moons/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "7174c8c851157fa72846d94769673192da05b44f3920e4201691c9f758910526",
+      "claim": "土星是太阳系中已确认卫星最多的行星（NASA 土星卫星页记载274颗，远多于任何其他行星）",
+      "pinpoint": "Saturn has 274 confirmed moons in its orbit, far more than any other planet in our solar system",
+      "asOf": "2025-03",
+      "answerDigest": "答案键：2（土星）"
     },
     {
       "id": "p015",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "Venus: Facts",
           "url": "https://science.nasa.gov/venus/venus-facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "2a7a324dc06593b84349e7d07fc34e202ed8011cccd6d0a002546a3bd0dd736c",
+      "claim": "金星是太阳系中表面温度最高的行星（约467℃，解析约460℃为约数）",
+      "pinpoint": "Venus is the hottest planet in our solar system, with surface temperatures around 467°C",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（正确）"
     },
     {
       "id": "p016",
@@ -431,51 +436,51 @@
     },
     {
       "id": "p019",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
+          "title": "Jupiter Facts",
+          "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "d221cc0353ff87818242030298b27dff8380d23bbedc095c729ec989e43b27d4",
+      "claim": "木星自转最快，一天约9.9小时，为行星中最短",
+      "pinpoint": "Jupiter has the shortest day of any planet, about 9.9 hours",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（木星）"
     },
     {
       "id": "p020",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "IAU 2006 General Assembly: Result of the Resolution Votes",
           "url": "https://www.iau.org/IAU/Iau/News/PR2006/iau-2006-general-assembly-resolution-votes.aspx",
           "publisher": "International Astronomical Union"
-        },
-        {
-          "title": "Pluto",
-          "url": "https://science.nasa.gov/dwarf-planets/pluto/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "038addd2316e9f60640435021b6fa4524881dbbf1a157ff87e5be33d593a2b02",
+      "claim": "2006年 IAU 决议将冥王星归类为矮行星",
+      "pinpoint": "Resolution 6A: Pluto is a \"dwarf planet\" by the above definition",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（正确）"
     },
     {
       "id": "p021",
@@ -503,26 +508,31 @@
     },
     {
       "id": "p022",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "Solar System: Facts",
+          "title": "NASA Solar System Facts",
           "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "27a2b30262c66c82c53fb9d154ec26e36777e1023fbc7d90faea781893ea45b1",
+      "claim": "太阳系形成于约46亿年前",
+      "pinpoint": "Our solar system formed about 4.6 billion years ago",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"46\"]"
     },
     {
       "id": "p023",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "Ganymede: Facts",
@@ -530,38 +540,49 @@
           "publisher": "NASA Science"
         },
         {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
+          "title": "Jupiter Facts",
+          "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "0221253ea23026bd47b95e1321565602adbe1d1c8f0c806c46c473b085f2bff2",
+      "claim": "木卫三（Ganymede）是太阳系最大的卫星，且比水星还大",
+      "pinpoint": "Ganymede is the largest moon in our solar system and is bigger than the planet Mercury",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（木卫三）"
     },
     {
       "id": "p024",
-      "status": "review-needed",
+      "status": "rejected",
       "sources": [
         {
-          "title": "NASA Solar System Facts",
-          "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA About the Planets",
-          "url": "https://science.nasa.gov/solar-system/planets/",
+          "title": "NASA: Saturn Moons",
+          "url": "https://science.nasa.gov/saturn/moons/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 核验：与 p014 重复，标记 rejected 并从抽题池排除，详见 rejectionReason。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "565a7dd0d38ae5885ef9c47500b4ebe3bb3a2829bb2c2ce0238447c5e8dd9662",
+      "claim": "本题与 p014 语义重复：同问“卫星最多的行星”且答案同为土星",
+      "pinpoint": "Saturn has 274 confirmed moons in its orbit, far more than any other planet in our solar system",
+      "asOf": "2025-03",
+      "answerDigest": "答案键：2（土星）",
+      "rejectionReason": "与 p014 语义重复（同问“太阳系/八大行星中卫星最多的行星”，答案同为土星）。保留 p014 为唯一核验版本；本题标记 rejected，并已在抽题层排除：legacy-app.js 的 getQuestions 与 startDueWrongReview 按 questionEvidenceById 中 status===“rejected” 过滤，练习、考试、智能练习、每日一题与到期错题复习均不会再抽到本题。题库本体保留本题行以维持 300 题登记与历史成绩引用。"
     },
     {
       "id": "p025",
@@ -603,7 +624,7 @@
     },
     {
       "id": "p027",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Moon Phases",
@@ -611,9 +632,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "ee238b0791e8b06a0a1633b636cf6cfbe66a1a63cc88d40056dd9f117ef76fd5",
+      "claim": "上弦月傍晚位于南方天空，亮面朝西（朝向日落方向的太阳）",
+      "pinpoint": "First quarter Moon is high in the sky at sunset; its lit half faces the Sun, which is in the west at sunset",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（西）"
     },
     {
       "id": "p028",
@@ -631,7 +662,7 @@
     },
     {
       "id": "p029",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Moon Phases",
@@ -639,13 +670,23 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "c8c148f207b26ff509632263f6724e4c8648ee22c71edb89fd8a7ede5bba1e52",
+      "claim": "农历初一的月相是新月（朔），月球夜面朝向地球而不可见",
+      "pinpoint": "The new Moon is the first lunar phase; its night side faces Earth",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"新月\",\"朔\"]"
     },
     {
       "id": "p030",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Moon Phases",
@@ -653,9 +694,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "9b162368b13a711333d0f2c3576807101f38fbd053237e79629f114cdd98a011",
+      "claim": "农历初七、初八对应上弦月（月相周期约四分之一处，约7.4天）",
+      "pinpoint": "The first quarter Moon occurs about one quarter of the way through the 29.5-day cycle",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（上弦月）"
     },
     {
       "id": "p031",
@@ -673,7 +724,7 @@
     },
     {
       "id": "p032",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Moon Phases",
@@ -681,9 +732,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "d0c6b6ec67d67d1d3c9c0d799aa5c1ae222dcb9d7d0aa9df7e2664be198ea591",
+      "claim": "下弦月下半夜（约半夜）升起，亮面朝东（朝向将要升起的太阳）",
+      "pinpoint": "The last quarter Moon rises at about midnight; its lit half faces east toward the coming sunrise",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（东）"
     },
     {
       "id": "p033",
@@ -743,7 +804,7 @@
     },
     {
       "id": "p037",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Moon Phases",
@@ -751,9 +812,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "2a7fd9d82e78f627fdbd888b1640b018e2848e056c297af27c610c8870f276ee",
+      "claim": "月相变化的周期称为朔望月，新月到新月约29.5天（约29.53天）",
+      "pinpoint": "The Moon phases repeat every 29.5 days, from new Moon to new Moon",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"朔望\"]"
     },
     {
       "id": "p038",
@@ -827,17 +898,27 @@
     },
     {
       "id": "p043",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "IAU The 88 Constellations",
-          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-          "publisher": "International Astronomical Union"
+          "title": "NASA APOD: Sirius — The Brightest Star in the Night",
+          "url": "https://science.nasa.gov/image-article/apod-1996-september-02-sirius-the-brightest-star-in-the-night/",
+          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "f0dda8e98812cf965fc6eb71645a44c9fd2abf5da1951598efffdd51bc644f20",
+      "claim": "「北极星是夜空中最亮的恒星」为假：夜空中最亮的恒星是天狼星",
+      "pinpoint": "Sirius is the brightest star in the night sky",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（错误）"
     },
     {
       "id": "p044",
@@ -995,17 +1076,27 @@
     },
     {
       "id": "p055",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "IAU The 88 Constellations",
-          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-          "publisher": "International Astronomical Union"
+          "title": "NASA APOD: Sirius — The Brightest Star in the Night",
+          "url": "https://science.nasa.gov/image-article/apod-1996-september-02-sirius-the-brightest-star-in-the-night/",
+          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "d4410ce2d1f0fec646fab1b546a8379016a9b9670b038df97db8287c89b8d7d0",
+      "claim": "夜空中最亮的恒星是天狼星，属于大犬座",
+      "pinpoint": "Sirius is the brightest star in the night sky, prominent in the constellation of Canis Majoris (the Big Dog)",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"天狼星\"]"
     },
     {
       "id": "p056",
@@ -1107,31 +1198,56 @@
     },
     {
       "id": "p063",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars",
-          "url": "https://science.nasa.gov/universe/stars/",
+          "title": "NASA: Our Milky Way Galaxy — How Big Is Space?",
+          "url": "https://science.nasa.gov/universe/exoplanets/our-milky-way-galaxy-how-big-is-space/",
+          "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "99e09b79ec9da388b3f5e171bde23bbb7296260d29f46aec9facd9f71255b420",
+      "claim": "距离太阳最近的恒星（太阳除外）是比邻星，约4.24光年",
+      "pinpoint": "Proxima Centauri, our nearest neighboring star; the Sun Facts page gives its distance as 4.24 light-years",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（比邻星）"
     },
     {
       "id": "p064",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars",
-          "url": "https://science.nasa.gov/universe/stars/",
+          "title": "NASA APOD: Sirius — The Brightest Star in the Night",
+          "url": "https://science.nasa.gov/image-article/apod-1996-september-02-sirius-the-brightest-star-in-the-night/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "be887c0f621a0dd093f41ca629d7347232771047da0a4b74df77ffba77e9725e",
+      "claim": "夜空中最亮的恒星是天狼星",
+      "pinpoint": "Sirius is the brightest star in the night sky",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"天狼星\"]"
     },
     {
       "id": "p065",
@@ -1205,7 +1321,7 @@
     },
     {
       "id": "p070",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Stars",
@@ -1213,9 +1329,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "724cb68515e78581d496f2e07d0a2c996253476c559129dc688b670e226cf53e",
+      "claim": "恒星发光发热源于核心的核聚变反应（氢聚变为氦）",
+      "pinpoint": "In a star’s core, immense pressures and temperatures squeeze hydrogen nuclei together to form helium — nuclear fusion",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"核聚变\",\"聚变\"]"
     },
     {
       "id": "p071",
@@ -1275,17 +1401,27 @@
     },
     {
       "id": "p075",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars",
-          "url": "https://science.nasa.gov/universe/stars/",
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "171fe3798733677a164a4a89df62f456898e435f9755d6c9314293d797c123bf",
+      "claim": "太阳是一颗 G 型（G2V）主序星",
+      "pinpoint": "Star type: G2 V, yellow dwarf main-sequence star",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"G\",\"G2\"]"
     },
     {
       "id": "p076",
@@ -1479,22 +1615,27 @@
     },
     {
       "id": "p086",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Eclipses and the Moon",
           "url": "https://science.nasa.gov/moon/eclipses/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Eclipse Viewing Safety",
-          "url": "https://science.nasa.gov/eclipses/safety/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "18f72c12a69138ed4ed3130dc03bc3ea0915b7ddf5d605dd4020641d0aee74dd",
+      "claim": "日食发生在农历初一（朔/新月）",
+      "pinpoint": "Solar eclipses happen only at the new Moon phase",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"初一\",\"朔\"]"
     },
     {
       "id": "p087",
@@ -1631,22 +1772,27 @@
     },
     {
       "id": "p094",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Facts About Earth: Orbit and Rotation",
           "url": "https://science.nasa.gov/earth/facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Seeing Equinoxes and Solstices from Space",
-          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "4abce18af78777c004209ce531ab35c43540e9a7f147b5725d77b4c0cdb61b5b",
+      "claim": "地球自转一周约24小时（NASA 地球页记为23.9小时）",
+      "pinpoint": "Earth completes one rotation every 23.9 hours",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"24\",\"二十四\"]"
     },
     {
       "id": "p095",
@@ -1783,22 +1929,27 @@
     },
     {
       "id": "p102",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Facts About Earth: Orbit and Rotation",
           "url": "https://science.nasa.gov/earth/facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Seeing Equinoxes and Solstices from Space",
-          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "307b7fb085095800f66105c8e05ce3903b08513b3920abd4a3df35bd5a962935",
+      "claim": "地球公转一周约365天（NASA 地球页记为365.25天）",
+      "pinpoint": "It takes 365.25 days to complete one trip around the Sun",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"365\",\"365.24\"]"
     },
     {
       "id": "p103",
@@ -1878,41 +2029,51 @@
     },
     {
       "id": "p107",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Moon Facts",
-          "url": "https://science.nasa.gov/moon/facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Moon Composition and Structure",
-          "url": "https://science.nasa.gov/moon/composition/",
+          "title": "NASA Facts About Earth: Orbit and Rotation",
+          "url": "https://science.nasa.gov/earth/facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "925ea55bc6839e8740d99d432b5f04863678e79fce9fd335f2c8a9e8a3fdb2ee",
+      "claim": "月球是地球目前唯一已确认的长期天然卫星；被暂时捕获的小天体只停留数月至数年",
+      "pinpoint": "Earth is the only planet in our solar system with only one moon; temporarily captured asteroids are typically trapped for only a few months or years",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（正确）"
     },
     {
       "id": "p108",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Moon Facts",
+          "title": "Moon Facts",
           "url": "https://science.nasa.gov/moon/facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Moon Composition and Structure",
-          "url": "https://science.nasa.gov/moon/composition/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "41f7f20655cdaa0cf900ee0c6f3b124abd06d254369903bd44d91c7d3bc74c81",
+      "claim": "月球与地球的平均距离约为38.44万千米",
+      "pinpoint": "The Moon’s average distance from Earth is 384,400 km",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"38.4\",\"38.44\",\"38\"]"
     },
     {
       "id": "p109",
@@ -1992,22 +2153,27 @@
     },
     {
       "id": "p113",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Moon Facts",
-          "url": "https://science.nasa.gov/moon/facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Moon Composition and Structure",
-          "url": "https://science.nasa.gov/moon/composition/",
-          "publisher": "NASA Science"
+          "title": "NASA biography: Neil A. Armstrong",
+          "url": "https://www.nasa.gov/people/neil-a-armstrong/",
+          "publisher": "NASA"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "ecfe338766acb89d392bf68581501eafae2035b2d90c0130c9cf4d14e7282494",
+      "claim": "人类第一次登上月球是在1969年（阿波罗11号，7月20日）",
+      "pinpoint": "Armstrong became the first person to set foot on the moon on July 20, 1969 (Apollo 11)",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（1969年）"
     },
     {
       "id": "p114",
@@ -2030,22 +2196,27 @@
     },
     {
       "id": "p115",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Moon Facts",
+          "title": "Moon Facts",
           "url": "https://science.nasa.gov/moon/facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Moon Composition and Structure",
-          "url": "https://science.nasa.gov/moon/composition/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "2c0d7590b186a5e5cd811ac8eefa6de2ff00e56b272d104dae0d575f078fd00d",
+      "claim": "月球表面重力约为地球的1/6",
+      "pinpoint": "The Moon’s surface gravity is about one-sixth of Earth’s",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"1/6\",\"六分之一\"]"
     },
     {
       "id": "p116",
@@ -2106,22 +2277,27 @@
     },
     {
       "id": "p119",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
-        {
-          "title": "NASA Types of Galaxies",
-          "url": "https://science.nasa.gov/universe/galaxies/types/",
-          "publisher": "NASA Science"
-        },
         {
           "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
           "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "5469345aa58d37dbc55690e984dcaea37f2feb51f0a4c3aaebe38cb1bd9a2c86",
+      "claim": "距离银河系最近的大型河外星系是仙女座星系",
+      "pinpoint": "Our neighboring Andromeda galaxy — the galaxy is now 2.5 million light-years away",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（仙女座星系）"
     },
     {
       "id": "p120",
@@ -2163,22 +2339,27 @@
     },
     {
       "id": "p122",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Types of Galaxies",
-          "url": "https://science.nasa.gov/universe/galaxies/types/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
-          "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
+          "title": "NASA: Our Milky Way Galaxy — How Big Is Space?",
+          "url": "https://science.nasa.gov/universe/exoplanets/our-milky-way-galaxy-how-big-is-space/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "5642d06f59b6079a4b8284b593f64b81429d3c8e9070760a8bc3f2a7b5b20720",
+      "claim": "银河系的直径约为10万光年",
+      "pinpoint": "Our galaxy probably contains 100 to 400 billion stars, and is about 100,000 light-years across",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"10\",\"十\"]"
     },
     {
       "id": "p123",
@@ -2239,17 +2420,32 @@
     },
     {
       "id": "p126",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Telescopes 101",
           "url": "https://science.nasa.gov/universe/telescopes-101/",
           "publisher": "NASA Science"
+        },
+        {
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
+          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "a7cdecd8e997fd4081b947ff05b4198381072c24483c78f0a54d6378b1903db6",
+      "claim": "天文望远镜最主要的作用是汇聚光线并提高分辨率",
+      "pinpoint": "Telescopes gather and focus light; the size of the main mirror or lens determines how well a telescope can collect light. Angular resolution is a telescope’s ability to distinguish objects that are very close together",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（汇聚光线并提高分辨率）"
     },
     {
       "id": "p127",
@@ -2337,17 +2533,27 @@
     },
     {
       "id": "p133",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Telescopes 101",
-          "url": "https://science.nasa.gov/universe/telescopes-101/",
-          "publisher": "NASA Science"
+          "title": "中国科学院国家天文台：FAST 观测基地",
+          "url": "https://nao.cas.cn/ncb/kp/202203/t20220331_6417254.html",
+          "publisher": "中国科学院国家天文台"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "4b2695ceeb9950cb7538777a04ab0d82a43b448ce9f72b1034492f205cfab068",
+      "claim": "世界上最大的单口径射电望远镜是 FAST（500米口径）",
+      "pinpoint": "500米口径球面射电望远镜（FAST）被誉为“中国天眼”，是…世界最大单口径、最灵敏的射电望远镜",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（FAST）"
     },
     {
       "id": "p134",
@@ -2417,41 +2623,51 @@
     },
     {
       "id": "p138",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Meteors and Meteorites Facts",
           "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Meteor Showers",
-          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "22970b2b1414adf6e56b6b10365d60deb65b92b8d7dfb3edcc036612d97f0c17",
+      "claim": "未烧尽而落到地面的流星体残骸称为陨石",
+      "pinpoint": "When a meteoroid survives its trip through the atmosphere and hits the ground, it’s called a meteorite",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"陨石\"]"
     },
     {
       "id": "p139",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Meteors and Meteorites Facts",
           "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Meteor Showers",
-          "url": "https://science.nasa.gov/solar-system/meteors-meteorites/meteor-showers/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "1bc9ded9c2f831ee0395d04d052d3b26d08694a403e94a91a06e7913d7a36dc3",
+      "claim": "英仙座流星雨通常出现在每年8月（极大在8月12日前后）",
+      "pinpoint": "The Perseids, which peak around August 12 every year",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（8月）"
     },
     {
       "id": "p140",
@@ -2502,7 +2718,7 @@
     },
     {
       "id": "p143",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Sun Facts",
@@ -2510,9 +2726,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "152e593aa844eb1de4e051c63ebf60ed0507f65253679bc7d0b5880adefe6f50",
+      "claim": "太阳是一颗恒星",
+      "pinpoint": "The Sun is a star — the only star in our solar system",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"恒\"]"
     },
     {
       "id": "p144",
@@ -2582,41 +2808,56 @@
     },
     {
       "id": "p148",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "IAU 2012 Resolution B2: Astronomical Unit",
-          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
-          "publisher": "International Astronomical Union"
-        },
-        {
-          "title": "NASA Facts About Earth: Size and Distance",
-          "url": "https://science.nasa.gov/earth/facts/",
+          "title": "NASA: Our Milky Way Galaxy — How Big Is Space?",
+          "url": "https://science.nasa.gov/universe/exoplanets/our-milky-way-galaxy-how-big-is-space/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "20644bdcdba280483bdc33079199f1d3bc8cd4b0280f79e26e7f0cd60402b56c",
+      "claim": "1光年约等于9.5万亿千米（答案键9.46为更精确值，9.5在容差内）",
+      "pinpoint": "One light-year works out to 5.8 trillion miles (9.5 trillion kilometers)",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"9.46\",\"9.5\"]"
     },
     {
       "id": "p149",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "IAU 2012 Resolution B2: Astronomical Unit",
-          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
-          "publisher": "International Astronomical Union"
+          "title": "NASA: Our Milky Way Galaxy — How Big Is Space?",
+          "url": "https://science.nasa.gov/universe/exoplanets/our-milky-way-galaxy-how-big-is-space/",
+          "publisher": "NASA Science"
         },
         {
-          "title": "NASA Facts About Earth: Size and Distance",
-          "url": "https://science.nasa.gov/earth/facts/",
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "7300a80daf178b33671c296f6a9ac6899bf8aff44854c540cf749e610b26b088",
+      "claim": "光年大于天文单位、天文单位大于千米，故光年为最大距离单位",
+      "pinpoint": "1 light-year ≈ 9.5 trillion km; 1 astronomical unit is formally defined as 149,597,870.7 km",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（光年）"
     },
     {
       "id": "p150",
@@ -2715,22 +2956,27 @@
     },
     {
       "id": "j005",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Universe Glossary: Right Ascension and Declination",
           "url": "https://science.nasa.gov/universe/glossary/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "IAU The 88 Constellations and Coordinate Boundaries",
-          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-          "publisher": "International Astronomical Union"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "700dd83eacb63c0ada7948c5f57f864cf0d71539e07dbf5fda7ae3f6a6b9d5cf",
+      "claim": "赤纬自天赤道向北度量为正值（北天极+90°）",
+      "pinpoint": "Declination has values from +90° to -90°, corresponding to the north and south celestial poles, with 0° at the celestial equator",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"正\",\"正值\"]"
     },
     {
       "id": "j006",
@@ -2848,22 +3094,27 @@
     },
     {
       "id": "j012",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Universe Glossary: Right Ascension and Declination",
           "url": "https://science.nasa.gov/universe/glossary/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "IAU The 88 Constellations and Coordinate Boundaries",
-          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-          "publisher": "International Astronomical Union"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "7ee62e9b0ac5b4f8ee257b4ad224ec204af2d1cdb186dc92482c82f6e3add441",
+      "claim": "赤经的起算点是春分点",
+      "pinpoint": "Right ascension is measured eastward along the celestial equator from the vernal equinox",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"春分点\"]"
     },
     {
       "id": "j013",
@@ -2952,31 +3203,51 @@
     },
     {
       "id": "j018",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "title": "NASA Stars",
           "url": "https://science.nasa.gov/universe/stars/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "600ddfcbef19f7f1520f125ef6360f093cb06e3cad8d0f99384b9baf7aa475fb",
+      "claim": "主序星阶段是恒星一生中停留时间最长的阶段",
+      "pinpoint": "Main sequence: this is the longest phase of a star’s life",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（正确）"
     },
     {
       "id": "j019",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "title": "NASA Stars",
           "url": "https://science.nasa.gov/universe/stars/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "7fdb56fe8e19c3582d1e5da5bceb775297f16b8b2c0e021c469a7381af6d5394",
+      "claim": "太阳最终会演化成白矮星",
+      "pinpoint": "All that’s left of the star is its core, now called a white dwarf; this will be the fate of our Sun",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"白矮\",\"白矮星\"]"
     },
     {
       "id": "j020",
@@ -3050,17 +3321,27 @@
     },
     {
       "id": "j025",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "title": "NASA Stars",
           "url": "https://science.nasa.gov/universe/stars/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "94fa758bee0ba76fab96ba78b2c2dd1b77fa9b9d09a1652d3b28db6d9fb6f380",
+      "claim": "大质量恒星超新星爆发后，核心残骸可能塌缩成中子星或黑洞",
+      "pinpoint": "The core survives as an incredibly dense remnant, either a neutron star or a black hole",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"中子\"]"
     },
     {
       "id": "j026",
@@ -3078,17 +3359,27 @@
     },
     {
       "id": "j027",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars: Birth, Life Cycle and Death",
+          "title": "NASA Stars",
           "url": "https://science.nasa.gov/universe/stars/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "aebc8058a07842ccd947eee7ddffff4d6725fa57a789e6e95af5b6811848dd00",
+      "claim": "太阳目前处于主序星阶段",
+      "pinpoint": "Our Sun is roughly midway through its main sequence stage",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（主序星）"
     },
     {
       "id": "j028",
@@ -3324,26 +3615,31 @@
     },
     {
       "id": "j041",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
           "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Universe Glossary",
-          "url": "https://science.nasa.gov/universe/glossary/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "a348f3a1d1450b12432e3c43d21b68522d0312c38bf374fa16252c893195294e",
+      "claim": "绝对星等是把恒星放在10秒差距处测得的视星等",
+      "pinpoint": "Absolute magnitude is the apparent magnitude an object would have if located exactly 32.6 light-years (10 parsecs) away",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"10\",\"十\"]"
     },
     {
       "id": "j042",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
@@ -3351,14 +3647,24 @@
           "publisher": "NASA Science"
         },
         {
-          "title": "NASA Universe Glossary",
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
           "url": "https://science.nasa.gov/universe/glossary/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "3adee8a02a705b531bffbcbf846b5b63e7f64397868251974bcb6c5b4c987b7d",
+      "claim": "太阳是天空中亮度最高的天体，其视星等在太阳、满月、金星、天狼星中最小（星等数值越小越亮）",
+      "pinpoint": "The Sun is the brightest object in Earth’s sky (Hubble Glossary); on the magnitude scale the brightest star is -1.4 and a decrease of one magnitude means an increase in brightness (Universe Glossary)",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（太阳）"
     },
     {
       "id": "j043",
@@ -3419,22 +3725,27 @@
     },
     {
       "id": "j046",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
-        {
-          "title": "NASA Facts About Earth: Orbit and Rotation",
-          "url": "https://science.nasa.gov/earth/facts/",
-          "publisher": "NASA Science"
-        },
         {
           "title": "NASA Seeing Equinoxes and Solstices from Space",
           "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "c03709d66ccf0df3c2b1b7bd02edaaaded32ca8648548f7e5751ddddbc37b3de",
+      "claim": "北回归线纬度约23.5°（与地轴倾角23.5°相同，即23°26′）",
+      "pinpoint": "The axis of the Earth is tilted 23.5 degrees relative to the Sun and the ecliptic plane",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"23度26分\",\"23.5\",\"23.5度\"]"
     },
     {
       "id": "j047",
@@ -3533,22 +3844,27 @@
     },
     {
       "id": "j052",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Facts About Earth: Orbit and Rotation",
-          "url": "https://science.nasa.gov/earth/facts/",
-          "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Seeing Equinoxes and Solstices from Space",
-          "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+          "title": "NASA Universe Glossary: Right Ascension and Declination",
+          "url": "https://science.nasa.gov/universe/glossary/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "4f00dd359320980ed2de50ec979bfb7e781f891ff9cfc38aac5cd5a0c5d1367d",
+      "claim": "太阳在天球上沿黄道自西向东运行，周期一年",
+      "pinpoint": "Ecliptic: a great circle on the celestial sphere representing the Sun’s apparent path during a year",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"黄道\"]"
     },
     {
       "id": "j053",
@@ -3760,7 +4076,7 @@
     },
     {
       "id": "j065",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Telescopes 101",
@@ -3768,9 +4084,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "634d4a03b552649ff84f1228b12f248e681c2235a8b1860a7fae445b32526339",
+      "claim": "反射式望远镜的口径可以做得最大（大透镜过重难造，大镜面可做得更薄更轻）",
+      "pinpoint": "Very large lenses make refracting telescopes large and heavy; large mirrors can be made thinner and lighter than lenses of the same size",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（反射式）"
     },
     {
       "id": "j066",
@@ -3942,7 +4268,7 @@
     },
     {
       "id": "j078",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Moon Phases",
@@ -3950,9 +4276,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "f4fbb88e99c61646652f8d12d4dbb8188592d8ce07eeac529a21dd470a8c2df1",
+      "claim": "月相变化的周期称为朔望月，约29.53天",
+      "pinpoint": "The Moon phases repeat every 29.5 days, from new Moon to new Moon",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"朔望\"]"
     },
     {
       "id": "j079",
@@ -4149,22 +4485,27 @@
     },
     {
       "id": "j091",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Eclipses and the Moon",
           "url": "https://science.nasa.gov/moon/eclipses/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Eclipse Viewing Safety",
-          "url": "https://science.nasa.gov/eclipses/safety/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "52a97371ae62afdd3c3546bcdef34edc1cec6b9ca645d1d3510dfb8fed55af92",
+      "claim": "日食发生在农历初一（朔/新月）",
+      "pinpoint": "Solar eclipses happen only at the new Moon phase",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"初一\",\"朔\"]"
     },
     {
       "id": "j092",
@@ -4187,22 +4528,27 @@
     },
     {
       "id": "j093",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Eclipses and the Moon",
           "url": "https://science.nasa.gov/moon/eclipses/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Eclipse Viewing Safety",
-          "url": "https://science.nasa.gov/eclipses/safety/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "fa7a8e13f2ecbcaddb301bd09840bdcdf3d5f848b1d01fe58fecc6891235caac",
+      "claim": "每年日月食合计最多7次（NASA：每年发生4到7次日月食）",
+      "pinpoint": "Anywhere from four to seven times a year, our Earth, Moon and Sun line up just right to create an eclipse",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（7次）"
     },
     {
       "id": "j094",
@@ -4263,41 +4609,51 @@
     },
     {
       "id": "j097",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Eclipses and the Moon",
           "url": "https://science.nasa.gov/moon/eclipses/",
           "publisher": "NASA Science"
-        },
-        {
-          "title": "NASA Eclipse Viewing Safety",
-          "url": "https://science.nasa.gov/eclipses/safety/",
-          "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "275528ac46fd13bbf841aa33d1b1b9f77773687e2604720d4b038db7d0c0ef34",
+      "claim": "日食时月球位于太阳和地球之间",
+      "pinpoint": "Solar eclipses happen only at the new Moon phase, when the Moon is between Earth and the Sun",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"地球\"]"
     },
     {
       "id": "j098",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
-        {
-          "title": "NASA Types of Galaxies",
-          "url": "https://science.nasa.gov/universe/galaxies/types/",
-          "publisher": "NASA Science"
-        },
         {
           "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
           "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "2b27a66037157382515e703f734ebfc86cff2b465ae4d4b17e8f1c03a316a2d8",
+      "claim": "距离银河系最近的大型河外星系是仙女座星系",
+      "pinpoint": "Our neighboring Andromeda galaxy — the galaxy is now 2.5 million light-years away",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：0（仙女座星系）"
     },
     {
       "id": "j099",
@@ -4320,22 +4676,27 @@
     },
     {
       "id": "j100",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
-        {
-          "title": "NASA Types of Galaxies",
-          "url": "https://science.nasa.gov/universe/galaxies/types/",
-          "publisher": "NASA Science"
-        },
         {
           "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
           "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "fa5b4c10d7805307595270bf880bee7c9ddccdd5c8e628ef49bb9d4e086211cc",
+      "claim": "仙女座星系距离我们约250万光年（NASA 现行值2.5 million ly；键含254为早期测值，同在接受范围）",
+      "pinpoint": "The galaxy (Andromeda, M31) is now 2.5 million light-years away",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"254\",\"250\",\"230\"]"
     },
     {
       "id": "j101",
@@ -4557,22 +4918,27 @@
     },
     {
       "id": "j113",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "CAS: Guo Shoujing and the Shoushi Calendar",
+          "title": "CAS: Guo Shoujing, astronomical instruments and calendar",
           "url": "https://www.ioe.cas.cn/xxgk2019/xxgkml/zdgk/kxpj/kpzhsh/202003/t20200313_5514451.html",
           "publisher": "Chinese Academy of Sciences"
-        },
-        {
-          "title": "CAS Institute for the History of Natural Sciences: Shoushi Calendar",
-          "url": "https://ihns.cas.cn/yjcg/xszz/zztj/202212/t20221207_6570685.html",
-          "publisher": "CAS Institute for the History of Natural Sciences"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "a402d26f61d6f3772a9a3434acb120c9eb6256c533c56872ba34be6975d0731c",
+      "claim": "郭守敬《授时历》测定的回归年长度为365.2425天",
+      "pinpoint": "郭守敬…制定了准确精密的新历法——授时历。他还推算出一年的时间为365.2425天",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"365.2425\"]"
     },
     {
       "id": "j114",
@@ -4618,7 +4984,7 @@
     },
     {
       "id": "j117",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Planetary Motion: The History of an Idea",
@@ -4626,9 +4992,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "8ce4ba3a0b2e48d5dd757057ef6cfc8b67c50793b6cb28b1bd53344884df4f2b",
+      "claim": "最早将望远镜系统用于天文观测并公开重要发现的科学家是伽利略（1610年发现木星卫星与金星相位）",
+      "pinpoint": "When Galileo pointed his telescope into the night sky in 1610, he saw moons orbiting Jupiter and observed the phases of Venus, proving planets orbit the Sun",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：2（伽利略）"
     },
     {
       "id": "j118",
@@ -4674,7 +5050,7 @@
     },
     {
       "id": "j121",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "Official 10-year FAST review: location in Pingtang, Guizhou",
@@ -4682,13 +5058,23 @@
           "publisher": "Cyberspace Administration of China / Xinhua"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "e5525113b7760e092fd11bdfa033c6e55633003fa127218f5fa7421541c9b000",
+      "claim": "“中国天眼”FAST 位于贵州省平塘县",
+      "pinpoint": "“中国天眼”在贵州平塘县落成，创造了单口径射电望远镜最大口径…两个“世界之最”",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"平塘\",\"平塘县\"]"
     },
     {
       "id": "j122",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA: Yuri Gagarin, first human in space",
@@ -4696,13 +5082,23 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "5295f4f1f04f0ab4b80d068be7d2005442427c0b7a1bbdcd0163545829b0fb94",
+      "claim": "世界上第一位进入太空的人是加加林（1961年4月12日）",
+      "pinpoint": "On April 12, 1961, Yuri Gagarin became the first human to orbit the Earth",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（加加林）"
     },
     {
       "id": "j123",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA biography: Neil A. Armstrong",
@@ -4710,9 +5106,19 @@
           "publisher": "NASA"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "3ff8592fe2eeda147290770a26267c3e8b4204bbff99d7a9f5312685a3d35b03",
+      "claim": "第一个踏上月球的人是阿姆斯特朗",
+      "pinpoint": "Armstrong became the first person to set foot on the moon on July 20, 1969",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：1（阿姆斯特朗）"
     },
     {
       "id": "j124",
@@ -4758,7 +5164,7 @@
     },
     {
       "id": "j127",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Sun Facts",
@@ -4766,9 +5172,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "8d3926367bfe06d2c70838460a4cbd50710bc7da7bac44fd9cc85630c6cc4821",
+      "claim": "太阳黑子（太阳活动）周期约为11年",
+      "pinpoint": "The Sun’s activity cycle — the solar cycle, tracked by sunspots — lasts approximately 11 years",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"11\",\"十一\"]"
     },
     {
       "id": "j128",
@@ -4856,7 +5272,7 @@
     },
     {
       "id": "j134",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
           "title": "NASA Sun Facts",
@@ -4864,9 +5280,19 @@
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "0567744976cfeafb289e09af2d60e70f947fb8bf7b7927c8e751ffb9598e5e3b",
+      "claim": "太阳光球温度约为5500℃",
+      "pinpoint": "Surface temperature (photosphere): 10,000 degrees Fahrenheit (5,500 degrees Celsius)",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"5500\",\"五千五百\"]"
     },
     {
       "id": "j135",
@@ -4898,17 +5324,27 @@
     },
     {
       "id": "j137",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars",
-          "url": "https://science.nasa.gov/universe/stars/",
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "5feb8acabba59e5cec6d89ad1577d08e37212cf6eeee86f50bc23779171112c2",
+      "claim": "太阳的光谱型是 G 型（G2）",
+      "pinpoint": "Star type: G2 V",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"G\",\"g\"]"
     },
     {
       "id": "j138",
@@ -4982,17 +5418,27 @@
     },
     {
       "id": "j143",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "NASA Stars",
-          "url": "https://science.nasa.gov/universe/stars/",
+          "title": "NASA Sun Facts",
+          "url": "https://science.nasa.gov/sun/facts/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "d0b0ad64ac51b04bccb84f636d70f2c6f119d492b7cedcef2c4eb0ec96667c9c",
+      "claim": "太阳是一颗 G 型（G2V）主序星",
+      "pinpoint": "Star type: G2 V, yellow dwarf main-sequence star",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"G\",\"G2\"]"
     },
     {
       "id": "j144",
@@ -5076,22 +5522,27 @@
     },
     {
       "id": "j149",
-      "status": "review-needed",
+      "status": "verified",
       "sources": [
         {
-          "title": "IAU 2012 Resolution B2: Astronomical Unit",
-          "url": "https://www.iau.org/static/resolutions/IAU2012_English.pdf",
-          "publisher": "International Astronomical Union"
-        },
-        {
-          "title": "NASA Facts About Earth: Size and Distance",
-          "url": "https://science.nasa.gov/earth/facts/",
+          "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
+          "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
           "publisher": "NASA Science"
         }
       ],
-      "reviewedAt": null,
-      "reviewer": null,
-      "reviewNote": "已登记 NASA / IAU / 中国科学院 / 国家航天局 / 中国载人航天等官方主题资料候选；该来源登记不等于逐题事实核验。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+      "reviewedAt": "2026-10-29T13:20:00+08:00",
+      "reviewer": "Ternence（AI 辅助逐题核验）",
+      "reviewNote": "2026-10-29 已对照所列官方来源原文逐题核对题干、答案键与解析；核验主张见 claim，原文定位见 pinpoint。",
+      "reviewedFields": [
+        "stem",
+        "answer",
+        "explanation"
+      ],
+      "contentSha256": "afb73c9309828e26911e86a4c03c1bd87c56d076d00c7ad8005fd0e51342f1de",
+      "claim": "1秒差距约等于3.26光年（10秒差距=32.6光年）",
+      "pinpoint": "Absolute magnitude uses a standard distance of exactly 32.6 light-years (10 parsecs); hence 1 parsec ≈ 3.26 light-years",
+      "asOf": "2026-10-29",
+      "answerDigest": "答案键：[\"3.26\",\"3.3\"]"
     },
     {
       "id": "j150",

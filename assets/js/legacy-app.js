@@ -2072,8 +2072,12 @@ function typeBadge(t){return {single:'blue',multi:'purple',judge:'green',fill:'a
 /* ==========================================
    数据查询
    ========================================== */
+function isRejectedQuestion(q){
+  var item = questionEvidenceById[q.id];
+  return !!item && item.status === 'rejected';
+}
 function getQuestions(level, category){
-  return Q.filter(function(q){return (!level||q.level===level)&&(!category||q.category===category);});
+  return Q.filter(function(q){return (!level||q.level===level)&&(!category||q.category===category)&&!isRejectedQuestion(q);});
 }
 function getCategories(level){
   var s = {};
@@ -2505,7 +2509,7 @@ function startDueWrongReview(){
   dueRows.sort(function(a,b){
     return a.dueAt-b.dueAt || a.lastTime-b.lastTime;
   });
-  var picked=dueRows.map(function(row){return questionById.get(row.id);}).filter(Boolean).slice(0,20);
+  var picked=dueRows.map(function(row){return questionById.get(row.id);}).filter(function(q){return q && !isRejectedQuestion(q);}).slice(0,20);
   if(!picked.length){
     alert('当前学段暂无到期错题；系统未提前安排未到期题目。');
     return;
