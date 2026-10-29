@@ -481,12 +481,69 @@ const fs = require('node:fs');
     });
     await page.waitForSelector('#view .w5-question-evidence');
     const evidenceDisclosure = await page.locator('#view .w5-question-evidence').innerText();
-    if (!evidenceDisclosure.includes('待人工终审') ||
-        !evidenceDisclosure.includes('尚未完成人工逐题审核') ||
-        await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/jupiter/jupiter-facts/"]').count() !== 1) {
-      throw new Error('Question evidence candidates must be visible with an explicit human-review disclaimer');
+    const evidenceRecord = await page.evaluate(() => {
+      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
+      return item ? { status: item.status, reviewNote: item.reviewNote || '' } : null;
+    });
+    const evidenceLinkCount = await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/jupiter/jupiter-facts/"]').count();
+    const evidenceStateIsVisible = evidenceRecord && (
+      (evidenceRecord.status === 'verified' &&
+        evidenceDisclosure.includes('人工复核来源') &&
+        evidenceRecord.reviewNote.length > 0 &&
+        evidenceDisclosure.includes(evidenceRecord.reviewNote)) ||
+      (evidenceRecord.status === 'review-needed' &&
+        evidenceDisclosure.includes('待人工终审') &&
+        evidenceDisclosure.includes('尚未完成人工逐题审核')) ||
+      (evidenceRecord.status === 'rejected' &&
+        evidenceDisclosure.includes('该题需要修订') &&
+        evidenceDisclosure.includes('现有内容不建议用于正式测评'))
+    );
+    if (!evidenceStateIsVisible || evidenceLinkCount !== 1) {
+      throw new Error('Question evidence UI does not match the manifest review state: ' +
+        JSON.stringify({ evidenceRecord, evidenceDisclosure, evidenceLinkCount }));
     }
     await page.evaluate(() => { window.state.practice = null; window.state.page = 'home'; window.render(); });
+
+    // A malformed "verified" record must fail closed instead of being shown as reviewed.
+    const tamperedContext = await browser.newContext({
+      viewport: { width: 1365, height: 900 }, serviceWorkers: 'block'
+    });
+    try {
+      const tamperedPage = await tamperedContext.newPage();
+      await tamperedPage.route('**/assets/data/question-evidence.json*', async route => {
+        const response = await route.fetch();
+        const manifest = await response.json();
+        const record = manifest.questions.find(item => item.id === 'p001');
+        if (!record) throw new Error('Tamper fixture question p001 is missing');
+        record.reviewedFields = ['stem'];
+        await route.fulfill({ response, body: JSON.stringify(manifest) });
+      });
+      await tamperedPage.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+      const tamperedSummary = await tamperedPage.evaluate(async () => {
+        await window.questionEvidenceReady;
+        return window.getQuestionEvidenceSummary();
+      });
+      await tamperedPage.evaluate(() => {
+        const question = window.Q.find(item => item.id === 'p001');
+        window.state.practice = {
+          label: 'Tampered evidence manifest regression',
+          list: [question], index: 0, userAnswers: [null], evaluated: [false],
+          correct: 0, wrong: 0, showAnswer: true, submitting: false
+        };
+        window.state.page = 'practice';
+        window.render();
+      });
+      await tamperedPage.waitForSelector('#view .w5-question-evidence');
+      const tamperedDisclosure = await tamperedPage.locator('#view .w5-question-evidence').innerText();
+      if (tamperedSummary.loadState !== 'unavailable' ||
+          !tamperedDisclosure.includes('来源索引暂不可用') ||
+          tamperedDisclosure.includes('人工复核来源')) {
+        throw new Error('A malformed reviewed record was not rejected safely: ' +
+          JSON.stringify({ tamperedSummary, tamperedDisclosure }));
+      }
+    } finally {
+      await tamperedContext.close();
+    }
 
     // Exercise the complete practice path with a deterministic two-question fixture.
     // All records live in this isolated Playwright browser context.
