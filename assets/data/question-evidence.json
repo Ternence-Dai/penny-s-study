@@ -1723,17 +1723,32 @@
   },
   {
    "id": "p073",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Stars",
-     "url": "https://science.nasa.gov/universe/stars/",
-     "publisher": "NASA Science"
+     "title": "Sun-Earth Day 2011: Ancient Observatories",
+     "url": "https://science.gsfc.nasa.gov/attic/sunearthday.nasa.gov/2011/multimedia/ancient_observatories.php",
+     "publisher": "NASA GSFC"
+    },
+    {
+     "title": "21.1 Star Formation",
+     "url": "https://pressbooks.online.ucf.edu/astronomybc/chapter/21-1-star-formation/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：NASA GSFC Sun-Earth Day 页与 OpenStax 21.1 一致作太阳每秒约 400 万吨物质转化为能量（“converts 4 million tons of matter into pure energy”），与本题键“约430万吨”不符；430 万吨口径仅见白名单外 NSSDC 太阳参数表。初中版 j133 键为 400 万吨且已获同一原文支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:35:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 经 Dai 裁定将答案键由“约430万吨”改为“约400万吨”，与初中版 j133 统一；依据 NASA GSFC Sun-Earth Day 页与 OpenStax 21.1 原文（每秒约 400 万吨物质转化为能量），改键后逐题核对题干、答案键与解析一致。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "ddffe3f8a0e29a27488f68aa4e91199f1da560d938d791df304c666a9dbc391a",
+   "claim": "太阳每秒约有 400 万吨物质转化为能量（OpenStax 21.1 亦作 about 4 million tons turning into energy）",
+   "pinpoint": "During a single second, the sun converts 4 million tons of matter into pure energy.",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：2（约400万吨）"
   },
   {
    "id": "p074",
