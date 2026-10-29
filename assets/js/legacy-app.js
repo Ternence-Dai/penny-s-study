@@ -76,7 +76,10 @@ function norm(s){return String(s==null?'':s).normalize('NFC').trim().toLowerCase
 /* ==========================================
    存储
    ========================================== */
-var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1'};
+var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1',graduated:'a_g_v6'};
+// 逐次作答流水是评估用的旁路数据：独立键、只追加、滚动截断；写入失败（隐私模式/配额）静默降级，绝不影响答题与调度，因此不走下方 fail-closed 的学习账本通道。
+var ATTEMPT_LOG_KEY = 'a_attempts_v1';
+var ATTEMPT_LOG_LIMIT = 2000;
 // Fail closed: if browser storage becomes unavailable, never replace existing learning data with fallback defaults.
 var storageRecoveryRequired = false;
 function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);return null;}}
@@ -136,6 +139,47 @@ function exportRawLearningRecovery(){
     alert('恢复包导出失败，原始数据未修改。请检查浏览器下载权限，并保留当前页面。');
   }
 }
+function readAttemptLog(){
+  try{
+    var raw=localStorage.getItem(ATTEMPT_LOG_KEY);
+    if(raw===null)return [];
+    var value=JSON.parse(raw);
+    return Array.isArray(value)?value:[];
+  }catch(e){return [];}
+}
+function appendAttemptLog(entry){
+  try{
+    var log=readAttemptLog();
+    log.push(entry);
+    if(log.length>ATTEMPT_LOG_LIMIT)log=log.slice(log.length-ATTEMPT_LOG_LIMIT);
+    localStorage.setItem(ATTEMPT_LOG_KEY,JSON.stringify(log));
+    return true;
+  }catch(e){
+    // 流水只为将来评估算法留数据：本次写不进去就丢弃本次，答题流程不受影响。
+    return false;
+  }
+}
+function exportAttemptLog(){
+  try{
+    var log=readAttemptLog();
+    if(!log.length){alert('暂无逐次作答记录。完成练习或竞赛后，每次作答都会自动记入本机流水。');return;}
+    var payload={format:'penny-s-study-attempt-log',version:1,exportedAt:new Date().toISOString(),count:log.length,attempts:log};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var link=document.createElement('a');
+    link.href=url;
+    link.download='penny-study-attempts-'+new Date().toISOString().slice(0,10)+'.json';
+    link.hidden=true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},0);
+    alert('已导出 '+log.length+' 条逐次作答记录（JSON）。');
+  }catch(error){
+    console.error('逐次作答流水导出失败',error);
+    alert('作答流水导出失败，原始记录未修改。请检查浏览器下载权限。');
+  }
+}
 function isStorageRecord(value){return !!value&&typeof value==='object'&&!Array.isArray(value);}
 function isWrongStorageList(value){
   return Array.isArray(value)&&value.every(function(item){
@@ -147,6 +191,17 @@ function isWrongStorageList(value){
     if(item.correctStreak!==undefined&&(!Number.isSafeInteger(item.correctStreak)||item.correctStreak<0||item.correctStreak>2)) return false;
     if(item.lastReviewAt!==undefined&&(!Number.isFinite(item.lastReviewAt)||item.lastReviewAt<0)) return false;
     if(item.lastOutcome!==undefined&&!['correct','incorrect'].includes(item.lastOutcome)) return false;
+    return true;
+  });
+}
+function isGraduatedStorageList(value){
+  return Array.isArray(value)&&value.every(function(item){
+    if(!isStorageRecord(item)||
+      !((typeof item.id==='string'&&item.id.length>0)||(typeof item.id==='number'&&Number.isSafeInteger(item.id)))||
+      !Number.isFinite(item.graduatedAt)||item.graduatedAt<0||
+      !Number.isSafeInteger(item.recheckStage)||item.recheckStage<1||item.recheckStage>2||
+      !Number.isFinite(item.nextReviewAt)||item.nextReviewAt<0) return false;
+    if(item.lastRecheckAt!==undefined&&(!Number.isFinite(item.lastRecheckAt)||item.lastRecheckAt<0)) return false;
     return true;
   });
 }
@@ -254,11 +309,32 @@ var Store = {
   },
   removeWrong:function(id){return safeStorageSet(KEY.wrong,JSON.stringify(this.getWrong().filter(function(i){return i.id!==id;})));},
   clearWrong:function(){return safeStorageRemove(KEY.wrong);},
+  getGraduated:function(){return safeStorageJSON(KEY.graduated,[],isGraduatedStorageList);},
+  addGraduated:function(id,graduatedAt){
+    if(!Number.isFinite(graduatedAt)||graduatedAt<0)return false;
+    var l=this.getGraduated().filter(function(i){return i.id!==id;});
+    l.push({id:id,graduatedAt:graduatedAt,recheckStage:1,nextReviewAt:graduatedAt+14*86400000});
+    return safeStorageSet(KEY.graduated,JSON.stringify(l));
+  },
+  resolveGraduatedRecheck:function(id,now){
+    if(!Number.isFinite(now)||now<0)return false;
+    var l=this.getGraduated(),item=null;
+    for(var i=0;i<l.length;i++)if(l[i].id===id){item=l[i];break;}
+    if(!item)return false;
+    if(item.recheckStage>=2){
+      return safeStorageSet(KEY.graduated,JSON.stringify(l.filter(function(i){return i.id!==id;})));
+    }
+    item.recheckStage=2;
+    item.nextReviewAt=item.graduatedAt+45*86400000;
+    item.lastRecheckAt=now;
+    return safeStorageSet(KEY.graduated,JSON.stringify(l));
+  },
+  removeGraduated:function(id){return safeStorageSet(KEY.graduated,JSON.stringify(this.getGraduated().filter(function(i){return i.id!==id;})));},
   getQStats:function(){return safeStorageJSON(KEY.qstats,{},isQuestionStatsStorage);},
   bumpQStat:function(id,ok){var s=this.getQStats();if(!s[id])s[id]={t:0,c:0};s[id].t++;if(ok)s[id].c++;s[id].last=Date.now();safeStorageSet(KEY.qstats,JSON.stringify(s));},
   addRecord:function(r){var l=safeStorageJSON(KEY.record,[],isPracticeRecordStorage);l.push(Object.assign({},r,{time:Date.now()}));if(l.length>500)l=l.slice(l.length-500);safeStorageSet(KEY.record,JSON.stringify(l));var d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var td=new Date().toDateString();if(d.indexOf(td)<0){d.push(td);safeStorageSet(KEY.days,JSON.stringify(d));}},
   getStats:function(){var r=safeStorageJSON(KEY.record,[],isPracticeRecordStorage),d=safeStorageJSON(KEY.days,[],isStudyDayStorage);var t=0,c=0;r.forEach(function(x){t+=(x.total||0);c+=(x.correct||0);});return{total:t,correct:c,rate:rate(c,t),sessions:r.length,days:d.length,wrongCount:this.getWrong().length};},
-  clearAll:function(){['wrong','record','days','qstats','practice'].forEach(function(k){safeStorageRemove(KEY[k]);});},
+  clearAll:function(){['wrong','record','days','qstats','practice','graduated'].forEach(function(k){safeStorageRemove(KEY[k]);});safeStorageRemove(ATTEMPT_LOG_KEY);},
   getAI:function(){return safeStorageJSON(KEY.ai,[],isAIConversationStorage);},
   saveAI:function(l){if(l.length>50)l=l.slice(l.length-50);safeStorageSet(KEY.ai,JSON.stringify(l));},
   clearAI:function(){safeStorageRemove(KEY.ai);},
@@ -2288,6 +2364,12 @@ function renderHome(){
     wrongIdsInLevel.add(question.id);
     if(!Number.isFinite(row.nextReviewAt) || row.nextReviewAt <= nowForReview) dueReviewIds.add(question.id);
   });
+  // 毕业抽检到期同样计入待复习：毕业题目的 +14/+45 天抽检与错题复习共用同一条到期通道。
+  Store.getGraduated().forEach(function(row){
+    var question = Q.find(function(item){return item.id === row.id;});
+    if(!question || question.level !== state.level) return;
+    if(row.nextReviewAt <= nowForReview) dueReviewIds.add(question.id);
+  });
   var topicProgress = cats.map(function(category){
     var mastery = getMastery(state.level, category);
     return {category:category, mastery:mastery};
@@ -2411,10 +2493,17 @@ function startDueWrongReview(){
     var question=questionById.get(row.id);
     return question && question.level===state.level &&
       (!Number.isFinite(row.nextReviewAt) || row.nextReviewAt<=now);
-  }).sort(function(a,b){
-    var aTime=Number.isFinite(a.nextReviewAt)?a.nextReviewAt:0;
-    var bTime=Number.isFinite(b.nextReviewAt)?b.nextReviewAt:0;
-    return aTime-bTime || a.lastTime-b.lastTime;
+  }).map(function(row){
+    return {id:row.id,dueAt:Number.isFinite(row.nextReviewAt)?row.nextReviewAt:0,lastTime:row.lastTime};
+  });
+  Store.getGraduated().forEach(function(row){
+    var question=questionById.get(row.id);
+    if(question && question.level===state.level && row.nextReviewAt<=now){
+      dueRows.push({id:row.id,dueAt:row.nextReviewAt,lastTime:row.graduatedAt});
+    }
+  });
+  dueRows.sort(function(a,b){
+    return a.dueAt-b.dueAt || a.lastTime-b.lastTime;
   });
   var picked=dueRows.map(function(row){return questionById.get(row.id);}).filter(Boolean).slice(0,20);
   if(!picked.length){
@@ -2809,10 +2898,37 @@ function loadReviewScheduler(){
 async function recordQuestionOutcome(id, correct){
   var wrongRows=Store.getWrong();
   var existing=wrongRows.find(function(item){return item.id===id;})||null;
+  var graduated=Store.getGraduated().find(function(item){return item.id===id;})||null;
+  if(existing&&graduated){
+    // 不变式：一道题同一时刻只归属一个账本（错题本优先），清掉残留的毕业抽检记录。
+    Store.removeGraduated(id);
+    graduated=null;
+  }
+  // 逐次作答流水：先于任何调度变更，快照当时的调度状态；落盘失败静默降级。
+  appendAttemptLog({
+    id:id,
+    correct:!!correct,
+    at:Date.now(),
+    state:existing?{
+      book:'wrong',
+      intervalDays:Number(existing.intervalDays)||0,
+      correctStreak:Number(existing.correctStreak)||0,
+      nextReviewAt:Number.isFinite(existing.nextReviewAt)?existing.nextReviewAt:null
+    }:graduated?{
+      book:'graduated',
+      recheckStage:graduated.recheckStage,
+      nextReviewAt:graduated.nextReviewAt
+    }:{book:'none'}
+  });
   if(!correct){
+    if(graduated)Store.removeGraduated(id);
     Store.addWrong(id);
     existing=Store.getWrong().find(function(item){return item.id===id;})||null;
   }else if(!existing){
+    // 不在错题本时答对，只对已到期的毕业抽检有意义：通过则推进抽检阶段，未到期维持原计划。
+    if(graduated&&graduated.nextReviewAt<=Date.now()){
+      Store.resolveGraduatedRecheck(id,Date.now());
+    }
     return;
   }
   if(!existing)return;
@@ -2828,6 +2944,8 @@ async function recordQuestionOutcome(id, correct){
     });
     if(correct&&streak>=3){
       Store.removeWrong(id);
+      // 毕业不等于从此不问：登记毕业记录，+14 天、+45 天各安排一次远期抽检，抽检答错重新回错题本。
+      Store.addGraduated(id,now);
       return;
     }
     Store.scheduleWrongReview(id,{
@@ -3037,11 +3155,35 @@ function renderResult(){
 /* ==========================================
    错题
    ========================================== */
+function graduatedRecheckSection(){
+  var rows=Store.getGraduated();
+  if(!rows.length)return '';
+  var now=Date.now();
+  var items=rows.map(function(row){
+    var q=null;
+    for(var i=0;i<Q.length;i++)if(Q[i].id===row.id){q=Q[i];break;}
+    if(!q)return '';
+    var due=row.nextReviewAt<=now;
+    return '<div class="card" style="padding:14px;margin-bottom:10px;">' +
+      '<div class="tags"><span class="tag ok">已毕业</span>' +
+      '<span class="tag '+(due?'err':'amber')+'">'+(due?'抽检已到期':'下次抽检 '+new Date(row.nextReviewAt).toLocaleDateString())+'</span>' +
+      '<span class="tag">抽检已通过 '+(row.recheckStage-1)+' / 2</span></div>' +
+      '<div class="q-stem" style="font-size:14px;">'+esc(q.stem)+'</div>' +
+      '<div class="q-exp">毕业于 '+new Date(row.graduatedAt).toLocaleDateString()+' · 毕业后第 14 天、第 45 天各抽检一次；抽检到期会进入首页「按计划开始复习」，抽检答错会重新回到错题本。</div></div>';
+  }).join('');
+  if(!items)return '';
+  return '<div class="sec-title" style="margin-top:18px;">🎓 毕业抽检</div>'+items;
+}
 function renderWrong(){
   var wid = Store.getWrong();
   if (!wid.length){
+    var recheckOnly = graduatedRecheckSection();
+    if (!recheckOnly){
+      return '<div class="title">错题归纳</div><div class="sub" style="margin-bottom:20px;">按知识点归纳，支持再提问</div>' +
+        '<div class="empty"><div class="ico">✨</div><div class="txt">还没有错题，继续保持！</div></div>';
+    }
     return '<div class="title">错题归纳</div><div class="sub" style="margin-bottom:20px;">按知识点归纳，支持再提问</div>' +
-      '<div class="empty"><div class="ico">✨</div><div class="txt">还没有错题，继续保持！</div></div>';
+      '<div class="empty"><div class="ico">✨</div><div class="txt">还没有错题，继续保持！</div></div>' + recheckOnly;
   }
   var now = Date.now();
   var dueCount = wid.filter(function(w){return !Number.isFinite(w.nextReviewAt)||w.nextReviewAt<=now;}).length;
@@ -3059,7 +3201,7 @@ function renderWrong(){
   var h = '<div class="title">错题归纳</div>' +
     '<div class="sub" style="margin-bottom:14px;">共 ' + wid.length + ' 道待掌握题 · ' + dueCount + ' 道到期可复习 · 分布在 ' + gl.length + ' 个知识点</div>' +
     '<div class="card" style="background:linear-gradient(135deg,rgba(255,184,77,.10),rgba(255,91,91,.08));border-color:rgba(255,184,77,.25);">' +
-    '<div style="font-size:12.5px;line-height:1.8;color:#C8D2E8;">💡 <b style="color:var(--amber);">间隔复习</b>：答错后安排约 1 天后复习；连续答对会逐步拉长间隔，连续答对 3 次后从活动错题本移除。已到期题目会优先抽取。</div></div>';
+    '<div style="font-size:12.5px;line-height:1.8;color:#C8D2E8;">💡 <b style="color:var(--amber);">间隔复习</b>：答错后安排约 1 天后复习；连续答对会逐步拉长间隔，连续答对 3 次后从活动错题本移除并毕业。毕业不是终点：第 14 天、第 45 天各有一次抽检，抽检答错会重新回到错题本。已到期题目会优先抽取。</div></div>';
   gl.forEach(function(gr){
     var key = gr.level + '|' + gr.category;
     var ex = !!state.expanded[key];
@@ -3097,6 +3239,7 @@ function renderWrong(){
       h += '<button class="btn btn-amber" style="margin-bottom:14px;" onclick="reAsk(\'' + gr.level + '\',\'' + gr.category.replace(/'/g,"\\'") + '\')">🔁 针对「' + esc(gr.category) + '」再提问</button></div>';
     }
   });
+  h += graduatedRecheckSection();
   h += '<button class="btn btn-ghost" style="margin:10px 0 40px;" onclick="clearW()">清空错题本</button>';
   return h;
 }
@@ -3298,6 +3441,8 @@ function renderProfile(){
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="go(\'wrong\')"><span>📕 错题归纳</span><span class="arrow">' + s.wrongCount + ' 道 ›</span></div></div>';
   h += '<div class="card" style="padding:0;">' +
+    '<div class="row-item" onclick="exportAttemptLog()"><span style="color:var(--sub);">📤 导出逐次作答流水</span><span class="arrow">JSON ›</span></div>' +
+    '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAI()"><span style="color:var(--sub);">🧹 清除 AI 对话</span><span class="arrow">›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAll()"><span style="color:var(--red);">🗑 清除所有数据</span><span class="arrow">›</span></div></div>';
