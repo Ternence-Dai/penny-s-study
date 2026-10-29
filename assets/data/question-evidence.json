@@ -2454,7 +2454,7 @@
   },
   {
    "id": "p103",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
      "title": "NASA Facts About Earth: Orbit and Rotation",
@@ -2465,11 +2465,26 @@
      "title": "NASA Seeing Equinoxes and Solstices from Space",
      "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
      "publisher": "NASA Science"
+    },
+    {
+     "title": "4.2 The Seasons - Astronomy (OpenStax)",
+     "url": "https://pressbooks.online.ucf.edu/ast2002tjb/chapter/4-2-the-seasons/",
+     "publisher": "OpenStax"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "第三轮日期证据复查（已汇报，未改题面与答案键）：白名单来源一致将北半球夏至置于 6 月 21 日前后——NASA 博客 “the summer (June) solstice occurs around June 20-21”；OpenStax 4.2 “On or about June 21” 并注至日日期可差一两天；NASA 至日页与 NOAA NESDIS 两篇均作 June 21；无一来源单独作“6 月 22 日”。答案键原为 6 月 22 日，待主代理裁定。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-29T15:38:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-29 经 Dai 裁定修改选项：将原选项“6月22日”改为“6月21日”（答案位置不变），解析注明个别年份可差一两天。依据 OpenStax Astronomy 4.2 原文“On or about June 21 (the date ... summer solstice)”及 NASA/NOAA 至日材料一致口径，改后逐题核对题干、答案键与解析一致。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "33a98d29dc01b782f10965a7001d8ca98065ee04803a89fd1234f497d3e76057",
+   "claim": "北半球夏至约在 6 月 21 日（个别年份可差一两天）",
+   "pinpoint": "On or about June 21 (the date we who live in the Northern Hemisphere call the summer solstice or sometimes the first day of summer)",
+   "asOf": "2026-10-29",
+   "answerDigest": "答案键：1（6月21日）"
   },
   {
    "id": "p104",
