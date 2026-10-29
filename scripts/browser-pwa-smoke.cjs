@@ -792,18 +792,37 @@ const fs = require('node:fs');
     }
     const offlineEvidence = await page.evaluate(async () => {
       await window.questionEvidenceReady;
+      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
       window.state.practice = {
         label: 'Offline evidence source regression',
-        list: [window.Q.find(item => item.id === 'p001')], index: 0,
+        list: [window.Q.find(question => question.id === 'p001')], index: 0,
         userAnswers: [null], evaluated: [false], correct: 0, wrong: 0,
         showAnswer: true, submitting: false
       };
       window.state.page = 'practice';
       window.render();
-      return document.querySelector('#view .w5-question-evidence')?.textContent || '';
+      return {
+        text: document.querySelector('#view .w5-question-evidence')?.textContent || '',
+        status: item && item.status,
+        reviewNote: item && item.reviewNote || '',
+        loadState: window.getQuestionEvidenceSummary().loadState
+      };
     });
-    if (!offlineEvidence.includes('待人工终审')) {
-      throw new Error('The public evidence index or question-review disclaimer is missing in offline mode');
+    const offlineEvidenceMatchesState = offlineEvidence.loadState === 'ready' && (
+      (offlineEvidence.status === 'verified' &&
+        offlineEvidence.text.includes('人工复核来源') &&
+        offlineEvidence.reviewNote.length > 0 &&
+        offlineEvidence.text.includes(offlineEvidence.reviewNote)) ||
+      (offlineEvidence.status === 'review-needed' &&
+        offlineEvidence.text.includes('待人工终审') &&
+        offlineEvidence.text.includes('尚未完成人工逐题审核')) ||
+      (offlineEvidence.status === 'rejected' &&
+        offlineEvidence.text.includes('该题需要修订') &&
+        offlineEvidence.text.includes('现有内容不建议用于正式测评'))
+    );
+    if (!offlineEvidenceMatchesState) {
+      throw new Error('The offline evidence panel does not match the cached manifest review state: ' +
+        JSON.stringify(offlineEvidence));
     }
 
     const deepUrl = 'http://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
