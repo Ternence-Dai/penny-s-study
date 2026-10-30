@@ -17,7 +17,7 @@ const fs = require('node:fs');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v27") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v28") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261023-topic-map-v1") ||
