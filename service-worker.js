@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v27';
+const CACHE_NAME = 'penny-study-shell-v28';
 const APP_SHELL = [
   './',
   './index.html',
@@ -19,7 +19,7 @@ const APP_SHELL = [
   './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1',
   './assets/css/readability-accessibility-v10.css?v=20261021-v10',
   './assets/js/question-bank.js',
-  './assets/data/question-evidence.json?v=20261022-evidence-index-v3',
+  './assets/data/question-evidence.json?v=20261030-evidence-index-v4',
   './assets/js/question-grading.js',
   './assets/js/legacy-app.js?v=20261024-decimal-answer-normalization-v1',
   './assets/js/astronomy-classroom-v3.js?v=20261023-topic-map-v1',
@@ -97,10 +97,16 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
-      return fetch(request).then(response => {
+      return fetch(request).then(async response => {
         if (response && response.ok && response.type === 'basic') {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          try {
+            // respondWith owns this promise. Await the cache write so an
+            // immediate offline transition cannot race a detached cache.put().
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(request, response.clone());
+          } catch {
+            // Cache quota/write failures must not discard a valid network response.
+          }
         }
         return response;
       });

@@ -2129,8 +2129,53 @@ function showLocalFileNotice(){
   if (view && view.parentNode) view.parentNode.insertBefore(bar, view);
   else document.body.appendChild(bar);
 }
+function isValidQuestionEvidenceReviewTimestamp(value){
+  if(typeof value !== 'string') return false;
+  var match = /^(\d{4})-(\d{2})-(\d{2})T([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d)(?:\.\d{1,3})?)?(Z|([+-])(\d{2}):(\d{2}))$/.exec(value);
+  if(!match) return false;
+  var year=Number(match[1]), month=Number(match[2]), day=Number(match[3]);
+  var leap=year%4===0&&(year%100!==0||year%400===0);
+  var days=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+  if(month<1||month>12||day<1||day>days[month-1]) return false;
+  if(match[7]!=='Z'){
+    var offsetHour=Number(match[9]), offsetMinute=Number(match[10]);
+    if(offsetMinute>59||offsetHour>14||(offsetHour===14&&offsetMinute!==0)||
+       (match[8]==='-'&&offsetHour===0&&offsetMinute===0)) return false;
+  }
+  var timestamp=Date.parse(value);
+  if(!Number.isFinite(timestamp)) return false;
+  var utcYear=new Date(timestamp).getUTCFullYear();
+  return utcYear>=0&&utcYear<=9999;
+}
+function isValidQuestionEvidenceRecord(item){
+  if(!item||!Array.isArray(item.sources)) return false;
+  for(var i=0;i<item.sources.length;i++){
+    var source=item.sources[i];
+    if(!source||typeof source.title!=='string'||!source.title.trim()||
+       typeof source.url!=='string'||!safeQuestionEvidenceUrl(source.url)||
+       (source.publisher!=null&&typeof source.publisher!=='string')) return false;
+  }
+  if(item.status==='review-needed'){
+    return item.reviewer==null&&item.reviewedAt==null&&item.contentSha256==null&&
+      typeof item.reviewNote==='string'&&/尚未完成人工逐题核对/.test(item.reviewNote);
+  }
+  if(item.status==='verified'||item.status==='rejected'){
+    var requiredFields=['stem','answer','explanation'];
+    if(!item.sources.length||typeof item.reviewer!=='string'||!item.reviewer.trim()||
+       !isValidQuestionEvidenceReviewTimestamp(item.reviewedAt)||
+       !Array.isArray(item.reviewedFields)||item.reviewedFields.length!==requiredFields.length||
+       new Set(item.reviewedFields).size!==requiredFields.length||
+       !requiredFields.every(function(field){return item.reviewedFields.includes(field);})||
+       typeof item.contentSha256!=='string'||!/^[a-f0-9]{64}$/i.test(item.contentSha256)) return false;
+    if(item.status==='rejected'&&
+       (typeof item.rejectionReason!=='string'||!item.rejectionReason.trim())) return false;
+    return true;
+  }
+  return false;
+}
+
 var questionEvidenceLoadState = 'loading';
-var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261022-evidence-index-v3')
+var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261030-evidence-index-v4')
   .then(function(response){
     if(!response.ok) throw new Error('HTTP ' + response.status);
     return response.json();
@@ -2143,7 +2188,7 @@ var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=202610
     manifest.questions.forEach(function(item){
       if(!item || !knownIds.has(item.id) || next[item.id] ||
          !['review-needed','verified','rejected'].includes(item.status) ||
-         !Array.isArray(item.sources)) throw new Error('题库证据条目无效');
+         !isValidQuestionEvidenceRecord(item)) throw new Error('题库证据条目无效或审核元数据不完整');
       next[item.id] = item;
     });
     if(Object.keys(next).length !== Q.length) throw new Error('题库证据条目数量不匹配');
