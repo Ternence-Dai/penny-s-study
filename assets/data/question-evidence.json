@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "description": "Per-question source registry. Verification rounds (all 2026-10-29): round 1 (A-level) 65 verified and 1 rejected as a duplicate; round 2 (B/C-level) +162 verified, +5 rejected; round 3 used the expanded allowlist approved by Dai (NASA Space Place, NASA GSFC subdomains imagine/science, Purple Mountain Observatory pmo.cas.cn, NOAA NESDIS, OpenStax textbooks via UCF Pressbooks) for +51 verified. Totals: 278 verified, 6 rejected, 16 remain review-needed. A registered source link alone does not verify a question; only entries with status \"verified\" carry a completed review record.",
+ "description": "Per-question source registry. Verification rounds (2026-10-29): round 1 (A-level) 65 verified and 1 rejected as a duplicate; round 2 (B/C-level) +162 verified, +5 rejected; round 3 used the expanded allowlist approved by Dai (NASA Space Place, NASA GSFC subdomains imagine/science, Purple Mountain Observatory pmo.cas.cn, NOAA NESDIS, OpenStax textbooks via UCF Pressbooks) for +51 verified; owner rulings on p073 and p103 then brought totals to 280 verified, 6 rejected, 14 review-needed. Round 4 (2026-10-30) used the further expanded allowlist approved by Dai (spacemath.gsfc.nasa.gov, lambda.gsfc.nasa.gov, asd.gsfc.nasa.gov) for +4 verified (j064, j067, j036, j101). Totals: 284 verified, 6 rejected, 10 remain review-needed. A registered source link alone does not verify a question; only entries with status \"verified\" carry a completed review record.",
  "questions": [
   {
    "id": "p001",
@@ -4447,22 +4447,27 @@
   },
   {
    "id": "j036",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Hubble Glossary: Apparent and Absolute Magnitude",
-     "url": "https://science.nasa.gov/mission/hubble/multimedia/hubble-glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Universe Glossary",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
+     "title": "Computing the Expansion History of the Universe (LAMBDA Archive, NASA GSFC)",
+     "url": "https://lambda.gsfc.nasa.gov/education/Computing_Expansion_History_of_Universe_Dec2011.pdf",
+     "publisher": "NASA GSFC LAMBDA"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《Astronomy》2e 相关章节（17.1、19.3、19.4）已无距离模数公式内容；公式 M = m + 5 − 5·lg d 仅见于白名单外页面（GSFC lambda.gsfc.nasa.gov PDF 不在白名单），未采用。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-30T13:05:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-30 第四轮核验（Dai 批准新增 lambda.gsfc.nasa.gov 白名单）：已打开原 PDF 逐字核对——式 (11) 给出绝对星等 M 与视星等 m、距离模数 DM 的关系，DM = 5log(DL/10pc)；DL 以秒差距计时与题干公式 M = m + 5 − 5·lg d 代数等价。已对照原文逐题核对题干、答案键与解析，核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "8f0565c2f671ef497d3c249cf1f8ebdee42355c997757f321f64057e0289655f",
+   "claim": "距离模数公式 M = m + 5 − 5·lg d（d 为以秒差距计的距离；原文 DM = 5log(DL/10pc)，M = m − DM，两式代数等价）",
+   "pinpoint": "m is the apparent magnitude and the second term is the distance modulus, DM = 5log(DL/ 10pc)",
+   "asOf": "2026-10-30",
+   "answerDigest": "答案键：0（M = m + 5 - 5·lg d）"
   },
   {
    "id": "j037",
@@ -5122,17 +5127,27 @@
   },
   {
    "id": "j064",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "Buying a Telescope! — Space Math @ NASA (Problem 42)",
+     "url": "https://spacemath.gsfc.nasa.gov/engineering/10Page42.pdf",
+     "publisher": "NASA GSFC Space Math"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《Astronomy》6.1 与《College Physics》26.5 全文均无“有效倍率上限 ≈ 50×/英寸口径（约 2×/毫米）”的数值法则；近命中在 spacemath.gsfc.nasa.gov，不在 2026-10-29 批准的白名单内，未采用。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-30T13:05:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-30 第四轮核验（Dai 批准新增 spacemath.gsfc.nasa.gov 白名单）：原站直连当日不可达，改用该 PDF 的公开存档副本逐字核对原文，倍率上限法则与题干「口径（毫米）×2」逐字对应；已对照原文逐题核对题干、答案键与解析，核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "76b0ced26e8a22906c576ee6857db5f15b081afc971b2abef85dc05fdb0a055c",
+   "claim": "望远镜有效放大倍率上限约为口径（毫米）的 2 倍（同一原文亦作：不超过物镜口径英寸数的 50 倍）",
+   "pinpoint": "you should not use magnifications higher than 50x the diameter of the objective, or 2 times its diameter in millimeters",
+   "asOf": "2026-10-30",
+   "answerDigest": "答案键：[\"2\",\"二\"]"
   },
   {
    "id": "j065",
@@ -5184,17 +5199,27 @@
   },
   {
    "id": "j067",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "Buying a Telescope! — Space Math @ NASA (Problem 42)",
+     "url": "https://spacemath.gsfc.nasa.gov/engineering/10Page42.pdf",
+     "publisher": "NASA GSFC Space Math"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：本题依赖“有效倍率上限≈口径（毫米）×2”法则，该法则在白名单内无逐点原文（见 j064 复查记录），80mm→160 倍无从逐点支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-30T13:05:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-30 第四轮核验（Dai 批准新增 spacemath.gsfc.nasa.gov 白名单）：与 j064 同源，原站直连当日不可达，改用该 PDF 的公开存档副本逐字核对倍率上限法则（口径毫米数×2），80mm×2=160 倍与答案键一致；已对照原文逐题核对题干、答案键与解析，核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "a4fd6be1f12f5f9d8dcadebeec91b9128ae6295b1906dc827a555ddf5cd30b12",
+   "claim": "80mm 口径望远镜的理论最大有效倍率约为 160 倍（80×2，依据有效倍率上限≈口径（毫米）×2 的法则）",
+   "pinpoint": "you should not use magnifications higher than 50x the diameter of the objective, or 2 times its diameter in millimeters",
+   "asOf": "2026-10-30",
+   "answerDigest": "答案键：1（160倍）"
   },
   {
    "id": "j068",
@@ -5960,22 +5985,27 @@
   },
   {
    "id": "j101",
-   "status": "review-needed",
+   "status": "verified",
    "sources": [
     {
-     "title": "NASA Types of Galaxies",
-     "url": "https://science.nasa.gov/universe/galaxies/types/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA The Milky Way, Andromeda and Triangulum Galaxies",
-     "url": "https://science.nasa.gov/missions/hubble/nasas-hubble-shows-milky-way-is-destined-for-head-on-collision-with-andromeda-galaxy/",
-     "publisher": "NASA Science"
+     "title": "The Universe on a Ball — NASA Blueshift (GSFC ASD)",
+     "url": "https://asd.gsfc.nasa.gov/blueshift/index.php/2010/09/24/the-universe-on-a-ball/",
+     "publisher": "NASA GSFC"
     }
    ],
-   "reviewedAt": null,
-   "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：白名单内 NASA 专家页（www.nasa.gov）作 “the observable universe is about 92 billion light-years across”，与答案键 930 亿光年（93 billion）数值不符；93 billion 表述仅见于白名单外 GSFC 子域（asd.gsfc.nasa.gov），未采用。930 亿光年为通行数值，差异源于来源估计口径。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewedAt": "2026-10-30T13:05:00+08:00",
+   "reviewer": "Ternence（AI 辅助逐题核验）",
+   "reviewNote": "2026-10-30 第四轮核验（Dai 批准新增 asd.gsfc.nasa.gov 白名单）：原文以「站在球心、看向可见宇宙边缘」的语境写明 12 英寸球代表约 930 亿光年的跨度，与题干「可观测宇宙直径约 930 亿光年」口径一致；白名单内另一 NASA 专家页曾作约 920 亿光年，属来源估计口径差异（与此前 j100、p063 的容差处理一致），题面通行值不改。已对照原文逐题核对题干、答案键与解析，核验主张见 claim，原文定位见 pinpoint。",
+   "reviewedFields": [
+    "stem",
+    "answer",
+    "explanation"
+   ],
+   "contentSha256": "3b15714c1dad542eddafe3e331e8cc4c2bf86f3d860a77a4eda9363ae5dc0962",
+   "claim": "可观测宇宙直径约 930 亿光年（约 93 billion light-years）",
+   "pinpoint": "The 12-inch beach ball represents about 93 billion light years of distance.",
+   "asOf": "2026-10-30",
+   "answerDigest": "答案键：2（930亿光年）"
   },
   {
    "id": "j102",
