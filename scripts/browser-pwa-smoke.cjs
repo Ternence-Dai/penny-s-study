@@ -263,7 +263,7 @@ const fs = require('node:fs');
       };
     });
     if (!evidenceCoverage.visible || evidenceCoverage.total !== 300 ||
-        evidenceCoverage.verified !== 280 || evidenceCoverage.reviewNeeded !== 14 || evidenceCoverage.rejected !== 6 ||
+        evidenceCoverage.verified !== 284 || evidenceCoverage.reviewNeeded !== 10 || evidenceCoverage.rejected !== 6 ||
         evidenceCoverage.withSources !== 300 || evidenceCoverage.withoutSources !== 0 ||
         evidenceCoverage.metrics !== 4 ||
         !evidenceCoverage.visibleText.includes('尚未达到正式题库验收标准')) {
