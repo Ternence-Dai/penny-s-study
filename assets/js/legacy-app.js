@@ -2175,7 +2175,7 @@ function isValidQuestionEvidenceRecord(item){
 }
 
 var questionEvidenceLoadState = 'loading';
-var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261022-evidence-index-v3')
+var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261030-evidence-index-v4')
   .then(function(response){
     if(!response.ok) throw new Error('HTTP ' + response.status);
     return response.json();
