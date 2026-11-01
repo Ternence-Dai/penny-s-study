@@ -482,7 +482,7 @@ const fs = require('node:fs');
     await page.waitForSelector('#view .w5-question-evidence');
     const evidenceDisclosure = await page.locator('#view .w5-question-evidence').innerText();
     const evidenceRecord = await page.evaluate(() => {
-      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
+      const item = window.questionEvidenceById && window.questionEvidenceById.p068;
       return item ? { status: item.status, reviewNote: item.reviewNote || '' } : null;
     });
     const evidenceLinkCount = await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/universe/stars/"]').count();
