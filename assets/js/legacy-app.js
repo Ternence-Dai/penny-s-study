@@ -2137,10 +2137,10 @@ function isValidQuestionEvidenceReviewTimestamp(value){
   var leap=year%4===0&&(year%100!==0||year%400===0);
   var days=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
   if(month<1||month>12||day<1||day>days[month-1]) return false;
-  if(match[7]!=='Z'){
-    var offsetHour=Number(match[9]), offsetMinute=Number(match[10]);
+  if(match[8]!=='Z'){
+    var offsetHour=Number(match[10]), offsetMinute=Number(match[11]);
     if(offsetMinute>59||offsetHour>14||(offsetHour===14&&offsetMinute!==0)||
-       (match[8]==='-'&&offsetHour===0&&offsetMinute===0)) return false;
+       (match[9]==='-'&&offsetHour===0&&offsetMinute===0)) return false;
   }
   var timestamp=Date.parse(value);
   if(!Number.isFinite(timestamp)) return false;
