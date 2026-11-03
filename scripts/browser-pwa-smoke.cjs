@@ -17,7 +17,7 @@ const fs = require('node:fs');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v27") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v28") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261023-topic-map-v1") ||
@@ -481,12 +481,69 @@ const fs = require('node:fs');
     });
     await page.waitForSelector('#view .w5-question-evidence');
     const evidenceDisclosure = await page.locator('#view .w5-question-evidence').innerText();
-    if (!evidenceDisclosure.includes('待人工终审') ||
-        !evidenceDisclosure.includes('尚未完成人工逐题审核') ||
-        await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/jupiter/jupiter-facts/"]').count() !== 1) {
-      throw new Error('Question evidence candidates must be visible with an explicit human-review disclaimer');
+    const evidenceRecord = await page.evaluate(() => {
+      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
+      return item ? { status: item.status, reviewNote: item.reviewNote || '' } : null;
+    });
+    const evidenceLinkCount = await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/jupiter/jupiter-facts/"]').count();
+    const evidenceStateIsVisible = evidenceRecord && (
+      (evidenceRecord.status === 'verified' &&
+        evidenceDisclosure.includes('人工复核来源') &&
+        evidenceRecord.reviewNote.length > 0 &&
+        evidenceDisclosure.includes(evidenceRecord.reviewNote)) ||
+      (evidenceRecord.status === 'review-needed' &&
+        evidenceDisclosure.includes('待人工终审') &&
+        evidenceDisclosure.includes('尚未完成人工逐题审核')) ||
+      (evidenceRecord.status === 'rejected' &&
+        evidenceDisclosure.includes('该题需要修订') &&
+        evidenceDisclosure.includes('现有内容不建议用于正式测评'))
+    );
+    if (!evidenceStateIsVisible || evidenceLinkCount !== 1) {
+      throw new Error('Question evidence UI does not match the manifest review state: ' +
+        JSON.stringify({ evidenceRecord, evidenceDisclosure, evidenceLinkCount }));
     }
     await page.evaluate(() => { window.state.practice = null; window.state.page = 'home'; window.render(); });
+
+    // A malformed "verified" record must fail closed instead of being shown as reviewed.
+    const tamperedContext = await browser.newContext({
+      viewport: { width: 1365, height: 900 }, serviceWorkers: 'block'
+    });
+    try {
+      const tamperedPage = await tamperedContext.newPage();
+      await tamperedPage.route('**/assets/data/question-evidence.json*', async route => {
+        const response = await route.fetch();
+        const manifest = await response.json();
+        const record = manifest.questions.find(item => item.id === 'p001');
+        if (!record) throw new Error('Tamper fixture question p001 is missing');
+        record.reviewedFields = ['stem'];
+        await route.fulfill({ response, body: JSON.stringify(manifest) });
+      });
+      await tamperedPage.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+      const tamperedSummary = await tamperedPage.evaluate(async () => {
+        await window.questionEvidenceReady;
+        return window.getQuestionEvidenceSummary();
+      });
+      await tamperedPage.evaluate(() => {
+        const question = window.Q.find(item => item.id === 'p001');
+        window.state.practice = {
+          label: 'Tampered evidence manifest regression',
+          list: [question], index: 0, userAnswers: [null], evaluated: [false],
+          correct: 0, wrong: 0, showAnswer: true, submitting: false
+        };
+        window.state.page = 'practice';
+        window.render();
+      });
+      await tamperedPage.waitForSelector('#view .w5-question-evidence');
+      const tamperedDisclosure = await tamperedPage.locator('#view .w5-question-evidence').innerText();
+      if (tamperedSummary.loadState !== 'unavailable' ||
+          !tamperedDisclosure.includes('来源索引暂不可用') ||
+          tamperedDisclosure.includes('人工复核来源')) {
+        throw new Error('A malformed reviewed record was not rejected safely: ' +
+          JSON.stringify({ tamperedSummary, tamperedDisclosure }));
+      }
+    } finally {
+      await tamperedContext.close();
+    }
 
     // Exercise the complete practice path with a deterministic two-question fixture.
     // All records live in this isolated Playwright browser context.
@@ -696,6 +753,24 @@ const fs = require('node:fs');
       throw new Error('Incomplete offline app shell: ' + JSON.stringify(cacheReport));
     }
 
+    // Evict one precached asset and force the network-to-cache path.
+    // The cache entry must exist as soon as the fetch response resolves.
+    const runtimeCacheRefill = await page.evaluate(async () => {
+      const keys = await caches.keys();
+      const shellName = keys.find(key => key.startsWith('penny-study-shell-'));
+      if (!shellName) return { ok: false, cachedAfterResponse: false, status: 0 };
+      const cache = await caches.open(shellName);
+      const assetUrl = new URL('./assets/js/question-grading.js', location.href).href;
+      await cache.delete(assetUrl);
+      const response = await fetch(assetUrl);
+      const cachedAfterResponse = !!(await cache.match(assetUrl));
+      return { ok: response.ok, status: response.status, assetUrl, cachedAfterResponse };
+    });
+    if (!runtimeCacheRefill.ok || !runtimeCacheRefill.cachedAfterResponse) {
+      throw new Error('Static asset response completed before its cache entry was durable: ' +
+        JSON.stringify(runtimeCacheRefill));
+    }
+
     await context.setOffline(true);
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => document.querySelector('#tabbar [data-tab="learn"]'));
@@ -707,20 +782,47 @@ const fs = require('node:fs');
     if (!offlineRoot.heading || offlineRoot.preserved !== 'preserved') {
       throw new Error('Offline root launch or local progress preservation failed: ' + JSON.stringify(offlineRoot));
     }
+    const refilledAssetOffline = await page.evaluate(async () => {
+      const response = await fetch('./assets/js/question-grading.js');
+      return { ok: response.ok, status: response.status };
+    });
+    if (!refilledAssetOffline.ok) {
+      throw new Error('The asset fetched and recached online was not available immediately offline: ' +
+        JSON.stringify(refilledAssetOffline));
+    }
     const offlineEvidence = await page.evaluate(async () => {
       await window.questionEvidenceReady;
+      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
       window.state.practice = {
         label: 'Offline evidence source regression',
-        list: [window.Q.find(item => item.id === 'p001')], index: 0,
+        list: [window.Q.find(question => question.id === 'p001')], index: 0,
         userAnswers: [null], evaluated: [false], correct: 0, wrong: 0,
         showAnswer: true, submitting: false
       };
       window.state.page = 'practice';
       window.render();
-      return document.querySelector('#view .w5-question-evidence')?.textContent || '';
+      return {
+        text: document.querySelector('#view .w5-question-evidence')?.textContent || '',
+        status: item && item.status,
+        reviewNote: item && item.reviewNote || '',
+        loadState: window.getQuestionEvidenceSummary().loadState
+      };
     });
-    if (!offlineEvidence.includes('待人工终审')) {
-      throw new Error('The public evidence index or question-review disclaimer is missing in offline mode');
+    const offlineEvidenceMatchesState = offlineEvidence.loadState === 'ready' && (
+      (offlineEvidence.status === 'verified' &&
+        offlineEvidence.text.includes('人工复核来源') &&
+        offlineEvidence.reviewNote.length > 0 &&
+        offlineEvidence.text.includes(offlineEvidence.reviewNote)) ||
+      (offlineEvidence.status === 'review-needed' &&
+        offlineEvidence.text.includes('待人工终审') &&
+        offlineEvidence.text.includes('尚未完成人工逐题审核')) ||
+      (offlineEvidence.status === 'rejected' &&
+        offlineEvidence.text.includes('该题需要修订') &&
+        offlineEvidence.text.includes('现有内容不建议用于正式测评'))
+    );
+    if (!offlineEvidenceMatchesState) {
+      throw new Error('The offline evidence panel does not match the cached manifest review state: ' +
+        JSON.stringify(offlineEvidence));
     }
 
     const deepUrl = 'http://127.0.0.1:4173/learning/astronomy/contest?source=offline-smoke';
