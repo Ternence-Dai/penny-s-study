@@ -795,7 +795,7 @@ const fs = require('node:fs');
       const item = window.questionEvidenceById && window.questionEvidenceById.p068;
       window.state.practice = {
         label: 'Offline evidence source regression',
-        list: [window.Q.find(question => question.id === 'p001')], index: 0,
+        list: [window.Q.find(question => question.id === 'p068')], index: 0,
         userAnswers: [null], evaluated: [false], correct: 0, wrong: 0,
         showAnswer: true, submitting: false
       };
