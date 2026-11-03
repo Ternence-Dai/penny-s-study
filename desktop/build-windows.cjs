@@ -75,7 +75,7 @@ function fetchText(url) {
 
 async function verifyElectronZip(zipPath, version, zipName) {
   const manifest = await fetchText(`https://github.com/electron/electron/releases/download/v${version}/SHASUMS256.txt`);
-  const entry = manifest.split(/\r?\n/).find(line => { const fields = line.trim().split(/\s+/); return fields.length >= 2 && fields[fields.length - 1].replace(/^\\*/, '') === zipName; });
+  const entry = manifest.split(/\r?\n/).find(line => { const fields = line.trim().split(/\s+/); return fields.length >= 2 && fields[fields.length - 1].replace(/^[*]/, '') === zipName; });
   if (!entry) throw new Error('Official SHA-256 entry not found for ' + zipName);
   const expected = entry.trim().split(/\s+/)[0].toLowerCase();
   const hash = crypto.createHash('sha256');
