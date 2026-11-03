@@ -470,7 +470,7 @@ const fs = require('node:fs');
 
     await page.evaluate(async () => {
       await window.questionEvidenceReady;
-      const question = window.Q.find(item => item.id === 'p001');
+      const question = window.Q.find(item => item.id === 'p068');
       window.state.practice = {
         label: 'Evidence provenance browser regression',
         list: [question], index: 0, userAnswers: [null], evaluated: [false],
@@ -482,10 +482,10 @@ const fs = require('node:fs');
     await page.waitForSelector('#view .w5-question-evidence');
     const evidenceDisclosure = await page.locator('#view .w5-question-evidence').innerText();
     const evidenceRecord = await page.evaluate(() => {
-      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
+      const item = window.questionEvidenceById && window.questionEvidenceById.p068;
       return item ? { status: item.status, reviewNote: item.reviewNote || '' } : null;
     });
-    const evidenceLinkCount = await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/jupiter/jupiter-facts/"]').count();
+    const evidenceLinkCount = await page.locator('#view .w5-question-evidence a[href="https://science.nasa.gov/universe/stars/"]').count();
     const evidenceStateIsVisible = evidenceRecord && (
       (evidenceRecord.status === 'verified' &&
         evidenceDisclosure.includes('人工复核来源') &&
@@ -524,7 +524,7 @@ const fs = require('node:fs');
         return window.getQuestionEvidenceSummary();
       });
       await tamperedPage.evaluate(() => {
-        const question = window.Q.find(item => item.id === 'p001');
+        const question = window.Q.find(item => item.id === 'p068');
         window.state.practice = {
           label: 'Tampered evidence manifest regression',
           list: [question], index: 0, userAnswers: [null], evaluated: [false],
@@ -792,10 +792,10 @@ const fs = require('node:fs');
     }
     const offlineEvidence = await page.evaluate(async () => {
       await window.questionEvidenceReady;
-      const item = window.questionEvidenceById && window.questionEvidenceById.p001;
+      const item = window.questionEvidenceById && window.questionEvidenceById.p068;
       window.state.practice = {
         label: 'Offline evidence source regression',
-        list: [window.Q.find(question => question.id === 'p001')], index: 0,
+        list: [window.Q.find(question => question.id === 'p068')], index: 0,
         userAnswers: [null], evaluated: [false], correct: 0, wrong: 0,
         showAnswer: true, submitting: false
       };
