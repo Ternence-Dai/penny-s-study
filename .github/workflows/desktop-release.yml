@@ -1,36 +1,150 @@
-# Builds the StarRace Windows portable app on a Windows runner.
-# PR validation is intentionally separate from publishing; this workflow is main-only.
+name: StarRace Desktop Windows desktop validation and release
+run-name: "starrace desktop ${{ github.event_name }} · ${{ github.run_number }}"
+
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'src/**'
+      - 'docs/**'
+      - 'desktop/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/**'
+      - '.github/workflows/desktop-release.yml'
   push:
     branches: [main]
     paths:
       - 'index.html'
       - 'assets/**'
       - 'src/**'
-      - 'package.json'
+      - 'docs/**'
       - 'desktop/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/**'
   workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish the versioned Windows desktop release"
+        required: true
+        type: boolean
+        default: false
 
-permissions:
-  contents: write
+concurrency:
+  group: starrace-desktop-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  build-windows:
+  validate-package:
     runs-on: windows-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    outputs:
+      app-version: ${{ steps.version.outputs.version }}
     steps:
-      - name: Check out main
+      - name: Check out source
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - name: Build portable Windows app
+          node-version: 22
+
+      - name: Run domain tests and static integrity checks
+        run: |
+          npm test
+          npm run check
+
+      - name: Read pinned Electron version
+        id: version
+        shell: pwsh
+        run: |
+          $version = node -p "require('./desktop/package.json').devDependencies.electron"
+          if ($version -notmatch '^\d+\.\d+\.\d+$') {
+            throw "desktop/package.json must pin Electron to an exact version; found: $version"
+          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Build portable Windows application
         run: node desktop/build-windows.cjs
-      - name: Publish zip on the desktop release
+
+      - name: Inspect portable package contents
+        shell: pwsh
+        run: |
+          $archive = Join-Path $PWD 'StarRace-Windows-x64.zip'
+          if (!(Test-Path $archive)) { throw 'Windows ZIP was not produced' }
+          if ((Get-Item $archive).Length -lt 10000000) { throw 'Windows ZIP is unexpectedly small' }
+          $stage = Join-Path $env:RUNNER_TEMP 'starrace-package-inspect'
+          Remove-Item $stage -Recurse -Force -ErrorAction SilentlyContinue
+          Expand-Archive -LiteralPath $archive -DestinationPath $stage
+          $required = @(
+            (Join-Path $stage 'StarRace.exe'),
+            (Join-Path $stage 'resources\app\app.json'),
+            (Join-Path $stage 'resources\app\main.cjs'),
+            (Join-Path $stage 'resources\app\web\index.html')
+          )
+          foreach ($file in $required) {
+            if (!(Test-Path $file)) { throw "Required packaged file missing: $file" }
+          }
+          $webAssets = Join-Path $stage 'resources\app\web\assets'
+          if (!(Test-Path $webAssets)) { throw 'Packaged web assets directory missing' }
+          "Portable package structure verified for StarRace.exe."
+
+      - name: Launch the packaged EXE and capture its rendered UI
+        shell: pwsh
+        run: |
+          $stage = Join-Path $env:RUNNER_TEMP 'starrace-package-inspect'
+          $exe = Join-Path $stage 'StarRace.exe'
+          $shot = Join-Path $env:RUNNER_TEMP 'starrace-windows-smoke.png'
+          $env:STARRACE_SMOKE = $shot
+          $process = Start-Process -FilePath $exe -PassThru -Wait
+          if ($process.ExitCode -ne 0) { throw "Packaged application exited with code $($process.ExitCode)" }
+          if (!(Test-Path $shot) -or (Get-Item $shot).Length -lt 10000) {
+            throw 'Packaged application did not produce a valid screenshot'
+          }
+          Remove-Item Env:STARRACE_SMOKE -ErrorAction SilentlyContinue
+          "Packaged desktop launch smoke passed; screenshot bytes: $((Get-Item $shot).Length)"
+
+      - name: Upload validated Windows package
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: starrace-windows-desktop-package
+          path: StarRace-Windows-x64.zip
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload smoke screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: starrace-windows-desktop-smoke-evidence
+          path: ${{ runner.temp }}/starrace-windows-smoke.png
+          if-no-files-found: warn
+          retention-days: 14
+
+  publish-release:
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)
+    needs: validate-package
+    runs-on: windows-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download validated Windows package
+        uses: actions/download-artifact@v4
+        with:
+          name: starrace-windows-desktop-package
+          path: release
+
+      - name: Publish versioned desktop release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: desktop-v1.0.0
           name: StarRace Desktop v1.0.0
-          files: StarRace-Windows-x64.zip
+          files: release/StarRace-Windows-x64.zip
           fail_on_unmatched_files: true
