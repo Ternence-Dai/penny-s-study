@@ -13,6 +13,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const https = require('node:https');
+const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 
 const DESKTOP_DIR = __dirname;
@@ -52,6 +53,42 @@ function fetchJson(url) {
   });
 }
 
+function fetchText(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, { headers: { 'User-Agent': 'desktop-build' } }, res => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        res.resume();
+        return resolve(fetchText(res.headers.location));
+      }
+      if (res.statusCode !== 200) {
+        res.resume();
+        return reject(new Error('Checksum manifest download failed: HTTP ' + res.statusCode));
+      }
+      let body = '';
+      res.setEncoding('utf8');
+      res.on('data', chunk => { body += chunk; });
+      res.on('end', () => resolve(body));
+      res.on('error', reject);
+    }).on('error', reject);
+  });
+}
+
+async function verifyElectronZip(zipPath, version, zipName) {
+  const manifest = await fetchText(`https://github.com/electron/electron/releases/download/v${version}/SHASUMS256.txt`);
+  const entry = manifest.split(/\r?\n/).find(line => { const fields = line.trim().split(/\s+/); return fields.length >= 2 && fields[fields.length - 1].replace(/^[*]/, '') === zipName; });
+  if (!entry) throw new Error('Official SHA-256 entry not found for ' + zipName);
+  const expected = entry.trim().split(/\s+/)[0].toLowerCase();
+  const hash = crypto.createHash('sha256');
+  await new Promise((resolve, reject) => {
+    const stream = fs.createReadStream(zipPath);
+    stream.on('data', chunk => hash.update(chunk));
+    stream.on('error', reject);
+    stream.on('end', resolve);
+  });
+  const actual = hash.digest('hex');
+  if (actual !== expected) throw new Error('Electron ZIP SHA-256 mismatch');
+}
+
 function extractZip(zipPath, destDir) {
   fs.mkdirSync(destDir, { recursive: true });
   if (process.platform === 'win32') {
@@ -79,12 +116,12 @@ function copyInto(src, destDir) {
 }
 
 (async () => {
-  let version = FALLBACK_ELECTRON_VERSION;
-  try {
-    const latest = await fetchJson('https://registry.npmjs.org/electron/latest');
-    if (latest && /^\d+\.\d+\.\d+$/.test(latest.version)) version = latest.version;
-  } catch { /* offline: fall back */ }
-  console.log('Electron version:', version);
+  const desktopPackage = JSON.parse(fs.readFileSync(path.join(DESKTOP_DIR, 'package.json'), 'utf8'));
+  const version = desktopPackage.devDependencies && desktopPackage.devDependencies.electron;
+  if (typeof version !== 'string' || !/^\d+\.\d+\.\d+$/.test(version)) {
+    throw new Error('desktop/package.json must pin Electron to an exact x.y.z version');
+  }
+  console.log('Pinned Electron version:', version);
 
   fs.mkdirSync(BUILD_DIR, { recursive: true });
   const zipName = `electron-v${version}-win32-x64.zip`;
@@ -93,6 +130,8 @@ function copyInto(src, destDir) {
     console.log('Downloading', zipName, '...');
     await download(`https://github.com/electron/electron/releases/download/v${version}/${zipName}`, zipPath);
   }
+  await verifyElectronZip(zipPath, version, zipName);
+  console.log('Electron archive SHA-256 verified.');
 
   const stage = path.join(BUILD_DIR, APP_NAME);
   fs.rmSync(stage, { recursive: true, force: true });
