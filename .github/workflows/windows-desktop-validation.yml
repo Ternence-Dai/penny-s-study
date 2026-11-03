@@ -1,0 +1,85 @@
+name: Windows desktop package validation
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'src/**'
+      - 'docs/**'
+      - 'desktop/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/**'
+      - '.github/workflows/windows-desktop-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'src/**'
+      - 'docs/**'
+      - 'desktop/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/**'
+      - '.github/workflows/windows-desktop-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-desktop-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-package-and-launch:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run repository tests and checks
+        run: |
+          npm test
+          npm run check
+      - name: Build portable Windows package
+        run: node desktop/build-windows.cjs
+      - name: Inspect package and launch application
+        shell: pwsh
+        run: |
+          $archive = Join-Path $PWD 'StarRace-Windows-x64.zip'
+          if (!(Test-Path $archive)) { throw 'Windows ZIP was not produced' }
+          $stage = Join-Path $env:RUNNER_TEMP 'StarRace-inspect'
+          Remove-Item $stage -Recurse -Force -ErrorAction SilentlyContinue
+          Expand-Archive -LiteralPath $archive -DestinationPath $stage
+          $exe = Join-Path $stage 'StarRace.exe'
+          $main = Join-Path $stage 'resources\app\main.cjs'
+          $index = Join-Path $stage 'resources\app\web\index.html'
+          foreach ($file in @($exe, $main, $index)) {
+            if (!(Test-Path $file)) { throw "Required packaged file missing: $file" }
+          }
+          $shot = Join-Path $env:RUNNER_TEMP 'StarRace-smoke.png'
+          $env:STARRACE_SMOKE = $shot
+          $process = Start-Process -FilePath $exe -PassThru -Wait
+          if ($process.ExitCode -ne 0) { throw "Packaged app exited with code $($process.ExitCode)" }
+          if (!(Test-Path $shot) -or (Get-Item $shot).Length -lt 10000) {
+            throw 'Packaged app did not produce a valid smoke screenshot'
+          }
+          Remove-Item Env:STARRACE_SMOKE
+          "Launch smoke passed; screenshot bytes: $((Get-Item $shot).Length)"
+      - name: Upload package and smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: starrace-windows-desktop-validation
+          path: |
+            StarRace-Windows-x64.zip
+            ${{ runner.temp }}/StarRace-smoke.png
+          if-no-files-found: warn
+          retention-days: 14
