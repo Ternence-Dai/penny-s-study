@@ -47,10 +47,10 @@ jobs:
       app-version: ${{ steps.version.outputs.version }}
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 22
 
@@ -111,7 +111,7 @@ jobs:
 
       - name: Upload validated Windows package
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: starrace-windows-desktop-package
           path: StarRace-Windows-x64.zip
@@ -120,7 +120,7 @@ jobs:
 
       - name: Upload smoke screenshot
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: starrace-windows-desktop-smoke-evidence
           path: ${{ runner.temp }}/starrace-windows-smoke.png
@@ -137,13 +137,13 @@ jobs:
       contents: write
     steps:
       - name: Download validated Windows package
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: starrace-windows-desktop-package
           path: release
 
       - name: Publish versioned desktop release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65
         with:
           tag_name: desktop-v${{ needs.validate-package.outputs.app-version }}
           name: StarRace Desktop v${{ needs.validate-package.outputs.app-version }}
