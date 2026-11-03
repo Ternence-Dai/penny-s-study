@@ -128,7 +128,8 @@ jobs:
           retention-days: 14
 
   publish-release:
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)
+    # Publishing a versioned desktop release is an explicit operator action.
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
     needs: validate-package
     runs-on: windows-latest
     timeout-minutes: 10
@@ -144,7 +145,7 @@ jobs:
       - name: Publish versioned desktop release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: desktop-v1.0.0
-          name: StarRace Desktop v1.0.0
+          tag_name: desktop-v${{ needs.validate-package.outputs.app-version }}
+          name: StarRace Desktop v${{ needs.validate-package.outputs.app-version }}
           files: release/StarRace-Windows-x64.zip
           fail_on_unmatched_files: true
