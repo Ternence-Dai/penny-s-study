@@ -128,7 +128,8 @@ jobs:
           retention-days: 14
 
   publish-release:
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)
+    # Publishing a versioned desktop release is an explicit operator action.
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
     needs: validate-package
     runs-on: windows-latest
     timeout-minutes: 10
