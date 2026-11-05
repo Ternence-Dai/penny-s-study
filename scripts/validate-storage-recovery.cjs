@@ -228,6 +228,119 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 
 
 {
+  const data = new Map();
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  const session = {
+    list: [{id:'p100'}], userAnswers: [0], evaluated: [true],
+    index: 0, correct: 1, wrong: 0, level: '小学', label: '幂等完成测试'
+  };
+  assert.equal(api.Store.saveActivePractice(session), true);
+  const saved = JSON.parse(data.get('a_active_practice_v1'));
+  assert.equal(typeof saved.sessionId, 'string');
+  assert.ok(saved.sessionId.length > 0);
+  const record = {
+    mode: 'practice', total: 1, correct: 1, sessionId: saved.sessionId
+  };
+  assert.equal(api.Store.addRecord(record), true);
+  assert.equal(api.Store.addRecord(record), true,
+    'retrying completion for the same session must be idempotent');
+  assert.equal(api.Store.addRecord({ ...record, correct: 0 }), false,
+    'a reused session ID with a conflicting score must be rejected, not silently deduplicated');
+  const storedRecords = JSON.parse(data.get('a_r_v6'));
+  assert.equal(storedRecords.length, 1,
+    'one practice session must produce only one result row');
+  assert.equal(storedRecords[0].correct, 1,
+    'a conflicting retry must not replace the committed result');
+}
+
+{
+  const data = new Map();
+  let failStudyDayOnce = true;
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => {
+      if (key === 'a_d_v6' && failStudyDayOnce) {
+        failStudyDayOnce = false;
+        throw new Error('simulated quota failure on study-day write');
+      }
+      data.set(key, value);
+    },
+    removeItem: key => data.delete(key)
+  };
+  const record = {
+    mode: 'practice', total: 2, correct: 2, sessionId: 'session-retry-001'
+  };
+  const firstLoad = makeContext(storage);
+  assert.equal(firstLoad.Store.addRecord(record), false,
+    'a secondary study-day write failure must be surfaced');
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'the already committed result must remain intact');
+  assert.equal(data.has('a_d_v6'), false);
+
+  // A page reload resets the fail-closed in-memory lock. Retrying the same
+  // completion must repair the missing day entry without duplicating the row.
+  const afterReload = makeContext(storage);
+  assert.equal(afterReload.Store.addRecord(record), true);
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1);
+  assert.equal(JSON.parse(data.get('a_d_v6')).length, 1);
+}
+
+{
+  const oldDraft = {
+    version: 1, sessionId: 'old-session', level: '小学', label: '旧练习',
+    questionIds: ['p001'], userAnswers: [0], evaluated: [false],
+    index: 0, correct: 0, wrong: 0, updatedAt: 1760000000000
+  };
+  const rawOldDraft = JSON.stringify(oldDraft);
+  const data = new Map([['a_active_practice_v1', rawOldDraft]]);
+  const api = makeContext({
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => {
+      if (key === 'a_active_practice_v1') throw new Error('simulated quota failure replacing active practice');
+      data.set(key, value);
+    },
+    removeItem: key => data.delete(key)
+  });
+  const replacement = {
+    list: [{id:'p002'}], userAnswers: [null], evaluated: [false],
+    index: 0, correct: 0, wrong: 0, level: '小学', label: '新练习'
+  };
+  assert.equal(api.Store.saveActivePractice(replacement), false);
+  assert.equal(data.get('a_active_practice_v1'), rawOldDraft,
+    'failed replacement must leave the previous resumable draft byte-for-byte intact');
+}
+
+{
+  const startWithStart = html.indexOf('function startWith(');
+  const startWithEnd = html.indexOf('function resumePractice()', startWithStart);
+  assert.ok(startWithStart >= 0 && startWithEnd > startWithStart);
+  const startWith = html.slice(startWithStart, startWithEnd);
+  assert.ok(startWith.includes('if(!Store.saveActivePractice(state.practice))'));
+  assert.ok(!startWith.includes('Store.clearActivePractice()'),
+    'starting a replacement practice must not delete the previous draft before the new write succeeds');
+}
+
+{
+  const finishStart = html.indexOf('function pFinish()');
+  const finishEnd = html.indexOf('\n\nvar reviewSchedulerPromise', finishStart);
+  assert.ok(finishStart >= 0 && finishEnd > finishStart,
+    'practice finish handler must remain discoverable');
+  const finish = html.slice(finishStart, finishEnd);
+  assert.ok(finish.includes('if(!p||p.finishing)return;'),
+    'double-clicks must not run concurrent completion writes');
+  assert.ok(finish.includes('sessionId:p.sessionId'),
+    'completion records must carry a stable session id');
+  assert.ok(finish.includes('if(!Store.clearActivePractice())'),
+    'the active draft must be cleared only after the result write succeeds');
+}
+
+
+{
   const api = makeContext({
     getItem: () => null,
     setItem() {},
@@ -252,4 +365,49 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.equal(api.safeStorageSet('a_r_v6','[]'),false,
     'a successful-looking later write must not bypass the recovery lock');
   assert.equal(writes,0,'no write may be attempted after a failed removal has raised the lock');
+}
+
+{
+  const data = new Map();
+  let failDraftRemovalOnce = true;
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => {
+      if (key === 'a_active_practice_v1' && failDraftRemovalOnce) {
+        failDraftRemovalOnce = false;
+        throw new Error('simulated failure clearing completed practice draft');
+      }
+      data.delete(key);
+    }
+  };
+  const firstLoad = makeContext(storage);
+  const draft = {
+    list: [{id:'p200'}], userAnswers: [0], evaluated: [true],
+    index: 0, correct: 1, wrong: 0, level: '小学', label: '完成后清理失败重试'
+  };
+  assert.equal(firstLoad.Store.saveActivePractice(draft), true);
+  const savedDraft = JSON.parse(data.get('a_active_practice_v1'));
+  const record = {
+    mode: 'practice', total: 1, correct: 1, sessionId: savedDraft.sessionId
+  };
+
+  assert.equal(firstLoad.Store.addRecord(record), true,
+    'the score must be committed before attempting to remove the active draft');
+  assert.equal(firstLoad.Store.clearActivePractice(), false,
+    'a failed draft removal must be surfaced so the user can retry');
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'the score remains committed when draft cleanup fails');
+  assert.ok(data.has('a_active_practice_v1'),
+    'the resumable draft must remain intact when cleanup fails');
+
+  // A reload resets the fail-closed storage lock. Retrying completion must
+  // deduplicate the committed score and then clear the same active session.
+  const afterReload = makeContext(storage);
+  assert.equal(afterReload.Store.addRecord(record), true);
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'retry after cleanup failure must not create a duplicate result');
+  assert.equal(afterReload.Store.clearActivePractice(), true);
+  assert.equal(data.has('a_active_practice_v1'), false,
+    'the retried completion must finally clear the active draft');
 }

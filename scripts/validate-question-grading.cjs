@@ -266,7 +266,7 @@ assert.ok(app.includes('function resumePractice()') &&
   'home workspace must restore saved sessions by stable question ID without changing the question bank');
 assert.ok(app.includes('Store.saveActivePractice(p);') &&
           app.includes("if(state.page==='practice'&&state.practice) Store.saveActivePractice(state.practice);") &&
-          app.includes('Store.clearActivePractice();'),
+          app.includes('if(!Store.clearActivePractice())'),
   'practice answers, navigation and completion must safely maintain the active-session draft');
 
 assert.ok(app.includes('已到期') && app.includes('nextReviewAt<=now') &&
@@ -386,7 +386,13 @@ const resumableOrderQuestion = {
   options:['甲','乙','丙'], answer:[2,0,1]
 };
 const resumeContext = vm.createContext({
-  Store: { getActivePractice: () => resumeContext.saved },
+  Store: {
+    getActivePractice: () => resumeContext.saved,
+    saveActivePractice: value => {
+      resumeContext.saved = { ...resumeContext.saved, sessionId: value.sessionId };
+      return true;
+    }
+  },
   Q: [resumableOrderQuestion],
   state: {},
   Map, alert: message => { resumeContext.alerts.push(message); },
