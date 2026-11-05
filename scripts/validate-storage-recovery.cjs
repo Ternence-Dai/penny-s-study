@@ -10,7 +10,7 @@ const source = html.slice(start, end);
 function makeContext(storage) {
   const sandbox = { localStorage: storage, console: { warn() {} },
     KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1'} };
-  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;}};', sandbox);
+  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;}};', sandbox);
   return sandbox.api;
 }
 {
@@ -252,4 +252,25 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.equal(api.safeStorageSet('a_r_v6','[]'),false,
     'a successful-looking later write must not bypass the recovery lock');
   assert.equal(writes,0,'no write may be attempted after a failed removal has raised the lock');
+}
+
+{
+  const attemptsRaw='[{"questionId":"p001","correct":true}]';
+  const data=new Map([
+    ['a_r_v6','{broken-json'],
+    ['a_attempts_v1',attemptsRaw]
+  ]);
+  const storage={getItem:key=>data.has(key)?data.get(key):null};
+  const api=makeContext(storage);
+  const packet=api.buildRawLearningRecoveryPacket(storage,new Date('2026-11-05T00:00:00.000Z'));
+  const attempts=packet.entries.find(entry=>entry.key==='a_attempts_v1');
+  assert.deepEqual(
+    {name:attempts.name,key:attempts.key,raw:attempts.raw},
+    {name:'attempts',key:'a_attempts_v1',raw:attemptsRaw},
+    'raw recovery export must include the independent attempt log byte-for-byte'
+  );
+  assert.equal(data.get('a_r_v6'),'{broken-json',
+    'building a recovery packet must not rewrite malformed source data');
+  assert.equal(data.get('a_attempts_v1'),attemptsRaw,
+    'building a recovery packet must not mutate the attempt log');
 }
