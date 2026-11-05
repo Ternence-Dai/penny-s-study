@@ -386,7 +386,13 @@ const resumableOrderQuestion = {
   options:['甲','乙','丙'], answer:[2,0,1]
 };
 const resumeContext = vm.createContext({
-  Store: { getActivePractice: () => resumeContext.saved },
+  Store: {
+    getActivePractice: () => resumeContext.saved,
+    saveActivePractice: value => {
+      resumeContext.saved = { ...resumeContext.saved, sessionId: value.sessionId };
+      return true;
+    }
+  },
   Q: [resumableOrderQuestion],
   state: {},
   Map, alert: message => { resumeContext.alerts.push(message); },
