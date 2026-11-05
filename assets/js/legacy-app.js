@@ -2977,7 +2977,7 @@ function pFinish(){
       alert('成绩已保存，但练习草稿尚未清除。请恢复浏览器存储后再次点击完成；同一练习不会重复计入成绩。');
       return;
     }
-    if (confirm('共 ' + total + ' 题\\n答对 ' + correct + ' 题\\n正确率 ' + rate(correct, total) + '%\\n\\n点击「确定」再来一组，点击「取消」返回')){
+    if (confirm('共 ' + total + ' 题\n答对 ' + correct + ' 题\n正确率 ' + rate(correct, total) + '%\n\n点击「确定」再来一组，点击「取消」返回')){
       var list = shuffle(p.list);
       state.practice = {
         list:list, index:0,
