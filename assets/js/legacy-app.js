@@ -142,22 +142,32 @@ function exportRawLearningRecovery(){
   }
 }
 function readAttemptLog(){
+  var raw=safeStorageGet(ATTEMPT_LOG_KEY);
+  if(raw===null)return [];
   try{
-    var raw=localStorage.getItem(ATTEMPT_LOG_KEY);
-    if(raw===null)return [];
     var value=JSON.parse(raw);
-    return Array.isArray(value)?value:[];
-  }catch(e){return [];}
+    if(!Array.isArray(value)){
+      storageRecoveryRequired=true;
+      console.warn('逐次作答流水结构异常，已暂停写入以保护原始记录');
+      return [];
+    }
+    return value;
+  }catch(e){
+    storageRecoveryRequired=true;
+    console.warn('逐次作答流水无法解析，已暂停写入以保护原始记录',e);
+    return [];
+  }
 }
 function appendAttemptLog(entry){
+  if(storageRecoveryRequired)return false;
   try{
     var log=readAttemptLog();
+    if(storageRecoveryRequired)return false;
     log.push(entry);
     if(log.length>ATTEMPT_LOG_LIMIT)log=log.slice(log.length-ATTEMPT_LOG_LIMIT);
-    localStorage.setItem(ATTEMPT_LOG_KEY,JSON.stringify(log));
-    return true;
+    return safeStorageSet(ATTEMPT_LOG_KEY,JSON.stringify(log));
   }catch(e){
-    // 流水只为将来评估算法留数据：本次写不进去就丢弃本次，答题流程不受影响。
+    // 流水写入失败不得回退为覆盖原始记录的空数组。
     return false;
   }
 }
