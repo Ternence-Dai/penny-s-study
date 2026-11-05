@@ -262,7 +262,8 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   ]);
   const storage={getItem:key=>data.has(key)?data.get(key):null};
   const api=makeContext(storage);
-  const packet=api.buildRawLearningRecoveryPacket(storage,new Date('2026-11-05T00:00:00.000Z'));
+  const packetDate=vm.runInContext("new Date('2026-11-05T00:00:00.000Z')", vm.createContext({}));
+  const packet=api.buildRawLearningRecoveryPacket(storage,packetDate);
   const attempts=packet.entries.find(entry=>entry.key==='a_attempts_v1');
   assert.deepEqual(
     {name:attempts.name,key:attempts.key,raw:attempts.raw},
