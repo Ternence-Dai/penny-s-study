@@ -343,8 +343,9 @@ var Store = {
        (r.sessionId!==undefined&&
          (typeof r.sessionId!=='string'||!r.sessionId.trim()||r.sessionId.length>120)))return false;
     var l=safeStorageJSON(KEY.record,[],isPracticeRecordStorage);
-    var exists=!!r.sessionId&&l.some(function(item){return item.sessionId===r.sessionId;});
-    if(!exists){
+    var existing=r.sessionId?l.find(function(item){return item.sessionId===r.sessionId;}):null;
+    if(existing&&(existing.mode!==r.mode||existing.total!==r.total||existing.correct!==r.correct))return false;
+    if(!existing){
       l.push(Object.assign({},r,{time:Date.now()}));
       if(l.length>500)l=l.slice(l.length-500);
       if(!safeStorageSet(KEY.record,JSON.stringify(l)))return false;
