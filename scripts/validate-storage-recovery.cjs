@@ -286,6 +286,41 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 }
 
 {
+  const oldDraft = {
+    version: 1, sessionId: 'old-session', level: '小学', label: '旧练习',
+    questionIds: ['p001'], userAnswers: [0], evaluated: [false],
+    index: 0, correct: 0, wrong: 0, updatedAt: 1760000000000
+  };
+  const rawOldDraft = JSON.stringify(oldDraft);
+  const data = new Map([['a_active_practice_v1', rawOldDraft]]);
+  const api = makeContext({
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => {
+      if (key === 'a_active_practice_v1') throw new Error('simulated quota failure replacing active practice');
+      data.set(key, value);
+    },
+    removeItem: key => data.delete(key)
+  });
+  const replacement = {
+    list: [{id:'p002'}], userAnswers: [null], evaluated: [false],
+    index: 0, correct: 0, wrong: 0, level: '小学', label: '新练习'
+  };
+  assert.equal(api.Store.saveActivePractice(replacement), false);
+  assert.equal(data.get('a_active_practice_v1'), rawOldDraft,
+    'failed replacement must leave the previous resumable draft byte-for-byte intact');
+}
+
+{
+  const startWithStart = html.indexOf('function startWith(');
+  const startWithEnd = html.indexOf('function resumePractice()', startWithStart);
+  assert.ok(startWithStart >= 0 && startWithEnd > startWithStart);
+  const startWith = html.slice(startWithStart, startWithEnd);
+  assert.ok(startWith.includes('if(!Store.saveActivePractice(state.practice))'));
+  assert.ok(!startWith.includes('Store.clearActivePractice()'),
+    'starting a replacement practice must not delete the previous draft before the new write succeeds');
+}
+
+{
   const finishStart = html.indexOf('function pFinish()');
   const finishEnd = html.indexOf('\n\nvar reviewSchedulerPromise', finishStart);
   assert.ok(finishStart >= 0 && finishEnd > finishStart,
