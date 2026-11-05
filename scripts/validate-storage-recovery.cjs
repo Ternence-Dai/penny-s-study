@@ -287,7 +287,7 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 
 {
   const finishStart = html.indexOf('function pFinish()');
-  const finishEnd = html.indexOf('\\n\\nvar reviewSchedulerPromise', finishStart);
+  const finishEnd = html.indexOf('\n\nvar reviewSchedulerPromise', finishStart);
   assert.ok(finishStart >= 0 && finishEnd > finishStart,
     'practice finish handler must remain discoverable');
   const finish = html.slice(finishStart, finishEnd);
