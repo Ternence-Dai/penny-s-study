@@ -165,7 +165,8 @@ function appendAttemptLog(entry){
     if(storageRecoveryRequired)return false;
     log.push(entry);
     if(log.length>ATTEMPT_LOG_LIMIT)log=log.slice(log.length-ATTEMPT_LOG_LIMIT);
-    return safeStorageSet(ATTEMPT_LOG_KEY,JSON.stringify(log));
+    localStorage.setItem(ATTEMPT_LOG_KEY,JSON.stringify(log));
+    return true;
   }catch(e){
     // 流水写入失败不得回退为覆盖原始记录的空数组。
     return false;
