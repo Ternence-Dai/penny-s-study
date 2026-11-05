@@ -2693,10 +2693,8 @@ function startWith(list, level, label){
   if(saved){
     var done=saved.evaluated.filter(Boolean).length;
     if(!confirm('发现一组尚未完成的练习：'+saved.label+'（'+done+'/'+saved.questionIds.length+' 题）。\n\n开始新练习将替换这组未完成进度，已有答题统计和错题记录不会被删除。是否继续？'))return;
-    if(!Store.clearActivePractice()){
-      alert('无法安全替换旧练习存档；原进度已保留，请先检查浏览器存储。');
-      return;
-    }
+    // Do not delete the old draft first. A single-key localStorage replacement
+    // keeps it recoverable if writing the new session fails.
   }
   state.practice = {
     list:list, index:0,
@@ -2965,7 +2963,7 @@ function pFinish(){
       alert('仍有 '+(total-evaluatedCount)+' 道题尚未完成判分，请继续完成练习。');
       return;
     }
-    if(!p.sessionId&&!Store.saveActivePractice(p)){
+    if(!Store.saveActivePractice(p)){
       alert('练习完成标识无法安全保存；原始进度已保留，请先检查浏览器存储。');
       return;
     }
