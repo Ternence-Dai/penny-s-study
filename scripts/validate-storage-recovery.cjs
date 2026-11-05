@@ -366,3 +366,48 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
     'a successful-looking later write must not bypass the recovery lock');
   assert.equal(writes,0,'no write may be attempted after a failed removal has raised the lock');
 }
+
+{
+  const data = new Map();
+  let failDraftRemovalOnce = true;
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => {
+      if (key === 'a_active_practice_v1' && failDraftRemovalOnce) {
+        failDraftRemovalOnce = false;
+        throw new Error('simulated failure clearing completed practice draft');
+      }
+      data.delete(key);
+    }
+  };
+  const firstLoad = makeContext(storage);
+  const draft = {
+    list: [{id:'p200'}], userAnswers: [0], evaluated: [true],
+    index: 0, correct: 1, wrong: 0, level: '小学', label: '完成后清理失败重试'
+  };
+  assert.equal(firstLoad.Store.saveActivePractice(draft), true);
+  const savedDraft = JSON.parse(data.get('a_active_practice_v1'));
+  const record = {
+    mode: 'practice', total: 1, correct: 1, sessionId: savedDraft.sessionId
+  };
+
+  assert.equal(firstLoad.Store.addRecord(record), true,
+    'the score must be committed before attempting to remove the active draft');
+  assert.equal(firstLoad.Store.clearActivePractice(), false,
+    'a failed draft removal must be surfaced so the user can retry');
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'the score remains committed when draft cleanup fails');
+  assert.ok(data.has('a_active_practice_v1'),
+    'the resumable draft must remain intact when cleanup fails');
+
+  // A reload resets the fail-closed storage lock. Retrying completion must
+  // deduplicate the committed score and then clear the same active session.
+  const afterReload = makeContext(storage);
+  assert.equal(afterReload.Store.addRecord(record), true);
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'retry after cleanup failure must not create a duplicate result');
+  assert.equal(afterReload.Store.clearActivePractice(), true);
+  assert.equal(data.has('a_active_practice_v1'), false,
+    'the retried completion must finally clear the active draft');
+}
