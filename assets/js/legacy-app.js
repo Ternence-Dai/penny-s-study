@@ -117,7 +117,9 @@ function buildRawLearningRecoveryPacket(storage, exportedAt){
     exportedAt:timestamp.toISOString(),
     entries:Object.keys(KEY).map(function(name){
       return {name:name,key:KEY[name],raw:storage.getItem(KEY[name])};
-    })
+    }).concat([{
+      name:'attempts',key:ATTEMPT_LOG_KEY,raw:storage.getItem(ATTEMPT_LOG_KEY)
+    }])
   };
 }
 function exportRawLearningRecovery(){
