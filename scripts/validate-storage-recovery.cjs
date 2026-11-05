@@ -10,7 +10,7 @@ const source = html.slice(start, end);
 function makeContext(storage) {
   const sandbox = { localStorage: storage, console: { warn() {} },
     KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1',graduated:'a_g_v6'} };
-  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;},resetRecoveryLockForTest(){storageRecoveryRequired=false;}};', sandbox);
+  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;},resetRecoveryLockForTest(){storageRecoveryRequired=false;}};', sandbox);
   return sandbox.api;
 }
 {
@@ -255,7 +255,7 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 }
 
 {
-  const attemptsRaw='[{"questionId":"p001","correct":true}]';
+  const attemptsRaw='[{"id":"p001","correct":true,"at":1760000000000,"state":{"book":"none"}}]';
   const data=new Map([
     ['a_r_v6','{broken-json'],
     ['a_attempts_v1',attemptsRaw]
@@ -288,11 +288,44 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
     'malformed attempt history must not be exposed as valid entries');
   assert.equal(api.locked,true,
     'malformed attempt history must activate the global recovery lock');
-  assert.equal(api.appendAttemptLog({questionId:'p002',correct:true}),false,
+  assert.equal(api.appendAttemptLog({id:'p002',correct:true,at:1760000000001,state:{book:'none'}}),false,
     'new answers must not be appended over malformed attempt history');
   assert.equal(writes,0,'malformed attempt history must never be overwritten');
   assert.equal(data.get('a_attempts_v1'),raw,
     'the exact malformed attempt bytes must remain available for recovery export');
+}
+
+{
+  const raw='[{"id":"p001","correct":true,"at":1760000000000,"state":{"book":"unknown"}}]';
+  const data=new Map([['a_attempts_v1',raw]]);
+  let writes=0;
+  const storage={
+    getItem:key=>data.has(key)?data.get(key):null,
+    setItem(key,value){writes++;data.set(key,value);}
+  };
+  const api=makeContext(storage);
+  assert.equal(api.isAttemptLogStorage(JSON.parse(raw)),false,
+    'parseable but structurally invalid attempt entries must be rejected');
+  assert.equal(api.readAttemptLog().length,0,
+    'invalid attempt entries must not be exposed as valid history');
+  assert.equal(api.locked,true,
+    'parseable structural corruption must activate the recovery lock');
+  assert.equal(api.appendAttemptLog({id:'p002',correct:true,at:1760000000001,state:{book:'none'}}),false,
+    'new attempts must not overwrite a structurally invalid history');
+  assert.equal(writes,0,'structurally invalid attempt history must never be overwritten');
+  assert.equal(data.get('a_attempts_v1'),raw,
+    'the exact parseable-but-invalid attempt bytes must remain available for recovery export');
+}
+
+{
+  const data=new Map([['a_attempts_v1','[]']]);
+  const api=makeContext({getItem:key=>data.has(key)?data.get(key):null,setItem:(key,value)=>data.set(key,value)});
+  assert.equal(api.appendAttemptLog({id:'p003',correct:true,at:1760000000002,state:{book:'none'}}),true,
+    'a well-formed attempt entry must append successfully');
+  assert.equal(api.appendAttemptLog({id:'p004',correct:'yes',at:1760000000003,state:{book:'none'}}),false,
+    'invalid new attempt entries must be rejected');
+  assert.equal(JSON.parse(data.get('a_attempts_v1')).length,1,
+    'rejecting a malformed new attempt must preserve prior valid attempts');
 }
 
 {
@@ -303,7 +336,7 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   };
   const api=makeContext(storage);
   api.resetRecoveryLockForTest();
-  assert.equal(api.appendAttemptLog({questionId:'p003',correct:true}),true);
-  assert.deepEqual(JSON.parse(data.get('a_attempts_v1')),[{questionId:'p003',correct:true}],
+  assert.equal(api.appendAttemptLog({id:'p003',correct:true,at:1760000000002,state:{book:'none'}}),true);
+  assert.deepEqual(JSON.parse(data.get('a_attempts_v1')),[{id:'p003',correct:true,at:1760000000002,state:{book:'none'}}],
     'valid attempt history must continue to append normally');
 }
