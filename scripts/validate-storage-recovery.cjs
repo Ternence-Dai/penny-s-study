@@ -284,7 +284,8 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
     setItem(key,value){writes++;data.set(key,value);}
   };
   const api=makeContext(storage);
-  assert.deepEqual(api.readAttemptLog(),[]);
+  assert.equal(api.readAttemptLog().length,0,
+    'malformed attempt history must not be exposed as valid entries');
   assert.equal(api.locked,true,
     'malformed attempt history must activate the global recovery lock');
   assert.equal(api.appendAttemptLog({questionId:'p002',correct:true}),false,
