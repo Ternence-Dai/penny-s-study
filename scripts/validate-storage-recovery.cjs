@@ -249,8 +249,13 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.equal(api.Store.addRecord(record), true);
   assert.equal(api.Store.addRecord(record), true,
     'retrying completion for the same session must be idempotent');
-  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+  assert.equal(api.Store.addRecord({ ...record, correct: 0 }), false,
+    'a reused session ID with a conflicting score must be rejected, not silently deduplicated');
+  const storedRecords = JSON.parse(data.get('a_r_v6'));
+  assert.equal(storedRecords.length, 1,
     'one practice session must produce only one result row');
+  assert.equal(storedRecords[0].correct, 1,
+    'a conflicting retry must not replace the committed result');
 }
 
 {
