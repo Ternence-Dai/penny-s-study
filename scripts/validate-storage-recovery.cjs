@@ -228,6 +228,79 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
 
 
 {
+  const data = new Map();
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  const session = {
+    list: [{id:'p100'}], userAnswers: [0], evaluated: [true],
+    index: 0, correct: 1, wrong: 0, level: '小学', label: '幂等完成测试'
+  };
+  assert.equal(api.Store.saveActivePractice(session), true);
+  const saved = JSON.parse(data.get('a_active_practice_v1'));
+  assert.equal(typeof saved.sessionId, 'string');
+  assert.ok(saved.sessionId.length > 0);
+  const record = {
+    mode: 'practice', total: 1, correct: 1, sessionId: saved.sessionId
+  };
+  assert.equal(api.Store.addRecord(record), true);
+  assert.equal(api.Store.addRecord(record), true,
+    'retrying completion for the same session must be idempotent');
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'one practice session must produce only one result row');
+}
+
+{
+  const data = new Map();
+  let failStudyDayOnce = true;
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => {
+      if (key === 'a_d_v6' && failStudyDayOnce) {
+        failStudyDayOnce = false;
+        throw new Error('simulated quota failure on study-day write');
+      }
+      data.set(key, value);
+    },
+    removeItem: key => data.delete(key)
+  };
+  const record = {
+    mode: 'practice', total: 2, correct: 2, sessionId: 'session-retry-001'
+  };
+  const firstLoad = makeContext(storage);
+  assert.equal(firstLoad.Store.addRecord(record), false,
+    'a secondary study-day write failure must be surfaced');
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1,
+    'the already committed result must remain intact');
+  assert.equal(data.has('a_d_v6'), false);
+
+  // A page reload resets the fail-closed in-memory lock. Retrying the same
+  // completion must repair the missing day entry without duplicating the row.
+  const afterReload = makeContext(storage);
+  assert.equal(afterReload.Store.addRecord(record), true);
+  assert.equal(JSON.parse(data.get('a_r_v6')).length, 1);
+  assert.equal(JSON.parse(data.get('a_d_v6')).length, 1);
+}
+
+{
+  const finishStart = html.indexOf('function pFinish()');
+  const finishEnd = html.indexOf('\\n\\nvar reviewSchedulerPromise', finishStart);
+  assert.ok(finishStart >= 0 && finishEnd > finishStart,
+    'practice finish handler must remain discoverable');
+  const finish = html.slice(finishStart, finishEnd);
+  assert.ok(finish.includes('if(!p||p.finishing)return;'),
+    'double-clicks must not run concurrent completion writes');
+  assert.ok(finish.includes('sessionId:p.sessionId'),
+    'completion records must carry a stable session id');
+  assert.ok(finish.includes('if(!Store.clearActivePractice())'),
+    'the active draft must be cleared only after the result write succeeds');
+}
+
+
+{
   const api = makeContext({
     getItem: () => null,
     setItem() {},
