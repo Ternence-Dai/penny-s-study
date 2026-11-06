@@ -10,7 +10,7 @@ const source = html.slice(start, end);
 function makeContext(storage) {
   const sandbox = { localStorage: storage, console: { warn() {} },
     KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1',graduated:'a_g_v6'} };
-  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;},resetRecoveryLockForTest(){storageRecoveryRequired=false;}};', sandbox);
+  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;},get attemptLogLocked(){return attemptLogRecoveryRequired;},resetRecoveryLockForTest(){storageRecoveryRequired=false;attemptLogRecoveryRequired=false;}};', sandbox);
   return sandbox.api;
 }
 {
@@ -434,7 +434,8 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
     setItem(key,value){writes++;data.set(key,value);}
   });
   assert.equal(api.readAttemptLog().length,0);
-  assert.equal(api.locked,true,'malformed attempt history must activate the global recovery lock');
+  assert.equal(api.locked,false,'malformed optional attempt history must not activate the primary learning-ledger lock');
+  assert.equal(api.attemptLogLocked,true,'malformed attempt history must activate its isolated recovery lock');
   assert.equal(api.appendAttemptLog({id:'p002',correct:true,at:1760000000001,state:{book:'none'}}),false);
   assert.equal(writes,0,'malformed attempt history must never be overwritten');
   assert.equal(data.get('a_attempts_v1'),raw,'the exact malformed attempt bytes must remain available for recovery export');
@@ -449,7 +450,8 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   });
   assert.equal(api.isAttemptLogStorage(JSON.parse(raw)),false);
   assert.equal(api.readAttemptLog().length,0);
-  assert.equal(api.locked,true,'structurally invalid attempt history must activate recovery lock');
+  assert.equal(api.locked,false,'structurally invalid optional attempt history must not freeze primary learning records');
+  assert.equal(api.attemptLogLocked,true,'structurally invalid attempt history must activate its isolated recovery lock');
   assert.equal(api.appendAttemptLog({id:'p002',correct:true,at:1760000000001,state:{book:'none'}}),false);
   assert.equal(writes,0,'structurally invalid attempt history must never be overwritten');
   assert.equal(data.get('a_attempts_v1'),raw);
