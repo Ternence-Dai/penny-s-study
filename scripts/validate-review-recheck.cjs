@@ -167,7 +167,31 @@ async function main() {
     assert.equal(api.readAttemptLog().length, 0);
   }
 
-  // 8) 毕业记录校验器：接受系统生成的记录，拒绝越界阶段与缺字段。
+  // 8) 损坏的可选作答流水只锁定流水自身；主学习账本仍可写，原始字节不被覆盖。
+  {
+    const corruptValues = [
+      '{"unfinished":',
+      JSON.stringify([{ id: 'broken', correct: 'yes', at: 1, state: { book: 'none' } }])
+    ];
+    for (const raw of corruptValues) {
+      const storage = makeStorage();
+      const api = makeContext(storage);
+      api.injectDomain(domain);
+      storage.data.set(api.ATTEMPT_LOG_KEY, raw);
+      await api.recordQuestionOutcome('p005', false);
+      assert.equal(api.Store.getWrong().length, 1,
+        'corrupt optional attempt history must not freeze the primary wrong-answer ledger');
+      assert.equal(storage.data.get(api.ATTEMPT_LOG_KEY), raw,
+        'corrupt sidecar bytes must remain unchanged for recovery export');
+      assert.equal(api.appendAttemptLog({
+        id: 'p006', correct: false, at: 2, state: { book: 'none' }
+      }), false, 'an isolated corrupt attempt log must not be overwritten by a later append');
+      assert.equal(storage.data.get(api.ATTEMPT_LOG_KEY), raw,
+        'subsequent attempts must continue preserving the original corrupt bytes');
+    }
+  }
+
+  // 9) 毕业记录校验器：接受系统生成的记录，拒绝越界阶段与缺字段。
   {
     const api = makeContext(makeStorage());
     const valid = { id: 'p001', graduatedAt: 1760000000000, recheckStage: 1, nextReviewAt: 1761209600000 };

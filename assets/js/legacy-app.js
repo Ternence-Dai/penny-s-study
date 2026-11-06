@@ -82,7 +82,10 @@ var ATTEMPT_LOG_KEY = 'a_attempts_v1';
 var ATTEMPT_LOG_LIMIT = 2000;
 // Fail closed: if browser storage becomes unavailable, never replace existing learning data with fallback defaults.
 var storageRecoveryRequired = false;
-function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);return null;}}
+// The optional attempt sidecar has its own recovery lock: its corruption must
+// preserve its raw bytes without freezing the primary learning ledgers.
+var attemptLogRecoveryRequired = false;
+function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null&&key!==ATTEMPT_LOG_KEY){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){if(key===ATTEMPT_LOG_KEY){attemptLogRecoveryRequired=true;console.warn('逐次作答流水读取失败；已隔离流水写入保护，不影响主学习账本',e);}else{storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);}return null;}}
 function safeStorageSet(key,value){if(storageRecoveryRequired){console.warn('学习记录写入已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.setItem(key,value);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);return false;}}
 function safeStorageRemove(key){if(storageRecoveryRequired){console.warn('学习记录删除已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.removeItem(key);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);return false;}}
 function safeStorageJSON(key,fallback,validator){
@@ -172,22 +175,22 @@ function readAttemptLog(){
   try{
     var value=JSON.parse(raw);
     if(!isAttemptLogStorage(value)){
-      storageRecoveryRequired=true;
-      console.warn('逐次作答流水结构异常，已暂停写入以保护原始记录');
+      attemptLogRecoveryRequired=true;
+      console.warn('逐次作答流水结构异常，已隔离流水写入保护；主学习账本保持可写');
       return [];
     }
     return value;
   }catch(e){
-    storageRecoveryRequired=true;
-    console.warn('逐次作答流水无法解析，已暂停写入以保护原始记录',e);
+    attemptLogRecoveryRequired=true;
+    console.warn('逐次作答流水无法解析，已隔离流水写入保护；主学习账本保持可写',e);
     return [];
   }
 }
 function appendAttemptLog(entry){
-  if(storageRecoveryRequired||!isAttemptLogEntry(entry))return false;
+  if(storageRecoveryRequired||attemptLogRecoveryRequired||!isAttemptLogEntry(entry))return false;
   try{
     var log=readAttemptLog();
-    if(storageRecoveryRequired)return false;
+    if(storageRecoveryRequired||attemptLogRecoveryRequired)return false;
     log.push(entry);
     if(log.length>ATTEMPT_LOG_LIMIT)log=log.slice(log.length-ATTEMPT_LOG_LIMIT);
     localStorage.setItem(ATTEMPT_LOG_KEY,JSON.stringify(log));
