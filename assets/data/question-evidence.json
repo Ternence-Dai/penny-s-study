@@ -1618,6 +1618,11 @@
    "status": "review-needed",
    "sources": [
     {
+     "title": "NASA Stars",
+     "url": "https://science.nasa.gov/universe/stars/",
+     "publisher": "NASA Science"
+    },
+    {
      "title": "Life Cycles of Stars",
      "url": "https://imagine.gsfc.nasa.gov/educators/lifecycles/LC_main_p2.html",
      "publisher": "NASA Goddard Space Flight Center"
@@ -1625,7 +1630,7 @@
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "NASA恒星演化教育材料将太阳描述为中等大小恒星，并区分低质量与中等质量恒星。当前题干使用“中等质量”而非“中等大小”，需人工确认教学语义和目标学段后再定稿。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewNote": "NASA Science介绍太阳为G2V型、平均大小恒星；NASA Goddard恒星演化教育材料进一步区分低质量与中等质量恒星。两份资料共同支持太阳的恒星分类背景，但“中等质量”的教学定义仍需人工核对，不把“平均大小”直接等同于质量。尚未完成人工逐题核对，状态保持 review-needed。",
    "reviewedFields": [],
    "contentSha256": null
   },
