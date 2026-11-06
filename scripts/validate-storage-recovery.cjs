@@ -9,8 +9,8 @@ assert.ok(start >= 0 && end > start, 'storage guard section must exist');
 const source = html.slice(start, end);
 function makeContext(storage) {
   const sandbox = { localStorage: storage, console: { warn() {} },
-    KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1'} };
-  vm.runInNewContext(source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;}};', sandbox);
+    KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1',graduated:'a_g_v6'} };
+  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\\n" + source + '\\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;},resetRecoveryLockForTest(){storageRecoveryRequired=false;}};', sandbox);}};', sandbox);
   return sandbox.api;
 }
 {
@@ -410,4 +410,54 @@ console.log('Study storage recovery checks passed (malformed JSON, inaccessible 
   assert.equal(afterReload.Store.clearActivePractice(), true);
   assert.equal(data.has('a_active_practice_v1'), false,
     'the retried completion must finally clear the active draft');
+}
+
+{
+  const attemptsRaw='[{"id":"p001","correct":true,"at":1760000000000,"state":{"book":"none"}}]';
+  const data=new Map([['a_r_v6','{broken-json'],['a_attempts_v1',attemptsRaw]]);
+  const storage={getItem:key=>data.has(key)?data.get(key):null};
+  const api=makeContext(storage);
+  const packet=api.buildRawLearningRecoveryPacket(storage);
+  const attempts=packet.entries.find(entry=>entry.key==='a_attempts_v1');
+  assert.deepEqual({name:attempts.name,key:attempts.key,raw:attempts.raw},
+    {name:'attempts',key:'a_attempts_v1',raw:attemptsRaw},
+    'raw recovery export must include the independent attempt log byte-for-byte');
+  assert.equal(data.get('a_r_v6'),'{broken-json','building a recovery packet must not rewrite malformed source data');
+  assert.equal(data.get('a_attempts_v1'),attemptsRaw,'building a recovery packet must not mutate the attempt log');
+}
+{
+  const raw='[{broken-attempt';
+  const data=new Map([['a_attempts_v1',raw]]);
+  let writes=0;
+  const api=makeContext({
+    getItem:key=>data.has(key)?data.get(key):null,
+    setItem(key,value){writes++;data.set(key,value);}
+  });
+  assert.equal(api.readAttemptLog().length,0);
+  assert.equal(api.locked,true,'malformed attempt history must activate the global recovery lock');
+  assert.equal(api.appendAttemptLog({id:'p002',correct:true,at:1760000000001,state:{book:'none'}}),false);
+  assert.equal(writes,0,'malformed attempt history must never be overwritten');
+  assert.equal(data.get('a_attempts_v1'),raw,'the exact malformed attempt bytes must remain available for recovery export');
+}
+{
+  const raw='[{"id":"p001","correct":true,"at":1760000000000,"state":{"book":"unknown"}}]';
+  const data=new Map([['a_attempts_v1',raw]]);
+  let writes=0;
+  const api=makeContext({
+    getItem:key=>data.has(key)?data.get(key):null,
+    setItem(key,value){writes++;data.set(key,value);}
+  });
+  assert.equal(api.isAttemptLogStorage(JSON.parse(raw)),false);
+  assert.equal(api.readAttemptLog().length,0);
+  assert.equal(api.locked,true,'structurally invalid attempt history must activate recovery lock');
+  assert.equal(api.appendAttemptLog({id:'p002',correct:true,at:1760000000001,state:{book:'none'}}),false);
+  assert.equal(writes,0,'structurally invalid attempt history must never be overwritten');
+  assert.equal(data.get('a_attempts_v1'),raw);
+}
+{
+  const data=new Map([['a_attempts_v1','[]']]);
+  const api=makeContext({getItem:key=>data.has(key)?data.get(key):null,setItem:(key,value)=>data.set(key,value)});
+  assert.equal(api.appendAttemptLog({id:'p003',correct:true,at:1760000000002,state:{book:'none'}}),true);
+  assert.equal(api.appendAttemptLog({id:'p004',correct:'yes',at:1760000000003,state:{book:'none'}}),false);
+  assert.equal(JSON.parse(data.get('a_attempts_v1')).length,1);
 }
