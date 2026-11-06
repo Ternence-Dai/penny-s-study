@@ -121,6 +121,15 @@ for (const item of manifest.questions) {
     }
   }
 }
+const precisionRegressionRows = {
+  j001: /天球赤道与地平圈在东方相交的方位点称为什么/,
+  j010: /在同一参考历元下.*不会因观测者所在地或当地观测时刻而改变/,
+  j072: /分辨行星细节能力的关键参数是.*口径大小.*标称最高倍率/,
+  j132: /太阳风暴可能引起下列哪种空间天气效应.*地磁暴.*地震.*火山喷发.*海啸/
+};
+for (const [id, pattern] of Object.entries(precisionRegressionRows)) {
+  assert.match(questionRows.get(id) || '', pattern, id + ': astronomy precision regression must remain intact');
+}
 if (!process.exitCode) {
   const pending = coverage['review-needed'] || 0;
   console.log('Question provenance registry OK: ' + seen.size + ' questions covered; ' + pending + ' remain review-needed.');
