@@ -117,7 +117,9 @@ function buildRawLearningRecoveryPacket(storage, exportedAt){
     exportedAt:timestamp.toISOString(),
     entries:Object.keys(KEY).map(function(name){
       return {name:name,key:KEY[name],raw:storage.getItem(KEY[name])};
-    })
+    }).concat([{
+      name:'attempts',key:ATTEMPT_LOG_KEY,raw:storage.getItem(ATTEMPT_LOG_KEY)
+    }])
   };
 }
 function exportRawLearningRecovery(){
@@ -139,23 +141,59 @@ function exportRawLearningRecovery(){
     alert('恢复包导出失败，原始数据未修改。请检查浏览器下载权限，并保留当前页面。');
   }
 }
+function isAttemptLogEntry(value){
+  if(!isStorageRecord(value)||
+     Object.keys(value).some(function(key){return !['id','correct','at','state'].includes(key);})||
+     !(typeof value.id==='string'&&value.id.trim().length>0&&value.id.length<=120)||
+     typeof value.correct!=='boolean'||!Number.isFinite(value.at)||value.at<0||
+     !isStorageRecord(value.state))return false;
+  var state=value.state;
+  if(state.book==='none')return Object.keys(state).length===1;
+  if(state.book==='wrong'){
+    return Object.keys(state).every(function(key){
+      return ['book','intervalDays','correctStreak','nextReviewAt'].includes(key);
+    })&&Number.isFinite(state.intervalDays)&&state.intervalDays>=0&&
+      Number.isFinite(state.correctStreak)&&state.correctStreak>=0&&
+      (state.nextReviewAt===null||(Number.isFinite(state.nextReviewAt)&&state.nextReviewAt>=0));
+  }
+  if(state.book==='graduated'){
+    return Object.keys(state).every(function(key){return ['book','recheckStage','nextReviewAt'].includes(key);})&&
+      Number.isSafeInteger(state.recheckStage)&&state.recheckStage>=1&&state.recheckStage<=2&&
+      Number.isFinite(state.nextReviewAt)&&state.nextReviewAt>=0;
+  }
+  return false;
+}
+function isAttemptLogStorage(value){
+  return Array.isArray(value)&&value.length<=ATTEMPT_LOG_LIMIT&&value.every(isAttemptLogEntry);
+}
 function readAttemptLog(){
+  var raw=safeStorageGet(ATTEMPT_LOG_KEY);
+  if(raw===null)return [];
   try{
-    var raw=localStorage.getItem(ATTEMPT_LOG_KEY);
-    if(raw===null)return [];
     var value=JSON.parse(raw);
-    return Array.isArray(value)?value:[];
-  }catch(e){return [];}
+    if(!isAttemptLogStorage(value)){
+      storageRecoveryRequired=true;
+      console.warn('逐次作答流水结构异常，已暂停写入以保护原始记录');
+      return [];
+    }
+    return value;
+  }catch(e){
+    storageRecoveryRequired=true;
+    console.warn('逐次作答流水无法解析，已暂停写入以保护原始记录',e);
+    return [];
+  }
 }
 function appendAttemptLog(entry){
+  if(storageRecoveryRequired||!isAttemptLogEntry(entry))return false;
   try{
     var log=readAttemptLog();
+    if(storageRecoveryRequired)return false;
     log.push(entry);
     if(log.length>ATTEMPT_LOG_LIMIT)log=log.slice(log.length-ATTEMPT_LOG_LIMIT);
     localStorage.setItem(ATTEMPT_LOG_KEY,JSON.stringify(log));
     return true;
   }catch(e){
-    // 流水只为将来评估算法留数据：本次写不进去就丢弃本次，答题流程不受影响。
+    // 流水写入失败不得回退为覆盖原始记录的空数组。
     return false;
   }
 }
