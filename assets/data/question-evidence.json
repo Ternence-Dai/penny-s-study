@@ -1045,14 +1045,16 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "IAU The 88 Constellations",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "Finding the Pole Star",
+     "url": "https://pwg.gsfc.nasa.gov/stargaze/Spolaris.htm",
+     "publisher": "NASA Goddard Space Flight Center"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：NASA《What is the North Star and How Do You Find It?》确认北斗勺头两颗星指向北极星（“The two stars on the end of the Dipper's \\\"cup\\\" point the way to Polaris”），但“延长约 5 倍”的倍数在白名单内（含 spaceplace.nasa.gov）无逐点原文。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "AI辅助检索已找到NASA Goddard关于北斗指极星的逐点说明，明确描述沿斗口两颗指针星方向延长约五倍可找到Polaris。该来源是直接证据候选；中文题干、答案键和解释仍须人工逐题复核。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "p045",
@@ -1619,11 +1621,18 @@
      "title": "NASA Stars",
      "url": "https://science.nasa.gov/universe/stars/",
      "publisher": "NASA Science"
+    },
+    {
+     "title": "Life Cycles of Stars",
+     "url": "https://imagine.gsfc.nasa.gov/educators/lifecycles/LC_main_p2.html",
+     "publisher": "NASA Goddard Space Flight Center"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：NASA Space Place《How Does Our Sun Compare With Other Stars?》作 “Our Sun is an average sized star”，NASA Sun Facts 作 “G2 V, yellow dwarf main-sequence star”，均只述大小平均与光谱型，未直述“中等质量”。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "NASA Science介绍太阳为G2V型、平均大小恒星；NASA Goddard恒星演化教育材料进一步区分低质量与中等质量恒星。两份资料共同支持太阳的恒星分类背景，但“中等质量”的教学定义仍需人工核对，不把“平均大小”直接等同于质量。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "p069",
@@ -2611,19 +2620,16 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Moon Facts",
-     "url": "https://science.nasa.gov/moon/facts/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "NASA Moon Composition and Structure",
-     "url": "https://science.nasa.gov/moon/composition/",
-     "publisher": "NASA Science"
+     "title": "Interesting Fact of the Month 2019",
+     "url": "https://www.nasa.gov/space-science-and-astrobiology-at-ames/interesting-fact-of-the-month-current/interesting-fact-of-the-month-2019/",
+     "publisher": "NASA Ames Research Center"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：NASA Moon Facts 与 Weather on the Moon 仅述月球大气极稀薄（外逸层、近月面分子密度远低于地球大气），白名单内未直述“声音无法在月面传播”。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "NASA Ames材料直接说明月球表面没有可传播声波的足够大气介质，因此声音不能像在地球空气中那样传播。该来源与选项核心理由直接相关；中文用语仍需人工逐题复核。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "p110",
@@ -3625,19 +3631,16 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Universe Glossary: Right Ascension and Declination",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "IAU The 88 Constellations and Coordinate Boundaries",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "Sun Paths",
+     "url": "https://astro.unl.edu/naap/motion3/sunpaths.html",
+     "publisher": "University of Nebraska–Lincoln"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：已查 OpenStax《Astronomy》2.1 全文、紫金山天文台《历书基本术语简介》（地平坐标系仅定义北点、南点）、NASA《Basics of Space Flight》第 2 章，白名单内均无“天球赤道与地平圈交点为东点”的逐点表述。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "University of Nebraska–Lincoln的太阳路径教学材料标示天球赤道在东方地平线交于东点、西方交于西点。题干已收窄为东方交点，仍需人工逐题核对坐标定义和答案键。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j002",
@@ -3836,38 +3839,32 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Universe Glossary: Right Ascension and Declination",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "IAU The 88 Constellations and Coordinate Boundaries",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "Basics of Space Flight: Reference Systems",
+     "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter2-2/",
+     "publisher": "NASA"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：NASA《Basics of Space Flight》第 2 章仅述赤经赤纬可唯一确定天体在天球上的位置，未逐字表述“赤道坐标与观测者的地点和时间无关”；OpenStax 2.1 亦无此表述。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "NASA Basics of Space Flight说明赤经、赤纬是天球坐标，不等同于随观测者地平线和当地时刻变化的地平坐标。题干已增加“同一参考历元”限制；仍需人工确认参考历元措辞及岁差、自行等边界说明。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j011",
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Universe Glossary: Right Ascension and Declination",
-     "url": "https://science.nasa.gov/universe/glossary/",
-     "publisher": "NASA Science"
-    },
-    {
-     "title": "IAU The 88 Constellations and Coordinate Boundaries",
-     "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx",
-     "publisher": "International Astronomical Union"
+     "title": "Seasons and the Earth's Orbit",
+     "url": "https://aa.usno.navy.mil/faq/seasons_orbit",
+     "publisher": "United States Naval Observatory"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《Astronomy》2.1 仅作 “The ecliptic does not lie along the celestial equator but is inclined to it at an angle of about 23.5°”，与答案键 23°26′ 精度不符；按历轮口径，近似值不作为逐点支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "美国海军天文台材料给出黄赤交角约23.4°；换算约23°26.4′，按角分四舍五入为23°26′。该来源可支持现有答案的近似精度；仍需人工逐题核验题干和解析。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j012",
@@ -5250,14 +5247,16 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "Planetarium and Observatory",
+     "url": "https://web.usca.edu/rpsec/departments/planetarium/observatory/",
+     "publisher": "University of South Carolina Aiken"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：白名单内未找到称施密特-卡塞格林望远镜为折反射式（catadioptric）的定义原文；相关表述仅见于 ntrs.nasa.gov 等非白名单页面，未采用。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "University of South Carolina Aiken天文台资料将Schmidt-Cassegrain望远镜归为catadioptric（折反射式），并说明其组合使用反射镜与透镜。来源直接支持答案；仍需人工逐题核对中文术语和题库上下文。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j070",
@@ -5312,28 +5311,32 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "Want to buy a home telescope? Tips from a professional astronomer",
+     "url": "https://lens.monash.edu/want-to-buy-a-home-telescope-tips-from-a-professional-astronomer-to-help-you-choose/",
+     "publisher": "Monash University"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：OpenStax《College Physics》26.5 仅分别述及“长焦物镜可得最大角放大率”与口径对集光/分辨的影响，未直述“大口径长焦适合观测行星细节”，属间接支撑。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "题干已修订为询问在光学质量相近、视宁度良好时决定衍射分辨能力的关键参数，避免将长焦、倍率和口径混为一谈。Monash大学专业天文学家文章强调口径和大气视宁度对细节的影响；仍需人工审核新题干与答案。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j073",
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Telescopes 101",
-     "url": "https://science.nasa.gov/universe/telescopes-101/",
-     "publisher": "NASA Science"
+     "title": "Collimating a Schmidt-Cassegrain telescope",
+     "url": "https://adsabs.harvard.edu/pdf/2015JBAA..125..281S",
+     "publisher": "Journal of the British Astronomical Association"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：在 science.nasa.gov、pressbooks.online.ucf.edu、spaceplace.nasa.gov、imagine.gsfc.nasa.gov、iau.org 检索 collimation/校准光轴，白名单内无“反射望远镜需定期校准光轴”的原文。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "新增英国天文学会期刊论文作为光轴校准（collimation）证据候选。该条目前仅完成来源定位，尚未完成论文正文、适用望远镜类型及中文表述的人工核验。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j074",
@@ -6742,14 +6745,16 @@
    "status": "review-needed",
    "sources": [
     {
-     "title": "NASA Sun Facts",
-     "url": "https://science.nasa.gov/sun/facts/",
+     "title": "Solar Storms and Flares",
+     "url": "https://science.nasa.gov/sun/solar-storms-and-flares/",
      "publisher": "NASA Science"
     }
    ],
    "reviewedAt": null,
    "reviewer": null,
-   "reviewNote": "第三轮（扩白名单后）复查：NASA《Solar Storms and Flares》列举太阳风暴影响为磁暴、无线电中断、停电与极光，未提及地震；“不包括地震”只能由影响清单间接推知，白名单内无逐点原文。题干、标准答案和解析尚未完成人工逐题核对，状态仍为 review-needed。"
+   "reviewNote": "题目已由否定式“太阳活动不包括”改为正向询问太阳风暴造成的空间天气效应。NASA列举了地磁暴、极光、无线电中断等影响；新题干减少了通过影响清单进行间接排除的逻辑。仍需人工复核选项和解释。尚未完成人工逐题核对，状态保持 review-needed。",
+   "reviewedFields": [],
+   "contentSha256": null
   },
   {
    "id": "j133",

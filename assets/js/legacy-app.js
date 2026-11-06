@@ -2248,7 +2248,7 @@ function isValidQuestionEvidenceRecord(item){
 }
 
 var questionEvidenceLoadState = 'loading';
-var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261030-evidence-index-v4')
+var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=20261106-evidence-index-v5')
   .then(function(response){
     if(!response.ok) throw new Error('HTTP ' + response.status);
     return response.json();
@@ -2281,7 +2281,7 @@ var questionEvidenceReady = fetch('./assets/data/question-evidence.json?v=202610
 function safeQuestionEvidenceUrl(value){
   try{
     var url = new URL(value);
-    var allowed = ['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn','spaceplace.nasa.gov','imagine.gsfc.nasa.gov','science.gsfc.nasa.gov','pmo.cas.cn','nesdis.noaa.gov','www.nesdis.noaa.gov','pressbooks.online.ucf.edu','spacemath.gsfc.nasa.gov','lambda.gsfc.nasa.gov','asd.gsfc.nasa.gov'];
+    var allowed = ['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn','spaceplace.nasa.gov','imagine.gsfc.nasa.gov','science.gsfc.nasa.gov','pmo.cas.cn','nesdis.noaa.gov','www.nesdis.noaa.gov','pressbooks.online.ucf.edu','spacemath.gsfc.nasa.gov','lambda.gsfc.nasa.gov','asd.gsfc.nasa.gov','pwg.gsfc.nasa.gov','aa.usno.navy.mil','astro.unl.edu','web.usca.edu','lens.monash.edu','adsabs.harvard.edu'];
     return url.protocol === 'https:' && allowed.indexOf(url.hostname.toLowerCase()) >= 0 ? url.href : null;
   }catch(error){return null;}
 }

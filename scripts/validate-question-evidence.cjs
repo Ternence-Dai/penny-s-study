@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const bankSource = fs.readFileSync('assets/js/question-bank.js', 'utf8');
 const classroom = fs.readFileSync('assets/js/astronomy-classroom-v3.js', 'utf8');
 const classroomCss = fs.readFileSync('assets/css/study-command-center.css', 'utf8');
+const legacyApp = fs.readFileSync('assets/js/legacy-app.js', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('assets/data/question-evidence.json', 'utf8'));
 const questionRows = new Map();
 const rows = bankSource.split(/\r?\n/).map(line => {
@@ -108,18 +109,31 @@ if (coverage.withSources !== 300 || coverage.withoutSources !== 0) {
   fail('Expected source records for all 300 questions: ' + JSON.stringify(coverage));
 }
 
-const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn','spaceplace.nasa.gov','imagine.gsfc.nasa.gov','science.gsfc.nasa.gov','pmo.cas.cn','nesdis.noaa.gov','www.nesdis.noaa.gov','pressbooks.online.ucf.edu','spacemath.gsfc.nasa.gov','lambda.gsfc.nasa.gov','asd.gsfc.nasa.gov']);
+const sourceHostAllowlist = new Set(['science.nasa.gov','nasa.gov','www.nasa.gov','iau.org','www.iau.org','www.ioe.cas.cn','www.iop.cas.cn','ihns.cas.cn','nao.cas.cn','www.cmse.gov.cn','www.cnsa.gov.cn','www.cac.gov.cn','spaceplace.nasa.gov','imagine.gsfc.nasa.gov','science.gsfc.nasa.gov','pmo.cas.cn','nesdis.noaa.gov','www.nesdis.noaa.gov','pressbooks.online.ucf.edu','spacemath.gsfc.nasa.gov','lambda.gsfc.nasa.gov','asd.gsfc.nasa.gov','pwg.gsfc.nasa.gov','aa.usno.navy.mil','astro.unl.edu','web.usca.edu','lens.monash.edu','adsabs.harvard.edu']);
+for (const host of sourceHostAllowlist) {
+  assert.ok(legacyApp.includes("'" + host + "'"),
+    'browser evidence URL allowlist must include validator-approved host: ' + host);
+}
 for (const item of manifest.questions) {
   for (const source of item.sources || []) {
     try {
       const url = new URL(source.url);
       if (url.protocol !== 'https:' || !sourceHostAllowlist.has(url.hostname.toLowerCase())) {
-        fail(item.id + ': evidence source host is not on the NASA/IAU allowlist');
+        fail(item.id + ': evidence source host is not on the curated authoritative-source allowlist');
       }
     } catch {
       fail(item.id + ': invalid evidence source URL');
     }
   }
+}
+const precisionRegressionRows = {
+  j001: /天球赤道与地平圈在东方相交的方位点称为什么/,
+  j010: /在同一参考历元下.*不会因观测者所在地或当地观测时刻而改变/,
+  j072: /分辨行星细节能力的关键参数是.*口径大小.*标称最高倍率/,
+  j132: /太阳风暴可能引起下列哪种空间天气效应.*地磁暴.*地震.*火山喷发.*海啸/
+};
+for (const [id, pattern] of Object.entries(precisionRegressionRows)) {
+  assert.match(questionRows.get(id) || '', pattern, id + ': astronomy precision regression must remain intact');
 }
 if (!process.exitCode) {
   const pending = coverage['review-needed'] || 0;
