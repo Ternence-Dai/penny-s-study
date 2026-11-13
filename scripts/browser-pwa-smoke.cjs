@@ -17,7 +17,7 @@ const fs = require('node:fs');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
     const workerResponse = await page.request.get('http://127.0.0.1:4173/service-worker.js');
     const workerSource = await workerResponse.text();
-    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v29") ||
+    if (!workerResponse.ok() || !workerSource.includes("penny-study-shell-v30") ||
         !workerSource.includes("observatory-learning-console-v2.css?v=20261022-command-center-v6") ||
         !workerSource.includes("astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1") ||
         !workerSource.includes("astronomy-classroom-v3.js?v=20261023-topic-map-v1") ||
@@ -700,6 +700,49 @@ const fs = require('node:fs');
       window.state.page = 'home';
       window.render();
     });
+    // A stale tab must stop writing when another tab changes a learning ledger.
+    const conflictContext = await browser.newContext({ viewport: { width: 1365, height: 900 } });
+    try {
+      const staleTab = await conflictContext.newPage();
+      const writerTab = await conflictContext.newPage();
+      await staleTab.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+      await writerTab.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle', timeout: 30000 });
+      await writerTab.evaluate(() => localStorage.setItem('a_attempts_v1', JSON.stringify([])));
+      await staleTab.waitForFunction(() => window.attemptLogRecoveryRequired === true);
+      const sidecarIsolation = await staleTab.evaluate(() => ({
+        mainLocked: window.storageRecoveryRequired,
+        sidecarLocked: window.attemptLogRecoveryRequired,
+        saved: window.Store.savePrefs({ speed: 1.2, volume: 0.8, pitch: 1.1, aiModel: 'general' })
+      }));
+      if (sidecarIsolation.mainLocked || !sidecarIsolation.sidecarLocked || !sidecarIsolation.saved) {
+        throw new Error('Cross-tab attempt-log changes must not freeze the primary learning ledger: ' + JSON.stringify(sidecarIsolation));
+      }
+      await writerTab.evaluate(() => localStorage.setItem('a_r_v6', JSON.stringify([{
+        mode: 'practice', total: 1, correct: 1, sessionId: 'peer-tab-session', time: Date.now()
+      }])));
+      await staleTab.waitForFunction(() => window.storageRecoveryRequired === true);
+      const conflictState = await staleTab.evaluate(() => {
+        const prefsBefore = localStorage.getItem('a_prefs_v6');
+        const blocked = window.Store.savePrefs({ speed: 1.3, volume: 0.8, pitch: 1.1, aiModel: 'general' });
+        return {
+          locked: window.storageRecoveryRequired,
+          conflict: window.storageConflictDetected,
+          banner: document.querySelector('.w9-storage-recovery')?.innerText || '',
+          blocked,
+          prefsBefore,
+          prefsAfter: localStorage.getItem('a_prefs_v6'),
+          peerRecord: localStorage.getItem('a_r_v6')
+        };
+      });
+      if (!conflictState.locked || !conflictState.conflict || !conflictState.banner.includes('其他标签页') ||
+          conflictState.blocked !== false || conflictState.prefsBefore !== conflictState.prefsAfter ||
+          !conflictState.peerRecord.includes('peer-tab-session')) {
+        throw new Error('A stale tab must show a conflict warning and preserve the newer peer value: ' + JSON.stringify(conflictState));
+      }
+    } finally {
+      await conflictContext.close();
+    }
+
     await page.evaluate(() => {
       localStorage.setItem('penny-offline-acceptance', 'preserved');
     });
@@ -740,7 +783,7 @@ const fs = require('node:fs');
         './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
         './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
         './assets/js/question-bank.js',
-        './assets/js/legacy-app.js?v=20261106-evidence-allowlist-v1',
+        './assets/js/legacy-app.js?v=20261113-cross-tab-storage-lock-v1',
         './assets/js/workspace-v5.js?v=20261019-v52'
       ];
       const assets = await Promise.all(required.map(async path => ({
