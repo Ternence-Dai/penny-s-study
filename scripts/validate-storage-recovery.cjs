@@ -9,7 +9,7 @@ assert.ok(start >= 0 && end > start, 'storage guard section must exist');
 const source = html.slice(start, end);
 function makeContext(storage) {
   const listeners = {};
-  const sandbox = { localStorage: storage, window: { addEventListener(type, listener) { listeners[type] = listener; } },
+  const sandbox = { localStorage: storage, listeners, window: { addEventListener(type, listener) { listeners[type] = listener; } },
     console: { warn() {} },
     KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1',graduated:'a_g_v6'} };
   vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,dispatchStorage(event){if(listeners.storage)listeners.storage(event);},get locked(){return storageRecoveryRequired;},get attemptLogLocked(){return attemptLogRecoveryRequired;},get conflictDetected(){return storageConflictDetected;},resetRecoveryLockForTest(){storageRecoveryRequired=false;attemptLogRecoveryRequired=false;storageConflictDetected=false;}};', sandbox);
