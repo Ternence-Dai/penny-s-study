@@ -85,6 +85,29 @@ var storageRecoveryRequired = false;
 // The optional attempt sidecar has its own recovery lock: its corruption must
 // preserve its raw bytes without freezing the primary learning ledgers.
 var attemptLogRecoveryRequired = false;
+var storageConflictDetected = false;
+function isPrimaryLearningStorageKey(key){
+  return Object.keys(KEY).some(function(name){return KEY[name]===key;});
+}
+if(typeof window!=='undefined'&&typeof window.addEventListener==='function'){
+  window.addEventListener('storage',function(event){
+    // A different tab may have committed newer learning state while this tab
+    // still holds stale in-memory data. Fail closed rather than overwrite it.
+    if(event.key===null){
+      storageRecoveryRequired=true;
+      attemptLogRecoveryRequired=true;
+      storageConflictDetected=true;
+    }else if(event.key===ATTEMPT_LOG_KEY){
+      attemptLogRecoveryRequired=true;
+    }else if(isPrimaryLearningStorageKey(event.key)){
+      storageRecoveryRequired=true;
+      storageConflictDetected=true;
+    }else{
+      return;
+    }
+    if(storageRecoveryRequired&&typeof render==='function')render();
+  });
+}
 function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null&&key!==ATTEMPT_LOG_KEY){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){if(key===ATTEMPT_LOG_KEY){attemptLogRecoveryRequired=true;console.warn('逐次作答流水读取失败；已隔离流水写入保护，不影响主学习账本',e);}else{storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);}return null;}}
 function safeStorageSet(key,value){if(storageRecoveryRequired){console.warn('学习记录写入已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.setItem(key,value);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);return false;}}
 function safeStorageRemove(key){if(storageRecoveryRequired){console.warn('学习记录删除已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.removeItem(key);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);return false;}}
@@ -2371,11 +2394,18 @@ function go(p,o){
 var view = $('#view'), navTitle = $('#navTitle'), backBtn = $('#backBtn'), tabbar = $('#tabbar');
 
 function renderStorageRecoveryBanner(){
+  var title=storageConflictDetected?'检测到其他标签页修改了学习存档':'本机学习存档已进入保护模式';
+  var message=storageConflictDetected
+    ?'另一个标签页已更新本机学习记录。为避免当前页面的旧数据覆盖新记录，此页面的写入和删除已暂停。请先导出原始恢复包，再刷新页面加载最新记录。'
+    :'检测到本地记录无法安全解析或通过结构校验。为避免覆盖原始数据，写入和删除已暂停。';
+  var hint=storageConflictDetected
+    ?'恢复包读取当前浏览器存储中的原始字符串；导出不会修改或删除记录。'
+    :'先导出并妥善保管恢复包；导出不会清理缓存或自动解除保护。';
   return '<section class="w9-storage-recovery" role="alert" aria-live="assertive">' +
-    '<div class="w9-storage-recovery__title">本机学习存档已进入保护模式</div>' +
-    '<p>检测到本地记录无法安全解析或通过结构校验。为避免覆盖原始数据，写入和删除已暂停。</p>' +
+    '<div class="w9-storage-recovery__title">'+title+'</div>' +
+    '<p>'+message+'</p>' +
     '<div class="w9-storage-recovery__actions"><button type="button" onclick="exportRawLearningRecovery()">导出原始存档恢复包</button></div>' +
-    '<small>先导出并妥善保管恢复包；导出不会清理缓存或自动解除保护。</small>' +
+    '<small>'+hint+'</small>' +
     '</section>';
 }
 function render(){
