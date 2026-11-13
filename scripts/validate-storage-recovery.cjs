@@ -8,9 +8,11 @@ const end = html.indexOf('\n/* ==========================================\n   çŸ
 assert.ok(start >= 0 && end > start, 'storage guard section must exist');
 const source = html.slice(start, end);
 function makeContext(storage) {
-  const sandbox = { localStorage: storage, console: { warn() {} },
+  const listeners = {};
+  const sandbox = { localStorage: storage, window: { addEventListener(type, listener) { listeners[type] = listener; } },
+    console: { warn() {} },
     KEY:{wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai_v6',prefs:'a_prefs_v6',practice:'a_active_practice_v1',graduated:'a_g_v6'} };
-  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,get locked(){return storageRecoveryRequired;},get attemptLogLocked(){return attemptLogRecoveryRequired;},resetRecoveryLockForTest(){storageRecoveryRequired=false;attemptLogRecoveryRequired=false;}};', sandbox);
+  vm.runInNewContext("var ATTEMPT_LOG_KEY='a_attempts_v1'; var ATTEMPT_LOG_LIMIT=2000;\n" + source + '\nthis.api={safeStorageGet,safeStorageSet,safeStorageRemove,safeStorageJSON,buildRawLearningRecoveryPacket,readAttemptLog,appendAttemptLog,isAttemptLogEntry,isAttemptLogStorage,isWrongStorageList,isQuestionStatsStorage,isPracticeRecordStorage,isStudyDayStorage,isAIConversationStorage,isPreferenceStorage,isActivePracticeStorage,Store,dispatchStorage(event){if(listeners.storage)listeners.storage(event);},get locked(){return storageRecoveryRequired;},get attemptLogLocked(){return attemptLogRecoveryRequired;},get conflictDetected(){return storageConflictDetected;},resetRecoveryLockForTest(){storageRecoveryRequired=false;attemptLogRecoveryRequired=false;storageConflictDetected=false;}};', sandbox);
   return sandbox.api;
 }
 {
@@ -48,6 +50,43 @@ function makeContext(storage) {
   assert.equal(api.locked, false, 'valid JSON must not activate recovery lock');
   assert.equal(api.safeStorageSet('a_r_v6', '[{"total":4}]'), true);
   assert.equal(data.get('a_r_v6'), '[{"total":4}]');
+}
+{
+  const data = new Map();
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  data.set('a_attempts_v1', '[]');
+  api.dispatchStorage({ key: 'a_attempts_v1', oldValue: null, newValue: '[]', storageArea: storage });
+  assert.equal(api.attemptLogLocked, true, 'a cross-tab attempt-log update must isolate only the optional sidecar');
+  assert.equal(api.locked, false, 'an attempt-log conflict must not freeze the primary learning ledger');
+  assert.equal(api.Store.savePrefs({ speed: 1.2, volume: 0.8, pitch: 1.1, aiModel: 'general' }), true,
+    'primary learning settings remain writable after an isolated attempt-log conflict');
+}
+{
+  const data = new Map([['a_r_v6', '[]']]);
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  const peerValue = '[{"mode":"practice","total":1,"correct":1,"sessionId":"peer-tab"}]';
+  data.set('a_r_v6', peerValue);
+  api.dispatchStorage({ key: 'a_r_v6', oldValue: '[]', newValue: peerValue, storageArea: storage });
+  assert.equal(api.locked, true, 'a cross-tab learning-ledger update must lock stale-tab writes');
+  assert.equal(api.conflictDetected, true, 'the UI must distinguish a cross-tab conflict from corrupt JSON');
+  assert.equal(api.safeStorageSet('a_r_v6', '[]'), false, 'stale-tab writes must be refused');
+  assert.equal(data.get('a_r_v6'), peerValue, 'the newer peer-tab value must remain untouched');
+}
+{
+  const api = makeContext({ getItem: () => null, setItem() {}, removeItem() {} });
+  api.dispatchStorage({ key: null, oldValue: null, newValue: null });
+  assert.equal(api.locked, true, 'a cross-tab localStorage.clear() must lock the primary ledger');
+  assert.equal(api.attemptLogLocked, true, 'a cross-tab localStorage.clear() must isolate the attempt sidecar');
 }
 console.log('Study storage recovery checks passed (malformed JSON, inaccessible storage, valid storage).');
 
