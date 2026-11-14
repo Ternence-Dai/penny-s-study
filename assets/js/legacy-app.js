@@ -86,6 +86,9 @@ var storageRecoveryRequired = false;
 // preserve its raw bytes without freezing the primary learning ledgers.
 var attemptLogRecoveryRequired = false;
 var storageConflictDetected = false;
+// Snapshot the last value read by this tab so a read-modify-write race can be
+// detected even before the asynchronous cross-tab storage event is delivered.
+var lastKnownPrimaryStorageValues = Object.create(null);
 function isPrimaryLearningStorageKey(key){
   return Object.keys(KEY).some(function(name){return KEY[name]===key;});
 }
@@ -108,9 +111,77 @@ if(typeof window!=='undefined'&&typeof window.addEventListener==='function'){
     if(storageRecoveryRequired&&typeof render==='function')render();
   });
 }
-function safeStorageGet(key){try{var value=localStorage.getItem(key);if(value!==null&&key!==ATTEMPT_LOG_KEY){try{JSON.parse(value);}catch(parseError){storageRecoveryRequired=true;console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);}}return value;}catch(e){if(key===ATTEMPT_LOG_KEY){attemptLogRecoveryRequired=true;console.warn('逐次作答流水读取失败；已隔离流水写入保护，不影响主学习账本',e);}else{storageRecoveryRequired=true;console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);}return null;}}
-function safeStorageSet(key,value){if(storageRecoveryRequired){console.warn('学习记录写入已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.setItem(key,value);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);return false;}}
-function safeStorageRemove(key){if(storageRecoveryRequired){console.warn('学习记录删除已暂停：请先恢复浏览器本地存储');return false;}try{localStorage.removeItem(key);return true;}catch(e){storageRecoveryRequired=true;console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);return false;}}
+function safeStorageGet(key){
+  try{
+    var value=localStorage.getItem(key);
+    if(isPrimaryLearningStorageKey(key))lastKnownPrimaryStorageValues[key]=value;
+    if(value!==null&&key!==ATTEMPT_LOG_KEY){
+      try{JSON.parse(value);}
+      catch(parseError){
+        storageRecoveryRequired=true;
+        console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);
+      }
+    }
+    return value;
+  }catch(e){
+    if(key===ATTEMPT_LOG_KEY){
+      attemptLogRecoveryRequired=true;
+      console.warn('逐次作答流水读取失败；已隔离流水写入保护，不影响主学习账本',e);
+    }else{
+      storageRecoveryRequired=true;
+      console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);
+    }
+    return null;
+  }
+}
+function detectPrimaryStorageWriteConflict(key){
+  if(!isPrimaryLearningStorageKey(key))return false;
+  var current=localStorage.getItem(key);
+  if(!Object.prototype.hasOwnProperty.call(lastKnownPrimaryStorageValues,key)){
+    lastKnownPrimaryStorageValues[key]=current;
+    return false;
+  }
+  if(current!==lastKnownPrimaryStorageValues[key]){
+    storageRecoveryRequired=true;
+    storageConflictDetected=true;
+    console.warn('检测到跨标签页学习存档已变化；拒绝覆盖较新的记录：'+key);
+    if(typeof render==='function')render();
+    return true;
+  }
+  return false;
+}
+function safeStorageSet(key,value){
+  if(storageRecoveryRequired){
+    console.warn('学习记录写入已暂停：请先恢复浏览器本地存储');
+    return false;
+  }
+  try{
+    if(detectPrimaryStorageWriteConflict(key))return false;
+    localStorage.setItem(key,value);
+    if(isPrimaryLearningStorageKey(key))lastKnownPrimaryStorageValues[key]=String(value);
+    return true;
+  }catch(e){
+    storageRecoveryRequired=true;
+    console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);
+    return false;
+  }
+}
+function safeStorageRemove(key){
+  if(storageRecoveryRequired){
+    console.warn('学习记录删除已暂停：请先恢复浏览器本地存储');
+    return false;
+  }
+  try{
+    if(detectPrimaryStorageWriteConflict(key))return false;
+    localStorage.removeItem(key);
+    if(isPrimaryLearningStorageKey(key))lastKnownPrimaryStorageValues[key]=null;
+    return true;
+  }catch(e){
+    storageRecoveryRequired=true;
+    console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);
+    return false;
+  }
+}
 function safeStorageJSON(key,fallback,validator){
   var raw=safeStorageGet(key);
   if(raw===null)return fallback;
