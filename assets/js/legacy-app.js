@@ -200,6 +200,11 @@ function safeStorageJSON(key,fallback,validator){
     return fallback;
   }
 }
+// Capture every primary ledger before any page action can issue a write or delete.
+// This gives clear-all and other direct mutations a baseline even when a section
+// has not yet been opened in this tab.
+Object.keys(KEY).forEach(function(name){safeStorageGet(KEY[name]);});
+
 function buildRawLearningRecoveryPacket(storage, exportedAt){
   if(!storage || typeof storage.getItem!=='function'){
     throw new TypeError('local storage reader is unavailable');
