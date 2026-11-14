@@ -88,6 +88,40 @@ function makeContext(storage) {
   assert.equal(api.locked, true, 'a cross-tab localStorage.clear() must lock the primary ledger');
   assert.equal(api.attemptLogLocked, true, 'a cross-tab localStorage.clear() must isolate the attempt sidecar');
 }
+{
+  const data = new Map([['a_r_v6', '[]']]);
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  assert.equal(api.safeStorageGet('a_r_v6'), '[]');
+  const peerValue = '[{"sessionId":"peer-write-before-storage-event"}]';
+  // Simulate the interval after a peer write but before this tab receives its
+  // asynchronous storage event. The preflight read must still reject a stale write.
+  data.set('a_r_v6', peerValue);
+  assert.equal(api.safeStorageSet('a_r_v6', '[]'), false,
+    'a stale read-modify-write must be refused even before the storage event arrives');
+  assert.equal(api.locked, true);
+  assert.equal(api.conflictDetected, true);
+  assert.equal(data.get('a_r_v6'), peerValue,
+    'the peer value must survive a pre-event stale-write attempt');
+}
+{
+  const data = new Map([['a_r_v6', '[]']]);
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  api.safeStorageGet('a_r_v6');
+  data.set('a_r_v6', '[{"sessionId":"peer-delete-protection"}]');
+  assert.equal(api.safeStorageRemove('a_r_v6'), false,
+    'a stale delete must be refused even before the storage event arrives');
+  assert.equal(data.get('a_r_v6'), '[{"sessionId":"peer-delete-protection"}]');
+}
 console.log('Study storage recovery checks passed (malformed JSON, inaccessible storage, valid storage).');
 
 {
