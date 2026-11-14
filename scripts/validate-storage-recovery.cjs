@@ -96,7 +96,6 @@ function makeContext(storage) {
     removeItem: key => data.delete(key)
   };
   const api = makeContext(storage);
-  assert.equal(api.safeStorageGet('a_r_v6'), '[]');
   const peerValue = '[{"sessionId":"peer-write-before-storage-event"}]';
   // Simulate the interval after a peer write but before this tab receives its
   // asynchronous storage event. The preflight read must still reject a stale write.
@@ -121,6 +120,20 @@ function makeContext(storage) {
   assert.equal(api.safeStorageRemove('a_r_v6'), false,
     'a stale delete must be refused even before the storage event arrives');
   assert.equal(data.get('a_r_v6'), '[{"sessionId":"peer-delete-protection"}]');
+}
+{
+  const data = new Map([['a_r_v6', '[]']]);
+  const storage = {
+    getItem: key => data.has(key) ? data.get(key) : null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: key => data.delete(key)
+  };
+  const api = makeContext(storage);
+  const peerValue = '[{"sessionId":"peer-clear-all-before-event"}]';
+  data.set('a_r_v6', peerValue);
+  api.Store.clearAll();
+  assert.equal(data.get('a_r_v6'), peerValue,
+    'clear-all must use the startup baseline and must not delete a newer peer ledger before the storage event arrives');
 }
 console.log('Study storage recovery checks passed (malformed JSON, inaccessible storage, valid storage).');
 
