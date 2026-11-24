@@ -2248,8 +2248,71 @@ function isRejectedQuestion(q){
   var item = questionEvidenceById[q.id];
   return !!item && item.status === 'rejected';
 }
+/* ==========================================
+   孩子练习硬隔离（2026-11-24）
+   孩子题池在代码层硬过滤：只有证据状态为 verified 的小学组题目可以进入。
+   证据清单未加载完成或不可用时，一律按未核验处理（fail-closed），
+   与站内既有口径一致；review-needed 与 rejected 在孩子模式下绝无可能被抽到。
+   ========================================== */
+function isVerifiedQuestion(q){
+  if (questionEvidenceLoadState !== 'ready') return false;
+  var item = questionEvidenceById[q.id];
+  return !!item && item.status === 'verified';
+}
+function isChildSafeQuestion(q){
+  return q.level === '小学' && isVerifiedQuestion(q);
+}
+function getChildQuestions(category){
+  return Q.filter(function(q){return isChildSafeQuestion(q) && (!category || q.category===category);});
+}
+/* 天文启蒙子集：2026-11-15 小升初项目 A3 白名单（110 题），ID 已逐题与题库、证据清单核对。
+   实际题池 = 白名单 ∩ 孩子安全题（小学组 + verified）：白名单内题目若失去 verified 状态会自动退出题池。 */
+var ASTRONOMY_INTRO_GROUPS = [
+  {name:'行星常识', ids:['p001','p002','p003','p004','p005','p006','p007','p008','p009','p010','p011','p012','p013','p014','p015','p016','p017','p018','p019','p020','p021','p023','p025']},
+  {name:'月相与月球', ids:['p026','p027','p028','p029','p030','p031','p032','p033','p034','p035','p036','p037','p038','p039','p040','p106','p107','p110','p111','p112','p113','p114']},
+  {name:'太阳与食象', ids:['p076','p077','p078','p079','p080','p081','p082','p083','p084','p085','p086','p087','p088','p089','p090','p141','p142','p143','p144','p145']},
+  {name:'四季与昼夜', ids:['p091','p092','p093','p094','p095','p096','p097','p098','p099','p101','p102','p103','p104']},
+  {name:'观测基础', ids:['p041','p042','p043','p045','p046','p047','p048','p049','p050','p051','p052','p053','p054','p055','p056','p057','p058','p059','p060','p126','p127','p128','p130','p131','p133','p134','p135','p136','p137','p138','p139','p140']}
+];
+var ASTRONOMY_INTRO_ID_SET = Object.create(null);
+ASTRONOMY_INTRO_GROUPS.forEach(function(g){g.ids.forEach(function(id){ASTRONOMY_INTRO_ID_SET[id]=g.name;});});
+function getAstronomyIntroQuestions(groupName){
+  return Q.filter(function(q){
+    if(!isChildSafeQuestion(q)) return false;
+    var g = ASTRONOMY_INTRO_ID_SET[q.id];
+    return !!g && (!groupName || g===groupName);
+  });
+}
 function getQuestions(level, category){
+  if (state.childMode){
+    var pool = state.introGroup === null ? getChildQuestions() : getAstronomyIntroQuestions(state.introGroup);
+    return pool.filter(function(q){return !category || q.category===category;});
+  }
   return Q.filter(function(q){return (!level||q.level===level)&&(!category||q.category===category)&&!isRejectedQuestion(q);});
+}
+function enterChildMode(){
+  state.childMode = true; state.introGroup = null; state.level = '小学';
+  render();
+}
+function exitChildMode(){
+  state.childMode = false; state.introGroup = null;
+  render();
+}
+function startChildPractice(){
+  if (questionEvidenceLoadState !== 'ready'){ alert('题目来源清单尚未加载完成，请稍候再试。'); return; }
+  state.childMode = true; state.introGroup = null; state.level = '小学';
+  var list = shuffle(getChildQuestions());
+  if (!list.length){ alert('孩子题池暂无可用题目'); return; }
+  startWith(list, '小学', '孩子练习 · 仅已核验题');
+}
+function startAstronomyIntro(groupName){
+  if (questionEvidenceLoadState !== 'ready'){ alert('题目来源清单尚未加载完成，请稍候再试。'); return; }
+  groupName = groupName || '';
+  if (groupName && !ASTRONOMY_INTRO_GROUPS.some(function(g){return g.name===groupName;})){ alert('未找到这个天文启蒙分组。'); return; }
+  state.childMode = true; state.introGroup = groupName; state.level = '小学';
+  var list = shuffle(getAstronomyIntroQuestions(groupName));
+  if (!list.length){ alert('天文启蒙题池暂无可用题目'); return; }
+  startWith(list, '小学', groupName ? '天文启蒙 · ' + groupName : '天文启蒙子集 · 全部');
 }
 function getCategories(level){
   var s = {};
@@ -2283,6 +2346,7 @@ function getMastery(level, category){
    ========================================== */
 var state = {
   page:'home', level:'小学', practice:null, exam:null, result:null,
+  childMode:false, introGroup:null,
   learnCategory:null, expanded:{}, aiMsgs:[], aiTyping:false,
   newsFilter:'全部', aiModel:'general'
 };
@@ -2516,6 +2580,35 @@ function render(){
 /* ==========================================
    首页：一目了然的学习地图
    ========================================== */
+function renderChildZone(){
+  var ready = questionEvidenceLoadState === 'ready';
+  var boxStyle = 'margin:0 0 14px;padding:14px;border:1px solid rgba(47,123,255,.35);border-radius:14px;background:rgba(47,123,255,.08);';
+  if (state.childMode){
+    var pool = state.introGroup === null ? getChildQuestions() : getAstronomyIntroQuestions(state.introGroup);
+    var modeLabel = state.introGroup === null ? '孩子练习' : (state.introGroup ? '天文启蒙 · ' + state.introGroup : '天文启蒙子集');
+    return '<section style="' + boxStyle + '" aria-label="孩子模式状态">' +
+      '<div><b>🧒 孩子模式已开启：' + esc(modeLabel) + '</b>' +
+      '<p style="margin:6px 0 0;color:var(--sub);font-size:13px;">当前题池 ' + pool.length + ' 题，全部为小学组已核验（verified）题目；未核验题目不会出现在练习、竞赛、出题与复习中。</p></div>' +
+      '<div style="margin-top:10px;"><button type="button" class="btn btn-ghost" onclick="exitChildMode()">退出孩子模式</button></div></section>';
+  }
+  var countNote = ready
+    ? '孩子练习 ' + getChildQuestions().length + ' 题 · 天文启蒙 ' + getAstronomyIntroQuestions('').length + ' 题，均为小学组已核验题目。'
+    : '题目来源清单加载中，稍候即可使用。';
+  var groupButtons = ASTRONOMY_INTRO_GROUPS.map(function(g){
+    var n = ready ? getAstronomyIntroQuestions(g.name).length : 0;
+    return '<button type="button" class="btn btn-ghost btn-sm" onclick="startAstronomyIntro(\'' + g.name + '\')"> ' + g.name + (ready ? '（' + n + ' 题）' : '') + '</button>';
+  }).join('');
+  return '<section style="' + boxStyle + '" aria-label="孩子专区">' +
+    '<div><b>🧒 孩子专区 · 只用已核验题目</b>' +
+    '<p style="margin:6px 0 0;color:var(--sub);font-size:13px;">' + countNote + '孩子模式下练习、竞赛、出题与复习只会抽到小学组已核验题目，未核验题目绝不会出现。</p></div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">' +
+    '<button type="button" class="btn btn-main" onclick="startChildPractice()">孩子练习</button>' +
+    '<button type="button" class="btn btn-main" onclick="startAstronomyIntro(\'\')">🔭 天文启蒙</button>' +
+    groupButtons +
+    '<button type="button" class="btn btn-ghost" onclick="enterChildMode()">进入孩子模式浏览</button>' +
+    '</div></section>';
+}
+
 function renderHome(){
   var cats = getCategories(state.level);
   var totalQ = Q.filter(function(q){return q.level===state.level;}).length;
@@ -2538,6 +2631,7 @@ function renderHome(){
     '<p>' + esc(state.level) + '组 · ' + totalQ + ' 道题 · ' + cats.length + ' 个知识点 · 从知识掌握到竞赛复盘的个人学习路径</p></div>' +
     '<div class="w9-home-heading__actions"><button type="button" onclick="go(\'learn\')">知识地图 ↗</button>' +
     '<button type="button" onclick="go(\'wrong\')">错题复习 ↗</button></div></section>';
+  h += renderChildZone();
 
   var savedPractice=Store.getActivePractice();
   if(savedPractice){
@@ -2733,14 +2827,17 @@ function startDueWrongReview(){
   dueRows.sort(function(a,b){
     return a.dueAt-b.dueAt || a.lastTime-b.lastTime;
   });
-  var picked=dueRows.map(function(row){return questionById.get(row.id);}).filter(function(q){return q && !isRejectedQuestion(q);}).slice(0,20);
+  var picked=dueRows.map(function(row){return questionById.get(row.id);}).filter(function(q){return q && !isRejectedQuestion(q) && (!state.childMode || isChildSafeQuestion(q));}).slice(0,20);
   if(!picked.length){
     alert('当前学段暂无到期错题；系统未提前安排未到期题目。');
     return;
   }
   startWith(picked,state.level,'到期错题间隔复习');
 }
-function switchLevel(l){state.level=l;render();}
+function switchLevel(l){
+  if(state.childMode && l!=='小学'){ state.childMode=false; state.introGroup=null; }
+  state.level=l;render();
+}
 var dailyShown = false;
 function toggleDaily(){
   var hint = $('#dailyHint'), btn = $('#dailyBtn');
@@ -2870,6 +2967,10 @@ function resumePractice(){
   }
   if(list.some(function(question){return question.level!==saved.level;})){
     alert('练习存档中的题目学段与会话学段不一致。原存档已保留，请先核查题库版本。');
+    return;
+  }
+  if(state.childMode && list.some(function(question){return !isChildSafeQuestion(question);})){
+    alert('这组练习存档包含孩子模式不可用的题目（未核验或非小学组），孩子模式下不能恢复。原存档已保留，退出孩子模式后可继续。');
     return;
   }
   for(var i=0;i<list.length;i++){
