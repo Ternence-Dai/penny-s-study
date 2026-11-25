@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'penny-study-shell-v35';
+const CACHE_NAME = 'penny-study-shell-v36';
 const APP_SHELL = [
   './',
   './index.html',
