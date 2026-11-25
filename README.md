@@ -35,3 +35,8 @@ See [the rebuild plan](docs/REBUILD_PLAN.md) and [domain rules, units and valida
 ## 开源项目深度对标
 
 本项目采用的上游参考、架构借鉴、实现边界与后续验收要求见 [docs/OPEN_SOURCE_BENCHMARKS.md](docs/OPEN_SOURCE_BENCHMARKS.md)。
+
+## 开发者信息
+
+- **开发者：** 戴煜
+- **联系方式：** [ternence.dai@outlook.com](mailto:ternence.dai@outlook.com)
