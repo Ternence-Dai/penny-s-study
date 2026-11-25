@@ -369,6 +369,9 @@ function buildRawLearningRecoveryPacket(storage, exportedAt){
   }
   return {
     format:'penny-s-study-raw-local-storage-recovery',
+    // Declared as RECOVERY_PACKET_VERSION in the src/domain registry;
+    // literal kept in step here because this builder is synchronous
+    // and runs before the domain module is imported.
     version:1,
     exportedAt:timestamp.toISOString(),
     entries:Object.keys(KEY).map(function(name){
@@ -504,6 +507,7 @@ function exportAttemptLog(){
   try{
     var log=readAttemptLog();
     if(!log.length){alert('暂无逐次作答记录。完成练习或竞赛后，每次作答都会自动记入本机流水。');return;}
+    // version is ATTEMPT_LOG_EXPORT_VERSION in the src/domain registry (literal kept in step; this exporter is synchronous).
     var payload={format:'penny-s-study-attempt-log',version:1,exportedAt:new Date().toISOString(),count:log.length,attempts:log};
     var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
     var url=URL.createObjectURL(blob);
@@ -622,6 +626,26 @@ function isPreferenceStorage(value){
   });
 }
 
+/* ---------------- 数据版本登记（第四波 #2） ----------------
+ * The canonical registry lives in src/domain (STORAGE_REGISTRY /
+ * classifyPracticeSessionVersion): every dataset's key is frozen and
+ * its version is declared there — key-name suffixes (_v6 / _v1) are
+ * historical names only and are never parsed for a version. This
+ * storage segment cannot import the domain module (it must run before
+ * the lazy import resolves, and validators extract the segment into a
+ * vm without one), so the one judgement the segment needs — the
+ * practice session's in-data version — is mirrored here, the same
+ * discipline as fsrsRatingForQuality below. Keep the two in step:
+ * PRACTICE_SESSION_CURRENT_VERSION must equal the domain constant. */
+var PRACTICE_SESSION_CURRENT_VERSION = 1;
+function practiceSessionVersionStatus(value){
+  if(!isStorageRecord(value))return 'invalid';
+  var v=value.version;
+  if(!Number.isSafeInteger(v))return 'invalid';
+  if(v===PRACTICE_SESSION_CURRENT_VERSION)return 'current';
+  return v>PRACTICE_SESSION_CURRENT_VERSION?'unsupported-high':'invalid';
+}
+
 var Store = {
   getWrong:function(){return safeStorageJSON(KEY.wrong,[],isWrongStorageList);},
   addWrong:function(id){
@@ -717,7 +741,23 @@ var Store = {
     }
     return safeStorageSet(KEY.prefs,JSON.stringify(p));
   },
-  getActivePractice:function(){return safeStorageJSON(KEY.practice,null,isActivePracticeStorage);},
+  getActivePractice:function(){
+    // A session stamped by a newer build is rejected by the shape
+    // probe below exactly like corruption (writes lock, bytes stay) —
+    // that behaviour is unchanged — but the registry requires the two
+    // cases to be distinguishable, so name the version case here
+    // before the probe path records its generic lock event.
+    var raw=safeStorageGet(KEY.practice);
+    if(raw!==null){
+      try{
+        if(practiceSessionVersionStatus(JSON.parse(raw))==='unsupported-high'&&
+           typeof recordErrorEvent==='function'){
+          recordErrorEvent('session_rejected',{stage:'unsupported-version',storageKind:'primary'});
+        }
+      }catch(parseError){/* unparseable: safeStorageJSON below locks as before */}
+    }
+    return safeStorageJSON(KEY.practice,null,isActivePracticeStorage);
+  },
   saveActivePractice:function(p){
     if(!p||!Array.isArray(p.list)||!Array.isArray(p.userAnswers)||
        !Array.isArray(p.evaluated)||p.userAnswers.length!==p.list.length||
@@ -726,6 +766,7 @@ var Store = {
       ? p.sessionId : (Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2));
     p.sessionId=sessionId;
     var snapshot={
+      // PRACTICE_SESSION_CURRENT_VERSION (registry in src/domain).
       version:1,
       sessionId:sessionId,
       level:p.level,
@@ -3461,7 +3502,7 @@ function pFinish(){
 
 var reviewSchedulerPromise = null;
 function loadReviewScheduler(){
-  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261125-error-event-log-v1').then(function(domain){ window.PennyDomain = domain; return domain; });
+  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261125-migration-registry-v1').then(function(domain){ window.PennyDomain = domain; return domain; });
   return reviewSchedulerPromise;
 }
 async function recordQuestionOutcome(id, correct){

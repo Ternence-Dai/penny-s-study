@@ -311,3 +311,165 @@ export function buildErrorLogExport(events, exportedAt) {
     events: clean
   };
 }
+
+/* ------------------------------------------------------------------ *
+ * Data migration registry (wave 4, item 2; spec:
+ * data-migration-registry-spec-v1, after the EKPO and Health pilots).
+ *
+ * Audit of this app's local data (2026-11-25, against the spec's nine
+ * invariants) found a different shape from the pilots: there is no
+ * single ledger object. Nine datasets live under nine frozen keys,
+ * each stored as a bare array/object, and exactly one of them — the
+ * active practice session — carries a version field inside the data.
+ * Every other dataset's "version" existed only as the suffix of its
+ * key name (a_w_v6, a_attempts_v1, ...), which is precisely the
+ * key-name versioning the spec retires. The gaps and their closures:
+ *
+ * - No registry: the baselines below are now DECLARED here, per
+ *   dataset, the way EKPO declared its v9 baseline from its key era.
+ *   The declared number is a human-audited constant; no code parses a
+ *   key-name suffix at runtime, and key names are frozen as-is.
+ * - Scattered check: the practice session's `version !== 1` strict
+ *   equality sat open-coded inside the UI shape probe, and a payload
+ *   stamped with a HIGHER version failed exactly like corruption —
+ *   rejected, yes (writes lock, bytes preserved), but
+ *   indistinguishable from damage. classifyPracticeSessionVersion is
+ *   the single judgement now; the UI storage segment mirrors it (the
+ *   segment cannot import this module — it must run before the lazy
+ *   import resolves and validators extract it into a vm without one)
+ *   and records an explicit unsupported-version event, while the
+ *   reject/lock behaviour itself is unchanged.
+ * - No trace: classification results carry the spec's
+ *   { loadedVersion, migratedFrom } pair. For unversioned datasets the
+ *   loaded version is by definition the declared baseline once the
+ *   dataset's shape probe passes, and migratedFrom is always null —
+ *   no dataset has a second generation, so every migration chain is
+ *   EMPTY (a legal registry state, as in the Health pilot). Do not
+ *   invent steps here; a future shape change registers one step, one
+ *   fixture pair, and bumps the declared version, in that order.
+ *
+ * What the audit found already compliant, and this registry therefore
+ * only names: every load runs the dataset's shape probe and fails
+ * closed (mismatch locks writes, original bytes preserved, zero
+ * writes on the load path); the attempt log's pre-FSRS entries are a
+ * legacy entry shape the probe deliberately admits beside current
+ * entries (the revlog semantics are untouched by this registry); the
+ * recovery packet is export-only verbatim raw bytes with no import
+ * path to gate. The question-evidence manifest is a bundled asset,
+ * not user data — its schemaVersion check ships with the app and is
+ * out of this registry's scope.
+ * ------------------------------------------------------------------ */
+
+// Declared dataset versions. PRIMARY_LEDGER_DECLARED_VERSION matches
+// the frozen `_v6` key era by human declaration (the EKPO precedent:
+// the baseline is declared from the key era, never parsed from it).
+export const PRIMARY_LEDGER_DECLARED_VERSION = 6;
+export const ATTEMPT_LOG_DECLARED_VERSION = 1;
+export const PRACTICE_SESSION_CURRENT_VERSION = 1;
+// Export-only formats (no stored dataset, no import path): the
+// recovery packet copies raw storage bytes verbatim under `version`,
+// the attempt-log export stamps its envelope the same way. The UI
+// writers use the literals with a keep-in-step note, exactly like the
+// fsrsRatingForQuality mirror, because both writers are synchronous
+// and run before this module is imported.
+export const RECOVERY_PACKET_VERSION = 1;
+export const ATTEMPT_LOG_EXPORT_VERSION = 1;
+
+// The registered migration chain. Empty: no dataset has ever had a
+// second stored generation. Entries, when a real shape change lands,
+// are { from, to, apply, note } with to === from + 1, a pure apply,
+// and a non-empty note; validateStorageRegistry enforces the shape.
+export const STORAGE_MIGRATIONS = Object.freeze([]);
+
+export const STORAGE_REGISTRY = Object.freeze([
+  Object.freeze({ id: "wrong", key: "a_w_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "错题本：裸数组，无数据内版本字段；形状由 isWrongStorageList 探测，字段只增不改（FSRS 调度字段均为可选）" }),
+  Object.freeze({ id: "record", key: "a_r_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "练习记录：裸数组，isPracticeRecordStorage 探测；sessionId 可选" }),
+  Object.freeze({ id: "days", key: "a_d_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "学习日：字符串数组，isStudyDayStorage 探测" }),
+  Object.freeze({ id: "qstats", key: "a_q_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "逐题统计：裸对象（题 id → {t,c,last}），isQuestionStatsStorage 探测" }),
+  Object.freeze({ id: "ai", key: "a_ai_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "AI 对话：裸数组，isAIConversationStorage 探测" }),
+  Object.freeze({ id: "prefs", key: "a_prefs_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "偏好：裸对象，isPreferenceStorage 以键白名单探测" }),
+  Object.freeze({ id: "graduated", key: "a_g_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "毕业抽检：裸数组，isGraduatedStorageList 探测" }),
+  Object.freeze({ id: "attempts", key: "a_attempts_v1", declaredVersion: ATTEMPT_LOG_DECLARED_VERSION, versionField: null, note: "作答流水：裸数组，isAttemptLogStorage 探测；无 FSRS 三件套的旧条目是登记在案的 legacy 条目形状，与当前条目并存读取，不迁移、不改写" }),
+  Object.freeze({ id: "practice", key: "a_active_practice_v1", declaredVersion: PRACTICE_SESSION_CURRENT_VERSION, versionField: "version", note: "练习会话：唯一带数据内版本字段的数据集，版本判定走 classifyPracticeSessionVersion；高版本明确拒绝（与损坏区分），缺失/非整数印记按无效形状拒绝，与登记前行为一致" }),
+  Object.freeze({ id: "error-events", key: "penny-error-events-v1", declaredVersion: ERROR_EVENT_LOG_SCHEMA_VERSION, versionField: null, note: "错误事件账：裸数组，条目由 isErrorEvent 校验；版本只出现在导出信封的 schemaVersion" })
+]);
+
+// Registry self-check (spec §3.6): unique ids and keys, declared
+// versions are safe integers, every entry carries a note, the one
+// versioned dataset agrees with its classifier constant, and any
+// future migration chain is gap-free with pure-step shape. Throws
+// TypeError on the first defect; returns true when the registry is
+// sound. Runs in the domain test suite, hence in the verify gate.
+export function validateStorageRegistry(registry = STORAGE_REGISTRY, migrations = STORAGE_MIGRATIONS) {
+  if (!Array.isArray(registry) || registry.length === 0) {
+    throw new TypeError("storage registry must be a non-empty array");
+  }
+  const ids = new Set();
+  const keys = new Set();
+  for (const entry of registry) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      throw new TypeError("storage registry entry must be an object");
+    }
+    if (typeof entry.id !== "string" || !entry.id || ids.has(entry.id)) {
+      throw new TypeError("storage registry entry id must be a unique non-empty string");
+    }
+    if (typeof entry.key !== "string" || !entry.key || keys.has(entry.key)) {
+      throw new TypeError("storage registry entry key must be a unique non-empty string");
+    }
+    if (!Number.isSafeInteger(entry.declaredVersion) || entry.declaredVersion < 1) {
+      throw new TypeError("storage registry entry declaredVersion must be a positive safe integer: " + entry.id);
+    }
+    if (!(entry.versionField === null || (typeof entry.versionField === "string" && entry.versionField.length > 0))) {
+      throw new TypeError("storage registry entry versionField must be null or a non-empty string: " + entry.id);
+    }
+    if (typeof entry.note !== "string" || !entry.note.trim()) {
+      throw new TypeError("storage registry entry note must be non-empty: " + entry.id);
+    }
+    ids.add(entry.id);
+    keys.add(entry.key);
+  }
+  const practice = registry.find(entry => entry.id === "practice");
+  if (!practice || practice.versionField !== "version" ||
+      practice.declaredVersion !== PRACTICE_SESSION_CURRENT_VERSION) {
+    throw new TypeError("the practice session entry must declare the classifier's current version");
+  }
+  if (!Array.isArray(migrations)) throw new TypeError("storage migrations must be an array");
+  for (let i = 0; i < migrations.length; i++) {
+    const step = migrations[i];
+    if (!step || !Number.isSafeInteger(step.from) || step.to !== step.from + 1 ||
+        typeof step.apply !== "function" || typeof step.note !== "string" || !step.note.trim()) {
+      throw new TypeError("migration step must be { from, to: from + 1, apply, note }");
+    }
+    if (i > 0 && step.from !== migrations[i - 1].to) {
+      throw new TypeError("migration chain must be gap-free");
+    }
+  }
+  return true;
+}
+
+// The single version judgement for the one dataset that stamps a
+// version inside its data. Pure; never mutates the input. Returns the
+// spec's trace pair on every branch:
+// - "current":          stamp === PRACTICE_SESSION_CURRENT_VERSION.
+// - "unsupported-high": an integer stamp above current — data from a
+//   newer build. Callers reject explicitly (never guess-read); this
+//   status is what separates that case from corruption.
+// - "invalid":          not a record, a missing/non-integer stamp, or
+//   an integer below current (no such generation exists; the chain
+//   is empty). The shape probe rejects these exactly as it always has.
+export function classifyPracticeSessionVersion(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return { status: "invalid", loadedVersion: null, migratedFrom: null };
+  }
+  const version = value.version;
+  if (!Number.isSafeInteger(version)) {
+    return { status: "invalid", loadedVersion: null, migratedFrom: null };
+  }
+  if (version === PRACTICE_SESSION_CURRENT_VERSION) {
+    return { status: "current", loadedVersion: version, migratedFrom: null };
+  }
+  if (version > PRACTICE_SESSION_CURRENT_VERSION) {
+    return { status: "unsupported-high", loadedVersion: version, migratedFrom: null };
+  }
+  return { status: "invalid", loadedVersion: version, migratedFrom: null };
+}

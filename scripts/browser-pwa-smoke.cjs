@@ -783,7 +783,7 @@ const fs = require('node:fs');
         './assets/css/nasa-exoplanet-explorer-v1.css?v=20261022-nasa-tap-v1',
         './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
         './assets/js/question-bank.js',
-        './assets/js/legacy-app.js?v=20261125-error-event-log-v1',
+        './assets/js/legacy-app.js?v=20261125-migration-registry-v1',
         './assets/js/workspace-v5.js?v=20261019-v52'
       ];
       const assets = await Promise.all(required.map(async path => ({
