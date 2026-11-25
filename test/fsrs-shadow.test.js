@@ -356,3 +356,18 @@ test("ui wiring end-to-end: scheduling is unchanged and one shadow record lands 
   assert.equal(shadow[1].liveIntervalDays, 3);
   assert.equal(shadow[1].historyCount, 2);
 });
+
+
+test("append: duplicate delivery for the same card and review timestamp is idempotent", () => {
+  const first = validRecord({ id: "same-card", at: T0, rating: 3, fsrsIntervalDays: 11 });
+  const retried = validRecord({ id: "same-card", at: T0, rating: 4, fsrsIntervalDays: 19 });
+  const distinctReview = validRecord({ id: "same-card", at: T0 + DAY, rating: 3 });
+  const once = appendFsrsShadowRecord([], first);
+  const twice = appendFsrsShadowRecord(once, retried);
+  const three = appendFsrsShadowRecord(twice, distinctReview);
+  assert.equal(twice.length, 1);
+  assert.equal(twice[0].rating, 4);
+  assert.equal(twice[0].fsrsIntervalDays, 19);
+  assert.equal(three.length, 2);
+  assert.deepEqual(three.map(record => record.at), [T0, T0 + DAY]);
+});
