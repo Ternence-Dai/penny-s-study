@@ -3182,7 +3182,7 @@ function renderHome(){
 
   // 底部统计
   h += '<div class="version" style="margin-top:26px;">星赛通 v6.0 · 网页版<br>' +
-    '出品：星赛通<br>' +
+    '出品：星赛通<br>开发者：戴煜<br>邮箱：<a href="mailto:ternence.dai@outlook.com">ternence.dai@outlook.com</a><br>' +
     '题库 ' + Q.length + ' 题 · 知识卡 ' + KNOWLEDGE.length + ' 张 · 动态模拟 16 个 · 读报 10 条</div>';
 
   return h;
@@ -4190,7 +4190,7 @@ function renderProfile(){
   var h = '<div class="profile-card"><div class="av">🔭</div>' +
     '<div class="nk">天文小达人</div>' +
     '<div class="sub" style="margin-top:6px;">坚持每天学一点，竞赛更从容</div>' +
-    '<div class="sign">出品：<b>星赛通</b></div></div>';
+    '<div class="sign">出品：<b>星赛通</b><br>开发者：戴煜<br>邮箱：<a href="mailto:ternence.dai@outlook.com">ternence.dai@outlook.com</a></div></div>';
   h += '<div class="grid2">' +
     '<div><div class="n">' + s.total + '</div><div class="l">累计答题</div></div>' +
     '<div><div class="n">' + s.rate + '%</div><div class="l">正确率</div></div>' +
@@ -4227,7 +4227,7 @@ function renderProfile(){
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAll()"><span style="color:var(--red);">🗑 清除所有数据</span><span class="arrow">›</span></div></div>';
   h += '<div class="version">星赛通 v6.0 · 网页版<br>' +
-    '出品：星赛通<br>' +
+    '出品：星赛通<br>开发者：戴煜<br>邮箱：<a href="mailto:ternence.dai@outlook.com">ternence.dai@outlook.com</a><br>' +
     '题库 ' + Q.length + ' 题 · 知识卡 ' + KNOWLEDGE.length + ' 张<br>' +
     '动态模拟 ' + Object.keys(SimEngine.sims).length + ' 个 · 读报 ' + NEWS.length + ' 条</div>';
   return h;
