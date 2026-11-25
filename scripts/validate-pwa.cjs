@@ -68,7 +68,7 @@ assert.ok(worker.includes("request.mode === 'navigate'") &&
           worker.includes("url.pathname === appRootUrl.pathname") &&
           worker.includes("caches.match(appShellUrl)") && worker.includes("<base href=\"' + appRootUrl.href + '\">"),
   'offline navigation must use the cached app shell with an app-root base so deep-link assets resolve correctly');
-assert.match(worker, /const CACHE_NAME = 'penny-study-shell-v\\d+'/,
+assert.match(worker, /const CACHE_NAME = 'penny-study-shell-v\d+'/,
   'service worker cache must use a versioned shell key so old offline assets can be invalidated');
 assert.ok(worker.includes('self.clients.claim()'),
   'service worker must claim clients after activation');
