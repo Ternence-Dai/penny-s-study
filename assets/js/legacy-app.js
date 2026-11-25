@@ -80,6 +80,147 @@ var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai
 // 逐次作答流水是评估用的旁路数据：独立键、只追加、滚动截断；写入失败（隐私模式/配额）静默降级，绝不影响答题与调度，因此不走下方 fail-closed 的学习账本通道。
 var ATTEMPT_LOG_KEY = 'a_attempts_v1';
 var ATTEMPT_LOG_LIMIT = 2000;
+/* ---------------- 本地错误事件账（第四波 #4） ----------------
+ * Failure paths below append a structured event (kind + timestamp +
+ * whitelisted context summary + fingerprint) to a local-only log, so
+ * a user reporting a problem has something to export. Events never
+ * contain question text, submitted answers, session labels or
+ * question ids: the domain layer whitelists context keys and drops
+ * everything else, and the message is this app's own static wording
+ * per kind. Recording is best-effort — any failure inside
+ * recordErrorEvent is swallowed and the original failure behaviour
+ * (lock / reject / degrade) is unchanged. Call sites in the storage
+ * segment guard with `typeof recordErrorEvent === 'function'`: the
+ * validators that extract that segment into a vm do not include this
+ * block, so recording can never pollute their write-count assertions.
+ * This block deliberately sits before the storage segment for that
+ * reason. */
+var ERROR_EVENT_LOG_KEY = 'penny-error-events-v1';
+var ERROR_EVENT_LOG_FALLBACK_MAX = 200;
+var ERROR_EVENT_MESSAGES = {
+  recovery_locked:'本地学习数据异常，写入已暂停以保护原始记录',
+  attempt_log_locked:'逐次作答流水异常，已隔离流水写入保护',
+  storage_fault:'本地存储读写故障，写入已暂停以保护学习记录',
+  save_failed:'学习记录保存失败',
+  export_failed:'导出失败，原始记录未修改',
+  session_rejected:'练习存档校验未通过，未恢复该会话'
+};
+function buildErrorEventFallback(kind, message, context, at){
+  // Used when the domain module has not loaded yet (it loads lazily,
+  // and storage failures happen before any import) — same discipline
+  // as the recovery packet: identical event shape built from
+  // literals, fingerprint on kind + stage, same context whitelist.
+  var clean = {};
+  if(context && typeof context === 'object'){
+    ['stage','errorName','storageKind','rowCount','fileSizeBytes','poolCount','childMode','preserved','fallback'].forEach(function(key){
+      var value = context[key];
+      if(typeof value === 'string') clean[key] = value.slice(0,64);
+      else if(typeof value === 'number' && Number.isFinite(value)) clean[key] = value;
+      else if(typeof value === 'boolean') clean[key] = value;
+    });
+  }
+  var fingerprint = String(kind).toLowerCase() + '|' +
+    String(clean.errorName || '').toLowerCase() + '|' +
+    String(clean.stage || '').toLowerCase();
+  return {
+    id:'err-fallback-' + String(Date.parse(at) || 0),
+    at:at, lastAt:at, kind:kind,
+    message:String(message || '').slice(0,240),
+    fingerprint:fingerprint,
+    count:1,
+    context:clean
+  };
+}
+function recordErrorEvent(kind, detail){
+  try{
+    var at = new Date().toISOString();
+    var context = (detail && typeof detail === 'object') ? detail : {};
+    var message = ERROR_EVENT_MESSAGES[kind] || String(kind);
+    var events = [];
+    try{
+      var raw = localStorage.getItem(ERROR_EVENT_LOG_KEY);
+      if(raw !== null){
+        var parsed = JSON.parse(raw);
+        if(Array.isArray(parsed)) events = parsed;
+      }
+    }catch(_){ events = []; }
+    var next;
+    var domain = (typeof window !== 'undefined') ? window.PennyDomain : null;
+    if(domain && typeof domain.appendErrorEvent === 'function'){
+      next = domain.appendErrorEvent(events, { kind:kind, message:message, context:context }, at);
+    }else{
+      var event = buildErrorEventFallback(kind, message, context, at);
+      var index = -1;
+      for(var i = 0; i < events.length; i++){
+        if(events[i] && events[i].fingerprint === event.fingerprint){ index = i; break; }
+      }
+      if(index >= 0){
+        var merged = Object.assign({}, events[index], {
+          lastAt:at,
+          message:event.message || events[index].message,
+          count:(Number.isInteger(events[index].count) ? events[index].count : 1) + 1
+        });
+        next = events.slice(0, index).concat([merged], events.slice(index + 1));
+      }else{
+        next = events.concat([event]);
+      }
+      if(next.length > ERROR_EVENT_LOG_FALLBACK_MAX) next = next.slice(next.length - ERROR_EVENT_LOG_FALLBACK_MAX);
+    }
+    localStorage.setItem(ERROR_EVENT_LOG_KEY, JSON.stringify(next));
+    return true;
+  }catch(_){
+    return false;
+  }
+}
+function exportErrorLog(){
+  var events = [];
+  try{
+    var raw = localStorage.getItem(ERROR_EVENT_LOG_KEY);
+    if(raw !== null){
+      var parsed = JSON.parse(raw);
+      if(Array.isArray(parsed)) events = parsed;
+    }
+  }catch(error){
+    alert('错误日志读取失败：' + (error && error.message ? error.message : '浏览器存储不可用'));
+    return false;
+  }
+  if(!events.length){ alert('暂无错误记录。'); return false; }
+  try{
+    var exportedAt = new Date().toISOString();
+    // Same fallback discipline as recordErrorEvent: when the domain
+    // module has not loaded, fall back to the identical literal
+    // envelope shape.
+    var domain = (typeof window !== 'undefined') ? window.PennyDomain : null;
+    var payload = domain && typeof domain.buildErrorLogExport === 'function'
+      ? domain.buildErrorLogExport(events, exportedAt)
+      : {
+        schemaVersion:1,
+        exportedAt:exportedAt,
+        storage:'local-browser-error-log',
+        eventCount:events.length,
+        totalOccurrences:events.reduce(function(sum, entry){ return sum + (entry && Number.isInteger(entry.count) ? entry.count : 1); }, 0),
+        groups:[],
+        events:events
+      };
+    var blob = new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'penny-study-error-log-' + new Date().toISOString().slice(0,10) + '.json';
+    link.hidden = true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); },0);
+    alert('已导出 ' + payload.eventCount + ' 类错误事件（共 ' + payload.totalOccurrences + ' 次）。错误日志只含失败类型与结构化摘要，不含题目与作答内容，可随报障一并发送。');
+    return true;
+  }catch(error){
+    if(typeof recordErrorEvent === 'function') recordErrorEvent('export_failed', { stage:'error-log-export', errorName:error && error.name });
+    alert('错误日志导出失败：' + (error && error.message ? error.message : '浏览器无法创建下载文件'));
+    return false;
+  }
+}
+/* ---------------- 错误事件账结束 ---------------- */
 // Fail closed: if browser storage becomes unavailable, never replace existing learning data with fallback defaults.
 var storageRecoveryRequired = false;
 // The optional attempt sidecar has its own recovery lock: its corruption must
@@ -108,6 +249,10 @@ if(typeof window!=='undefined'&&typeof window.addEventListener==='function'){
     }else{
       return;
     }
+    if(typeof recordErrorEvent==='function'){
+      if(event.key===ATTEMPT_LOG_KEY)recordErrorEvent('attempt_log_locked',{stage:'cross-tab-event',storageKind:'attempt-log'});
+      else recordErrorEvent('recovery_locked',{stage:'cross-tab-event',storageKind:'primary'});
+    }
     if(storageRecoveryRequired&&typeof render==='function')render();
   });
 }
@@ -119,6 +264,7 @@ function safeStorageGet(key){
       try{JSON.parse(value);}
       catch(parseError){
         storageRecoveryRequired=true;
+        if(typeof recordErrorEvent==='function')recordErrorEvent('recovery_locked',{stage:'primary-parse',errorName:parseError&&parseError.name,storageKind:'primary'});
         console.warn('本地学习数据格式损坏，已暂停写入以保护原始记录',parseError);
       }
     }
@@ -126,9 +272,11 @@ function safeStorageGet(key){
   }catch(e){
     if(key===ATTEMPT_LOG_KEY){
       attemptLogRecoveryRequired=true;
+      if(typeof recordErrorEvent==='function')recordErrorEvent('attempt_log_locked',{stage:'attempt-read',errorName:e&&e.name,storageKind:'attempt-log'});
       console.warn('逐次作答流水读取失败；已隔离流水写入保护，不影响主学习账本',e);
     }else{
       storageRecoveryRequired=true;
+      if(typeof recordErrorEvent==='function')recordErrorEvent('storage_fault',{stage:'primary-read',errorName:e&&e.name,storageKind:'primary'});
       console.warn('本地存储读取失败，已暂停后续写入以保护学习记录',e);
     }
     return null;
@@ -144,6 +292,7 @@ function detectPrimaryStorageWriteConflict(key){
   if(current!==lastKnownPrimaryStorageValues[key]){
     storageRecoveryRequired=true;
     storageConflictDetected=true;
+    if(typeof recordErrorEvent==='function')recordErrorEvent('recovery_locked',{stage:'cross-tab-conflict',storageKind:'primary'});
     console.warn('检测到跨标签页学习存档已变化；拒绝覆盖较新的记录：'+key);
     if(typeof render==='function')render();
     return true;
@@ -162,6 +311,7 @@ function safeStorageSet(key,value){
     return true;
   }catch(e){
     storageRecoveryRequired=true;
+    if(typeof recordErrorEvent==='function')recordErrorEvent('storage_fault',{stage:'primary-write',errorName:e&&e.name,storageKind:'primary'});
     console.warn('本地存储写入失败，已暂停后续写入以保护学习记录',e);
     return false;
   }
@@ -178,6 +328,7 @@ function safeStorageRemove(key){
     return true;
   }catch(e){
     storageRecoveryRequired=true;
+    if(typeof recordErrorEvent==='function')recordErrorEvent('storage_fault',{stage:'primary-remove',errorName:e&&e.name,storageKind:'primary'});
     console.warn('本地存储删除失败，已暂停后续写入以保护学习记录',e);
     return false;
   }
@@ -189,12 +340,15 @@ function safeStorageJSON(key,fallback,validator){
     var value=JSON.parse(raw);
     if(typeof validator==='function'&&!validator(value)){
       storageRecoveryRequired=true;
+      if(typeof recordErrorEvent==='function')recordErrorEvent('recovery_locked',{stage:'primary-shape',storageKind:'primary'});
       console.warn('本地学习数据结构异常，已暂停写入以保护原始记录：'+key);
       return fallback;
     }
     return value;
   }catch(e){
     // Malformed JSON is still user data: lock writes so a later save cannot overwrite the original bytes.
+    // No event is recorded here: the safeStorageGet probe parse already
+    // recorded this same corruption as primary-parse.
     storageRecoveryRequired=true;
     console.warn('本地学习数据无法解析，已暂停写入以保护原始记录：'+key,e);
     return fallback;
@@ -239,6 +393,7 @@ function exportRawLearningRecovery(){
     setTimeout(function(){URL.revokeObjectURL(url);},0);
     alert('已导出原始学习存档恢复包。文件包含本机原始存储字符串，请妥善保管，不要公开上传。当前写入保护仍然生效；导出不会修改或删除原始数据。');
   }catch(error){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('export_failed',{stage:'recovery-export',errorName:error&&error.name});
     console.error('原始学习存档导出失败',error);
     alert('恢复包导出失败，原始数据未修改。请检查浏览器下载权限，并保留当前页面。');
   }
@@ -286,12 +441,14 @@ function readAttemptLog(){
     var value=JSON.parse(raw);
     if(!isAttemptLogStorage(value)){
       attemptLogRecoveryRequired=true;
+      if(typeof recordErrorEvent==='function')recordErrorEvent('attempt_log_locked',{stage:'attempt-shape',storageKind:'attempt-log'});
       console.warn('逐次作答流水结构异常，已隔离流水写入保护；主学习账本保持可写');
       return [];
     }
     return value;
   }catch(e){
     attemptLogRecoveryRequired=true;
+    if(typeof recordErrorEvent==='function')recordErrorEvent('attempt_log_locked',{stage:'attempt-parse',errorName:e&&e.name,storageKind:'attempt-log'});
     console.warn('逐次作答流水无法解析，已隔离流水写入保护；主学习账本保持可写',e);
     return [];
   }
@@ -338,6 +495,7 @@ async function exportReviewLogCsv(){
     alert('已导出 '+result.includedCount+' 条 FSRS 复习事件（CSV）。'+
       (result.skippedCount?'另有 '+result.skippedCount+' 条早期流水无 FSRS 字段，已跳过。':''));
   }catch(error){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('export_failed',{stage:'revlog-export',errorName:error&&error.name});
     console.error('FSRS 复习日志导出失败',error);
     alert('复习日志导出失败，原始记录未修改。请检查浏览器下载权限。');
   }
@@ -359,6 +517,7 @@ function exportAttemptLog(){
     setTimeout(function(){URL.revokeObjectURL(url);},0);
     alert('已导出 '+log.length+' 条逐次作答记录（JSON）。');
   }catch(error){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('export_failed',{stage:'attempt-export',errorName:error&&error.name});
     console.error('逐次作答流水导出失败',error);
     alert('作答流水导出失败，原始记录未修改。请检查浏览器下载权限。');
   }
@@ -552,6 +711,7 @@ var Store = {
   getPrefs:function(){return safeStorageJSON(KEY.prefs,{speed:1,volume:1,pitch:1.05,aiModel:'general'},isPreferenceStorage);},
   savePrefs:function(p){
     if(!isPreferenceStorage(p)){
+      if(typeof recordErrorEvent==='function')recordErrorEvent('save_failed',{stage:'prefs-validation',storageKind:'primary'});
       console.warn('拒绝保存越界或未知的学习偏好设置；现有偏好保持不变');
       return false;
     }
@@ -2993,6 +3153,7 @@ function startWith(list, level, label){
     level:level, label:label
   };
   if(!Store.saveActivePractice(state.practice)){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('save_failed',{stage:'practice-start',childMode:!!state.childMode,rowCount:list.length});
     state.practice=null;
     alert('练习进度无法安全保存，未启动本次练习。请先检查浏览器存储与恢复状态。');
     return;
@@ -3005,19 +3166,23 @@ function resumePractice(){
   var byId=new Map(Q.map(function(question){return [question.id,question];}));
   var list=saved.questionIds.map(function(id){return byId.get(id)||null;});
   if(list.some(function(question){return !question;})){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('session_rejected',{stage:'bank-mismatch',rowCount:saved.questionIds.length});
     alert('当前题库与这份练习存档不完全匹配。原存档没有被删除，请先检查题库版本。');
     return;
   }
   if(list.some(function(question){return question.level!==saved.level;})){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('session_rejected',{stage:'level-mismatch',rowCount:saved.questionIds.length});
     alert('练习存档中的题目学段与会话学段不一致。原存档已保留，请先核查题库版本。');
     return;
   }
   if(state.childMode && list.some(function(question){return !isChildSafeQuestion(question);})){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('session_rejected',{stage:'child-pool',childMode:true,rowCount:list.length,poolCount:Q.filter(function(q){return isChildSafeQuestion(q);}).length});
     alert('这组练习存档包含孩子模式不可用的题目（未核验或非小学组），孩子模式下不能恢复。原存档已保留，退出孩子模式后可继续。');
     return;
   }
   for(var i=0;i<list.length;i++){
     if(saved.evaluated[i]===true && !isAnswered(list[i],saved.userAnswers[i])){
+      if(typeof recordErrorEvent==='function')recordErrorEvent('session_rejected',{stage:'answer-rule',childMode:!!state.childMode,rowCount:list.length});
       alert('练习存档包含不符合当前题型规则的已判分答案（第 '+(i+1)+' 题）。原存档已保留，未恢复该会话。');
       return;
     }
@@ -3032,6 +3197,7 @@ function resumePractice(){
     level:saved.level,label:saved.label
   };
   if(!Store.saveActivePractice(state.practice)){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('save_failed',{stage:'practice-resume',childMode:!!state.childMode,rowCount:list.length});
     state.practice=null;
     alert('练习恢复标识无法安全保存；原始存档已保留，请先检查浏览器存储。');
     return;
@@ -3295,7 +3461,7 @@ function pFinish(){
 
 var reviewSchedulerPromise = null;
 function loadReviewScheduler(){
-  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261019-study-session-v2');
+  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261125-error-event-log-v1').then(function(domain){ window.PennyDomain = domain; return domain; });
   return reviewSchedulerPromise;
 }
 async function recordQuestionOutcome(id, correct){
@@ -3855,6 +4021,8 @@ function renderProfile(){
     '<div class="row-item" onclick="exportAttemptLog()"><span style="color:var(--sub);">📤 导出逐次作答流水</span><span class="arrow">JSON ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="exportReviewLogCsv()"><span style="color:var(--sub);">📤 导出 FSRS 复习日志</span><span class="arrow">CSV ›</span></div>' +
+    '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
+    '<div class="row-item" onclick="exportErrorLog()"><span style="color:var(--sub);">📤 导出错误日志</span><span class="arrow">JSON ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAI()"><span style="color:var(--sub);">🧹 清除 AI 对话</span><span class="arrow">›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +

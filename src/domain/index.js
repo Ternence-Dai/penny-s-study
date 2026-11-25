@@ -144,3 +144,170 @@ export function nextReviewDate({ reviewedAt, quality, previousIntervalDays = 0 }
   }
   return Object.freeze({ intervalDays:interval, dueAt:due.toISOString() });
 }
+
+/* ------------------------------------------------------------------
+ * Local error event log (wave 4, item 4 — replicated from the
+ * Human-Digital-Twin-Health pilot, main b094c4ee, with kinds and
+ * context re-derived from this app's own failure paths).
+ *
+ * The model is borrowed from Sentry — structured events with a type,
+ * a timestamp, a small context summary and fingerprint-based
+ * grouping with counts — but nothing ever leaves the device: events
+ * are appended to a localStorage-backed list owned by the UI layer
+ * and leave only inside a user-triggered export file attached to a
+ * support report. Before this log existed, every failure below was a
+ * transient alert or a console line; a user reporting a problem had
+ * nothing to show.
+ *
+ * Privacy discipline (structural, not by convention):
+ * - `kind` is a closed set of failure-path identifiers, never free
+ *   text from data.
+ * - `context` passes through a key whitelist and scalar-only filter:
+ *   stage labels, the error's class name, which storage class was
+ *   involved, row counts, file sizes, pool counts, booleans.
+ *   Question text, submitted answers, session labels and question
+ *   ids have no whitelisted key to travel through, so they cannot
+ *   enter an event; there is deliberately no generic "source"/
+ *   "detail"/"id"/"label" key.
+ * - `message` is the application's own static wording per kind,
+ *   truncated; callers never pass data-derived text as the message.
+ *
+ * Aggregation: events sharing a fingerprint (kind + errorName +
+ * stage) merge into one entry with a count and first/last
+ * timestamps, so a recurring failure stays one line. The list is
+ * capped at ERROR_EVENT_LOG_MAX_EVENTS distinct fingerprints,
+ * oldest-first rolling (the same append-with-cap discipline as the
+ * attempt log; the numeric cap is 200).
+ * ------------------------------------------------------------------ */
+
+export const ERROR_EVENT_LOG_SCHEMA_VERSION = 1;
+export const ERROR_EVENT_LOG_STORAGE_KIND = "local-browser-error-log";
+export const ERROR_EVENT_LOG_MAX_EVENTS = 200;
+
+export const ERROR_EVENT_KINDS = Object.freeze([
+  "recovery_locked",
+  "attempt_log_locked",
+  "storage_fault",
+  "save_failed",
+  "export_failed",
+  "session_rejected"
+]);
+
+const errorEventKindSet = new Set(ERROR_EVENT_KINDS);
+
+// The only context keys an event may carry. Anything else the caller
+// passes is dropped here, in the domain layer, regardless of caller.
+const ERROR_EVENT_CONTEXT_KEYS = Object.freeze([
+  "stage", "errorName", "storageKind",
+  "rowCount", "fileSizeBytes", "poolCount", "childMode", "preserved", "fallback"
+]);
+const errorEventContextKeySet = new Set(ERROR_EVENT_CONTEXT_KEYS);
+
+function sanitizeErrorEventContext(context) {
+  const clean = {};
+  if (!context || typeof context !== "object" || Array.isArray(context)) return clean;
+  for (const key of ERROR_EVENT_CONTEXT_KEYS) {
+    if (!Object.prototype.hasOwnProperty.call(context, key)) continue;
+    const value = context[key];
+    if (typeof value === "string") clean[key] = value.slice(0, 64);
+    else if (typeof value === "number" && Number.isFinite(value)) clean[key] = value;
+    else if (typeof value === "boolean") clean[key] = value;
+  }
+  return clean;
+}
+
+export function errorEventFingerprint(kind, context) {
+  const clean = sanitizeErrorEventContext(context);
+  const parts = [kind, clean.errorName || "", clean.stage || ""];
+  return parts.map(part => String(part).toLowerCase()).join("|");
+}
+
+function errorEventId(fingerprint, at) {
+  let hash = 5381;
+  for (let i = 0; i < fingerprint.length; i++) {
+    hash = ((hash << 5) + hash + fingerprint.charCodeAt(i)) >>> 0;
+  }
+  return "err-" + hash.toString(16) + "-" + String(Date.parse(at) || 0);
+}
+
+export function buildErrorEvent(input, at) {
+  if (!input || typeof input !== "object") throw new TypeError("error event input must be an object");
+  if (!errorEventKindSet.has(input.kind)) {
+    throw new TypeError("unsupported error event kind: " + String(input.kind));
+  }
+  const timestamp = typeof at === "string" && Number.isFinite(Date.parse(at)) ? at : new Date().toISOString();
+  const context = sanitizeErrorEventContext(input.context);
+  const fingerprint = errorEventFingerprint(input.kind, context);
+  return {
+    id: errorEventId(fingerprint, timestamp),
+    at: timestamp,
+    lastAt: timestamp,
+    kind: input.kind,
+    message: typeof input.message === "string" ? input.message.slice(0, 240) : "",
+    fingerprint,
+    count: 1,
+    context
+  };
+}
+
+function isErrorEvent(value) {
+  return !!value && typeof value === "object" && !Array.isArray(value) &&
+    errorEventKindSet.has(value.kind) &&
+    typeof value.fingerprint === "string" && value.fingerprint.length > 0 &&
+    typeof value.at === "string" && Number.isFinite(Date.parse(value.at)) &&
+    Number.isInteger(value.count) && value.count >= 1;
+}
+
+// Append one failure to the log. Pure: returns a new array, never
+// mutates the input list or its events. A repeat of an existing
+// fingerprint increments that entry's count and lastAt instead of
+// adding a row; once the cap is reached the oldest entries roll off.
+export function appendErrorEvent(events, input, at) {
+  if (!Array.isArray(events)) throw new TypeError("error event log must be an array");
+  const event = buildErrorEvent(input, at);
+  const existing = events.filter(isErrorEvent);
+  const index = existing.findIndex(entry => entry.fingerprint === event.fingerprint);
+  let next;
+  if (index >= 0) {
+    const merged = {
+      ...existing[index],
+      lastAt: event.at,
+      message: event.message || existing[index].message,
+      count: existing[index].count + 1
+    };
+    next = [...existing.slice(0, index), merged, ...existing.slice(index + 1)];
+  } else {
+    next = [...existing, event];
+  }
+  if (next.length > ERROR_EVENT_LOG_MAX_EVENTS) {
+    next = next.slice(next.length - ERROR_EVENT_LOG_MAX_EVENTS);
+  }
+  return next;
+}
+
+export function summarizeErrorEvents(events) {
+  if (!Array.isArray(events)) throw new TypeError("error event log must be an array");
+  return events.filter(isErrorEvent)
+    .map(entry => ({
+      fingerprint: entry.fingerprint,
+      kind: entry.kind,
+      count: entry.count,
+      firstAt: entry.at,
+      lastAt: entry.lastAt
+    }))
+    .sort((a, b) => b.count - a.count || String(a.fingerprint).localeCompare(String(b.fingerprint)));
+}
+
+export function buildErrorLogExport(events, exportedAt) {
+  if (!Array.isArray(events)) throw new TypeError("error event log must be an array");
+  const clean = events.filter(isErrorEvent);
+  return {
+    schemaVersion: ERROR_EVENT_LOG_SCHEMA_VERSION,
+    exportedAt,
+    storage: ERROR_EVENT_LOG_STORAGE_KIND,
+    eventCount: clean.length,
+    totalOccurrences: clean.reduce((sum, entry) => sum + entry.count, 0),
+    groups: summarizeErrorEvents(clean),
+    events: clean
+  };
+}
