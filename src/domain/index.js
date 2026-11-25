@@ -430,7 +430,13 @@ export function buildFsrsShadowRecord({ cardId, reviewedAtMs, rating, liveInterv
 export function appendFsrsShadowRecord(records, record) {
   if (!Array.isArray(records)) throw new TypeError("records must be an array");
   if (!isFsrsShadowRecord(record)) throw new TypeError("record must be a valid FSRS shadow record");
-  const next = [...records.filter(isFsrsShadowRecord), record];
+  // A UI retry or duplicate event delivery for the same card and millisecond
+  // must not inflate the offline comparison sample. Replace that event's
+  // shadow projection while preserving every distinct review occurrence.
+  const next = records
+    .filter(isFsrsShadowRecord)
+    .filter(existing => existing.id !== record.id || existing.at !== record.at);
+  next.push(record);
   return next.length > FSRS_SHADOW_LOG_LIMIT
     ? next.slice(next.length - FSRS_SHADOW_LOG_LIMIT)
     : next;
