@@ -7,5 +7,9 @@
     "check": "node scripts/check-js-syntax.cjs",
     "verify": "node scripts/verify.cjs",
     "verify:full": "node scripts/verify.cjs --full"
+  },
+  "author": {
+    "name": "戴煜",
+    "email": "ternence.dai@outlook.com"
   }
 }

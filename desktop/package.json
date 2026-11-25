@@ -11,5 +11,9 @@
     "build:win": "node build-windows.cjs",
     "start": "electron ."
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "author": {
+    "name": "戴煜",
+    "email": "ternence.dai@outlook.com"
+  }
 }
