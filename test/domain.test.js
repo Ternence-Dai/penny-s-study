@@ -1,6 +1,43 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { gradeAnswer, nextReviewDate } from "../src/domain/index.js";
+import { gradeAnswer, nextReviewDate, fsrsRatingFromQuality, buildReviewEvent, revlogCsvFromAttemptLog } from "../src/domain/index.js";
+test("maps scheduler quality to FSRS ratings",()=>{
+ assert.deepEqual([0,1,2,3,4,5].map(q=>fsrsRatingFromQuality(q)),[1,1,1,2,3,4]);
+ assert.throws(()=>fsrsRatingFromQuality(6),RangeError);
+ assert.throws(()=>fsrsRatingFromQuality(-1),RangeError);
+ assert.throws(()=>fsrsRatingFromQuality(2.5),RangeError);
+});
+test("builds FSRS review events with validated fields",()=>{
+ const event=buildReviewEvent({cardId:"p001",reviewedAtMs:1760000000000,quality:4,reviewState:0});
+ assert.deepEqual(event,{card_id:"p001",review_time:1760000000000,review_rating:3,review_state:0});
+ const timed=buildReviewEvent({cardId:"p001",reviewedAtMs:1760000000000,quality:5,reviewState:2,reviewDurationMs:4200});
+ assert.equal(timed.review_duration,4200);
+ assert.throws(()=>buildReviewEvent({cardId:"",reviewedAtMs:0,quality:4,reviewState:0}),TypeError);
+ assert.throws(()=>buildReviewEvent({cardId:"p001",reviewedAtMs:-1,quality:4,reviewState:0}),RangeError);
+ assert.throws(()=>buildReviewEvent({cardId:"p001",reviewedAtMs:0,quality:4,reviewState:4}),RangeError);
+ assert.throws(()=>buildReviewEvent({cardId:"p001",reviewedAtMs:0,quality:4,reviewState:0,reviewDurationMs:-5}),RangeError);
+});
+test("exports revlog CSV from attempt entries and skips legacy entries",()=>{
+ const attempts=[
+  {id:"p001",correct:false,at:1760000000000,state:{book:"none"}},
+  {id:"p001",correct:true,at:1760086400000,quality:4,rating:3,fsrsState:3,state:{book:"wrong",intervalDays:1,correctStreak:0,nextReviewAt:1760086400000}},
+  {id:"p,002",correct:true,at:1760172800000,quality:5,rating:4,fsrsState:2,state:{book:"wrong",intervalDays:3,correctStreak:2,nextReviewAt:1760432000000}}
+ ];
+ const result=revlogCsvFromAttemptLog(attempts);
+ assert.equal(result.includedCount,2);
+ assert.equal(result.skippedCount,1);
+ const lines=result.csv.trimEnd().split("\n");
+ assert.equal(lines[0],"review_time,card_id,review_rating,review_duration,review_state");
+ assert.equal(lines[1],"1760086400000,p001,3,,3");
+ assert.equal(lines[2],'1760172800000,"p,002",4,,2');
+ const empty=revlogCsvFromAttemptLog([]);
+ assert.equal(empty.includedCount,0);
+ assert.equal(empty.csv,"review_time,card_id,review_rating,review_duration,review_state\n");
+ assert.throws(()=>revlogCsvFromAttemptLog("nope"),TypeError);
+ assert.throws(()=>revlogCsvFromAttemptLog([
+  {id:"p001",correct:true,at:1760000000000,quality:4,rating:4,fsrsState:2,state:{book:"none"}}
+ ]),RangeError);
+});
 test("grades normalized answers while preserving evidence status",()=>{
  const result=gradeAnswer({expectedAnswer:"Kepler",submittedAnswer:" kepler ",evidenceStatus:"verified"});
  assert.equal(result.correct,true); assert.equal(result.evidenceStatus,"verified");

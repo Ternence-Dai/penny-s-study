@@ -46,6 +46,88 @@ function parseReviewTimestamp(value) {
   return timestamp;
 }
 
+// FSRS review-log (revlog) support. The scheduler above stays the only
+// scheduling authority; the helpers below only describe review events in the
+// shape the FSRS optimizer consumes (card_id / review_time / review_rating /
+// review_state / review_duration, per the ts-fsrs optimizer documentation),
+// so accumulated history can later be replayed and fitted offline.
+export function fsrsRatingFromQuality(quality) {
+  if (!Number.isSafeInteger(quality) || quality < 0 || quality > 5) {
+    throw new RangeError("quality must be an integer from 0 to 5");
+  }
+  // SM-2 style quality -> FSRS rating: a failed recall (quality 0-2) is
+  // "Again" (1); 3 was correct with difficulty -> "Hard" (2);
+  // 4 -> "Good" (3); 5 -> "Easy" (4).
+  return quality <= 2 ? 1 : quality === 3 ? 2 : quality === 4 ? 3 : 4;
+}
+
+export function buildReviewEvent({ cardId, reviewedAtMs, quality, reviewState, reviewDurationMs }) {
+  if (typeof cardId !== "string" || !cardId.trim() || cardId.length > 120) {
+    throw new TypeError("cardId must be a non-empty string of at most 120 characters");
+  }
+  if (!Number.isSafeInteger(reviewedAtMs) || reviewedAtMs < 0) {
+    throw new RangeError("reviewedAtMs must be a safe integer epoch millisecond timestamp");
+  }
+  const reviewRating = fsrsRatingFromQuality(quality);
+  if (!Number.isSafeInteger(reviewState) || reviewState < 0 || reviewState > 3) {
+    throw new RangeError("reviewState must be an integer from 0 to 3");
+  }
+  const event = {
+    card_id: cardId,
+    review_time: reviewedAtMs,
+    review_rating: reviewRating,
+    review_state: reviewState
+  };
+  if (reviewDurationMs !== undefined) {
+    if (!Number.isSafeInteger(reviewDurationMs) || reviewDurationMs < 0) {
+      throw new RangeError("reviewDurationMs must be a safe integer of milliseconds");
+    }
+    event.review_duration = reviewDurationMs;
+  }
+  return Object.freeze(event);
+}
+
+function csvCell(value) {
+  const text = String(value);
+  return /[",\n\r]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text;
+}
+
+export function revlogCsvFromAttemptLog(attempts) {
+  if (!Array.isArray(attempts)) throw new TypeError("attempts must be an array");
+  const lines = ["review_time,card_id,review_rating,review_duration,review_state"];
+  let includedCount = 0;
+  let skippedCount = 0;
+  for (const entry of attempts) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      throw new TypeError("attempt entries must be records");
+    }
+    // Entries written before the revlog fields existed carry no rating/state;
+    // they are skipped, never reconstructed or guessed.
+    if (entry.rating === undefined && entry.fsrsState === undefined) {
+      skippedCount++;
+      continue;
+    }
+    const event = buildReviewEvent({
+      cardId: entry.id,
+      reviewedAtMs: entry.at,
+      quality: entry.quality,
+      reviewState: entry.fsrsState
+    });
+    if (event.review_rating !== entry.rating) {
+      throw new RangeError("attempt entry rating does not match its quality");
+    }
+    lines.push([
+      csvCell(event.review_time),
+      csvCell(event.card_id),
+      csvCell(event.review_rating),
+      "",
+      csvCell(event.review_state)
+    ].join(","));
+    includedCount++;
+  }
+  return Object.freeze({ csv: lines.join("\n") + "\n", includedCount, skippedCount });
+}
+
 export function nextReviewDate({ reviewedAt, quality, previousIntervalDays = 0 }) {
   const reviewedTimestamp = parseReviewTimestamp(reviewedAt);
   if (!Number.isSafeInteger(quality) || quality < 0 || quality > 5) {

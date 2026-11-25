@@ -245,10 +245,21 @@ function exportRawLearningRecovery(){
 }
 function isAttemptLogEntry(value){
   if(!isStorageRecord(value)||
-     Object.keys(value).some(function(key){return !['id','correct','at','state'].includes(key);})||
+     Object.keys(value).some(function(key){return !['id','correct','at','state','quality','rating','fsrsState'].includes(key);})||
      !(typeof value.id==='string'&&value.id.trim().length>0&&value.id.length<=120)||
      typeof value.correct!=='boolean'||!Number.isFinite(value.at)||value.at<0||
      !isStorageRecord(value.state))return false;
+  // FSRS revlog fields (quality/rating/fsrsState) are optional so entries
+  // written before they existed stay valid, but they are all-or-none.
+  var revlogKeys=['quality','rating','fsrsState'].filter(function(key){
+    return Object.prototype.hasOwnProperty.call(value,key);
+  });
+  if(revlogKeys.length>0){
+    if(revlogKeys.length!==3||
+       !Number.isSafeInteger(value.quality)||value.quality<0||value.quality>5||
+       !Number.isSafeInteger(value.rating)||value.rating<1||value.rating>4||
+       !Number.isSafeInteger(value.fsrsState)||value.fsrsState<0||value.fsrsState>3)return false;
+  }
   var state=value.state;
   if(state.book==='none')return Object.keys(state).length===1;
   if(state.book==='wrong'){
@@ -297,6 +308,38 @@ function appendAttemptLog(entry){
   }catch(e){
     // 流水写入失败不得回退为覆盖原始记录的空数组。
     return false;
+  }
+}
+function fsrsRatingForQuality(quality){
+  // Canonical mapping lives in src/domain (fsrsRatingFromQuality); this
+  // synchronous copy exists because the attempt log is appended before the
+  // domain module has loaded. Keep the two mappings in step.
+  return quality<=2?1:quality===3?2:quality===4?3:4;
+}
+async function exportReviewLogCsv(){
+  try{
+    var log=readAttemptLog();
+    var domain=await loadReviewScheduler();
+    var result=domain.revlogCsvFromAttemptLog(log);
+    if(!result.includedCount){
+      alert('暂无带 FSRS 字段的复习事件。从现在起每次作答都会自动记录，攒够数量后再导出做离线评估。');
+      return;
+    }
+    var blob=new Blob([result.csv],{type:'text/csv;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var link=document.createElement('a');
+    link.href=url;
+    link.download='penny-study-revlog-'+new Date().toISOString().slice(0,10)+'.csv';
+    link.hidden=true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},0);
+    alert('已导出 '+result.includedCount+' 条 FSRS 复习事件（CSV）。'+
+      (result.skippedCount?'另有 '+result.skippedCount+' 条早期流水无 FSRS 字段，已跳过。':''));
+  }catch(error){
+    console.error('FSRS 复习日志导出失败',error);
+    alert('复习日志导出失败，原始记录未修改。请检查浏览器下载权限。');
   }
 }
 function exportAttemptLog(){
@@ -3265,10 +3308,18 @@ async function recordQuestionOutcome(id, correct){
     graduated=null;
   }
   // 逐次作答流水：先于任何调度变更，快照当时的调度状态；落盘失败静默降级。
+  // 同时记录 FSRS revlog 字段：quality 与下方调度调用的口径完全一致
+  // （答对且连对达到 2 次记 5、答对记 4、答错记 1），rating 由 quality 映射，
+  // fsrsState 是答题前的卡片状态（新题 0 / 复习 2 / 答错后重学 3 / 毕业抽检 2）。
+  var streakBefore=existing?(Number(existing.correctStreak)||0):0;
+  var outcomeQuality=correct?(streakBefore>=1?5:4):1;
   appendAttemptLog({
     id:id,
     correct:!!correct,
     at:Date.now(),
+    quality:outcomeQuality,
+    rating:fsrsRatingForQuality(outcomeQuality),
+    fsrsState:existing?(existing.lastOutcome==='incorrect'?3:2):graduated?2:0,
     state:existing?{
       book:'wrong',
       intervalDays:Number(existing.intervalDays)||0,
@@ -3802,6 +3853,8 @@ function renderProfile(){
     '<div class="row-item" onclick="go(\'wrong\')"><span>📕 错题归纳</span><span class="arrow">' + s.wrongCount + ' 道 ›</span></div></div>';
   h += '<div class="card" style="padding:0;">' +
     '<div class="row-item" onclick="exportAttemptLog()"><span style="color:var(--sub);">📤 导出逐次作答流水</span><span class="arrow">JSON ›</span></div>' +
+    '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
+    '<div class="row-item" onclick="exportReviewLogCsv()"><span style="color:var(--sub);">📤 导出 FSRS 复习日志</span><span class="arrow">CSV ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAI()"><span style="color:var(--sub);">🧹 清除 AI 对话</span><span class="arrow">›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
