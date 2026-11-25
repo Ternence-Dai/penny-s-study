@@ -146,6 +146,334 @@ export function nextReviewDate({ reviewedAt, quality, previousIntervalDays = 0 }
 }
 
 /* ------------------------------------------------------------------
+ * FSRS shadow mode (follows the revlog above: revlog landed first,
+ * at 19765f7a, because the order cannot be swapped — evidence before
+ * any switch). Switching the live scheduler to FSRS is NOT approved;
+ * this section only computes what FSRS-5 WOULD suggest, so divergence
+ * evidence can accumulate for that future decision. Nothing here is
+ * ever read by the scheduling path: nextReviewDate stays the only
+ * scheduling authority, and a shadow record is written only after
+ * the live plan for a review has already been applied.
+ *
+ * Why self-implemented instead of vendored ts-fsrs: ts-fsrs ships as
+ * a multi-module TypeScript npm package and this app is a no-build
+ * static site, so there is no honest single-file vendoring path.
+ * The formulas below follow the public FSRS-5 algorithm as published
+ * in the open-spaced-repetition awesome-fsrs wiki ("The Algorithm":
+ * FSRS-5 section, with the remaining formulas inherited from
+ * FSRS-4.5), using the published default weights and a target
+ * retention of 0.9. This is a SHADOW ESTIMATE: the parameters are
+ * public defaults, never fitted to this learner's data (no
+ * review_duration or any other field without an honest source is
+ * recorded), and results must be presented as estimates, not as a
+ * fitted model's verdict.
+ *
+ * Replay model: a card's FSRS state is rebuilt from its rated
+ * attempt-log entries (the revlog fields above), in log order.
+ * Legacy entries without a rating cannot be replayed and are the
+ * caller's job to filter out; elapsed time is the wall-clock gap
+ * between consecutive rated reviews, so same-day reviews (< 1 day)
+ * take the FSRS-5 short-term stability branch.
+ * ------------------------------------------------------------------ */
+
+export const FSRS_SHADOW_MODEL = "FSRS-5";
+export const FSRS_SHADOW_REQUEST_RETENTION = 0.9;
+export const FSRS_SHADOW_DEFAULT_WEIGHTS = Object.freeze([
+  0.40255, 1.18385, 3.173, 15.69105, 7.1949, 0.5345, 1.4604, 0.0046,
+  1.54575, 0.1192, 1.01925, 1.9395, 0.11, 0.29605, 2.2698, 0.2315,
+  2.9898, 0.51655, 0.6621
+]);
+// Same rolling cap as the attempt log: one shadow record per scored
+// review the live scheduler acted on, oldest first off the end.
+export const FSRS_SHADOW_LOG_LIMIT = 2000;
+// A divergence summary below this many comparable records reports
+// "insufficient sample" and draws no conclusion.
+export const FSRS_SHADOW_MIN_SAMPLE = 30;
+export const FSRS_SHADOW_DECLARED_VERSION = 1;
+const FSRS_SHADOW_MAX_INTERVAL_DAYS = 36500;
+const FSRS_SHADOW_MIN_STABILITY = 0.01;
+const FSRS_SHADOW_MAX_STABILITY = 36500;
+const FSRS_CURVE_FACTOR = 19 / 81;
+const FSRS_CURVE_DECAY = -0.5;
+
+function clampFsrsShadow(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function roundFsrsShadow(value) {
+  return Math.round(value * 1e6) / 1e6;
+}
+
+function assertFsrsRating(rating) {
+  if (!Number.isSafeInteger(rating) || rating < 1 || rating > 4) {
+    throw new RangeError("rating must be an integer from 1 to 4");
+  }
+}
+
+function assertFsrsState(state) {
+  if (!state || typeof state !== "object" || Array.isArray(state) ||
+      !Number.isFinite(state.stability) || state.stability <= 0 ||
+      !Number.isFinite(state.difficulty) || state.difficulty < 1 || state.difficulty > 10) {
+    throw new TypeError("state must be { stability > 0, difficulty within [1, 10] }");
+  }
+}
+
+export function fsrsShadowRetrievability(elapsedDays, stability) {
+  if (!Number.isFinite(elapsedDays) || elapsedDays < 0) {
+    throw new RangeError("elapsedDays must be a finite number >= 0");
+  }
+  if (!Number.isFinite(stability) || stability <= 0) {
+    throw new RangeError("stability must be a finite number > 0");
+  }
+  return Math.pow(1 + FSRS_CURVE_FACTOR * (elapsedDays / stability), FSRS_CURVE_DECAY);
+}
+
+export function fsrsShadowInitialDifficulty(rating) {
+  assertFsrsRating(rating);
+  const w = FSRS_SHADOW_DEFAULT_WEIGHTS;
+  return clampFsrsShadow(w[4] - Math.exp(w[5] * (rating - 1)) + 1, 1, 10);
+}
+
+export function fsrsShadowInitialState(rating) {
+  assertFsrsRating(rating);
+  return Object.freeze({
+    stability: FSRS_SHADOW_DEFAULT_WEIGHTS[rating - 1],
+    difficulty: fsrsShadowInitialDifficulty(rating)
+  });
+}
+
+// FSRS-5 difficulty update: linear damping, then mean reversion
+// toward D0(4) (the FSRS-5 change; earlier versions reverted to
+// D0(3)).
+export function fsrsShadowNextDifficulty(difficulty, rating) {
+  if (!Number.isFinite(difficulty) || difficulty < 1 || difficulty > 10) {
+    throw new RangeError("difficulty must be a finite number within [1, 10]");
+  }
+  assertFsrsRating(rating);
+  const w = FSRS_SHADOW_DEFAULT_WEIGHTS;
+  const damped = difficulty + (-w[6] * (rating - 3)) * ((10 - difficulty) / 9);
+  return clampFsrsShadow(w[7] * fsrsShadowInitialDifficulty(4) + (1 - w[7]) * damped, 1, 10);
+}
+
+export function fsrsShadowNextState(state, rating, elapsedDays) {
+  assertFsrsState(state);
+  assertFsrsRating(rating);
+  if (!Number.isFinite(elapsedDays) || elapsedDays < 0) {
+    throw new RangeError("elapsedDays must be a finite number >= 0");
+  }
+  const w = FSRS_SHADOW_DEFAULT_WEIGHTS;
+  const difficulty = fsrsShadowNextDifficulty(state.difficulty, rating);
+  let stability;
+  if (elapsedDays < 1) {
+    // FSRS-5 same-day (short-term) stability.
+    stability = state.stability * Math.exp(w[17] * (rating - 3 + w[18]));
+  } else if (rating === 1) {
+    // Post-lapse stability (FSRS-4.5 formula, inherited by FSRS-5).
+    const r = fsrsShadowRetrievability(elapsedDays, state.stability);
+    stability = w[11] * Math.pow(difficulty, -w[12]) *
+      (Math.pow(state.stability + 1, w[13]) - 1) * Math.exp(w[14] * (1 - r));
+  } else {
+    // Stability after a successful recall, with the Hard penalty
+    // (rating 2) and Easy bonus (rating 4) factors.
+    const r = fsrsShadowRetrievability(elapsedDays, state.stability);
+    const hardFactor = rating === 2 ? w[15] : 1;
+    const easyFactor = rating === 4 ? w[16] : 1;
+    stability = state.stability * (
+      Math.exp(w[8]) * (11 - difficulty) * Math.pow(state.stability, -w[9]) *
+      (Math.exp(w[10] * (1 - r)) - 1) * hardFactor * easyFactor + 1
+    );
+  }
+  return Object.freeze({
+    stability: clampFsrsShadow(stability, FSRS_SHADOW_MIN_STABILITY, FSRS_SHADOW_MAX_STABILITY),
+    difficulty
+  });
+}
+
+export function fsrsShadowIntervalDays(stability, retention = FSRS_SHADOW_REQUEST_RETENTION) {
+  if (!Number.isFinite(stability) || stability <= 0) {
+    throw new RangeError("stability must be a finite number > 0");
+  }
+  if (!Number.isFinite(retention) || retention <= 0 || retention >= 1) {
+    throw new RangeError("retention must be a finite number strictly between 0 and 1");
+  }
+  const raw = (stability / FSRS_CURVE_FACTOR) * (Math.pow(retention, 1 / FSRS_CURVE_DECAY) - 1);
+  return clampFsrsShadow(Math.round(raw), 1, FSRS_SHADOW_MAX_INTERVAL_DAYS);
+}
+
+// Replay one card's rated reviews ([{ at, rating }], chronological,
+// at = epoch ms) through FSRS-5. Pure. Returns null for an empty
+// history; otherwise the state after the last review, the interval
+// FSRS would schedule from it, and the last review's elapsed days
+// (null when the history has a single review).
+export function replayFsrsShadow(reviews) {
+  if (!Array.isArray(reviews)) throw new TypeError("reviews must be an array");
+  let state = null;
+  let lastAt = null;
+  let lastElapsedDays = null;
+  for (const review of reviews) {
+    if (!review || typeof review !== "object" || Array.isArray(review)) {
+      throw new TypeError("reviews entries must be records");
+    }
+    if (!Number.isSafeInteger(review.at) || review.at < 0) {
+      throw new RangeError("review at must be a safe integer epoch millisecond timestamp");
+    }
+    assertFsrsRating(review.rating);
+    if (state === null) {
+      state = fsrsShadowInitialState(review.rating);
+      lastElapsedDays = null;
+    } else {
+      const elapsedDays = (review.at - lastAt) / 86400000;
+      if (!(elapsedDays >= 0)) {
+        throw new RangeError("reviews must be in chronological order");
+      }
+      state = fsrsShadowNextState(state, review.rating, elapsedDays);
+      lastElapsedDays = elapsedDays;
+    }
+    lastAt = review.at;
+  }
+  if (state === null) return null;
+  return Object.freeze({
+    state,
+    intervalDays: fsrsShadowIntervalDays(state.stability),
+    reviewCount: reviews.length,
+    lastElapsedDays: lastElapsedDays === null ? null : roundFsrsShadow(lastElapsedDays)
+  });
+}
+
+const FSRS_SHADOW_RECORD_KEYS = Object.freeze([
+  "id", "at", "rating", "liveIntervalDays", "liveAction",
+  "fsrsIntervalDays", "stability", "difficulty", "elapsedDays", "historyCount"
+]);
+
+// One shadow record: the live scheduler's outcome for a review and
+// the FSRS suggestion computed from the same revlog input, side by
+// side. liveAction "schedule" carries the interval the live
+// scheduler actually assigned; "graduate" (third consecutive correct
+// answer removes the card from the wrong book into the +14d/+45d
+// recheck track) has no live interval — liveIntervalDays is null and
+// the record is excluded from divergence statistics, never compared
+// against a number the scheduler did not produce.
+export function isFsrsShadowRecord(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const keys = Object.keys(value);
+  if (keys.length !== FSRS_SHADOW_RECORD_KEYS.length ||
+      !FSRS_SHADOW_RECORD_KEYS.every(key => Object.prototype.hasOwnProperty.call(value, key))) {
+    return false;
+  }
+  if (typeof value.id !== "string" || !value.id.trim() || value.id.length > 120) return false;
+  if (!Number.isSafeInteger(value.at) || value.at < 0) return false;
+  if (!Number.isSafeInteger(value.rating) || value.rating < 1 || value.rating > 4) return false;
+  if (!["schedule", "graduate"].includes(value.liveAction)) return false;
+  if (value.liveAction === "schedule") {
+    if (!Number.isSafeInteger(value.liveIntervalDays) ||
+        value.liveIntervalDays < 1 || value.liveIntervalDays > 3650) return false;
+  } else if (value.liveIntervalDays !== null) return false;
+  if (!Number.isSafeInteger(value.fsrsIntervalDays) ||
+      value.fsrsIntervalDays < 1 || value.fsrsIntervalDays > FSRS_SHADOW_MAX_INTERVAL_DAYS) return false;
+  if (!Number.isFinite(value.stability) || value.stability <= 0 ||
+      value.stability > FSRS_SHADOW_MAX_STABILITY) return false;
+  if (!Number.isFinite(value.difficulty) || value.difficulty < 1 || value.difficulty > 10) return false;
+  if (!(value.elapsedDays === null ||
+        (Number.isFinite(value.elapsedDays) && value.elapsedDays >= 0))) return false;
+  if (!Number.isSafeInteger(value.historyCount) || value.historyCount < 1) return false;
+  return true;
+}
+
+export function buildFsrsShadowRecord({ cardId, reviewedAtMs, rating, liveIntervalDays, liveAction, reviews }) {
+  if (typeof cardId !== "string" || !cardId.trim() || cardId.length > 120) {
+    throw new TypeError("cardId must be a non-empty string of at most 120 characters");
+  }
+  if (!Number.isSafeInteger(reviewedAtMs) || reviewedAtMs < 0) {
+    throw new RangeError("reviewedAtMs must be a safe integer epoch millisecond timestamp");
+  }
+  assertFsrsRating(rating);
+  if (!["schedule", "graduate"].includes(liveAction)) {
+    throw new RangeError("liveAction must be \"schedule\" or \"graduate\"");
+  }
+  if (liveAction === "schedule") {
+    if (!Number.isSafeInteger(liveIntervalDays) || liveIntervalDays < 1 || liveIntervalDays > 3650) {
+      throw new RangeError("liveIntervalDays must be a safe integer from 1 to 3650 for a scheduled review");
+    }
+  } else if (liveIntervalDays !== null) {
+    throw new RangeError("liveIntervalDays must be null for a graduation outcome");
+  }
+  const replay = replayFsrsShadow(reviews);
+  if (replay === null) {
+    throw new RangeError("reviews must contain at least the current review");
+  }
+  const last = reviews[reviews.length - 1];
+  if (last.at !== reviewedAtMs || last.rating !== rating) {
+    throw new RangeError("the last review must be the current review being recorded");
+  }
+  const record = {
+    id: cardId,
+    at: reviewedAtMs,
+    rating,
+    liveIntervalDays,
+    liveAction,
+    fsrsIntervalDays: replay.intervalDays,
+    stability: roundFsrsShadow(replay.state.stability),
+    difficulty: roundFsrsShadow(replay.state.difficulty),
+    elapsedDays: replay.lastElapsedDays,
+    historyCount: replay.reviewCount
+  };
+  if (!isFsrsShadowRecord(record)) {
+    throw new RangeError("built shadow record does not satisfy the record shape");
+  }
+  return Object.freeze(record);
+}
+
+// Append one record. Pure: returns a new array, never mutates the
+// input; invalid stored entries are dropped on append (the log is
+// derived data, replayable from the attempt log), and the rolling
+// cap matches the attempt log's 2000.
+export function appendFsrsShadowRecord(records, record) {
+  if (!Array.isArray(records)) throw new TypeError("records must be an array");
+  if (!isFsrsShadowRecord(record)) throw new TypeError("record must be a valid FSRS shadow record");
+  const next = [...records.filter(isFsrsShadowRecord), record];
+  return next.length > FSRS_SHADOW_LOG_LIMIT
+    ? next.slice(next.length - FSRS_SHADOW_LOG_LIMIT)
+    : next;
+}
+
+// Divergence summary over the comparable records (liveAction
+// "schedule" only). Deltas are fsrsIntervalDays - liveIntervalDays.
+// Below FSRS_SHADOW_MIN_SAMPLE comparable records the summary still
+// reports the counts it has but flags sufficient=false — callers
+// must present that as "insufficient sample", not as a conclusion.
+export function summarizeFsrsShadowDivergence(records) {
+  if (!Array.isArray(records)) throw new TypeError("records must be an array");
+  const valid = records.filter(isFsrsShadowRecord);
+  const deltas = valid
+    .filter(record => record.liveAction === "schedule")
+    .map(record => record.fsrsIntervalDays - record.liveIntervalDays)
+    .sort((a, b) => a - b);
+  const comparedCount = deltas.length;
+  const fsrsLongerCount = deltas.filter(delta => delta > 0).length;
+  const fsrsShorterCount = deltas.filter(delta => delta < 0).length;
+  const equalCount = comparedCount - fsrsLongerCount - fsrsShorterCount;
+  const share = count => comparedCount === 0 ? null : roundFsrsShadow(count / comparedCount);
+  return Object.freeze({
+    totalRecords: valid.length,
+    comparedCount,
+    meanDeltaDays: comparedCount === 0 ? null
+      : roundFsrsShadow(deltas.reduce((sum, delta) => sum + delta, 0) / comparedCount),
+    medianDeltaDays: comparedCount === 0 ? null
+      : comparedCount % 2 === 1
+        ? deltas[(comparedCount - 1) / 2]
+        : roundFsrsShadow((deltas[comparedCount / 2 - 1] + deltas[comparedCount / 2]) / 2),
+    fsrsLongerCount,
+    fsrsShorterCount,
+    equalCount,
+    fsrsLongerShare: share(fsrsLongerCount),
+    fsrsShorterShare: share(fsrsShorterCount),
+    equalShare: share(equalCount),
+    minSample: FSRS_SHADOW_MIN_SAMPLE,
+    sufficient: comparedCount >= FSRS_SHADOW_MIN_SAMPLE
+  });
+}
+
+/* ------------------------------------------------------------------
  * Local error event log (wave 4, item 4 — replicated from the
  * Human-Digital-Twin-Health pilot, main b094c4ee, with kinds and
  * context re-derived from this app's own failure paths).
@@ -391,7 +719,8 @@ export const STORAGE_REGISTRY = Object.freeze([
   Object.freeze({ id: "graduated", key: "a_g_v6", declaredVersion: PRIMARY_LEDGER_DECLARED_VERSION, versionField: null, note: "毕业抽检：裸数组，isGraduatedStorageList 探测" }),
   Object.freeze({ id: "attempts", key: "a_attempts_v1", declaredVersion: ATTEMPT_LOG_DECLARED_VERSION, versionField: null, note: "作答流水：裸数组，isAttemptLogStorage 探测；无 FSRS 三件套的旧条目是登记在案的 legacy 条目形状，与当前条目并存读取，不迁移、不改写" }),
   Object.freeze({ id: "practice", key: "a_active_practice_v1", declaredVersion: PRACTICE_SESSION_CURRENT_VERSION, versionField: "version", note: "练习会话：唯一带数据内版本字段的数据集，版本判定走 classifyPracticeSessionVersion；高版本明确拒绝（与损坏区分），缺失/非整数印记按无效形状拒绝，与登记前行为一致" }),
-  Object.freeze({ id: "error-events", key: "penny-error-events-v1", declaredVersion: ERROR_EVENT_LOG_SCHEMA_VERSION, versionField: null, note: "错误事件账：裸数组，条目由 isErrorEvent 校验；版本只出现在导出信封的 schemaVersion" })
+  Object.freeze({ id: "error-events", key: "penny-error-events-v1", declaredVersion: ERROR_EVENT_LOG_SCHEMA_VERSION, versionField: null, note: "错误事件账：裸数组，条目由 isErrorEvent 校验；版本只出现在导出信封的 schemaVersion" }),
+  Object.freeze({ id: "fsrs-shadow", key: "a_fsrs_shadow_v1", declaredVersion: FSRS_SHADOW_DECLARED_VERSION, versionField: null, note: "FSRS 影子日志：裸数组，条目由 isFsrsShadowRecord 校验；只算不改——现行调度从不读它，影子写入失败静默跳过、不锁定主流程；内容可由作答流水的 FSRS 字段重放再生，故不进恢复包" })
 ]);
 
 // Registry self-check (spec §3.6): unique ids and keys, declared

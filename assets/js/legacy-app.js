@@ -80,6 +80,12 @@ var KEY = {wrong:'a_w_v6',record:'a_r_v6',days:'a_d_v6',qstats:'a_q_v6',ai:'a_ai
 // 逐次作答流水是评估用的旁路数据：独立键、只追加、滚动截断；写入失败（隐私模式/配额）静默降级，绝不影响答题与调度，因此不走下方 fail-closed 的学习账本通道。
 var ATTEMPT_LOG_KEY = 'a_attempts_v1';
 var ATTEMPT_LOG_LIMIT = 2000;
+// FSRS 影子日志：与作答流水同级的旁路派生数据——独立键、只追加、滚动上限与流水同为 2000 条；
+// 只记录「现行调度实际间隔 vs FSRS-5 影子估算间隔」的对照，现行调度从不读它；
+// 写入失败静默跳过，绝不影响答题与调度。键名与上限在 src/domain 的迁移登记表（STORAGE_REGISTRY）另有声明，两边保持一致。
+var FSRS_SHADOW_KEY = 'a_fsrs_shadow_v1';
+var FSRS_SHADOW_LIMIT = 2000;
+var FSRS_SHADOW_MIN_SAMPLE = 30;
 /* ---------------- 本地错误事件账（第四波 #4） ----------------
  * Failure paths below append a structured event (kind + timestamp +
  * whitelisted context summary + fingerprint) to a local-only log, so
@@ -475,6 +481,149 @@ function fsrsRatingForQuality(quality){
   // synchronous copy exists because the attempt log is appended before the
   // domain module has loaded. Keep the two mappings in step.
   return quality<=2?1:quality===3?2:quality===4?3:4;
+}
+/* ---------------- FSRS 影子日志（只算不改） ----------------
+ * Canonical shape/summary live in src/domain (isFsrsShadowRecord /
+ * summarizeFsrsShadowDivergence); the synchronous copies below exist
+ * because the profile page renders before the domain module loads —
+ * the same mirror discipline as fsrsRatingForQuality. Keep in step.
+ * The FSRS computation itself is NOT mirrored: it runs inside
+ * recordQuestionOutcome on the already-loaded domain module. */
+function isFsrsShadowRecord(value){
+  if(!isStorageRecord(value))return false;
+  var keys=['id','at','rating','liveIntervalDays','liveAction','fsrsIntervalDays','stability','difficulty','elapsedDays','historyCount'];
+  if(!Object.keys(value).every(function(key){return keys.includes(key);})||Object.keys(value).length!==keys.length)return false;
+  if(!(typeof value.id==='string'&&value.id.trim().length>0&&value.id.length<=120))return false;
+  if(!Number.isSafeInteger(value.at)||value.at<0)return false;
+  if(!Number.isSafeInteger(value.rating)||value.rating<1||value.rating>4)return false;
+  if(!['schedule','graduate'].includes(value.liveAction))return false;
+  if(value.liveAction==='schedule'){
+    if(!Number.isSafeInteger(value.liveIntervalDays)||value.liveIntervalDays<1||value.liveIntervalDays>3650)return false;
+  }else if(value.liveIntervalDays!==null)return false;
+  if(!Number.isSafeInteger(value.fsrsIntervalDays)||value.fsrsIntervalDays<1||value.fsrsIntervalDays>36500)return false;
+  if(!Number.isFinite(value.stability)||value.stability<=0||value.stability>36500)return false;
+  if(!Number.isFinite(value.difficulty)||value.difficulty<1||value.difficulty>10)return false;
+  if(!(value.elapsedDays===null||(Number.isFinite(value.elapsedDays)&&value.elapsedDays>=0)))return false;
+  if(!Number.isSafeInteger(value.historyCount)||value.historyCount<1)return false;
+  return true;
+}
+function isFsrsShadowLogStorage(value){
+  return Array.isArray(value)&&value.length<=FSRS_SHADOW_LIMIT&&value.every(isFsrsShadowRecord);
+}
+// Returns null (not []) when stored bytes are unusable: the append
+// path must preserve corrupt shadow bytes rather than overwrite
+// them, and readers treat null as "no usable log". A corrupt shadow
+// log never locks anything — it is derived data, replayable from
+// the attempt log. Deliberately reads localStorage directly (the
+// error event log's discipline): safeStorageGet would promote an
+// unparseable shadow payload into a primary storage lock, which is
+// exactly the coupling the shadow must never have.
+function readFsrsShadowLog(){
+  var raw;
+  try{
+    raw=localStorage.getItem(FSRS_SHADOW_KEY);
+  }catch(e){
+    return null;
+  }
+  if(raw===null)return [];
+  try{
+    var value=JSON.parse(raw);
+    return isFsrsShadowLogStorage(value)?value:null;
+  }catch(e){
+    return null;
+  }
+}
+function appendFsrsShadowLog(record){
+  if(storageRecoveryRequired||!isFsrsShadowRecord(record))return false;
+  try{
+    var log=readFsrsShadowLog();
+    if(log===null)return false;
+    log.push(record);
+    if(log.length>FSRS_SHADOW_LIMIT)log=log.slice(log.length-FSRS_SHADOW_LIMIT);
+    localStorage.setItem(FSRS_SHADOW_KEY,JSON.stringify(log));
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+function summarizeFsrsShadowDivergence(records){
+  var valid=(Array.isArray(records)?records:[]).filter(isFsrsShadowRecord);
+  var deltas=valid.filter(function(r){return r.liveAction==='schedule';})
+    .map(function(r){return r.fsrsIntervalDays-r.liveIntervalDays;})
+    .sort(function(a,b){return a-b;});
+  var compared=deltas.length;
+  var longer=deltas.filter(function(d){return d>0;}).length;
+  var shorter=deltas.filter(function(d){return d<0;}).length;
+  var round6=function(v){return Math.round(v*1e6)/1e6;};
+  var share=function(n){return compared===0?null:round6(n/compared);};
+  return {
+    totalRecords:valid.length,
+    comparedCount:compared,
+    meanDeltaDays:compared===0?null:round6(deltas.reduce(function(s,d){return s+d;},0)/compared),
+    medianDeltaDays:compared===0?null:(compared%2===1?deltas[(compared-1)/2]:round6((deltas[compared/2-1]+deltas[compared/2])/2)),
+    fsrsLongerCount:longer,
+    fsrsShorterCount:shorter,
+    equalCount:compared-longer-shorter,
+    fsrsLongerShare:share(longer),
+    fsrsShorterShare:share(shorter),
+    equalShare:share(compared-longer-shorter),
+    minSample:FSRS_SHADOW_MIN_SAMPLE,
+    sufficient:compared>=FSRS_SHADOW_MIN_SAMPLE
+  };
+}
+// Compute and append one shadow record for a review the live
+// scheduler has just acted on. Runs strictly after the live plan is
+// applied; every failure is swallowed so the shadow can never
+// disturb scheduling, scoring or the attempt log.
+function recordFsrsShadow(domain,id,rating,attemptAt,liveIntervalDays,liveAction){
+  try{
+    if(!domain||typeof domain.buildFsrsShadowRecord!=='function')return false;
+    var history=readAttemptLog()
+      .filter(function(e){return e.id===id&&Number.isSafeInteger(e.rating);})
+      .map(function(e){return {at:e.at,rating:e.rating};});
+    var last=history[history.length-1];
+    if(!last||last.at!==attemptAt||last.rating!==rating)history.push({at:attemptAt,rating:rating});
+    var record=domain.buildFsrsShadowRecord({
+      cardId:id,reviewedAtMs:attemptAt,rating:rating,
+      liveIntervalDays:liveIntervalDays,liveAction:liveAction,reviews:history
+    });
+    return appendFsrsShadowLog(record);
+  }catch(e){
+    console.warn('FSRS 影子记录失败；现行调度与作答流水不受影响。',e);
+    return false;
+  }
+}
+function fsrsShadowSummaryText(){
+  var log=readFsrsShadowLog();
+  var s=summarizeFsrsShadowDivergence(log||[]);
+  if(!s.comparedCount)return '暂无可比样本 · 影子模式只记录对照，不改变现行复习安排';
+  if(!s.sufficient)return '样本不足：已积累 '+s.comparedCount+' 条可比记录（共 '+s.totalRecords+' 条），满 '+s.minSample+' 条才汇总分歧，先不下结论';
+  var signed=function(v){return (v>0?'+':'')+v;};
+  var pct=function(v){return Math.round(v*100)+'%';};
+  return '样本 '+s.comparedCount+' 条：FSRS 建议间隔平均 '+signed(s.meanDeltaDays)+' 天 / 中位 '+signed(s.medianDeltaDays)+' 天；更长 '+pct(s.fsrsLongerShare)+' · 更短 '+pct(s.fsrsShorterShare)+'（影子估算，参数为公开默认值，未切换）';
+}
+function exportFsrsShadowLog(){
+  try{
+    var log=readFsrsShadowLog();
+    if(!log||!log.length){alert('暂无 FSRS 影子记录。完成错题复习后，每次调度都会自动记一条对照。');return;}
+    // version is FSRS_SHADOW_DECLARED_VERSION in the src/domain registry (literal kept in step).
+    var payload={format:'penny-s-study-fsrs-shadow',version:1,model:'FSRS-5',parameters:'public defaults (shadow estimate, not fitted to this learner)',exportedAt:new Date().toISOString(),count:log.length,records:log};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var link=document.createElement('a');
+    link.href=url;
+    link.download='penny-study-fsrs-shadow-'+new Date().toISOString().slice(0,10)+'.json';
+    link.hidden=true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},0);
+    alert('已导出 '+log.length+' 条 FSRS 影子记录（JSON）。影子记录只做对照，现行复习安排未受影响。');
+  }catch(error){
+    if(typeof recordErrorEvent==='function')recordErrorEvent('export_failed',{stage:'fsrs-shadow-export',errorName:error&&error.name});
+    console.error('FSRS 影子日志导出失败',error);
+    alert('影子日志导出失败，原始记录未修改。请检查浏览器下载权限。');
+  }
 }
 async function exportReviewLogCsv(){
   try{
@@ -3502,7 +3651,7 @@ function pFinish(){
 
 var reviewSchedulerPromise = null;
 function loadReviewScheduler(){
-  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261125-migration-registry-v1').then(function(domain){ window.PennyDomain = domain; return domain; });
+  if(!reviewSchedulerPromise) reviewSchedulerPromise = import('../../src/domain/index.js?v=20261125-fsrs-shadow-v1').then(function(domain){ window.PennyDomain = domain; return domain; });
   return reviewSchedulerPromise;
 }
 async function recordQuestionOutcome(id, correct){
@@ -3520,10 +3669,11 @@ async function recordQuestionOutcome(id, correct){
   // fsrsState 是答题前的卡片状态（新题 0 / 复习 2 / 答错后重学 3 / 毕业抽检 2）。
   var streakBefore=existing?(Number(existing.correctStreak)||0):0;
   var outcomeQuality=correct?(streakBefore>=1?5:4):1;
+  var attemptAt=Date.now();
   appendAttemptLog({
     id:id,
     correct:!!correct,
-    at:Date.now(),
+    at:attemptAt,
     quality:outcomeQuality,
     rating:fsrsRatingForQuality(outcomeQuality),
     fsrsState:existing?(existing.lastOutcome==='incorrect'?3:2):graduated?2:0,
@@ -3564,6 +3714,8 @@ async function recordQuestionOutcome(id, correct){
       Store.removeWrong(id);
       // 毕业不等于从此不问：登记毕业记录，+14 天、+45 天各安排一次远期抽检，抽检答错重新回错题本。
       Store.addGraduated(id,now);
+      // 影子对照在现行结果落定之后才记：毕业没有现行间隔，liveIntervalDays 记 null、不进分歧统计。
+      recordFsrsShadow(domain,id,fsrsRatingForQuality(outcomeQuality),attemptAt,null,'graduate');
       return;
     }
     Store.scheduleWrongReview(id,{
@@ -3573,6 +3725,8 @@ async function recordQuestionOutcome(id, correct){
       lastReviewAt:now,
       lastOutcome:correct?'correct':'incorrect'
     });
+    // 影子对照在现行调度落盘之后才算：只读同一条 revlog 输入，失败静默，绝不回写调度。
+    recordFsrsShadow(domain,id,fsrsRatingForQuality(outcomeQuality),attemptAt,plan.intervalDays,'schedule');
   }catch(error){
     console.warn('错题复习计划未能更新；原错题与基础学习统计仍予保留。',error);
     showLocalFileNotice();
@@ -4062,6 +4216,10 @@ function renderProfile(){
     '<div class="row-item" onclick="exportAttemptLog()"><span style="color:var(--sub);">📤 导出逐次作答流水</span><span class="arrow">JSON ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="exportReviewLogCsv()"><span style="color:var(--sub);">📤 导出 FSRS 复习日志</span><span class="arrow">CSV ›</span></div>' +
+    '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
+    '<div class="row-item" onclick="exportFsrsShadowLog()"><span style="color:var(--sub);">📤 导出 FSRS 影子日志</span><span class="arrow">JSON ›</span></div>' +
+    '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
+    '<div class="row-item"><span style="color:var(--sub);">🧪 FSRS 影子对照</span><span class="arrow" style="white-space:normal;text-align:right;">' + esc(fsrsShadowSummaryText()) + '</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="exportErrorLog()"><span style="color:var(--sub);">📤 导出错误日志</span><span class="arrow">JSON ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +

@@ -46,8 +46,8 @@ test("registry self-check passes and covers every stored dataset key", () => {
     STORAGE_REGISTRY.map(entry => entry.key).sort(),
     [
       "a_active_practice_v1", "a_ai_v6", "a_attempts_v1", "a_d_v6",
-      "a_g_v6", "a_prefs_v6", "a_q_v6", "a_r_v6", "a_w_v6",
-      "penny-error-events-v1"
+      "a_fsrs_shadow_v1", "a_g_v6", "a_prefs_v6", "a_q_v6", "a_r_v6",
+      "a_w_v6", "penny-error-events-v1"
     ]
   );
   const versioned = STORAGE_REGISTRY.filter(entry => entry.versionField !== null);
