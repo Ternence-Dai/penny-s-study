@@ -27,7 +27,7 @@ const requiredAssets = [
   './assets/js/question-bank.js',
   './assets/js/question-grading.js',
   './assets/data/question-evidence.json?v=20261106-evidence-index-v5',
-  './assets/js/legacy-app.js?v=20261125-developer-attribution-v1',
+  './assets/js/legacy-app.js?v=20261126-backup-envelope-v1',
   './assets/js/nasa-exoplanet-explorer-v1.js?v=20261022-nasa-tap-v1',
   './assets/js/workspace-v5.js?v=20261019-v52',
   './assets/css/astronomy-classroom-v3.css?v=20261022-classroom-v5-workspace-v1',

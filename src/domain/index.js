@@ -808,3 +808,196 @@ export function classifyPracticeSessionVersion(value) {
   }
   return { status: "invalid", loadedVersion: version, migratedFrom: null };
 }
+
+/* ------------------------------------------------------------------ *
+ * Unified backup envelope (wave 6, item 3 — replicated from the
+ * Human-Digital-Twin-Health pilot, adapted to this repository's
+ * dataset shape).
+ *
+ * One fixed container for a full backup, independent of the delivery
+ * channel: a manifest plus the datasets themselves. This repository
+ * has no single ledger object — its data lives as separate datasets
+ * on separate storage keys (see STORAGE_REGISTRY) — so the envelope
+ * carries one dataset per registered storage dataset in the backup
+ * set, each payload kept in exactly the shape it is stored in. The
+ * backup set mirrors the raw recovery packet's entry set (the KEY
+ * datasets plus the attempt log): the error-event log has its own
+ * export envelope, and the FSRS shadow log is regenerable derived
+ * data that the registry already keeps out of the recovery packet.
+ *
+ * Adaptation boundary: this repository's recovery model is
+ * export-only by design — there is no backup import path, and the
+ * envelope does not create one. parseUnifiedBackupEnvelope is the
+ * pre-check any future restore tooling must pass before a dataset
+ * may be written back; it performs the full version/count gate here
+ * in the domain layer.
+ *
+ * Manifest discipline mirrors the registry's declared versions: the
+ * envelope carries its own schemaVersion, exportedBy and
+ * exportedAt, and lists every dataset with that dataset's declared
+ * schemaVersion from STORAGE_REGISTRY and its item count (array
+ * length, or key count for record-shaped datasets, or 0 when the
+ * dataset is absent). Judgements:
+ * - An envelope whose schemaVersion is not BACKUP_ENVELOPE_VERSION
+ *   is rejected explicitly (a higher version is never guessed at).
+ * - A listed dataset missing from the payload, an unlisted dataset
+ *   present in the payload, a dataset outside the backup set, a
+ *   manifest version that differs from the registry's declared
+ *   version, a practice-session payload stamped above the current
+ *   session version, or an item count that does not match the
+ *   dataset's actual items all reject the whole envelope.
+ * - The passphrase for the encrypted form never enters this layer:
+ *   the envelope is plaintext by construction, and encryption
+ *   happens in the UI layer around the serialized envelope.
+ * ------------------------------------------------------------------ */
+
+export const BACKUP_ENVELOPE_VERSION = 1;
+export const BACKUP_ENVELOPE_FORMAT = "penny-backup-envelope";
+export const BACKUP_ENVELOPE_EXPORTED_BY = "penny-s-study";
+
+// Datasets kept out of the backup envelope, with the registry's own
+// reasons: the error-event log travels in its own export envelope,
+// and the FSRS shadow log is derived data that can be replayed from
+// the attempt log (the registry keeps it out of the recovery packet
+// for the same reason).
+export const BACKUP_EXCLUDED_DATASET_IDS = Object.freeze(["error-events", "fsrs-shadow"]);
+
+export const BACKUP_DATASETS = Object.freeze(
+  STORAGE_REGISTRY.filter(entry => !BACKUP_EXCLUDED_DATASET_IDS.includes(entry.id))
+);
+
+// First bytes of every age v1 file (binary form) and of the ASCII
+// armored form. Restore tooling uses this to route a picked file to
+// the decrypt step before any JSON parsing is attempted.
+export const AGE_V1_HEADER = "age-encryption.org/v1";
+export const AGE_ARMOR_HEADER = "-----BEGIN AGE ENCRYPTED FILE-----";
+
+export function looksLikeAgeCiphertext(bytes) {
+  if (!bytes || typeof bytes.length !== "number") return false;
+  const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  const head = String.fromCharCode(...view.subarray(0, 36));
+  return head.startsWith(AGE_V1_HEADER) || head.startsWith(AGE_ARMOR_HEADER);
+}
+
+function isEnvelopeRecord(value) {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+// Item count of one stored dataset value: array length, key count
+// for record-shaped datasets, 0 for an absent dataset (null).
+// Returns null for anything else, so the caller can reject instead
+// of comparing a meaningless count.
+export function backupDatasetItemCount(value) {
+  if (value === null || value === undefined) return 0;
+  if (Array.isArray(value)) return value.length;
+  if (isEnvelopeRecord(value)) return Object.keys(value).length;
+  return null;
+}
+
+export function buildUnifiedBackupEnvelope(datasetsById, exportedAt) {
+  if (!isEnvelopeRecord(datasetsById)) {
+    throw new TypeError("备份信封构建失败；数据集集合必须是对象。");
+  }
+  for (const key of Object.keys(datasetsById)) {
+    if (!BACKUP_DATASETS.some(entry => entry.id === key)) {
+      throw new TypeError("备份信封构建失败；数据集 " + key + " 不在备份集内。");
+    }
+  }
+  const manifestDatasets = [];
+  const datasets = {};
+  for (const entry of BACKUP_DATASETS) {
+    const value = datasetsById[entry.id] === undefined ? null : datasetsById[entry.id];
+    const count = backupDatasetItemCount(value);
+    if (count === null) {
+      throw new TypeError("备份信封构建失败；数据集 " + entry.id + " 不是有效的存储数据。");
+    }
+    if (entry.id === "practice" && value !== null &&
+        classifyPracticeSessionVersion(value).status === "unsupported-high") {
+      throw new TypeError("备份信封构建失败；练习会话来自更高版本，无法按当前版本封装备份。");
+    }
+    manifestDatasets.push({
+      key: entry.id,
+      schemaVersion: entry.declaredVersion,
+      storage: "local-browser",
+      count
+    });
+    datasets[entry.id] = value;
+  }
+  return {
+    format: BACKUP_ENVELOPE_FORMAT,
+    manifest: {
+      schemaVersion: BACKUP_ENVELOPE_VERSION,
+      exportedBy: BACKUP_ENVELOPE_EXPORTED_BY,
+      exportedAt,
+      datasets: manifestDatasets
+    },
+    datasets
+  };
+}
+
+export function isUnifiedBackupEnvelope(payload) {
+  return isEnvelopeRecord(payload) &&
+    payload.format === BACKUP_ENVELOPE_FORMAT &&
+    isEnvelopeRecord(payload.manifest) &&
+    isEnvelopeRecord(payload.datasets);
+}
+
+// Pre-check an incoming unified envelope and return its datasets map
+// (registry id -> stored value). Every rejection is an explicit
+// TypeError with user-facing wording, raised before any dataset may
+// be handed to restore tooling.
+export function parseUnifiedBackupEnvelope(payload) {
+  if (!isUnifiedBackupEnvelope(payload)) {
+    throw new TypeError("备份信封格式无效；需要统一备份信封（penny-backup-envelope）。");
+  }
+  const manifest = payload.manifest;
+  if (manifest.schemaVersion !== BACKUP_ENVELOPE_VERSION) {
+    throw new TypeError("备份信封版本不受支持；需要信封 schemaVersion " + BACKUP_ENVELOPE_VERSION +
+      "，文件为 " + String(manifest.schemaVersion) + "。版本过高时请先升级应用再导入。");
+  }
+  if (!Array.isArray(manifest.datasets) || !manifest.datasets.length) {
+    throw new TypeError("备份信封清单无效；manifest.datasets 必须是非空数组。");
+  }
+  const listed = new Map();
+  for (const entry of manifest.datasets) {
+    if (!isEnvelopeRecord(entry) || typeof entry.key !== "string" || !entry.key) {
+      throw new TypeError("备份信封清单无效；数据集条目缺少 key。");
+    }
+    if (listed.has(entry.key)) {
+      throw new TypeError("备份信封清单无效；数据集 " + entry.key + " 被重复列出。");
+    }
+    listed.set(entry.key, entry);
+  }
+  for (const key of Object.keys(payload.datasets)) {
+    if (!listed.has(key)) {
+      throw new TypeError("备份信封完整性校验失败；数据集 " + key + " 未在清单中列出。");
+    }
+  }
+  for (const [key, entry] of listed) {
+    const registered = BACKUP_DATASETS.find(candidate => candidate.id === key);
+    if (!registered) {
+      throw new TypeError("备份信封完整性校验失败；数据集 " + key + " 不在备份集内。");
+    }
+    const dataset = payload.datasets[key];
+    if (dataset === undefined) {
+      throw new TypeError("备份信封完整性校验失败；清单列出的数据集 " + key + " 在文件中缺失。");
+    }
+    if (entry.schemaVersion !== registered.declaredVersion) {
+      throw new TypeError("备份信封中数据集 " + key + " 的版本不受支持；登记版本为 " +
+        registered.declaredVersion + "，文件为 " + String(entry.schemaVersion) + "。");
+    }
+    if (key === "practice" && dataset !== null &&
+        classifyPracticeSessionVersion(dataset).status === "unsupported-high") {
+      throw new TypeError("备份信封中练习会话的版本不受支持；数据来自更高版本的应用。");
+    }
+    const actualCount = backupDatasetItemCount(dataset);
+    if (actualCount === null) {
+      throw new TypeError("备份信封完整性校验失败；数据集 " + key + " 不是有效的存储数据。");
+    }
+    if (entry.count !== actualCount) {
+      throw new TypeError("备份信封完整性校验失败；数据集 " + key + " 清单计数 " +
+        String(entry.count) + " 与实际条目 " + String(actualCount) + " 不一致。");
+    }
+  }
+  return payload.datasets;
+}

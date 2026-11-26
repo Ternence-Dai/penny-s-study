@@ -407,6 +407,117 @@ function exportRawLearningRecovery(){
     alert('恢复包导出失败，原始数据未修改。请检查浏览器下载权限，并保留当前页面。');
   }
 }
+/* ---------------- 口令加密备份（第六波 #3 推广：统一信封 + age） ----------------
+ * The encrypted export wraps the domain layer's unified backup
+ * envelope (one dataset per registered storage dataset in the
+ * backup set — the same entry set as the raw recovery packet) in
+ * the age file format (passphrase / scrypt mode), using the
+ * vendored age-encryption bundle (FiloSottile/typage, BSD-3,
+ * assets/js/vendor/). The bundle is a classic script loaded on
+ * demand only when the user actually encrypts — it is not part of
+ * the first screen and not in the service-worker precache. The
+ * resulting .age file is a standard age file: it can be decrypted
+ * with the official age CLI on any machine, without this
+ * application.
+ * Dataset reads go straight to localStorage and are parsed one by
+ * one: a corrupt dataset aborts the export with an alert instead of
+ * being enveloped, and the read never routes through the guarded
+ * storage channel, so exporting cannot trip the recovery lock.
+ * This app's recovery model is export-only by design: there is no
+ * backup import path, and this export does not create one — the
+ * envelope's pre-check (parseUnifiedBackupEnvelope) lives in the
+ * domain layer for any future restore tooling.
+ * Passphrase discipline: the passphrase exists only in a local
+ * variable for the duration of the call. It is never written to
+ * localStorage, never put into an error event, and never sent
+ * anywhere; the error paths below record only stage and error name. */
+var pennyAgeEncryptionLoadPromise = null;
+function loadPennyAgeEncryption(){
+  if(window.age && typeof window.age.Encrypter === 'function') return Promise.resolve(window.age);
+  if(pennyAgeEncryptionLoadPromise) return pennyAgeEncryptionLoadPromise;
+  pennyAgeEncryptionLoadPromise = new Promise(function(resolve, reject){
+    var script = document.createElement('script');
+    script.src = 'assets/js/vendor/age-encryption.js';
+    script.onload = function(){
+      if(window.age && typeof window.age.Encrypter === 'function') resolve(window.age);
+      else reject(new Error('age 加密组件加载后不可用'));
+    };
+    script.onerror = function(){ reject(new Error('age 加密组件加载失败')); };
+    document.head.appendChild(script);
+  });
+  return pennyAgeEncryptionLoadPromise;
+}
+function loadPennyBackupDomain(){
+  if(window.PennyDomain && typeof window.PennyDomain.buildUnifiedBackupEnvelope === 'function'){
+    return Promise.resolve(window.PennyDomain);
+  }
+  return import('../../src/domain/index.js?v=20261126-backup-envelope-v1').then(function(domain){
+    window.PennyDomain = domain;
+    return domain;
+  });
+}
+async function exportEncryptedBackup(){
+  if(storageRecoveryRequired){
+    alert('本机学习存档处于保护模式。为避免把异常数据封进加密备份，请先使用「导出原始存档恢复包」保留原始数据。');
+    return false;
+  }
+  if(!confirm('口令加密导出使用 age 标准格式（口令模式），内容为全部学习数据（错题、练习记录、学习日、偏好、练习会话等，不含错误日志与 FSRS 影子日志）。\n\n请注意：口令一旦丢失，备份将永久无法恢复，任何人都无法帮你解密。导出的 .age 文件也可以用标准 age 命令行工具独立解密，不依赖本应用。\n\n继续吗？')){
+    return false;
+  }
+  var passphrase = prompt('请设置备份口令（至少 8 个字符，请牢记，丢失无法恢复）：');
+  if(!passphrase) return false;
+  if(passphrase.length < 8){
+    passphrase = null;
+    alert('口令至少需要 8 个字符，已取消加密导出。');
+    return false;
+  }
+  var confirmation = prompt('请再次输入相同口令以确认：');
+  if(confirmation !== passphrase){
+    passphrase = null;
+    alert('两次输入的口令不一致，已取消加密导出。');
+    return false;
+  }
+  try{
+    var domain = await loadPennyBackupDomain();
+    var datasetsById = {};
+    for(var i = 0; i < domain.BACKUP_DATASETS.length; i++){
+      var entry = domain.BACKUP_DATASETS[i];
+      var raw = localStorage.getItem(entry.key);
+      if(raw === null){ datasetsById[entry.id] = null; continue; }
+      try{
+        datasetsById[entry.id] = JSON.parse(raw);
+      }catch(parseError){
+        passphrase = null;
+        if(typeof recordErrorEvent === 'function') recordErrorEvent('export_failed', { stage:'encrypted-export-dataset', errorName: parseError && parseError.name });
+        alert('加密导出失败：数据集「' + entry.id + '」的本地数据无法解析，已中止导出；原始数据未修改。请先导出原始存档恢复包保留现场。');
+        return false;
+      }
+    }
+    var envelope = domain.buildUnifiedBackupEnvelope(datasetsById, new Date().toISOString());
+    var age = await loadPennyAgeEncryption();
+    var encrypter = new age.Encrypter();
+    encrypter.setPassphrase(passphrase);
+    passphrase = null;
+    var ciphertext = await encrypter.encrypt(JSON.stringify(envelope));
+    var blob = new Blob([ciphertext], {type:'application/octet-stream'});
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'penny-study-backup-' + new Date().toISOString().slice(0,10) + '.age';
+    link.hidden = true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 0);
+    alert('已导出全部学习数据的口令加密备份（.age）。请牢记口令；口令丢失将无法恢复数据。');
+    return true;
+  }catch(error){
+    passphrase = null;
+    if(typeof recordErrorEvent === 'function') recordErrorEvent('export_failed', { stage:'encrypted-export', errorName: error && error.name });
+    alert('加密导出失败，原始数据未修改：' + (error && error.message ? error.message : '未知错误'));
+    return false;
+  }
+}
 function isAttemptLogEntry(value){
   if(!isStorageRecord(value)||
      Object.keys(value).some(function(key){return !['id','correct','at','state','quality','rating','fsrsState'].includes(key);})||
@@ -4222,6 +4333,8 @@ function renderProfile(){
     '<div class="row-item"><span style="color:var(--sub);">🧪 FSRS 影子对照</span><span class="arrow" style="white-space:normal;text-align:right;">' + esc(fsrsShadowSummaryText()) + '</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="exportErrorLog()"><span style="color:var(--sub);">📤 导出错误日志</span><span class="arrow">JSON ›</span></div>' +
+    '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
+    '<div class="row-item" onclick="exportEncryptedBackup()"><span style="color:var(--sub);">🔐 口令加密导出全部学习数据</span><span class="arrow">.age ›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
     '<div class="row-item" onclick="clearAI()"><span style="color:var(--sub);">🧹 清除 AI 对话</span><span class="arrow">›</span></div>' +
     '<div style="height:1px;background:var(--line);margin:0 16px;"></div>' +
