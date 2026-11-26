@@ -1,0 +1,526 @@
+# Changelog
+
+本仓库的显著变更记录于此，版式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号与提交约定见《CHANGELOG 维护约定》。
+
+> 首版生成说明（2026-11-26）：本机无 GitHub git 凭据、无法真克隆仓库，未能用 git-cliff；改由 GitHub 连接器取回 main 全量提交历史后，按提交信息语义分类生成。每条条目均对应一笔真实提交（条目末尾附短 SHA 可回查）；纯合并提交属结构性提交、其内容提交已逐条列入，故合并行本身略去（计数见各仓执行记录）。今后新变更先记入 Unreleased 节。
+
+## [Unreleased]
+
+<!-- 新变更先记到这里；发版/里程碑时把本节归档为日期节。 -->
+
+## 2026-11-23 ~ 2026-11-29
+
+### Added（新增）
+
+- (fsrs) FSRS-5 shadow mode — compute and log divergence only, no scheduling change (`117b818`)
+- (migrations) add data migration registry, declare dataset baselines (wave 4 item 2) (`563e07d`)
+- (errors) add local error event log (wave 4 item 4, replicated from Health pilot) (`07510ff`)
+- (verify) stamp git provenance (head/dirty/source) into verify report (`965d38f`)
+- (verify) unified verification gate with wiring guard and data-fault fixtures (`e06da00`)
+- (review) record FSRS revlog fields in attempt log and add revlog CSV export (`19765f7`)
+- (practice) child mode with verified-only hard pool isolation and astronomy intro subset (`c3c999a`)
+
+### Fixed（修复）
+
+- Make FSRS shadow review logging idempotent (#50) (`0d8a1d8`)
+- Make developer attribution visible and refresh offline shell (`9687b7d`)
+- Make developer attribution visible and refresh offline shell (`adafdaa`)
+- Invalidate cached shell after attribution update (`e810d62`)
+- Invalidate cached shell after attribution update (`9cbcb8c`)
+- Show unified developer attribution and contact (`6049e88`)
+
+### Documentation（文档）
+
+- Standardize developer attribution (#48) (`8ea2381`)
+
+### Tests（测试）
+
+- Align PWA validator with current offline asset versions (#49) (`3400533`)
+- Add Playwright browser smoke tests (`73fdb95`)
+
+## 2026-11-16 ~ 2026-11-22
+
+### Fixed（修复）
+
+- (storage) detect cross-tab ledger conflicts (`50bcfc9`)
+
+## 2026-11-02 ~ 2026-11-08
+
+### Changed（变更）
+
+- Tighten astronomy question wording and evidence candidates (#46) (`25777f7`)
+- Make completed practice sessions durable and idempotent (#42) (`8ae56d6`)
+- Register StarRace Windows release workflow on main baseline (#37) (`f4d0b62`)
+- Use a pending-review question in evidence browser regression (#36) (`e9a6466`)
+
+### Fixed（修复）
+
+- (storage) isolate corrupt attempt history from learning ledgers (`8414510`)
+- Carry attempt-history recovery onto current main (#44) (`4b3cb4b`)
+- Harden PWA cache durability and question evidence integrity (#33) (`1983ff9`)
+
+### Security（安全）
+
+- (ci) pin desktop workflow actions to verified commits (#41) (`683e592`)
+
+### Maintenance（维护）
+
+- (starrace) require explicit dispatch for desktop releases (#40) (`6e36b12`)
+- (starrace) validate Windows desktop package and launch smoke (#39) (`10549d6`)
+
+## 2026-10-26 ~ 2026-11-01
+
+### Added（新增）
+
+- Add GitHub Actions workflow for Windows portable release (`d89a9de`)
+- (evidence) round 3 verification with expanded whitelist - 278/300 verified, 16 remain review-needed (`489eca7`)
+- (evidence) verify 162 more questions (227 total), reject 5 same-level duplicates; 67 remain review-needed (`79ff580`)
+- (evidence) verify 65 A-level questions against IAU/NASA/CAS sources, reject duplicate p024 and exclude it from practice pools (`1c40c95`)
+- (review) post-graduation +14d/+45d rechecks and per-attempt answer log with export (`7e51c17`)
+- (desktop) Electron shell for Windows desktop build (`5df715d`)
+
+### Changed（变更）
+
+- Verify: round 4 question evidence (j064, j067, j036, j101) with expanded NASA GSFC allowlist (`4718aa4`)
+
+### Fixed（修复）
+
+- (bank) p103 summer solstice option changed to June 21 per OpenStax/NASA sources; mark verified (`393734b`)
+- (bank) p073 answer key unified to ~4 million tons/s per GSFC and OpenStax sources (matches j133); mark verified (`800d3a5`)
+- (icons) replace all private-use-area icon glyphs site-wide; complete PWA apple metas (`02e69dc`)
+- Remove personal contact info from public pages, repair bottom-nav icons, surface file:// feature degradation, correct p022 answer key (`93cbe6d`)
+
+## 2026-10-19 ~ 2026-10-25
+
+### Added（新增）
+
+- (ui) identify domain-specific final workspace shell (`96a41fa`)
+- (ui) expose domain-specific workflow controls in page shell (`634f61d`)
+- Add evidence-based topic mastery map (#21) (`d5b8f1d`)
+- Add classroom inspector and three-column geometry acceptance (`9ec2f99`)
+- Add persistent study-context and evidence inspector to astronomy classroom (`e0cb85f`)
+- Add live learning and evidence inspector to astronomy classroom (`2305428`)
+- Add official Chinese astronomy and spaceflight references to the remaining history questions (`5962d6f`)
+- Add explicit topic-candidate review language to all 300 Penny questions (`7292168`)
+- Add provenance and read-only guarantees for NASA exoplanet data (`43d3f4f`)
+- Add read-only NASA Exoplanet Archive TAP integration (`c611575`)
+- Add a dedicated NASA exoplanet data workspace to the astronomy classroom (`b676f86`)
+- Add first-class evidence quality status to astronomy command center (`0721089`)
+- Add reference-template product shell v4 (`c05b556`)
+- Add astronomy classroom learning-path and progress workspace design (`17423e7`)
+- Add astronomy classroom learning command-center renderer using verified local learning records (`d9d9f8b`)
+- Add wide viewport shell geometry acceptance assertions (`6af033b`)
+- (ui) activate domain-specific reference workbench v2 (`3a5f08d`)
+- (ui) introduce reference-led workspace redesign v2 (`ff0d632`)
+- (study) add learning readiness command center (#19) (`5660a0d`)
+- Surface NASA/IAU question sources without overstating verification (#16) (`daac9ac`)
+- Add keyboard skip navigation to the study workspace (#15) (`278b2d1`)
+- (ui) add astronomy observatory learning interface (`7de2b9e`)
+- Add per-question evidence provenance registry (#7) (`e62180c`)
+- Establish readable accessible UI typography baseline (#6) (`863bd24`)
+- Add raw local study-data recovery export (`8247874`)
+- Add project-wide JavaScript syntax validation (`93c1725`)
+- Add recoverable astronomy practice sessions without altering learner records (`2c33794`)
+- Add shared V9 workspace visual system (`3063b3c`)
+- Enable contextual secondary module navigation (`f83ddaf`)
+- Add context-aware secondary module navigation and headers (`8dd3e12`)
+- Enable Workspace V5 quick module navigation (`4b866c5`)
+- Add keyboard-accessible Workspace V5 module launcher (`bc1055f`)
+- Add verified browser 3D astronomy benchmark projects and PWA V6 mapping (`6099ffd`)
+- Add visible domain workflow dashboard design system (`812e545`)
+- Add regression checks for offline PWA assets and cache policy (`d71e707`)
+- Add StarStudy application icon (`f06a370`)
+- Add offline cache for StarStudy learning shell (`3d5f07d`)
+- Add the StarStudy PWA manifest (`76f7160`)
+- Add direct study actions to the learning progress panel (`965a994`)
+
+### Changed（变更）
+
+- (ui) remove duplicate shortcut rail and restore domain navigation hierarchy (`d67749d`)
+- Improve business-specific page landmarks and navigation semantics (#31) (`4aa85f9`)
+- Preserve decimal precision in answer grading (`61a83b1`)
+- Use Playwright headless shell in reference UI CI (#27) (`e0dba95`)
+- Prioritize the pending question review queue (`450fd8e`)
+- Deduplicate command palette focus handling (`0b4c262`)
+- Bind question reviews to exact bank content (`5c48223`)
+- Improve command palette keyboard accessibility (#20) (`88d5b5f`)
+- Update NASA source validator for the v25 offline classroom shell (`a2e40d7`)
+- Align PWA validation with classroom v5 offline asset shell (`8675162`)
+- Precache classroom v5 workspace and refresh PWA shell (`65d770e`)
+- Activate classroom v5 workspace inspector assets (`bb8c9b6`)
+- Align NASA TAP offline-shell validator with Penny PWA v24 (`ccd7235`)
+- Align PWA static validation with v24 cache, reference v4 shell and evidence index v3 (`3c7bfd5`)
+- Validate authoritative NASA IAU CAS CNSA and CMSA source candidates without auto-verification (`408f739`)
+- Assert 300 source candidates remain unreviewed in online and offline classroom (`94b1f11`)
+- Upgrade Penny PWA cache for complete official question source candidates (`7fe03be`)
+- Allow audited CAS CNSA and CMSA source domains and bust the evidence index (`e39027f`)
+- Assert updated NASA source candidate counts and review states (`5b6b3dd`)
+- Upgrade Penny offline shell for expanded question evidence registry (`a6a274d`)
+- Bust PWA evidence registry fetch after NASA and IAU source enrichment (`7b02307`)
+- Expand per-question NASA and IAU source candidates while keeping all questions review-needed (`7a2c86f`)
+- Align NASA PWA validation with v22 route-safe shell (`4019714`)
+- Test that delayed classroom boot preserves live astronomy lesson routes (`9684106`)
+- Upgrade PWA cache and precache route-safe classroom boot (`0101dab`)
+- Refresh route-safe classroom boot cache (`99cade7`)
+- Exercise the star-map simulator through the actual learning navigation and category card (`f5b2ef9`)
+- Verify skip navigation from a fresh document after live data interaction tests (`fcd8046`)
+- Reset interaction focus before verifying first keyboard skip-navigation stop (`1943d4d`)
+- Run NASA provenance and offline PWA checks in standard tests (`6430083`)
+- Validate NASA explorer assets in the PWA shell (`4143281`)
+- Test live NASA TAP mapping, outage fallback, and offline asset caching (`802d14c`)
+- Upgrade PWA shell and precache NASA exoplanet explorer assets (`f2d917e`)
+- Connect NASA exoplanet explorer to the astronomy classroom entry point (`beb5101`)
+- Style a NASA-sourced exoplanet data workspace (`871c7e1`)
+- Align PWA precache reference shell with page asset v7 (`0fa1f42`)
+- Align browser PWA assertions with synchronized shell v20 (`75c39e8`)
+- Synchronize PWA cache with the promoted reference workspace assets (`6893e2f`)
+- Align offline shell validator with observatory stylesheet v6 (`297d818`)
+- Align learning workspace validator with observatory stylesheet v6 (`6fbb7e4`)
+- Align astronomy workspace stylesheet cache with PWA shell v18 (`9876348`)
+- Refresh PWA shell with exact desktop navigation assets (`3e94e3d`)
+- Load corrected observatory navigation shell (`238fe73`)
+- Align PWA precache with reference workspace v6 shell (`e7efa90`)
+- Reference astronomy classroom must be mounted (`95d7636`)
+- Invalidate PWA shell and precache reference workspace boot (`85a6b06`)
+- Promote reference workspace to default shell and refresh browser cache (`a8084ce`)
+- Promote validated astronomy classroom to default home (`861cc7a`)
+- Align PWA offline validation with question evidence dashboard assets (`4df006a`)
+- Align PWA offline validation with question evidence dashboard assets (`a6786e3`)
+- Test transparent question evidence coverage in study command center (`d9d87b8`)
+- Precache question evidence dashboard and invalidate prior PWA shell (`2b7b380`)
+- Load question evidence command-center assets (`ece258e`)
+- Surface question-source evidence coverage on astronomy command center (`03fa864`)
+- Expose an auditable summary of per-question source review coverage (`5ea99c9`)
+- Verify the new offline shell cache version (`5b9f0d1`)
+- Upgrade offline shell to precache corrected mobile navigation stylesheet (`811ea0c`)
+- Bust browser cache for corrected mobile navigation shell (`1393d72`)
+- Restore a visible mobile bottom navigation in the reference study shell (`b528352`)
+- Keep study command-center heading visible in reference shell (`7e1b9af`)
+- Restore valid readability stylesheet link for v4 shell (`d2dfd47`)
+- Precache reference-template v4 shell and rotate study PWA cache (`01ecc68`)
+- Point browser acceptance at reference-template v4 stylesheet (`5710c7b`)
+- Validate reference-template v4 shell geometry and assets (`bdc6eb3`)
+- Place reference product shell after accessibility cascade and fix stylesheet markup (`17d8296`)
+- Wire reference-template v4 product shell and remove redundant demo chrome (`068b8f4`)
+- Validate deep-link offline fallback with current classroom hero (`d5031e9`)
+- Validate offline startup against current astronomy classroom hero (`554214d`)
+- Require the current astronomy classroom UI assets in the PWA shell (`0ce57dd`)
+- Validate current classroom assets instead of removed legacy context script (`26fe038`)
+- Validate classroom hero and task grid in the current app shell (`70188fe`)
+- Use full-width classroom app shell and dedicated two-row layout (`3c2729f`)
+- Verify astronomy classroom layout and original learning flows (`95eea38`)
+- Bump PWA shell and precache astronomy classroom v3 interface (`053a565`)
+- Load astronomy classroom v3 interface assets (`4a7ba60`)
+- Route Penny Study homepage through astronomy classroom command center (`03a78ca`)
+- Verify exact pre-cache assets for the updated observatory shell (`9a79f03`)
+- Align question-bank integration validation with observatory command-center v5 (`9ed79d5`)
+- Assert desktop observatory sidebar does not overlap learning content (`6855d99`)
+- Precache observatory command-center v5 and invalidate prior PWA shell (`e14ced8`)
+- Refresh observatory desktop-shell stylesheet cache (`fc18376`)
+- Verify native observatory PWA shell v13 resources (`985f84f`)
+- Align study acceptance with native observatory styles (`2e81b69`)
+- Retire shared V9 CSS overlay after replacing it with product-native workspaces (`9ae6175`)
+- Align offline smoke test with consolidated app shell; remove retired context overlay (`750be9b`)
+- Update browser regression for native module structure (`1616d36`)
+- Verify observatory command-center cache and actual learning workspace (`c66396d`)
+- Refresh observatory learning-command-center asset cache (`bce296d`)
+- Precache Penny Study command center and invalidate previous layout cache (`f3233ee`)
+- Rebuild Penny Study as full-screen observatory learning cockpit (`8ab378b`)
+- Reframe study homepage as a data-driven learning command center (`88275e7`)
+- Replace generic intro and workflow shell with product-first workspace (`3d2a8b2`)
+- Invalidate old PWA shell and precache the corrected observatory layout (`7c7337d`)
+- Bust browser cache for corrected full-width workspace layout (`b208f90`)
+- Restore accessibility stylesheet as final cascade layer (`fdc184e`)
+- StarStudy: astronomy classroom UI v2 (#12) (`39a1150`)
+- Accept versioned study runtime cache revisions (`3ce99f7`)
+- Test starfield motion and visibility lifecycle (`455a789`)
+- Pause starfield in background and honor reduced motion (`b8e8599`)
+- Run study resume regression after grading helper initialization (`97ec4bf`)
+- Update study validator for current recovery runtime cache version (`ffef064`)
+- Surface local data recovery warning across all study screens (`30fc1dc`)
+- Show recovery prompt after all local records are inspected (`34dc832`)
+- Update app cache-version assertion after session recovery patch (`cae5ff9`)
+- Allow cache-versioned domain module import in study validator (`69215c2`)
+- Cancel superseded standalone validation runs on the same ref (`180e1dc`)
+- Cancel superseded domain test runs on the same ref (`3cdcd23`)
+- Bust browser cache for current project UI and domain logic (`c1fce70`)
+- Version domain module URL to prevent stale browser cache (`c550d9b`)
+- Test practice recovery preserves invalid legacy sessions (`51dd538`)
+- Test answer completeness and option bounds for all choice types (`5f6b681`)
+- Validate saved answers against each question's options (`c0825ff`)
+- Run question grading regression suite in CI (`699a6bc`)
+- Test incomplete and invalid ordering responses (`5a726d2`)
+- Require complete permutations before scoring ordering questions (`6b21094`)
+- Expand CI syntax checks to browser and test scripts (`a9160fc`)
+- Wire redesigned StarLeague command center into application entrypoint (`d57ea32`)
+- Redesign StarLeague study workspace with product-specific command center (`9e5802c`)
+- Validate dedicated Star practice stylesheet and session APIs (`dfb903e`)
+- Update Star visual cache assertion to latest V9.2 (`6aff3d5`)
+- Cover ordered-answer autosaves in Star practice mode (`0941281`)
+- Validate Star practice session recovery and autosave hooks (`d68161a`)
+- Test safe storage and restoration for in-progress practice (`2966bb7`)
+- Load recoverable practice session experience (`a297728`)
+- Style resumable astronomy practice sessions (`d52f54a`)
+- Test practice back navigation and duplicate scoring prevention (`2a858d0`)
+- Refresh astronomy V9.1 practice styles (`64ddee5`)
+- Style V9.1 astronomy practice navigation (`4ec1eb2`)
+- Redesign astronomy practice view with reviewable session state (`ae97082`)
+- Load shared V9 workspace visual system (`d9db624`)
+- Initialize the PhysChem experiment context workspace (`90d2816`)
+- Clarify PhysChem simulation run-state labels (`bd1d69f`)
+- Style contextual secondary module workspaces (`617d396`)
+- Style the Workspace V5 command palette (`5a6751e`)
+- Activate dedicated Workspace V5 interface (`8da35a0`)
+- Redesign interface with dedicated Workspace V5 system (`00fd5ed`)
+- Test browser answer handlers against strict grading contract (`0cf806d`)
+- Validate XingSaiTong V4 learning cockpit (`710aa2d`)
+- Activate XingSaiTong V4 learning cockpit (`f43027d`)
+- Redesign XingSaiTong learning cockpit V4 (`d754501`)
+- Validate only current stylesheet is precached for offline shell (`05dee5d`)
+- Expand verified GitHub benchmark mapping and implementation roadmap (`cf74512`)
+- Validate V6 learning workflow CSS is cached for offline use (`82510b7`)
+- Cache latest V6 learning workflow styles in PWA shell (`2d599d1`)
+- Update static UI validation to current V6 workflow stylesheet (`0e00d57`)
+- Redesign homepage workflow entry points for visible product navigation (`c049f1e`)
+- Document installable offline learning benchmark implementation (`5b2d58c`)
+- Validate the installable offline learning application (`7fc86dd`)
+- Register an installable offline study app shell (`b9e21d6`)
+- Link open-source benchmark and architecture notes from README (`566a342`)
+- Document deep open-source product and architecture benchmarks (`d517a10`)
+- Refresh product interface stylesheet cache for V5 workspace (`b40c4cb`)
+- Style core workspace actions and dashboard launch panels (`70a933d`)
+- Retain legacy validator hook and load cache-busted UI layer (`2e24f9b`)
+- Bust browser cache for refreshed product UI (`053def6`)
+- Polish responsive UI interactions and accessibility (`3cc878f`)
+- Verify canonical Unicode matching through the production answer normalizer (`34a6e5c`)
+- Normalize Unicode in the live astronomy answer input pipeline (`15bf199`)
+- Use an actual decomposed Unicode character in grading regression (`bb95a59`)
+- Test locale-independent and Unicode-normalized answer grading (`299f5f3`)
+- Make short-answer grading Unicode-normalized and locale-independent (`fb6f32b`)
+- Validate question option arrays as strict literals (`482a0c6`)
+- Render binary judge options consistently in practice and exams (`4890cb8`)
+- Document astronomy question-bank option integrity (`fdad51c`)
+- Document relevant open-source architecture benchmarks and boundaries (`63c5c05`)
+- Model true-false questions with their dedicated binary answer schema (`fe9b2e9`)
+- Validate all 300 astronomy question records and answer structures (`c06929d`)
+
+### Removed（移除）
+
+- Remove duplicated evidence assertion from PWA regression (`55a6227`)
+- Remove retired CSS from PWA shell and invalidate v12 cache (`82b34da`)
+- Remove generic V9 shell layer; keep the domain-specific product workspace (`8dd24f6`)
+- Remove retired generic module context overlay (`c42e635`)
+- Remove retired context overlay from offline application shell (`b6a555d`)
+- Remove generic contextual overlay; use native product page structure (`f97ca43`)
+- Remove legacy positioning and width constraints from reference UI (`f74b3c8`)
+- Remove obsolete CSS entries from offline cache manifest (`6681147`)
+
+### Fixed（修复）
+
+- (ui) allow study header workflow shortcuts to wrap on mobile (`be78145`)
+- (ui) wire study header shortcuts to learning routes (`24d7964`)
+- Guard astronomy learning navigation (`22393de`)
+- Reject unknown review timezone offsets (`6c44733`)
+- Reject unknown RFC 3339 review offsets (#26) (`265a3c5`)
+- Reject impossible question review timestamps (`90778c5`)
+- Enforce complete source candidate coverage without promoting AI sources to verified (`bbe598c`)
+- Prevent delayed classroom boot from overwriting active study routes (`a9ec0d2`)
+- Fix desktop shell geometry assertion to read scroll width inside browser context (`91b9d1d`)
+- Fix duplicate classroom test variable declaration (`359b037`)
+- Enforce desktop left rail, mobile bottom tabs and current cache versions (`4d9935c`)
+- Fix astronomy desktop left-rail and mobile bottom navigation (`9db0d7a`)
+- Fix reference v4 responsive and page visibility conflicts (`434cb08`)
+- Fix v4 stylesheet selector in browser acceptance (`9396659`)
+- Fix v4 stylesheet markup and keep accessibility baseline final (`6922a91`)
+- Fix inline handler escaping in astronomy classroom controls (`eb926c2`)
+- Fix observatory desktop grid areas for full-width header, sidebar and learning workspace (`9d24c06`)
+- Fix Pages deploy job to check out the validated application (`0ade82c`)
+- (pwa) precache the new observatory workspace stylesheet (`de9fd0a`)
+- (ci) use the supported Pages artifact action without PAT-only enablement (`5bc65f8`)
+- (ci) do not require a lockfile for ephemeral browser tooling (`28e0495`)
+- Refresh offline workspace observer cache entry (#14) (`3ad7e3f`)
+- (pwa) precache versioned workspace scripts (#11) (`d3b548e`)
+- (pwa) cache the current learning interface offline (#10) (`2fb102b`)
+- Keep deep-link responses out of offline app shell (`c199f34`)
+- Bound free-text answer grading inputs (#4) (`cc2640a`)
+- Check answer size before scanning content (#3) (`3d65f78`)
+- (study) persist practice answer before recording outcome (`c8fba37`)
+- Protect malformed local practice data during recovery (`a75ff23`)
+- Fix question fixture for practice recovery regression test (`2611895`)
+- Guard practice session recovery against invalid graded answers (`2fd9758`)
+- Fix whitespace normalization in workspace command search (`c19027f`)
+- Make workspace launcher resilient across page layouts (`6db5c3d`)
+- Avoid restoring a completed practice session after finishing (`169fef6`)
+- Fix practice VM assertion context for strict-mode callbacks (`953bbdd`)
+- Fix async practice handler regression test harness (`1f48f33`)
+- Prevent duplicate practice scoring and enable previous-question review (`5fe61a9`)
+- Correct Workspace V5 command launcher typography (`6d44114`)
+- Refresh product UI stylesheet cache (`38d746a`)
+- Correct solar mass-energy conversion estimate in question bank (`20afb6a`)
+- Fix strict option literal parser expression (`e61097b`)
+- Guard malformed ordering question options (`5e4ffec`)
+- Correct strict answer validator regexes (`520c137`)
+- Harden question bank answer index validation (`97fbeb7`)
+- Guard judge answer rendering and keyboard navigation (`6db5077`)
+- Reject ambiguous duplicate astronomy question options (`f242370`)
+
+### Security（安全）
+
+- (ci) scope Pages deployment permissions to deploy job (`4b59386`)
+
+### Tests（测试）
+
+- (pwa) assert the observatory workspace stylesheet is precached (`c1f1975`)
+- (ui) assert reference workspace stylesheet delivery and layout (`9b3f249`)
+- (ui) cover Penny practice resume, wrong review and exam scoring (`af55bd4`)
+- Verify animated astronomy learning simulations (`e94bb28`)
+- Verify PWA offline launch and deep-link recovery in Chromium (#13) (`5f85180`)
+- (storage) lock recovery after failed removal (#2) (`f39ee76`)
+- (study) assert rollback source without regex escaping (`a75d9a6`)
+- (study) correct practice handler boundary assertion (`bcafeca`)
+- (study) cover practice answer persistence failure (`02ce285`)
+- Accept refreshed product stylesheet version (`d583915`)
+
+### Maintenance（维护）
+
+- Deploy verified reference UI to GitHub Pages (`329515a`)
+- Add reference UI and domain regression workflow (`1e98873`)
+
+## 2026-10-12 ~ 2026-10-18
+
+### Added（新增）
+
+- Implement local strict ISO timestamp parser for spaced-review scheduling (`e55c2c6`)
+- Add umbra and antumbra regression assertions (`280a0c8`)
+- Load shared question grading before app runtime (`52c67c1`)
+- Extract reusable question grading rules (`374617d`)
+- Establish platform v2 foundation (`7048ac7`)
+- Add CI syntax validation for embedded JavaScript (`826821f`)
+
+### Changed（变更）
+
+- Document shared spaced-review workflow across practice and timed exams (`729b89c`)
+- Use direct control-flow assertions for answered-only exam review updates (`0e74615`)
+- Align blank exam statistic validator with async review workflow (`6cb70c4`)
+- Include review-domain loader in spaced-review integration verification (`4575a05`)
+- Make the spaced-review validator match the actual section boundary (`eaac543`)
+- Track shipped spaced-review workflow and remaining astronomy content QA (`243b643`)
+- Document due-dated wrong-question review lifecycle (`41ce5f1`)
+- Test legacy wrong-book migration and persisted spaced-review metadata (`4c00c04`)
+- Validate integration of due-dated spaced repetition across practice and exams (`0d8daf0`)
+- Show due review dates and prioritize overdue wrong questions (`faf648e`)
+- Connect practice and exam outcomes to due-dated spaced wrong-question reviews (`879c223`)
+- Test strict spaced-review timestamp and interval boundaries (`2079a58`)
+- Document XingSaiTong V3 astronomy study workspace slice (`8bf9ee7`)
+- Validate XingSaiTong V3 learning workspace and mobile accessibility (`5b3df3a`)
+- Load XingSaiTong V3 astronomy learning workspace theme (`914acc7`)
+- Redesign XingSaiTong as a responsive astronomy learning workspace (`2ad1418`)
+- Align README delivery status with verified implementation (`98924e1`)
+- Test whitespace-tolerant astronomy angle normalization (`d0526ae`)
+- Accept whitespace before angle minute and second symbols (`53ffa53`)
+- Link domain contract from project README (`37e42c2`)
+- Normalize angle-minute and angle-second grading test cases (`b3121ff`)
+- Validate angle notation aliases against production normalizer (`e941214`)
+- Test ASCII arcminute and arcsecond grading variants (`e6210b9`)
+- Normalize ASCII angle minute and second symbols correctly (`1faa902`)
+- Document six-type astronomy grading contract (`08c19f0`)
+- Test preference range and schema validation before writes (`35b4e6c`)
+- Validate study preferences before persisting user settings (`a50378b`)
+- Round-trip every astronomy answer key through production grading (`0016583`)
+- Test wrong-shaped and valid learning storage records (`a74c8a5`)
+- Validate learning storage JSON shapes before use (`0cafb63`)
+- Test safe handling of fill-answer normalization errors (`927c75c`)
+- Cover string option IDs and duplicate multi-select answers (`8cc5c99`)
+- Compare multi-select answers safely across primitive option IDs (`1c363a5`)
+- Qualify Polaris altitude rule for northern hemisphere (`aadc7ea`)
+- Strengthen solar-eclipse viewing safety explanations (`474fbc5`)
+- Specify umbra geometry in total-solar-eclipse question (`9f2eacc`)
+- Align all annular eclipse explanations with apparent-diameter criterion (`19c26b0`)
+- Clarify annular eclipse geometry explanation (`ba4bc7f`)
+- Route practice and exam grading through shared rules (`b61fdb8`)
+- Load astronomy question bank before application (`0eab61e`)
+- Separate question bank from application logic (`590eea6`)
+- Extract astronomy question bank data (`d6959a6`)
+- Load application logic from JavaScript module file (`4554586`)
+- Extract application logic from HTML (`ab1e6f2`)
+- Load legacy styles from stylesheet (`b68ecfd`)
+- Extract legacy application styles (`87a316d`)
+- Design: refine product-specific layouts and components (`81ab30c`)
+- Design: apply refreshed interface system (`aba37aa`)
+- Design: add shared product interface system (`c5f61a5`)
+- Escape runtime error messages before rendering them (`689e8b3`)
+- Strengthen astronomy question bank answer validation (`2f8a008`)
+- Redesign product information architecture and workspace visual hierarchy (`3760289`)
+- Improve accessibility, reduced-motion support, and print layout (`5bdb6d4`)
+- Update index.html (`00c4d6c`)
+- Update index.html (`2745fc9`)
+
+### Fixed（修复）
+
+- Correct review timestamp calendar-validation regular expression (`2e38aaa`)
+- Harden spaced-review scheduling timestamps and interval bounds (`70c41c4`)
+- Fix angle-second validation string literal (`dece0c2`)
+- Fix angle-second regression test string literal (`71ed198`)
+- Fix production normalizer extraction in question-bank audit (`05f2679`)
+- Guard fill-in grading against normalization errors (`437f8a7`)
+- Reject malformed fill-in grading answers (`3c3c681`)
+- Reject empty answer keys in grading (`1a71cbf`)
+- Guard hemisphere scope of Polaris latitude rule (`ca9d28b`)
+- Guard solar-viewing safety guidance with regression checks (`6996f49`)
+- (astronomy) correct eclipse frequency fact (`36ee634`)
+- Clarify Galileo telescope history question (`473c909`)
+- Exclude blank exam answers from learning mastery stats (`8df3938`)
+- Lock study storage on malformed saved JSON (`9335a82`)
+- Protect study history when browser storage fails (`4f5257a`)
+- Guard the runtime error panel against HTML injection (`1679257`)
+- Correct astronomy question wording and factual overclaims (`4ea92c9`)
+- Fix question bank validator regex escaping (`ed57161`)
+- Align learning-center navigation with local knowledge-base capability (`06fba5b`)
+- Show the actual five question types present in the current bank (`46a585b`)
+- Qualify simplified black-hole formation and singularity statements (`3efc019`)
+- Clarify Mercury has a tenuous exosphere rather than no atmosphere (`dcb2c01`)
+- Disclose local knowledge-base assistant and static reading content (`fb129ab`)
+- Remove stale exact Saturn moon-count wording from quiz explanations (`dab7f83`)
+- Fix inline JavaScript validation workflow (`b9c19bd`)
+- Prevent browser storage restrictions from breaking study progress (`1f4b4fc`)
+
+### Documentation（文档）
+
+- Clarify main-branch modernization and delivery status (`f8f5e1d`)
+
+### Tests（测试）
+
+- Cover malformed fill-in answer types (`d60f59b`)
+- Cover empty answer key grading (`e209596`)
+- (astronomy) guard eclipse frequency answer (`b19d76b`)
+- Load question bank for history regression (`ebae692`)
+- Guard astronomy history wording (`e11f2c5`)
+- Prevent blank exam answers inflating mastery statistics (`829ce74`)
+- Strengthen question bank option and category integrity checks (`36e6ccd`)
+- Correct normalization edge cases in grading checks (`c979025`)
+- Cover all astronomy question grading types (`00d981a`)
+- Validate extracted astronomy question bank (`b9e8f55`)
+- Validate extracted JavaScript application entry (`2f31f94`)
+- Inspect extracted application source in regression checks (`f9106e3`)
+- Inspect extracted application source in regression checks (`6b8c56e`)
+- Cover malformed and unavailable study storage (`1d0bf57`)
+- Validate question IDs, answer ranges and question types in CI (`d50e877`)
+- Add structural validation for astronomy question bank (`6533c81`)
+
+### Maintenance（维护）
+
+- Validate shared astronomy grading rules (`b1afe61`)
+- Validate study storage recovery safeguards (`9ad145a`)
+
+## 2026-10-05 ~ 2026-10-11
+
+### Added（新增）
+
+- Initial commit (`6854eb2`)
+
+### Changed（变更）
+
+- Update index.html (`8ffcea0`)
+- Update index.html (`8ababcd`)
+- Update index.html (`939c627`)
+- Update fmt.Println message from 'Hello' to 'Goodbye' (`102ba2a`)
