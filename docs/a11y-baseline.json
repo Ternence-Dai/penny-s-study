@@ -1,0 +1,300 @@
+{
+  "scope": "axe 结构规则子集 (jsdom, no layout/rendering)",
+  "tool": {
+    "name": "axe-core",
+    "version": "4.14.1",
+    "license": "MPL-2.0 (unmodified, test tool only)"
+  },
+  "dom": {
+    "name": "jsdom",
+    "version": "31.0.1",
+    "license": "MIT (plus W3C/Unicode data notices)"
+  },
+  "generatedAt": "2026-11-26T04:19:54.555Z",
+  "runTags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa"
+  ],
+  "disabledRules": [
+    {
+      "id": "color-contrast",
+      "reason": "jsdom has no rendering engine: computed colours come from a partial CSS cascade with no layout or painting, so contrast ratios are not trustworthy. Needs a real browser."
+    },
+    {
+      "id": "color-contrast-enhanced",
+      "reason": "Same jsdom limitation as color-contrast (AAA variant of the same check)."
+    },
+    {
+      "id": "link-in-text-block",
+      "reason": "Distinguishing links from surrounding text depends on computed colour/underline rendering that jsdom cannot reproduce faithfully."
+    },
+    {
+      "id": "css-orientation-lock",
+      "reason": "Depends on media-query evaluation against a real viewport/device orientation; jsdom reports a fixed dummy viewport."
+    }
+  ],
+  "viewsAudited": [
+    "initial",
+    "tab:home",
+    "tab:learn",
+    "tab:ai",
+    "tab:news",
+    "tab:wrong",
+    "tab:profile"
+  ],
+  "counts": {
+    "total": 15,
+    "byRule": {
+      "label": 3,
+      "label-content-name-mismatch": 12
+    },
+    "byImpact": {
+      "critical": 3,
+      "serious": 12
+    }
+  },
+  "violations": [
+    {
+      "rule": "label",
+      "impact": "critical",
+      "help": "Form elements must have labels",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label?application=axeAPI",
+      "target": [
+        "#rPitch"
+      ],
+      "html": "<input type=\"range\" id=\"rPitch\" min=\"0.7\" max=\"1.4\" step=\"0.05\" value=\"1.05\" oninput=\"Reader.setPitch(this.value)\">",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home",
+        "tab:learn",
+        "tab:ai",
+        "tab:news",
+        "tab:wrong",
+        "tab:profile"
+      ]
+    },
+    {
+      "rule": "label",
+      "impact": "critical",
+      "help": "Form elements must have labels",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label?application=axeAPI",
+      "target": [
+        "#rSpeed"
+      ],
+      "html": "<input type=\"range\" id=\"rSpeed\" min=\"0.6\" max=\"1.8\" step=\"0.05\" value=\"1\" oninput=\"Reader.setSpeed(this.value)\">",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home",
+        "tab:learn",
+        "tab:ai",
+        "tab:news",
+        "tab:wrong",
+        "tab:profile"
+      ]
+    },
+    {
+      "rule": "label",
+      "impact": "critical",
+      "help": "Form elements must have labels",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label?application=axeAPI",
+      "target": [
+        "#rVol"
+      ],
+      "html": "<input type=\"range\" id=\"rVol\" min=\"0.3\" max=\"1\" step=\"0.05\" value=\"1\" oninput=\"Reader.setVolume(this.value)\">",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home",
+        "tab:learn",
+        "tab:ai",
+        "tab:news",
+        "tab:wrong",
+        "tab:profile"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"天体运动\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"天体运动\" aria-label=\"练习知识主题 天体运动\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"天文单位\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"天文单位\" aria-label=\"练习知识主题 天文单位\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"太阳\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"太阳\" aria-label=\"练习知识主题 太阳\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"太阳系\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"太阳系\" aria-label=\"练习知识主题 太阳系\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"恒星\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"恒星\" aria-label=\"练习知识主题 恒星\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"日食月食\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"日食月食\" aria-label=\"练习知识主题 日食月食\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"星座\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"星座\" aria-label=\"练习知识主题 星座\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"星系\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"星系\" aria-label=\"练习知识主题 星系\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"月球\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"月球\" aria-label=\"练习知识主题 月球\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"月相\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"月相\" aria-label=\"练习知识主题 月相\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"望远镜\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"望远镜\" aria-label=\"练习知识主题 望远镜\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+      "target": [
+        "button[data-classroom-topic=\"流星\"]"
+      ],
+      "html": "<button type=\"button\" data-classroom-topic=\"流星\" aria-label=\"练习知识主题 流星\">专项练习 ↗</button>",
+      "failureSummary": "Fix any of the following:",
+      "views": [
+        "initial",
+        "tab:home"
+      ]
+    }
+  ]
+}
