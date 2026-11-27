@@ -8,11 +8,12 @@ on:
       - 'index.html'
       - 'assets/**'
       - 'src/**'
-      - 'docs/**'
       - 'desktop/**'
       - 'package.json'
       - 'package-lock.json'
       - 'scripts/**'
+      - 'test/**'
+      - '.github/workflows/windows-desktop-validation.yml'
       - '.github/workflows/desktop-release.yml'
   push:
     branches: [main]
@@ -20,11 +21,12 @@ on:
       - 'index.html'
       - 'assets/**'
       - 'src/**'
-      - 'docs/**'
       - 'desktop/**'
       - 'package.json'
       - 'package-lock.json'
       - 'scripts/**'
+      - 'test/**'
+      - '.github/workflows/windows-desktop-validation.yml'
   workflow_dispatch:
     inputs:
       publish:
