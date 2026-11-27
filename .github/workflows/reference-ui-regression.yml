@@ -2,8 +2,14 @@ name: Reference UI and domain regression
 
 on:
   push:
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
     branches: [main, rebuild/platform-v2]
   pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
     branches: [main, 'fix/**']
   workflow_dispatch:
 
